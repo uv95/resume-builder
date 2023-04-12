@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+.card {
+  height: fit-content;
+  background: white;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: 0.2rem 0.2rem 2rem rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.resume {
+  padding: 0 12%;
+  border-radius: 0.2rem;
+  padding-top: 141.5%;
+  background-color: white;
+  position: relative;
+}
+.page {
+  position: absolute;
+  width: calc(100% - 24%);
+  height: calc(100% - 17%);
+  top: 8.5%;
+}

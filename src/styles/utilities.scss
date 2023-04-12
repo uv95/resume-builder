@@ -1,0 +1,14 @@
+.flex {
+  display: flex;
+  gap: 2rem;
+
+  &-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.grid {
+  display: grid;
+}

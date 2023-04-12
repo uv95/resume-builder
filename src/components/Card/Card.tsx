@@ -1,9 +1,10 @@
 import React from 'react';
+import style from './Card.module.scss';
 
-type Props = {};
+type Props = { children: React.ReactNode };
 
-const Card = (props: Props) => {
-  return <div>Card</div>;
+const Card = ({ children }: Props) => {
+  return <div className={style.card}>{children}</div>;
 };
 
 export default Card;
