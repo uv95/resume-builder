@@ -2,15 +2,47 @@
 @import '../../styles/mixins.scss';
 
 .button {
+  border: 0;
+  background-color: white;
   cursor: pointer;
-  font-size: 2rem;
-  padding: 1rem;
-  border-radius: $border-radius;
+  font-size: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: $border-radius--btn;
+  transition: all 0.1s;
   @include center;
+
+  &-nav,
   &-white {
+    padding: 1rem;
     &--active {
+      font-size: 2rem;
+      padding: 1rem;
       background-color: rgba(243, 243, 243, 0.77);
       color: $color-ui;
+    }
+    &:hover {
+      color: $color-font--light;
+    }
+  }
+
+  &-nav {
+    font-size: 2rem;
+  }
+
+  &-pink {
+    width: fit-content;
+    background-color: $color-ui;
+    color: white;
+    &:hover {
+      background-color: $color-ui--light;
+    }
+  }
+  &-whiteWithBorder {
+    width: fit-content;
+    border: 5px solid $color-bg;
+    &:hover {
+      border: 5px solid $color-bg--light;
+      color: $color-font--light;
     }
   }
 }

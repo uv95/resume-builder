@@ -8,15 +8,15 @@ const Navigation = (props: Props) => {
   const [active, setActive] = useState('Content');
   return (
     <Card>
-      <div className="flex-column">
+      <div className="flex-column p-2">
         <Button
-          color="white"
+          color="nav"
           text="Content"
           active={active === 'Content'}
           onClick={() => setActive('Content')}
         />
         <Button
-          color="white"
+          color="nav"
           text="Customize"
           active={active === 'Customize'}
           onClick={() => setActive('Customize')}

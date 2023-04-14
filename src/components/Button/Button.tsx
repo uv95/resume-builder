@@ -5,19 +5,22 @@ type Props = {
   color: string;
   text: string;
   active?: boolean;
-  onClick: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
+  bold?: boolean;
+  type?: 'submit';
+  onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
 };
 
-const Button = ({ color, text, active, onClick }: Props) => {
+const Button = ({ color, text, active, type, bold, onClick }: Props) => {
   return (
-    <div
+    <button
+      type={type || 'button'}
       className={`${style.button} ${
         style[`button-${color}${active ? '--active' : ''}`]
-      }`}
+      } ${bold ? 'bold' : ''}`}
       onClick={onClick}
     >
       {text}
-    </div>
+    </button>
   );
 };
 

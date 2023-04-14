@@ -1,3 +1,6 @@
+@import './variables.scss';
+@import './mixins.scss';
+
 .flex {
   display: flex;
   gap: 2rem;
@@ -9,6 +12,32 @@
   }
 }
 
+.spaceBetween {
+  justify-content: space-between;
+}
+
 .grid {
   display: grid;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.rightPositioned {
+  margin-left: auto;
+}
+.centered {
+  @include center;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.bold {
+  font-weight: 600;
 }
