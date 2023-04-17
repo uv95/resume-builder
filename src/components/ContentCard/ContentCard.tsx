@@ -1,6 +1,4 @@
-import { data } from '@/utils/data';
 import React, { useRef, useState } from 'react';
-import { createSecureContext } from 'tls';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
