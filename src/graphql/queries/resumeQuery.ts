@@ -4,6 +4,7 @@ export const GET_RESUME = gql`
   query getResume($id: ID!) {
     resume(id: $id) {
       id
+      name
       personalDetails {
         fullName
         jobTitle
@@ -11,15 +12,10 @@ export const GET_RESUME = gql`
         phone
         address
         additionalInfo {
-          dateOfBirth
-          drivingLicense
-          gender
+          info
         }
         links {
-          website
-          github
-          skype
-          telegram
+          link
         }
       }
       skills {
@@ -59,6 +55,15 @@ export const GET_RESUME = gql`
         endDate
         description
       }
+    }
+  }
+`;
+
+export const GET_RESUMES = gql`
+  query getResumes {
+    resumes {
+      id
+      name
     }
   }
 `;

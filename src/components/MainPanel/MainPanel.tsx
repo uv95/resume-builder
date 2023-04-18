@@ -1,12 +1,13 @@
 import { data } from '@/utils/data';
+import { IResume } from '@/utils/types';
 import React from 'react';
 import Card from '../Card/Card';
 import ContentCard from '../ContentCard/ContentCard';
 import style from './MainPanel.module.scss';
 
-type Props = {};
+type Props = { content: IResume };
 
-const MainPanel = (props: Props) => {
+const MainPanel = ({ content }: Props) => {
   return (
     <div className={style.mainPanel}>
       <div className="flex-column">
