@@ -7,8 +7,8 @@ import style from './InputsSection.module.scss';
 type Props = {
   content: any;
   isEdit: boolean;
-  isAddNew: boolean;
-  setIsAddNew: React.Dispatch<React.SetStateAction<boolean>>;
+  isAddNew?: boolean;
+  setIsAddNew?: React.Dispatch<React.SetStateAction<boolean>>;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -52,7 +52,7 @@ const InputsSection = ({
                 text="Cancel"
                 bold
                 onClick={() => {
-                  setIsAddNew(false);
+                  setIsAddNew && setIsAddNew(false);
                   setIsEdit(false);
                 }}
               />
@@ -62,7 +62,7 @@ const InputsSection = ({
                 text="Save"
                 bold
                 onClick={() => {
-                  setIsAddNew(false);
+                  setIsAddNew && setIsAddNew(false);
                   setIsEdit(false);
                 }}
               />

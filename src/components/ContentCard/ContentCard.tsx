@@ -11,6 +11,7 @@ const ContentCard = ({ content }: Props) => {
   const [maxHeight, setMaxHeight] = useState(0);
   const [isEdit, setIsEdit] = useState(false);
   const [isAddNew, setIsAddNew] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const changeMaxHeight = () => {
     if (ref.current)
@@ -21,7 +22,6 @@ const ContentCard = ({ content }: Props) => {
     return;
   };
 
-  const ref = useRef<HTMLDivElement>(null);
   return (
     <Card>
       {isEdit || isAddNew ? (
