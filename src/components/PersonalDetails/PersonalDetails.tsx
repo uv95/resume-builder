@@ -24,19 +24,31 @@ const PersonalDetails = ({ content }: Props) => {
       ) : (
         <div className={style.cardContainer} onClick={() => setIsEdit(true)}>
           <div className="flex spaceBetween p-2">
-            <p className={`${style.name} ${!content?.fullName && style.empty}`}>
+            <p
+              className={`${style.name} ${
+                !content?.fullName ? style.empty : ''
+              }`}
+            >
               {content?.fullName || 'Your name'}
             </p>
             <p onClick={() => setIsEdit(true)}>EDIT</p>
           </div>
           <div className={style.content}>
-            <p className={`${style.input} ${!content?.email && style.empty}`}>
+            <p
+              className={`${style.input} ${!content?.email ? style.empty : ''}`}
+            >
               {content?.email || 'Email'}
             </p>
-            <p className={`${style.input} ${!content?.phone && style.empty}`}>
+            <p
+              className={`${style.input} ${!content?.phone ? style.empty : ''}`}
+            >
               {content?.phone || 'Phone'}
             </p>
-            <p className={`${style.input} ${!content?.address && style.empty}`}>
+            <p
+              className={`${style.input} ${
+                !content?.address ? style.empty : ''
+              }`}
+            >
               {content?.address || 'Address'}
             </p>
           </div>

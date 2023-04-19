@@ -11,6 +11,9 @@
     gap: 2rem;
   }
 }
+.flexWrap {
+  flex-wrap: wrap;
+}
 
 .spaceBetween {
   justify-content: space-between;
@@ -18,10 +21,17 @@
 
 .grid {
   display: grid;
+  gap: 2rem;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .p-2 {
   padding: 2rem;
+}
+.py-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .rightPositioned {
@@ -40,4 +50,8 @@
 
 .bold {
   font-weight: 600;
+}
+
+.pointer {
+  cursor: pointer;
 }

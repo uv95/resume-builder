@@ -249,3 +249,36 @@ export const data = [
     ],
   },
 ];
+
+export const contentCards = [
+  {
+    title: 'Profile',
+    description:
+      'Make a great first impression by presenting yourself in a few sentences.',
+  },
+  {
+    title: 'Skill',
+    description:
+      'List your technical, managerial or soft skills in this section.',
+  },
+  {
+    title: 'Education',
+    description:
+      'Show off your primary education, college degrees & exchange semesters.',
+  },
+  {
+    title: 'Language',
+    description:
+      'You speak more than one language? Make sure to list them here.',
+  },
+  {
+    title: 'Project',
+    description:
+      'Worked on a particular challenging project in the past? Mention it here.',
+  },
+  {
+    title: 'Professional Experience',
+    description:
+      'A place to highlight your professional experience - including internships.',
+  },
+];
