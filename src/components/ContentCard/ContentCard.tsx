@@ -19,7 +19,6 @@ const ContentCard = ({
   setContentToEdit,
 }: Props) => {
   const [maxHeight, setMaxHeight] = useState(0);
-  const [isAddNew, setIsAddNew] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const changeMaxHeight = () => {
@@ -33,11 +32,9 @@ const ContentCard = ({
 
   return (
     <Card>
-      {isAddNew || contentToEdit ? (
+      {contentToEdit ? (
         <InputsSection
-          content={inputData}
-          isAddNew={isAddNew}
-          setIsAddNew={setIsAddNew}
+          inputData={inputData}
           setContentToEdit={setContentToEdit}
         />
       ) : (
@@ -60,7 +57,7 @@ const ContentCard = ({
             />
             <div className="p-2 centered">
               <Button
-                onClick={() => setIsAddNew(true)}
+                onClick={() => setContentToEdit(inputData.name)}
                 color="whiteWithBorder"
                 text={'+ ' + inputData.title}
               />

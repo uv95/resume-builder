@@ -30,10 +30,15 @@ const MainPanel = ({ resume }: Props) => {
           <Card>
             <h3 className="p-2">{resume.name}</h3>
           </Card>
-          {!contentToEdit && (
-            <PersonalDetails content={resume.personalDetails} />
+          {(!contentToEdit || contentToEdit === 'personalDetails') && (
+            <PersonalDetails
+              content={resume.personalDetails}
+              contentToEdit={contentToEdit}
+              setContentToEdit={setContentToEdit}
+            />
           )}
           {!contentToEdit &&
+            contentToEdit !== 'personalDetails' &&
             contentCards.map(
               (contentCard) =>
                 resumeOptionalFields[
@@ -49,7 +54,7 @@ const MainPanel = ({ resume }: Props) => {
                   />
                 )
             )}
-          {contentToEdit && (
+          {contentToEdit && contentToEdit !== 'personalDetails' && (
             <ContentCard
               contentToEdit={contentToEdit}
               setContentToEdit={setContentToEdit}

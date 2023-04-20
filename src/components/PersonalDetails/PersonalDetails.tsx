@@ -1,25 +1,33 @@
 import { personalDetailInputData } from '@/utils/data';
 import { IPersonalDetails } from '@/utils/types';
-import React, { useState } from 'react';
-import Button from '../Button/Button';
+import React from 'react';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import style from './PersonalDetails.module.scss';
 
-type Props = { content: IPersonalDetails | null };
+type Props = {
+  content: IPersonalDetails | null;
+  setContentToEdit: React.Dispatch<React.SetStateAction<string | null>>;
+  contentToEdit: string | null;
+};
 
-const PersonalDetails = ({ content }: Props) => {
-  const [isEdit, setIsEdit] = useState(false);
+const PersonalDetails = ({
+  content,
+  setContentToEdit,
+  contentToEdit,
+}: Props) => {
   return (
     <Card>
-      {isEdit ? (
+      {contentToEdit ? (
         <InputsSection
-          content={personalDetailInputData}
-          // isEdit={isEdit}
-          // setIsEdit={setIsEdit}
+          inputData={personalDetailInputData}
+          setContentToEdit={setContentToEdit}
         />
       ) : (
-        <div className={style.cardContainer} onClick={() => setIsEdit(true)}>
+        <div
+          className={style.cardContainer}
+          onClick={() => setContentToEdit('personalDetails')}
+        >
           <div className="flex spaceBetween p-2">
             <p
               className={`${style.name} ${
@@ -28,7 +36,7 @@ const PersonalDetails = ({ content }: Props) => {
             >
               {content?.fullName || 'Your name'}
             </p>
-            <p onClick={() => setIsEdit(true)}>EDIT</p>
+            <p onClick={() => setContentToEdit('personalDetails')}>EDIT</p>
           </div>
           <div className={style.content}>
             <p

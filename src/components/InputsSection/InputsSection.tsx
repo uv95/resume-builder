@@ -4,25 +4,18 @@ import Button from '../Button/Button';
 import style from './InputsSection.module.scss';
 
 type Props = {
-  content: any;
-  isAddNew?: boolean;
-  setIsAddNew?: React.Dispatch<React.SetStateAction<boolean>>;
-  setContentToEdit?: React.Dispatch<React.SetStateAction<string | null>>;
+  inputData: any;
+  setContentToEdit: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
-const InputsSection = ({
-  isAddNew,
-  setIsAddNew,
-  content,
-  setContentToEdit,
-}: Props) => {
-  console.log(content, 'content InputsSection');
+const InputsSection = ({ inputData, setContentToEdit }: Props) => {
+  console.log(inputData, 'inputData InputsSection');
   return (
     <div>
-      <h3 className="p-2">{content.editTitle}</h3>
+      <h3 className="p-2">{inputData.editTitle}</h3>
       <Formik initialValues={{}} onSubmit={() => {}}>
         <Form className="p-2 flex-column">
-          {content.inputs.map((input: any) => (
+          {inputData.inputs.map((input: any) => (
             <div className="inputGroup" key={input.name}>
               <label htmlFor={input.name}>{input.label}</label>
               {input.type === 'select' ? (
@@ -49,20 +42,14 @@ const InputsSection = ({
                 color="white"
                 text="Cancel"
                 bold
-                onClick={() => {
-                  setIsAddNew && setIsAddNew(false);
-                  setContentToEdit && setContentToEdit(null);
-                }}
+                onClick={() => setContentToEdit(null)}
               />
               <Button
                 type="submit"
                 color="pink"
                 text="Save"
                 bold
-                onClick={() => {
-                  setIsAddNew && setIsAddNew(false);
-                  setContentToEdit && setContentToEdit(null);
-                }}
+                onClick={() => setContentToEdit(null)}
               />
             </div>
           </div>
