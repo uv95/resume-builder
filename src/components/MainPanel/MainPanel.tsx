@@ -1,4 +1,4 @@
-import { data } from '@/utils/data';
+import { contentCards, inputData } from '@/utils/data';
 import { IResume } from '@/utils/types';
 import React, { useState } from 'react';
 import AddContent from '../AddContent/AddContent';
@@ -9,21 +9,54 @@ import Modal from '../Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import style from './MainPanel.module.scss';
 
-type Props = { content: IResume };
+type Props = { resume: IResume };
 
-const MainPanel = ({ content }: Props) => {
+const MainPanel = ({ resume }: Props) => {
   const [showAddContent, setShowAddContent] = useState(false);
+  const [contentToEdit, setContentToEdit] = useState<string | null>(null);
+  const [resumeOptionalFields] = useState({
+    language: resume.language,
+    skills: resume.skills,
+    professionalExperience: resume.professionalExperience,
+    project: resume.project,
+    education: resume.education,
+    profile: resume.profile,
+  });
+
   return (
     <>
       <div className={style.mainPanel}>
         <div className="flex-column">
           <Card>
-            <h3 className="p-2">{content.name}</h3>
+            <h3 className="p-2">{resume.name}</h3>
           </Card>
-          <PersonalDetails content={content.personalDetails} />
-          {data.slice(1).map((contentEl) => (
-            <ContentCard key={contentEl.name} content={contentEl} />
-          ))}
+          {!contentToEdit && (
+            <PersonalDetails content={resume.personalDetails} />
+          )}
+          {!contentToEdit &&
+            contentCards.map(
+              (contentCard) =>
+                resumeOptionalFields[
+                  contentCard.name as keyof typeof resumeOptionalFields
+                ].length !== 0 && (
+                  <ContentCard
+                    key={contentCard.name}
+                    setContentToEdit={setContentToEdit}
+                    inputData={
+                      inputData[contentCard.name as keyof typeof inputData]
+                    }
+                    resumeData={resume[contentCard.name as keyof typeof resume]}
+                  />
+                )
+            )}
+          {contentToEdit && (
+            <ContentCard
+              contentToEdit={contentToEdit}
+              setContentToEdit={setContentToEdit}
+              inputData={inputData[contentToEdit as keyof typeof inputData]}
+              resumeData={resume[contentToEdit as keyof typeof resume]}
+            />
+          )}
           <div className="centered">
             <Button
               onClick={() => setShowAddContent(true)}
@@ -35,7 +68,10 @@ const MainPanel = ({ content }: Props) => {
       </div>
       {showAddContent && (
         <Modal setOpen={setShowAddContent} heading="Add Content">
-          <AddContent />
+          <AddContent
+            setContentToEdit={setContentToEdit}
+            setOpen={setShowAddContent}
+          />
         </Modal>
       )}
     </>

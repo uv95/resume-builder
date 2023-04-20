@@ -1,6 +1,6 @@
-import { data } from '@/utils/data';
+import { personalDetailInputData } from '@/utils/data';
 import { IPersonalDetails } from '@/utils/types';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
@@ -10,16 +10,13 @@ type Props = { content: IPersonalDetails | null };
 
 const PersonalDetails = ({ content }: Props) => {
   const [isEdit, setIsEdit] = useState(false);
-
-  const inputData = data[0];
-
   return (
     <Card>
       {isEdit ? (
         <InputsSection
-          content={inputData}
-          isEdit={isEdit}
-          setIsEdit={setIsEdit}
+          content={personalDetailInputData}
+          // isEdit={isEdit}
+          // setIsEdit={setIsEdit}
         />
       ) : (
         <div className={style.cardContainer} onClick={() => setIsEdit(true)}>

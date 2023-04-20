@@ -2,20 +2,22 @@ import React from 'react';
 import style from './List.module.scss';
 
 type Props = {
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setContentToEdit: () => void;
+  list: any[];
 };
 
-const List = ({ setIsEdit }: Props) => {
+const List = ({ setContentToEdit, list }: Props) => {
   return (
     <ul className={style.list}>
-      <div className={style.devider}></div>
-      <li className="p-2" onClick={() => setIsEdit(true)}>
-        First skill
-      </li>
-      <div className={style.devider}></div>
-      <li className="p-2" onClick={() => setIsEdit(true)}>
-        Second skill
-      </li>
+      {list.map((item) => (
+        <div key={item}>
+          <div className={style.devider}></div>
+          <li className="p-2" onClick={setContentToEdit}>
+            {item[Object.keys(item)[1]]}
+          </li>
+        </div>
+      ))}
+
       <div className={style.devider}></div>
     </ul>
   );

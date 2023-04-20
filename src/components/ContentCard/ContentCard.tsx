@@ -5,11 +5,20 @@ import InputsSection from '../InputsSection/InputsSection';
 import List from '../List/List';
 import style from './ContentCard.module.scss';
 
-type Props = { content: any };
+type Props = {
+  inputData: any;
+  resumeData: any;
+  contentToEdit?: string;
+  setContentToEdit: React.Dispatch<React.SetStateAction<string | null>>;
+};
 
-const ContentCard = ({ content }: Props) => {
+const ContentCard = ({
+  inputData,
+  resumeData,
+  contentToEdit,
+  setContentToEdit,
+}: Props) => {
   const [maxHeight, setMaxHeight] = useState(0);
-  const [isEdit, setIsEdit] = useState(false);
   const [isAddNew, setIsAddNew] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -24,18 +33,17 @@ const ContentCard = ({ content }: Props) => {
 
   return (
     <Card>
-      {isEdit || isAddNew ? (
+      {isAddNew || contentToEdit ? (
         <InputsSection
-          content={content}
-          isEdit={isEdit}
+          content={inputData}
           isAddNew={isAddNew}
-          setIsEdit={setIsEdit}
           setIsAddNew={setIsAddNew}
+          setContentToEdit={setContentToEdit}
         />
       ) : (
         <>
           <div className="flex spaceBetween p-2">
-            <h3>{content.title}</h3>
+            <h3>{inputData.title}</h3>
 
             <p onClick={changeMaxHeight}>v</p>
           </div>
@@ -46,12 +54,15 @@ const ContentCard = ({ content }: Props) => {
               maxHeight: maxHeight + 'px',
             }}
           >
-            <List setIsEdit={setIsEdit} />
+            <List
+              setContentToEdit={() => setContentToEdit(inputData.name)}
+              list={resumeData}
+            />
             <div className="p-2 centered">
               <Button
                 onClick={() => setIsAddNew(true)}
                 color="whiteWithBorder"
-                text={'+ ' + content.title}
+                text={'+ ' + inputData.title}
               />
             </div>
           </div>

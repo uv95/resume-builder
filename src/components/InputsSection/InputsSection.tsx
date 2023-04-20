@@ -1,4 +1,3 @@
-import { data } from '@/utils/data';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import Button from '../Button/Button';
@@ -6,19 +5,18 @@ import style from './InputsSection.module.scss';
 
 type Props = {
   content: any;
-  isEdit: boolean;
   isAddNew?: boolean;
   setIsAddNew?: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  setContentToEdit?: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const InputsSection = ({
-  isEdit,
   isAddNew,
   setIsAddNew,
-  setIsEdit,
   content,
+  setContentToEdit,
 }: Props) => {
+  console.log(content, 'content InputsSection');
   return (
     <div>
       <h3 className="p-2">{content.editTitle}</h3>
@@ -53,7 +51,7 @@ const InputsSection = ({
                 bold
                 onClick={() => {
                   setIsAddNew && setIsAddNew(false);
-                  setIsEdit(false);
+                  setContentToEdit && setContentToEdit(null);
                 }}
               />
               <Button
@@ -63,7 +61,7 @@ const InputsSection = ({
                 bold
                 onClick={() => {
                   setIsAddNew && setIsAddNew(false);
-                  setIsEdit(false);
+                  setContentToEdit && setContentToEdit(null);
                 }}
               />
             </div>

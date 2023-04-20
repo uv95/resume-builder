@@ -8,9 +8,19 @@ export interface IResume {
   profile: IProfile[];
   project: IProject[];
   skills: ISkills[];
+  __typename?: string;
 }
 
-export interface IEducation {}
+export interface IEducation {
+  degree: string;
+  school: string;
+  city: string;
+  country: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  __typename?: string;
+}
 
 export interface ILanguage {
   language: string;
@@ -21,6 +31,7 @@ export interface ILanguage {
     | 'Limited working proficiency (B1)'
     | 'Highly proficient (B2-C1)'
     | 'Native / full working proficiency (C2)';
+  __typename?: string;
 }
 
 export interface IPersonalDetails {
@@ -31,6 +42,7 @@ export interface IPersonalDetails {
   address: string;
   additionalInfo: IAdditionalInfo;
   links: ILinks;
+  __typename?: string;
 }
 
 export interface IProfessionalExperience {
@@ -41,10 +53,12 @@ export interface IProfessionalExperience {
   startDate: string;
   endDate: string;
   description: string;
+  __typename?: string;
 }
 
 export interface IProfile {
   text: string;
+  __typename?: string;
 }
 
 export interface IProject {
@@ -52,18 +66,22 @@ export interface IProject {
   startDate: string;
   endDate: string;
   description: string;
+  __typename?: string;
 }
 
 export interface ISkills {
   skill: string;
   info: string;
   skillLevel: 'Novice' | 'Beginner' | 'Skillful' | 'Experienced' | 'Expert';
+  __typename?: string;
 }
 
 export interface IAdditionalInfo {
   info: string;
+  __typename?: string;
 }
 
 export interface ILinks {
   link: string;
+  __typename?: string;
 }

@@ -71,106 +71,104 @@ export const dates = {
   ],
 };
 
-export const data = [
-  // PERSONAL DETAILS
-  {
-    name: 'personalDetails',
-    title: '',
-    editTitle: 'Edit personal details',
-    inputs: [
-      {
-        label: 'Full name',
-        name: 'fullName',
-        type: '',
-        placeholder: 'Enter full name',
-      },
-      {
-        label: 'Job title',
-        name: 'jobTitle',
-        type: '',
-        placeholder: 'Enter job title',
-      },
-      {
-        label: 'Email',
-        name: 'email',
-        type: 'email',
-        placeholder: 'Enter email',
-      },
-      {
-        label: 'Phone',
-        name: 'phone',
-        type: '',
-        placeholder: 'Enter phone',
-      },
-      {
-        label: 'Address',
-        name: 'address',
-        type: '',
-        placeholder: 'City, country',
-      },
-    ],
-    additionalInfo: [
-      {
-        title: 'Personal information',
-        inputs: [
-          {
-            label: 'Date of Birth',
-            name: 'dateOfBirth',
-            type: 'date',
-            placeholder: 'Enter date of birth',
-          },
-          {
-            label: 'Driving License',
-            name: 'drivingLicense',
-            type: '',
-            placeholder: 'Enter driving license',
-          },
-          {
-            label: 'Gender or Pronoun',
-            name: 'gender',
-            type: '',
-            placeholder: 'Enter gender',
-          },
-        ],
-      },
-      {
-        title: 'Links',
-        inputs: [
-          {
-            label: 'Website',
-            name: 'website',
-            type: 'date',
-            placeholder: 'Enter website',
-            link: true,
-          },
-          {
-            label: 'Github',
-            name: 'github',
-            type: '',
-            placeholder: 'Enter github',
-            link: true,
-          },
-          {
-            label: 'Skype',
-            name: 'skype',
-            type: '',
-            placeholder: 'Enter skype',
-            link: true,
-          },
-          {
-            label: 'Telegram',
-            name: 'telegram',
-            type: '',
-            placeholder: 'Enter telegram',
-            link: true,
-          },
-        ],
-      },
-    ],
-  },
+export const personalDetailInputData = {
+  name: 'personalDetails',
+  editTitle: 'Edit personal details',
+  inputs: [
+    {
+      label: 'Full name',
+      name: 'fullName',
+      type: '',
+      placeholder: 'Enter full name',
+    },
+    {
+      label: 'Job title',
+      name: 'jobTitle',
+      type: '',
+      placeholder: 'Enter job title',
+    },
+    {
+      label: 'Email',
+      name: 'email',
+      type: 'email',
+      placeholder: 'Enter email',
+    },
+    {
+      label: 'Phone',
+      name: 'phone',
+      type: '',
+      placeholder: 'Enter phone',
+    },
+    {
+      label: 'Address',
+      name: 'address',
+      type: '',
+      placeholder: 'City, country',
+    },
+  ],
+  additionalInfo: [
+    {
+      title: 'Personal information',
+      inputs: [
+        {
+          label: 'Date of Birth',
+          name: 'dateOfBirth',
+          type: 'date',
+          placeholder: 'Enter date of birth',
+        },
+        {
+          label: 'Driving License',
+          name: 'drivingLicense',
+          type: '',
+          placeholder: 'Enter driving license',
+        },
+        {
+          label: 'Gender or Pronoun',
+          name: 'gender',
+          type: '',
+          placeholder: 'Enter gender',
+        },
+      ],
+    },
+    {
+      title: 'Links',
+      inputs: [
+        {
+          label: 'Website',
+          name: 'website',
+          type: 'date',
+          placeholder: 'Enter website',
+          link: true,
+        },
+        {
+          label: 'Github',
+          name: 'github',
+          type: '',
+          placeholder: 'Enter github',
+          link: true,
+        },
+        {
+          label: 'Skype',
+          name: 'skype',
+          type: '',
+          placeholder: 'Enter skype',
+          link: true,
+        },
+        {
+          label: 'Telegram',
+          name: 'telegram',
+          type: '',
+          placeholder: 'Enter telegram',
+          link: true,
+        },
+      ],
+    },
+  ],
+};
 
+export const inputData = {
   //SKILLS
-  {
+  skills: {
     name: 'skills',
     title: 'Skills',
     editTitle: 'Add Skill',
@@ -183,7 +181,7 @@ export const data = [
       },
       {
         label: 'Information / Sub-skills',
-        name: 'subskills',
+        name: 'info',
         type: '',
         placeholder: 'Enter information or sub-skills',
       },
@@ -198,7 +196,7 @@ export const data = [
   },
 
   //ROFESSIONAL EXPERIENCE
-  {
+  professionalExperience: {
     name: 'professionalExperience',
     title: 'Professional Experience',
     editTitle: 'Add Professional Experience',
@@ -248,36 +246,43 @@ export const data = [
       },
     ],
   },
-];
+};
 
 export const contentCards = [
   {
     title: 'Profile',
+    name: 'profile',
     description:
       'Make a great first impression by presenting yourself in a few sentences.',
   },
   {
     title: 'Skill',
+    name: 'skills',
     description:
       'List your technical, managerial or soft skills in this section.',
   },
   {
     title: 'Education',
+    name: 'education',
     description:
       'Show off your primary education, college degrees & exchange semesters.',
   },
   {
     title: 'Language',
+    name: 'language',
     description:
       'You speak more than one language? Make sure to list them here.',
   },
   {
     title: 'Project',
+    name: 'project',
+
     description:
       'Worked on a particular challenging project in the past? Mention it here.',
   },
   {
     title: 'Professional Experience',
+    name: 'professionalExperience',
     description:
       'A place to highlight your professional experience - including internships.',
   },

@@ -22,7 +22,7 @@ const Resume = (props: Props) => {
       <div className={style.layout}>
         <div className="flex">
           <Navigation />
-          <MainPanel content={data.resume} />
+          <MainPanel resume={data.resume} />
         </div>
         <ResumePage />
       </div>
