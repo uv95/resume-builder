@@ -111,22 +111,10 @@ export const personalDetailInputData = {
       title: 'Personal information',
       inputs: [
         {
-          label: 'Date of Birth',
-          name: 'dateOfBirth',
-          type: 'date',
-          placeholder: 'Enter date of birth',
-        },
-        {
-          label: 'Driving License',
-          name: 'drivingLicense',
+          label: 'Information',
+          name: 'info',
           type: '',
-          placeholder: 'Enter driving license',
-        },
-        {
-          label: 'Gender or Pronoun',
-          name: 'gender',
-          type: '',
-          placeholder: 'Enter gender',
+          placeholder: 'Enter additional information',
         },
       ],
     },
@@ -134,31 +122,10 @@ export const personalDetailInputData = {
       title: 'Links',
       inputs: [
         {
-          label: 'Website',
-          name: 'website',
-          type: 'date',
-          placeholder: 'Enter website',
-          link: true,
-        },
-        {
-          label: 'Github',
-          name: 'github',
+          label: 'Link',
+          name: 'link',
           type: '',
-          placeholder: 'Enter github',
-          link: true,
-        },
-        {
-          label: 'Skype',
-          name: 'skype',
-          type: '',
-          placeholder: 'Enter skype',
-          link: true,
-        },
-        {
-          label: 'Telegram',
-          name: 'telegram',
-          type: '',
-          placeholder: 'Enter telegram',
+          placeholder: 'Enter link',
           link: true,
         },
       ],
@@ -195,7 +162,41 @@ export const inputData = {
     ],
   },
 
-  //ROFESSIONAL EXPERIENCE
+  //LANGUAGE
+  language: {
+    name: 'language',
+    title: 'Language',
+    editTitle: 'Add Language',
+    inputs: [
+      {
+        label: 'Language',
+        name: 'language',
+        type: '',
+        placeholder: 'Enter language',
+      },
+      {
+        label: 'Additional Information',
+        name: 'info',
+        type: '',
+        placeholder: 'e.g. C2, 4+, TOEFL, IELTS...',
+      },
+      {
+        label: 'Select language level',
+        name: 'languageLevel',
+        type: 'select',
+        placeholder: 'Language level',
+        options: [
+          'Beginner (A1)',
+          'Elementary (A2)',
+          'Limited working proficiency (B1)',
+          'Highly proficient (B2-C1)',
+          'Native / full working proficiency (C2)',
+        ],
+      },
+    ],
+  },
+
+  //PROFESSIONAL EXPERIENCE
   professionalExperience: {
     name: 'professionalExperience',
     title: 'Professional Experience',
@@ -243,6 +244,106 @@ export const inputData = {
         name: 'description',
         type: 'textarea',
         placeholder: 'Describe your role and achievements',
+      },
+    ],
+  },
+
+  //PROJECT
+  project: {
+    name: 'project',
+    title: 'Project',
+    editTitle: 'Add Project',
+    inputs: [
+      {
+        label: 'Title',
+        name: 'jtitle',
+        type: '',
+        placeholder: 'Enter project title',
+      },
+      {
+        label: 'Start Date',
+        name: 'startDate',
+        type: 'date',
+        placeholder: '',
+      },
+      {
+        label: 'End Date',
+        name: 'endDate',
+        type: 'date',
+        placeholder: '',
+      },
+      {
+        label: 'Description',
+        name: 'description',
+        type: 'textarea',
+        placeholder: 'Describe your role and achievements',
+      },
+    ],
+  },
+
+  //EDUCATION
+  education: {
+    name: 'education',
+    title: 'Education',
+    editTitle: 'Add Education',
+    inputs: [
+      {
+        label: 'Degree',
+        name: 'degree',
+        type: '',
+        placeholder: 'Enter degree',
+      },
+      {
+        label: 'School',
+        name: 'school',
+        type: '',
+        placeholder: 'Enter school',
+      },
+      {
+        label: 'City',
+        name: 'city',
+        type: '',
+        placeholder: 'Enter city',
+      },
+      {
+        label: 'Country',
+        name: 'country',
+        type: '',
+        placeholder: 'Enter country',
+      },
+      {
+        label: 'Start Date',
+        name: 'startDate',
+        type: 'date',
+        placeholder: '',
+      },
+      {
+        label: 'End Date',
+        name: 'endDate',
+        type: 'date',
+        placeholder: '',
+      },
+      {
+        label: 'Description',
+        name: 'description',
+        type: 'textarea',
+        placeholder: 'Describe your role and achievements',
+      },
+    ],
+  },
+
+  //PROFILE
+  profile: {
+    name: 'profile',
+    title: 'Profile',
+    editTitle: 'Add Profile',
+    inputs: [
+      {
+        label: 'Text',
+        name: 'text',
+        type: '',
+        placeholder:
+          'Introduce yourself by pitching your skills and explaining how they can be of value to a company',
       },
     ],
   },
