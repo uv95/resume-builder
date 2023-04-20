@@ -341,7 +341,7 @@ export const inputData = {
       {
         label: 'Text',
         name: 'text',
-        type: '',
+        type: 'textarea',
         placeholder:
           'Introduce yourself by pitching your skills and explaining how they can be of value to a company',
       },
