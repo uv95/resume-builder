@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.tag {
+  background-color: $color-bg;
+  color: $color-font--medium;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: $border-radius--btn;
+  transition: all 0.1s;
+  @include center;
+  gap: 1rem;
+
+  &:hover {
+    color: $color-font--light;
+    background-color: $color-bg--light;
+  }
+}

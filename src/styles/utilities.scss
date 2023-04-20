@@ -34,6 +34,10 @@
   padding-bottom: 1rem;
 }
 
+.mt-1 {
+  margin-top: 1rem;
+}
+
 .rightPositioned {
   margin-left: auto;
 }
@@ -46,6 +50,10 @@
   flex-direction: column;
   gap: 0.5rem;
   font-size: 1.5rem;
+
+  & input {
+    width: 100%;
+  }
 }
 
 .bold {

@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import Button from '../Button/Button';
+import PersonalDetailsAdditionalInfo from '../PersonalDetailsAdditionalInfo/PersonalDetailsAdditionalInfo';
 import style from './InputsSection.module.scss';
 
 type Props = {
@@ -9,7 +10,6 @@ type Props = {
 };
 
 const InputsSection = ({ inputData, setContentToEdit }: Props) => {
-  console.log(inputData, 'inputData InputsSection');
   return (
     <div>
       <h3 className="p-2">{inputData.editTitle}</h3>
@@ -24,17 +24,28 @@ const InputsSection = ({ inputData, setContentToEdit }: Props) => {
                 id={input.name}
                 type={input.type || 'text'}
                 placeholder={input.placeholder}
-                as={input.type === 'date' || !input.type ? 'input' : input.type}
+                as={
+                  input.type === 'date' || input.type === 'email' || !input.type
+                    ? 'input'
+                    : input.type
+                }
               >
-                {input.options?.map((option: any) => (
+                {input.options?.map((option: string) => (
                   <option key={option}>{option}</option>
                 ))}
               </Field>
             </div>
           ))}
+
+          {inputData.name === 'personalDetails' && (
+            <PersonalDetailsAdditionalInfo />
+          )}
+
           <div className={style.buttons}>
-            <Button color="white" text="Delete" bold />
-            <div className="flex">
+            {inputData.name !== 'personalDetails' && (
+              <Button color="white" text="Delete" bold />
+            )}
+            <div className="flex rightPositioned">
               <Button
                 color="white"
                 text="Cancel"

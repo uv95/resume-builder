@@ -21,7 +21,7 @@
       color: $color-ui;
     }
     &:hover {
-      color: $color-font--light;
+      color: $color-font--medium;
     }
   }
 
@@ -42,7 +42,7 @@
     border: 5px solid $color-bg;
     &:hover {
       border: 5px solid $color-bg--light;
-      color: $color-font--light;
+      color: $color-font--medium;
     }
   }
 }

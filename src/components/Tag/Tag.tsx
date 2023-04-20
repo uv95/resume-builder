@@ -1,9 +1,15 @@
 import React from 'react';
+import style from './Tag.module.scss';
 
-type Props = {};
+type Props = { text: string; onClick: () => void };
 
-const Tag = (props: Props) => {
-  return <div>Tag</div>;
+const Tag = ({ text, onClick }: Props) => {
+  return (
+    <div className={style.tag} onClick={onClick}>
+      <strong>+</strong>
+      <p>{text}</p>
+    </div>
+  );
 };
 
 export default Tag;

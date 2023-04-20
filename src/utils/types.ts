@@ -77,11 +77,13 @@ export interface ISkills {
 }
 
 export interface IAdditionalInfo {
+  name: string;
   info: string;
   __typename?: string;
 }
 
 export interface ILinks {
+  name: string;
   link: string;
   __typename?: string;
 }
