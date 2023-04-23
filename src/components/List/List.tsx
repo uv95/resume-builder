@@ -35,7 +35,7 @@ const List = ({ setContentToEdit, list }: Props) => {
         ) => (
           <div key={item.__typename}>
             <div className={style.devider}></div>
-            <li className="p-2" onClick={setContentToEdit}>
+            <li className="p-2 pointer" onClick={setContentToEdit}>
               {item[Object.keys(item)[1] as keyof typeof item]}
             </li>
           </div>

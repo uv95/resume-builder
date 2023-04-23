@@ -7,6 +7,7 @@ import Card from '../Card/Card';
 import ContentCard from '../ContentCard/ContentCard';
 import Modal from '../Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
+import ResumeName from '../ResumeName/ResumeName';
 import style from './MainPanel.module.scss';
 
 type Props = { resume: IResume };
@@ -27,9 +28,7 @@ const MainPanel = ({ resume }: Props) => {
     <>
       <div className={style.mainPanel}>
         <div className="flex-column">
-          <Card>
-            <h3 className="p-2">{resume.name}</h3>
-          </Card>
+          <ResumeName resumeName={resume.name} id={resume.id} />
           {(!contentToEdit || contentToEdit === 'personalDetails') && (
             <PersonalDetails
               content={resume.personalDetails}
