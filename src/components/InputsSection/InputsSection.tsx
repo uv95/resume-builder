@@ -1,4 +1,5 @@
 import useUpdateMutations from '@/hooks/useUpdateMutations';
+import { getInitialValues } from '@/utils/getInitialValues';
 import { IResume } from '@/utils/types';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
@@ -21,77 +22,13 @@ type Props = {
 
 const InputsSection = ({
   inputData,
-  resume: resume1,
+  resume,
   setContentToEdit,
   itemId,
 }: Props) => {
-  const getInitialValues = () => {
-    if (inputData.name === 'personalDetails') return resume1.personalDetails;
+  const initialValues = getInitialValues(inputData, resume, itemId);
 
-    let currentSection: any;
-    currentSection = resume1[inputData.name as keyof typeof resume1];
-    const currentItem = currentSection.find((item: any) => item.id === itemId);
-    if (currentItem) {
-      const typenameRemoved = Object.keys(currentItem)
-        .filter((key) => key !== '__typename')
-        .reduce((obj: any, key: string) => {
-          obj[key] = currentItem[key];
-          return obj;
-        }, {});
-
-      if (inputData.name === 'skills')
-        switch (typenameRemoved.skillLevel) {
-          case 'Novice':
-            typenameRemoved.skillLevel = 'novice';
-            break;
-          case 'Beginner':
-            typenameRemoved.skillLevel = 'beginner';
-            break;
-          case 'Skillful':
-            typenameRemoved.skillLevel = 'skillful';
-            break;
-          case 'Experienced':
-            typenameRemoved.skillLevel = 'experienced';
-            break;
-          case 'Expert':
-            typenameRemoved.skillLevel = 'expert';
-            break;
-          default:
-            typenameRemoved.skillLevel = 'default';
-        }
-
-      if (inputData.name === 'language')
-        switch (typenameRemoved.languageLevel) {
-          case 'Beginner (A1)':
-            typenameRemoved.languageLevel = 'beginner';
-            break;
-          case 'Elementary (A2)':
-            typenameRemoved.languageLevel = 'elementary';
-            break;
-          case 'Limited working proficiency (B1)':
-            typenameRemoved.languageLevel = 'limited';
-            break;
-          case 'Highly proficient (B2-C1)':
-            typenameRemoved.languageLevel = 'highlyProficient';
-          case 'Native / full working proficiency (C2)':
-            typenameRemoved.languageLevel = 'fullProficiency';
-            break;
-          default:
-            typenameRemoved.languageLevel = 'default';
-        }
-
-      return typenameRemoved;
-    } else {
-      const emptyValues = inputData.inputs
-        .map((input: any) => input.name)
-        .reduce((acc: any, curr: any) => ((acc[curr] = ''), acc), {});
-      return emptyValues;
-    }
-  };
-
-  const initialValues = getInitialValues();
-
-  const update = useUpdateMutations(inputData.name, resume1.id);
+  const update = useUpdateMutations(inputData.name, resume.id);
 
   return (
     <div>
