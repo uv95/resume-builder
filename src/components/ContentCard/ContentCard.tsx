@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import useMaxHeight from '@/hooks/useMaxHeight';
+import { IResume } from '@/utils/types';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
@@ -7,34 +9,42 @@ import style from './ContentCard.module.scss';
 
 type Props = {
   inputData: any;
+  resume: IResume;
   resumeData: any;
-  contentToEdit?: string;
-  setContentToEdit: React.Dispatch<React.SetStateAction<string | null>>;
+  active?: string;
+  setActive?: React.Dispatch<React.SetStateAction<string>>;
+  contentToEdit: {
+    section: string;
+    itemId: string;
+  };
+
+  setContentToEdit: React.Dispatch<
+    React.SetStateAction<{
+      section: string;
+      itemId: string;
+    }>
+  >;
 };
 
 const ContentCard = ({
   inputData,
   resumeData,
+  resume,
   contentToEdit,
+  active,
+  setActive,
   setContentToEdit,
 }: Props) => {
-  const [maxHeight, setMaxHeight] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-
-  const changeMaxHeight = () => {
-    if (ref.current)
-      return maxHeight
-        ? setMaxHeight(0)
-        : setMaxHeight(ref.current.scrollHeight);
-
-    return;
-  };
+  const [currentSection, setCurrentSection] = useState('');
+  const { ref, maxHeight, changeMaxHeight } = useMaxHeight(active || '');
 
   return (
     <Card>
-      {contentToEdit ? (
+      {contentToEdit.section && contentToEdit.section === currentSection ? (
         <InputsSection
+          itemId={contentToEdit.itemId}
           inputData={inputData}
+          resume={resume}
           setContentToEdit={setContentToEdit}
         />
       ) : (
@@ -42,22 +52,42 @@ const ContentCard = ({
           <div className="flex spaceBetween p-2">
             <h3>{inputData.title}</h3>
 
-            <p onClick={changeMaxHeight}>v</p>
+            <p
+              className="pointer"
+              onClick={() => {
+                setCurrentSection(inputData.name);
+
+                changeMaxHeight();
+                setActive &&
+                  setActive(active === inputData.title ? '' : inputData.title);
+              }}
+            >
+              v
+            </p>
           </div>
           <div
             ref={ref}
             className={style.content}
             style={{
-              maxHeight: maxHeight + 'px',
+              maxHeight:
+                active === ref.current?.previousSibling?.firstChild?.textContent
+                  ? maxHeight + 'px'
+                  : '0',
             }}
           >
             <List
-              setContentToEdit={() => setContentToEdit(inputData.name)}
+              setContentToEdit={setContentToEdit}
               list={resumeData}
+              section={currentSection}
             />
             <div className="p-2 centered">
               <Button
-                onClick={() => setContentToEdit(inputData.name)}
+                onClick={() =>
+                  setContentToEdit((prev) => ({
+                    ...prev,
+                    section: inputData.name,
+                  }))
+                }
                 color="whiteWithBorder"
                 text={'+ ' + inputData.title}
               />

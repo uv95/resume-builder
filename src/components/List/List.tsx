@@ -10,7 +10,12 @@ import React from 'react';
 import style from './List.module.scss';
 
 type Props = {
-  setContentToEdit: () => void;
+  setContentToEdit: React.Dispatch<
+    React.SetStateAction<{
+      section: string;
+      itemId: string;
+    }>
+  >;
   list:
     | IEducation[]
     | ISkills[]
@@ -18,9 +23,10 @@ type Props = {
     | IProject[]
     | ILanguage[]
     | IProfessionalExperience[];
+  section: string;
 };
 
-const List = ({ setContentToEdit, list }: Props) => {
+const List = ({ setContentToEdit, section, list }: Props) => {
   return (
     <ul className={style.list}>
       {list.map(
@@ -33,10 +39,13 @@ const List = ({ setContentToEdit, list }: Props) => {
             | ILanguage
             | IProfessionalExperience
         ) => (
-          <div key={item.__typename}>
+          <div key={item.id}>
             <div className={style.devider}></div>
-            <li className="p-2 pointer" onClick={setContentToEdit}>
-              {item[Object.keys(item)[1] as keyof typeof item]}
+            <li
+              className="p-2 pointer"
+              onClick={() => setContentToEdit({ section, itemId: item.id })}
+            >
+              {item[Object.keys(item)[2] as keyof typeof item]}
             </li>
           </div>
         )

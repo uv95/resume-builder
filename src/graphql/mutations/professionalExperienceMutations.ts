@@ -28,6 +28,7 @@ export const ADD_PROFESSIONAL_EXPERIENCE = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;
@@ -60,6 +61,7 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;

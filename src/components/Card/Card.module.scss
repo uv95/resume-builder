@@ -9,6 +9,12 @@
   & h3 {
     font-size: 2rem;
   }
+
+  & input,
+  select,
+  textarea {
+    width: 100%;
+  }
 }
 
 .gray {

@@ -28,6 +28,7 @@ export const ADD_EDUCATION = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;
@@ -60,6 +61,7 @@ export const UPDATE_EDUCATION = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;

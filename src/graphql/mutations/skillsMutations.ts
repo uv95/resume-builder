@@ -13,6 +13,7 @@ export const ADD_SKILL = gql`
       skillLevel: $skillLevel
       resumeId: $resumeId
     ) {
+    id
       skill
       info
       skillLevel
@@ -31,6 +32,7 @@ export const UPDATE_SKILL = gql`
       skill
       info
       skillLevel
+      id
     }
   }
 `;

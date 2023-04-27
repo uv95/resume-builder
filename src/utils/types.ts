@@ -12,6 +12,7 @@ export interface IResume {
 }
 
 export interface IEducation {
+  id: string;
   degree: string;
   school: string;
   city: string;
@@ -23,6 +24,7 @@ export interface IEducation {
 }
 
 export interface ILanguage {
+  id: string;
   language: string;
   info: string;
   languageLevel:
@@ -35,6 +37,7 @@ export interface ILanguage {
 }
 
 export interface IPersonalDetails {
+  id: string;
   fullName: string;
   jobTitle: string;
   email: string;
@@ -46,6 +49,7 @@ export interface IPersonalDetails {
 }
 
 export interface IProfessionalExperience {
+  id: string;
   jobTitle: string;
   employer: string;
   city: string;
@@ -57,11 +61,13 @@ export interface IProfessionalExperience {
 }
 
 export interface IProfile {
+  id: string;
   text: string;
   __typename?: string;
 }
 
 export interface IProject {
+  id: string;
   title: string;
   startDate: string;
   endDate: string;
@@ -70,6 +76,7 @@ export interface IProject {
 }
 
 export interface ISkills {
+  id: string;
   skill: string;
   info: string;
   skillLevel: 'Novice' | 'Beginner' | 'Skillful' | 'Experienced' | 'Expert';
@@ -77,12 +84,14 @@ export interface ISkills {
 }
 
 export interface IAdditionalInfo {
+  id: string;
   name: string;
   info: string;
   __typename?: string;
 }
 
 export interface ILinks {
+  id: string;
   name: string;
   link: string;
   __typename?: string;

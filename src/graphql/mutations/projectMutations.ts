@@ -19,6 +19,7 @@ export const ADD_PROJECT = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;
@@ -42,6 +43,7 @@ export const UPDATE_PROJECT = gql`
       startDate
       endDate
       description
+      id
     }
   }
 `;

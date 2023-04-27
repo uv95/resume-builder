@@ -3,7 +3,7 @@ import MainPanel from '@/components/MainPanel/MainPanel';
 import Navigation from '@/components/Navigation/Navigation';
 import ResumePage from '@/components/ResumePage/ResumePage';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
-import { ApolloError, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import React from 'react';
 import style from '../../styles/Resume.module.scss';

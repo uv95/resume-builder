@@ -5,6 +5,7 @@ import AddContent from '../AddContent/AddContent';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import ContentCard from '../ContentCard/ContentCard';
+import InputsSection from '../InputsSection/InputsSection';
 import Modal from '../Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import ResumeName from '../ResumeName/ResumeName';
@@ -14,7 +15,12 @@ type Props = { resume: IResume };
 
 const MainPanel = ({ resume }: Props) => {
   const [showAddContent, setShowAddContent] = useState(false);
-  const [contentToEdit, setContentToEdit] = useState<string | null>(null);
+  const [active, setActive] = useState('');
+  const [contentToEdit, setContentToEdit] = useState({
+    section: '',
+    itemId: '',
+  });
+
   const [resumeOptionalFields] = useState({
     language: resume.language,
     skills: resume.skills,
@@ -29,21 +35,26 @@ const MainPanel = ({ resume }: Props) => {
       <div className={style.mainPanel}>
         <div className="flex-column">
           <ResumeName resumeName={resume.name} id={resume.id} />
-          {(!contentToEdit || contentToEdit === 'personalDetails') && (
+          {(!contentToEdit.section ||
+            contentToEdit.section === 'personalDetails') && (
             <PersonalDetails
-              content={resume.personalDetails}
+              resume={resume}
               contentToEdit={contentToEdit}
               setContentToEdit={setContentToEdit}
             />
           )}
-          {!contentToEdit &&
-            contentToEdit !== 'personalDetails' &&
+          {!contentToEdit.section &&
+            contentToEdit.section !== 'personalDetails' &&
             contentCards.map(
               (contentCard) =>
                 resumeOptionalFields[
                   contentCard.name as keyof typeof resumeOptionalFields
                 ].length !== 0 && (
                   <ContentCard
+                    active={active}
+                    setActive={setActive}
+                    resume={resume}
+                    contentToEdit={contentToEdit}
                     key={contentCard.name}
                     setContentToEdit={setContentToEdit}
                     inputData={
@@ -53,14 +64,19 @@ const MainPanel = ({ resume }: Props) => {
                   />
                 )
             )}
-          {contentToEdit && contentToEdit !== 'personalDetails' && (
-            <ContentCard
-              contentToEdit={contentToEdit}
-              setContentToEdit={setContentToEdit}
-              inputData={inputData[contentToEdit as keyof typeof inputData]}
-              resumeData={resume[contentToEdit as keyof typeof resume]}
-            />
-          )}
+          {contentToEdit.section &&
+            contentToEdit.section !== 'personalDetails' && (
+              <Card>
+                <InputsSection
+                  itemId={contentToEdit.itemId}
+                  inputData={
+                    inputData[contentToEdit.section as keyof typeof inputData]
+                  }
+                  resume={resume}
+                  setContentToEdit={setContentToEdit}
+                />
+              </Card>
+            )}
           <div className="centered">
             <Button
               onClick={() => setShowAddContent(true)}

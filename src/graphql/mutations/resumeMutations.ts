@@ -13,6 +13,7 @@ export const UPDATE_RESUME = gql`
   mutation updateResume($id: ID!, $name: String) {
     updateResume(id: $id, name: $name) {
       name
+      id
     }
   }
 `;

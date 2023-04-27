@@ -4,6 +4,7 @@ export const ADD_PROFILE = gql`
   mutation addProfile($text: String!, $resumeId: ID!) {
     addProfile(text: $text, resumeId: $resumeId) {
       text
+      id
     }
   }
 `;
@@ -12,6 +13,7 @@ export const UPDATE_PROFILE = gql`
   mutation updateProfile($id: ID!, $text: String!) {
     updateProfile(id: $id, text: $text) {
       text
+      id
     }
   }
 `;

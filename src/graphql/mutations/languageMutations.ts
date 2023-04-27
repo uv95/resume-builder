@@ -16,6 +16,7 @@ export const ADD_LANGUAGE = gql`
       language
       info
       languageLevel
+      id
     }
   }
 `;
@@ -36,6 +37,7 @@ export const UPDATE_LANGUAGE = gql`
       language
       info
       languageLevel
+      id
     }
   }
 `;

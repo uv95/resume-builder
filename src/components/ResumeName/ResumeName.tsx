@@ -10,7 +10,19 @@ type Props = { resumeName: string; id: string };
 
 const ResumeName = ({ id, resumeName }: Props) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [updateResume] = useMutation(UPDATE_RESUME);
+  const [updateResume] = useMutation(UPDATE_RESUME, {
+    // update(cache, { data }) {
+    //   const { name } = data.updateResume;
+    //   const { resume } = cache.readQuery({
+    //     query: GET_RESUME,
+    //     variables: { id },
+    //   })!;
+    //   cache.writeQuery({
+    //     query: GET_RESUME,
+    //     data: { resume: { ...resume, name } },
+    //   });
+    // },
+  });
 
   return isEdit ? (
     <Card>
@@ -19,18 +31,8 @@ const ResumeName = ({ id, resumeName }: Props) => {
         onSubmit={({ name }) => {
           updateResume({
             variables: { id, name },
-            update(cache, { data }) {
-              const { name } = data.updateResume;
-              const { resume } = cache.readQuery({
-                query: GET_RESUME,
-                variables: { id },
-              })!;
-              cache.writeQuery({
-                query: GET_RESUME,
-                data: { resume: { ...resume, name } },
-              });
-            },
           });
+
           setIsEdit(false);
         }}
       >

@@ -22,6 +22,7 @@ export const ADD_PERSONAL_DETAILS = gql`
       email
       phone
       address
+      id
     }
   }
 `;
@@ -48,6 +49,7 @@ export const UPDATE_PERSONAL_DETAILS = gql`
       email
       phone
       address
+      id
     }
   }
 `;

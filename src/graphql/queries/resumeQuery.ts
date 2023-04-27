@@ -6,29 +6,37 @@ export const GET_RESUME = gql`
       id
       name
       personalDetails {
+        id
         fullName
         jobTitle
         email
         phone
         address
         additionalInfo {
+          id
           info
+          name
         }
         links {
+          id
           link
+          name
         }
       }
       skills {
+        id
         skill
         info
         skillLevel
       }
       language {
+        id
         language
         info
         languageLevel
       }
       professionalExperience {
+        id
         jobTitle
         employer
         city
@@ -38,9 +46,11 @@ export const GET_RESUME = gql`
         description
       }
       profile {
+        id
         text
       }
       education {
+        id
         degree
         school
         city
@@ -50,6 +60,7 @@ export const GET_RESUME = gql`
         description
       }
       project {
+        id
         title
         startDate
         endDate
