@@ -37,7 +37,7 @@ const InputsSection = ({
         initialValues={initialValues}
         onSubmit={(values) => {
           update(values);
-          setContentToEdit({ itemId: '', section: '' });
+          setContentToEdit({ section: '', itemId: '' });
         }}
       >
         <Form className="p-2 flex-column">
@@ -72,7 +72,9 @@ const InputsSection = ({
                 color="white"
                 text="Cancel"
                 bold
-                onClick={() => setContentToEdit({ itemId: '', section: '' })}
+                onClick={() => {
+                  setContentToEdit({ section: '', itemId: '' });
+                }}
               />
               <Button type="submit" color="pink" text="Save" bold />
             </div>

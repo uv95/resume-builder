@@ -1,3 +1,4 @@
+import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { contentCards, inputData } from '@/utils/data';
 import { IResume } from '@/utils/types';
 import React, { useState } from 'react';
@@ -15,7 +16,6 @@ type Props = { resume: IResume };
 
 const MainPanel = ({ resume }: Props) => {
   const [showAddContent, setShowAddContent] = useState(false);
-  const [active, setActive] = useState('');
   const [contentToEdit, setContentToEdit] = useState({
     section: '',
     itemId: '',
@@ -31,7 +31,7 @@ const MainPanel = ({ resume }: Props) => {
   });
 
   return (
-    <>
+    <CurrentSectionProvider>
       <div className={style.mainPanel}>
         <div className="flex-column">
           <ResumeName resumeName={resume.name} id={resume.id} />
@@ -51,8 +51,6 @@ const MainPanel = ({ resume }: Props) => {
                   contentCard.name as keyof typeof resumeOptionalFields
                 ].length !== 0 && (
                   <ContentCard
-                    active={active}
-                    setActive={setActive}
                     resume={resume}
                     contentToEdit={contentToEdit}
                     key={contentCard.name}
@@ -94,7 +92,7 @@ const MainPanel = ({ resume }: Props) => {
           />
         </Modal>
       )}
-    </>
+    </CurrentSectionProvider>
   );
 };
 

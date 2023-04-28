@@ -1,6 +1,6 @@
-import useMaxHeight from '@/hooks/useMaxHeight';
+import { CurrentSectionContext } from '@/context/CurrentSectionContext';
 import { IResume } from '@/utils/types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
@@ -11,8 +11,6 @@ type Props = {
   inputData: any;
   resume: IResume;
   resumeData: any;
-  active?: string;
-  setActive?: React.Dispatch<React.SetStateAction<string>>;
   contentToEdit: {
     section: string;
     itemId: string;
@@ -31,12 +29,11 @@ const ContentCard = ({
   resumeData,
   resume,
   contentToEdit,
-  active,
-  setActive,
   setContentToEdit,
 }: Props) => {
-  const [currentSection, setCurrentSection] = useState('');
-  const { ref, maxHeight, changeMaxHeight } = useMaxHeight(active || '');
+  const { currentSection, setCurrentSection } = useContext(
+    CurrentSectionContext
+  );
 
   return (
     <Card>
@@ -54,24 +51,22 @@ const ContentCard = ({
 
             <p
               className="pointer"
-              onClick={() => {
-                setCurrentSection(inputData.name);
-
-                changeMaxHeight();
-                setActive &&
-                  setActive(active === inputData.title ? '' : inputData.title);
-              }}
+              onClick={() =>
+                setCurrentSection(
+                  currentSection === inputData.name ? '' : inputData.name
+                )
+              }
             >
               v
             </p>
           </div>
+
           <div
-            ref={ref}
             className={style.content}
             style={{
               maxHeight:
-                active === ref.current?.previousSibling?.firstChild?.textContent
-                  ? maxHeight + 'px'
+                inputData.name === currentSection
+                  ? 140 + resumeData.length * 68 + 'px'
                   : '0',
             }}
           >
