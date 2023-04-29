@@ -1,5 +1,6 @@
+import useAddMutations from '@/hooks/useAddMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
-import { getInitialValues } from '@/utils/getInitialValues';
+import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { IResume } from '@/utils/types';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
@@ -29,6 +30,7 @@ const InputsSection = ({
   const initialValues = getInitialValues(inputData, resume, itemId);
 
   const update = useUpdateMutations(inputData.name, resume.id);
+  const add = useAddMutations(inputData.name, resume.id);
 
   return (
     <div>
@@ -36,7 +38,7 @@ const InputsSection = ({
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          update(values);
+          isInputsEmpty(initialValues) ? add(values) : update(values);
           setContentToEdit({ section: '', itemId: '' });
         }}
       >

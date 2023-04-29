@@ -18,13 +18,7 @@ import {
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 
-type Props = {};
-
-function useUpdateMutations(
-  name: string,
-
-  resumeId: string
-) {
+function useUpdateMutations(name: string, resumeId: string) {
   const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);
   const [updateAdditionalInfo] = useMutation(UPDATE_ADDITIONAL_INFO);
   const [updateEducation] = useMutation(UPDATE_EDUCATION);
@@ -40,28 +34,24 @@ function useUpdateMutations(
     {
       sectionName: 'personalDetails',
       fn: updatePersonalDetails,
-      fnName: 'updatePersonalDetails',
     },
     {
       sectionName: 'additionalInfo',
       fn: updateAdditionalInfo,
-      fnName: 'updateAdditionalInfo',
     },
     {
       sectionName: 'education',
       fn: updateEducation,
-      fnName: 'updateEducation',
     },
-    { sectionName: 'language', fn: updateLanguage, fnName: 'updateLanguage' },
-    { sectionName: 'link', fn: updateLink, fnName: 'updateLink' },
+    { sectionName: 'language', fn: updateLanguage },
+    { sectionName: 'link', fn: updateLink },
     {
       sectionName: 'professionalExperience',
       fn: updateProfessionalExperience,
-      fnName: 'updateProfessionalExperience',
     },
-    { sectionName: 'profile', fn: updateProfile, fnName: 'updateProfile' },
-    { sectionName: 'project', fn: updateProject, fnName: 'updateProject' },
-    { sectionName: 'skills', fn: updateSkill, fnName: 'updateSkill' },
+    { sectionName: 'profile', fn: updateProfile },
+    { sectionName: 'project', fn: updateProject },
+    { sectionName: 'skills', fn: updateSkill },
   ];
   const update = (
     variables:
@@ -72,13 +62,11 @@ function useUpdateMutations(
       | Partial<ILanguage>
       | Partial<IProfessionalExperience>
   ) => {
-    const { fn, fnName, sectionName } = updateFunctions.find(
-      (item) => name === item.sectionName
-    )!;
+    const { fn } = updateFunctions.find((item) => name === item.sectionName)!;
 
     if (fn)
       return fn({
-        variables: variables,
+        variables,
         // update(cache, { data }) {
         //   const { resume } = cache.readQuery({
         //     query: GET_RESUME,

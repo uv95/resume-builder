@@ -32,6 +32,7 @@ const ResumeName = ({ id, resumeName }: Props) => {
           updateResume({
             variables: { id, name },
           });
+          localStorage.setItem('resumeName', name);
 
           setIsEdit(false);
         }}

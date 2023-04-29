@@ -61,6 +61,17 @@ export const getInitialValues = (
     const emptyValues = inputData.inputs
       .map((input: any) => input.name)
       .reduce((acc: any, curr: any) => ((acc[curr] = ''), acc), {});
+    if (emptyValues.hasOwnProperty('skillLevel'))
+      emptyValues.skillLevel = 'default';
+    if (emptyValues.hasOwnProperty('languageLevel'))
+      emptyValues.languageLevel = 'default';
     return emptyValues;
   }
+};
+
+export const isInputsEmpty = (inputs: Object) => {
+  return (
+    Object.values(inputs).filter((val) => val !== '' && val !== 'default')
+      .length === 0
+  );
 };
