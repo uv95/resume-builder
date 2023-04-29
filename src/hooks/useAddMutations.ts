@@ -55,7 +55,7 @@ function useAddMutations(name: string, resumeId: string) {
     { sectionName: 'project', fn: addProject, fnName: 'addProject' },
     { sectionName: 'skills', fn: addSkill, fnName: 'addSkill' },
   ];
-  const add = (
+  const addContent = (
     variables:
       | Partial<IEducation>
       | Partial<ISkills>
@@ -91,7 +91,7 @@ function useAddMutations(name: string, resumeId: string) {
       });
     return null;
   };
-  return add;
+  return addContent;
 }
 
 export default useAddMutations;

@@ -1,4 +1,5 @@
 import useAddMutations from '@/hooks/useAddMutations';
+import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { IResume } from '@/utils/types';
@@ -29,8 +30,9 @@ const InputsSection = ({
 }: Props) => {
   const initialValues = getInitialValues(inputData, resume, itemId);
 
-  const update = useUpdateMutations(inputData.name, resume.id);
-  const add = useAddMutations(inputData.name, resume.id);
+  const updateContent = useUpdateMutations(inputData.name, resume.id);
+  const addContent = useAddMutations(inputData.name, resume.id);
+  const deleteContent = useDeleteMutations(inputData.name, resume.id);
 
   return (
     <div>
@@ -38,7 +40,9 @@ const InputsSection = ({
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          isInputsEmpty(initialValues) ? add(values) : update(values);
+          isInputsEmpty(initialValues)
+            ? addContent(values)
+            : updateContent(values);
           setContentToEdit({ section: '', itemId: '' });
         }}
       >
@@ -67,7 +71,15 @@ const InputsSection = ({
 
           <div className={style.buttons}>
             {inputData.name !== 'personalDetails' && (
-              <Button color="white" text="Delete" bold />
+              <Button
+                color="white"
+                text="Delete"
+                bold
+                onClick={() => {
+                  deleteContent(itemId);
+                  setContentToEdit({ section: '', itemId: '' });
+                }}
+              />
             )}
             <div className="flex rightPositioned">
               <Button

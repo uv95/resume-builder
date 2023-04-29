@@ -53,7 +53,7 @@ function useUpdateMutations(name: string, resumeId: string) {
     { sectionName: 'project', fn: updateProject },
     { sectionName: 'skills', fn: updateSkill },
   ];
-  const update = (
+  const updateContent = (
     variables:
       | Partial<IEducation>
       | Partial<ISkills>
@@ -83,7 +83,7 @@ function useUpdateMutations(name: string, resumeId: string) {
       });
     return null;
   };
-  return update;
+  return updateContent;
 }
 
 export default useUpdateMutations;

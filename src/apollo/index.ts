@@ -13,7 +13,44 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     uri: 'http://localhost:8000/graphql',
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Resume: {
+          fields: {
+            skills: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+            language: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+            professionalExperience: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+            profile: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+            project: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+            education: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
+          },
+        },
+      },
+    }),
   });
 }
 
