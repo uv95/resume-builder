@@ -1,7 +1,15 @@
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { contentCards, inputData } from '@/utils/data';
-import { IResume } from '@/utils/types';
-import React, { useState } from 'react';
+import {
+  IEducation,
+  ILanguage,
+  IProfessionalExperience,
+  IProfile,
+  IProject,
+  IResume,
+  ISkills,
+} from '@/utils/types';
+import React, { useEffect, useState } from 'react';
 import AddContent from '../AddContent/AddContent';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
@@ -14,6 +22,15 @@ import style from './MainPanel.module.scss';
 
 type Props = { resume: IResume };
 
+interface IResumeOptionalFields {
+  language: ILanguage[];
+  skills: ISkills[];
+  professionalExperience: IProfessionalExperience[];
+  project: IProject[];
+  education: IEducation[];
+  profile: IProfile[];
+}
+
 const MainPanel = ({ resume }: Props) => {
   const [showAddContent, setShowAddContent] = useState(false);
   const [contentToEdit, setContentToEdit] = useState({
@@ -21,14 +38,26 @@ const MainPanel = ({ resume }: Props) => {
     itemId: '',
   });
 
-  const [resumeOptionalFields] = useState({
-    language: resume.language,
-    skills: resume.skills,
-    professionalExperience: resume.professionalExperience,
-    project: resume.project,
-    education: resume.education,
-    profile: resume.profile,
-  });
+  const [resumeOptionalFields, setResumeOptionalFields] =
+    useState<IResumeOptionalFields>({
+      language: [],
+      skills: [],
+      professionalExperience: [],
+      project: [],
+      education: [],
+      profile: [],
+    });
+
+  useEffect(() => {
+    setResumeOptionalFields({
+      language: resume.language,
+      skills: resume.skills,
+      professionalExperience: resume.professionalExperience,
+      project: resume.project,
+      education: resume.education,
+      profile: resume.profile,
+    });
+  }, [resume]);
 
   return (
     <CurrentSectionProvider>
