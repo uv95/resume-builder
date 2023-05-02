@@ -1,3 +1,5 @@
+import { Dispatch } from 'react';
+
 export interface IResume {
   education: IEducation[];
   id: string;
@@ -95,4 +97,22 @@ export interface ILinks {
   name: string;
   link: string;
   __typename?: string;
+}
+
+export interface IResumePageState {
+  sectionsOrder: string[];
+}
+
+export enum ResumePageActionsKind {
+  ADD_SECTION = 'ADD_SECTION',
+  REMOVE_SECTION = 'REMOVE_SECTION',
+}
+
+export interface IResumePageActions {
+  type: ResumePageActionsKind;
+  payload: string;
+}
+export interface IResumePageContext {
+  state: IResumePageState;
+  dispatch: Dispatch<IResumePageActions>;
 }

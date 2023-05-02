@@ -1,4 +1,5 @@
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
+import { resumeStore } from '@/store';
 import { contentCards, inputData } from '@/utils/data';
 import {
   IEducation,
@@ -32,6 +33,8 @@ interface IResumeOptionalFields {
 }
 
 const MainPanel = ({ resume }: Props) => {
+  const { sectionsOrder } = resumeStore;
+
   const [showAddContent, setShowAddContent] = useState(false);
   const [contentToEdit, setContentToEdit] = useState({
     section: '',
@@ -74,23 +77,22 @@ const MainPanel = ({ resume }: Props) => {
           )}
           {!contentToEdit.section &&
             contentToEdit.section !== 'personalDetails' &&
-            contentCards.map(
-              (contentCard) =>
+            sectionsOrder.map(
+              (section) =>
                 resumeOptionalFields[
-                  contentCard.name as keyof typeof resumeOptionalFields
+                  section as keyof typeof resumeOptionalFields
                 ].length !== 0 && (
                   <ContentCard
                     resume={resume}
                     contentToEdit={contentToEdit}
-                    key={contentCard.name}
+                    key={section}
                     setContentToEdit={setContentToEdit}
-                    inputData={
-                      inputData[contentCard.name as keyof typeof inputData]
-                    }
-                    resumeData={resume[contentCard.name as keyof typeof resume]}
+                    inputData={inputData[section as keyof typeof inputData]}
+                    resumeData={resume[section as keyof typeof resume]}
                   />
                 )
             )}
+
           {contentToEdit.section &&
             contentToEdit.section !== 'personalDetails' && (
               <Card>
@@ -104,13 +106,15 @@ const MainPanel = ({ resume }: Props) => {
                 />
               </Card>
             )}
-          <div className="centered">
-            <Button
-              onClick={() => setShowAddContent(true)}
-              color="pink"
-              text="+ Add Content"
-            />
-          </div>
+          {!contentToEdit.section && (
+            <div className="centered">
+              <Button
+                onClick={() => setShowAddContent(true)}
+                color="pink"
+                text="+ Add Content"
+              />
+            </div>
+          )}
         </div>
       </div>
       {showAddContent && (

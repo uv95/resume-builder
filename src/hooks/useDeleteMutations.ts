@@ -17,6 +17,7 @@ import {
   ISkills,
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { resumeStore } from '@/store';
 
 function useDeleteMutations(name: string, resumeId: string) {
   const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
@@ -72,22 +73,26 @@ function useDeleteMutations(name: string, resumeId: string) {
             variables: { id: resumeId },
           })!;
 
+          const updatedSection = resume[sectionName].filter(
+            (
+              item:
+                | Partial<IEducation>
+                | Partial<ISkills>
+                | Partial<IProfile>
+                | Partial<IProject>
+                | Partial<ILanguage>
+                | Partial<IProfessionalExperience>
+            ) => item.id !== deletedData.id
+          );
+
+          resumeStore.removeSection(sectionName, updatedSection);
+
           cache.writeQuery({
             query: GET_RESUME,
             data: {
               resume: {
                 ...resume,
-                [sectionName]: resume[sectionName].filter(
-                  (
-                    item:
-                      | Partial<IEducation>
-                      | Partial<ISkills>
-                      | Partial<IProfile>
-                      | Partial<IProject>
-                      | Partial<ILanguage>
-                      | Partial<IProfessionalExperience>
-                  ) => item.id !== deletedData.id
-                ),
+                [sectionName]: updatedSection,
               },
             },
           });

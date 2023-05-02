@@ -17,6 +17,7 @@ import {
   ISkills,
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { resumeStore } from '@/store';
 
 function useAddMutations(name: string, resumeId: string) {
   const [addPersonalDetails] = useMutation(ADD_PERSONAL_DETAILS);
@@ -77,6 +78,8 @@ function useAddMutations(name: string, resumeId: string) {
             query: GET_RESUME,
             variables: { id: resumeId },
           })!;
+
+          resumeStore.addSection(sectionName);
 
           cache.writeQuery({
             query: GET_RESUME,
