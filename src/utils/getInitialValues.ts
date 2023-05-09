@@ -6,11 +6,19 @@ export const getInitialValues = (
   resume: IResume,
   itemId: string
 ) => {
-  if (inputData.name === 'personalDetails')
-    return removeTypename(resume.personalDetails);
-
+  if (inputData.name === 'personalDetails') {
+    if (resume.content.personalDetails)
+      return removeTypename(resume.content.personalDetails);
+    else {
+      const emptyValues = inputData.inputs
+        .map((input: any) => input.name)
+        .reduce((acc: any, curr: any) => ((acc[curr] = ''), acc), {});
+      return emptyValues;
+    }
+  }
   let currentSection: any;
-  currentSection = resume[inputData.name as keyof typeof resume];
+  currentSection =
+    resume.content[inputData.name as keyof typeof resume.content];
   const currentItem = removeTypename(
     currentSection.find((item: any) => item.id === itemId)
   );

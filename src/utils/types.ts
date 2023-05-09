@@ -1,16 +1,24 @@
 export interface IResume {
-  education: IEducation[];
   id: string;
-  language: ILanguage[];
   name: string;
-  personalDetails: null | IPersonalDetails;
-  professionalExperience: IProfessionalExperience[];
-  profile: IProfile[];
-  project: IProject[];
-  skills: ISkills[];
+  content: {
+    education: IEducation[];
+    language: ILanguage[];
+    personalDetails: null | IPersonalDetails;
+    professionalExperience: IProfessionalExperience[];
+    profile: IProfile[];
+    project: IProject[];
+    skills: ISkills[];
+  };
+  settings: ISettings;
   __typename?: string;
 }
 
+export interface ISettings {
+  id: string;
+  sectionsOrder: string[];
+  __typename?: string;
+}
 export interface IEducation {
   id: string;
   degree: string;

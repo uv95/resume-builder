@@ -5,66 +5,72 @@ export const GET_RESUME = gql`
     resume(id: $id) {
       id
       name
-      personalDetails {
-        id
-        fullName
-        jobTitle
-        email
-        phone
-        address
-        additionalInfo {
+      content {
+        personalDetails {
           id
+          fullName
+          jobTitle
+          email
+          phone
+          address
+          additionalInfo {
+            id
+            info
+            name
+          }
+          links {
+            id
+            link
+            name
+          }
+        }
+        skills {
+          id
+          skill
           info
-          name
+          skillLevel
         }
-        links {
+        language {
           id
-          link
-          name
+          language
+          info
+          languageLevel
+        }
+        professionalExperience {
+          id
+          jobTitle
+          employer
+          city
+          country
+          startDate
+          endDate
+          description
+        }
+        profile {
+          id
+          text
+        }
+        education {
+          id
+          degree
+          school
+          city
+          country
+          startDate
+          endDate
+          description
+        }
+        project {
+          id
+          title
+          startDate
+          endDate
+          description
         }
       }
-      skills {
+      settings {
         id
-        skill
-        info
-        skillLevel
-      }
-      language {
-        id
-        language
-        info
-        languageLevel
-      }
-      professionalExperience {
-        id
-        jobTitle
-        employer
-        city
-        country
-        startDate
-        endDate
-        description
-      }
-      profile {
-        id
-        text
-      }
-      education {
-        id
-        degree
-        school
-        city
-        country
-        startDate
-        endDate
-        description
-      }
-      project {
-        id
-        title
-        startDate
-        endDate
-        description
+        sectionsOrder
       }
     }
   }

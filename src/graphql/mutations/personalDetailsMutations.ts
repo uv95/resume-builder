@@ -22,6 +22,14 @@ export const ADD_PERSONAL_DETAILS = gql`
       email
       phone
       address
+      additionalInfo {
+        info
+        name
+      }
+      links {
+        link
+        name
+      }
       id
     }
   }
@@ -49,6 +57,14 @@ export const UPDATE_PERSONAL_DETAILS = gql`
       email
       phone
       address
+      additionalInfo {
+        info
+        name
+      }
+      links {
+        link
+        name
+      }
       id
     }
   }

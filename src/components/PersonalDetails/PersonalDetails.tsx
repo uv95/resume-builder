@@ -46,10 +46,10 @@ const PersonalDetails = ({
           <div className="flex spaceBetween p-2">
             <p
               className={`${style.name} ${
-                !resume.personalDetails?.fullName ? style.empty : ''
+                !resume.content.personalDetails?.fullName ? style.empty : ''
               }`}
             >
-              {resume.personalDetails?.fullName || 'Your name'}
+              {resume.content.personalDetails?.fullName || 'Your name'}
             </p>
             <p
               onClick={() =>
@@ -65,24 +65,24 @@ const PersonalDetails = ({
           <div className={style.content}>
             <p
               className={`${style.input} ${
-                !resume.personalDetails?.email ? style.empty : ''
+                !resume.content.personalDetails?.email ? style.empty : ''
               }`}
             >
-              {resume.personalDetails?.email || 'Email'}
+              {resume.content.personalDetails?.email || 'Email'}
             </p>
             <p
               className={`${style.input} ${
-                !resume.personalDetails?.phone ? style.empty : ''
+                !resume.content.personalDetails?.phone ? style.empty : ''
               }`}
             >
-              {resume.personalDetails?.phone || 'Phone'}
+              {resume.content.personalDetails?.phone || 'Phone'}
             </p>
             <p
               className={`${style.input} ${
-                !resume.personalDetails?.address ? style.empty : ''
+                !resume.content.personalDetails?.address ? style.empty : ''
               }`}
             >
-              {resume.personalDetails?.address || 'Address'}
+              {resume.content.personalDetails?.address || 'Address'}
             </p>
           </div>
         </div>

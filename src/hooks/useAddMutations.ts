@@ -77,16 +77,30 @@ function useAddMutations(name: string, resumeId: string) {
             query: GET_RESUME,
             variables: { id: resumeId },
           })!;
-
-          cache.writeQuery({
-            query: GET_RESUME,
-            data: {
-              resume: {
-                ...resume,
-                [sectionName]: [...resume[sectionName], newData],
+          if (sectionName === 'personalDetails') {
+            cache.writeQuery({
+              query: GET_RESUME,
+              data: {
+                resume: {
+                  ...resume,
+                  content: { ...resume.content, [sectionName]: newData },
+                },
               },
-            },
-          });
+            });
+          } else {
+            cache.writeQuery({
+              query: GET_RESUME,
+              data: {
+                resume: {
+                  ...resume,
+                  content: {
+                    ...resume.content,
+                    [sectionName]: [...resume.content[sectionName], newData],
+                  },
+                },
+              },
+            });
+          }
         },
       });
     return null;

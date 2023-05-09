@@ -1,12 +1,17 @@
+import { IResume } from '@/utils/types';
 import React from 'react';
+import PersonalDetailsBlock from '../pageBlocks/PersonalDetailsBlock/PersonalDetailsBlock';
 import style from './ResumePage.module.scss';
 
-type Props = {};
+type Props = { resume: IResume };
 
-const ResumePage = (props: Props) => {
+const ResumePage = ({ resume }: Props) => {
   return (
     <div className={style.resume}>
-      <div className={style.page}>ResumePage</div>
+      <div className={style.page}>
+        <PersonalDetailsBlock />
+        {}
+      </div>
     </div>
   );
 };

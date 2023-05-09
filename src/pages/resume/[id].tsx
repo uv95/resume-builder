@@ -24,7 +24,7 @@ const Resume = (props: Props) => {
           <Navigation />
           <MainPanel resume={data.resume} />
         </div>
-        <ResumePage />
+        <ResumePage resume={data.resume} />
       </div>
     </main>
   );

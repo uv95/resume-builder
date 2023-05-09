@@ -240,7 +240,7 @@ export const inputData = {
     inputs: [
       {
         label: 'Title',
-        name: 'jtitle',
+        name: 'title',
         type: '',
         placeholder: 'Enter project title',
       },
