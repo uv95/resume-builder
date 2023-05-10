@@ -57,6 +57,8 @@ const MainPanel = ({ resume }: Props) => {
       education: resume.content.education,
       profile: resume.content.profile,
     });
+
+    console.log(resume.settings.sectionsOrder, '🌿');
   }, [resume]);
 
   return (

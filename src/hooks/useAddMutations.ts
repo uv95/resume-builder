@@ -17,8 +17,10 @@ import {
   ISkills,
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
 
 function useAddMutations(name: string, resumeId: string) {
+  const [updateSettings] = useMutation(UPDATE_SETTINGS);
   const [addPersonalDetails] = useMutation(ADD_PERSONAL_DETAILS);
   const [addAdditionalInfo] = useMutation(ADD_ADDITIONAL_INFO);
   const [addEducation] = useMutation(ADD_EDUCATION);
@@ -88,6 +90,21 @@ function useAddMutations(name: string, resumeId: string) {
               },
             });
           } else {
+            // ---update sections order---
+            const newSectionsOrder = resume.settings.sectionsOrder.includes(
+              sectionName
+            )
+              ? resume.settings.sectionsOrder
+              : [...resume.settings.sectionsOrder, sectionName];
+
+            updateSettings({
+              variables: {
+                id: resume.settings.id,
+                sectionsOrder: newSectionsOrder,
+              },
+            });
+            // ---update sections order---
+
             cache.writeQuery({
               query: GET_RESUME,
               data: {
