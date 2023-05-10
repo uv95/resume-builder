@@ -77,17 +77,20 @@ function useDeleteMutations(name: string, resumeId: string) {
             data: {
               resume: {
                 ...resume,
-                [sectionName]: resume[sectionName].filter(
-                  (
-                    item:
-                      | Partial<IEducation>
-                      | Partial<ISkills>
-                      | Partial<IProfile>
-                      | Partial<IProject>
-                      | Partial<ILanguage>
-                      | Partial<IProfessionalExperience>
-                  ) => item.id !== deletedData.id
-                ),
+                content: {
+                  ...resume.content,
+                  [sectionName]: resume.content[sectionName].filter(
+                    (
+                      item:
+                        | Partial<IEducation>
+                        | Partial<ISkills>
+                        | Partial<IProfile>
+                        | Partial<IProject>
+                        | Partial<ILanguage>
+                        | Partial<IProfessionalExperience>
+                    ) => item.id !== deletedData.id
+                  ),
+                },
               },
             },
           });
