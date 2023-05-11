@@ -106,6 +106,32 @@ export const personalDetailInputData = {
       placeholder: 'City, country',
     },
   ],
+  additionalInfo: [
+    {
+      title: 'Personal information',
+      tags: [
+        'Date of Birth',
+        'Nationality',
+        'Passport or Id',
+        'Marital Status',
+        'Military Service',
+        'Driving License',
+        'Gender or Pronoun',
+      ],
+    },
+    {
+      title: 'Links',
+      tags: [
+        'Website',
+        'LinkedIn',
+        'Github',
+        'Skype',
+        'Telegram',
+        'Facebook',
+        'WhatsApp',
+      ],
+    },
+  ],
 };
 
 export const inputData = {
@@ -370,45 +396,5 @@ export const contentCards = [
     name: 'professionalExperience',
     description:
       'A place to highlight your professional experience - including internships.',
-  },
-];
-
-export const additionalInfo = [
-  {
-    title: 'Personal information',
-    name: 'personalInformation',
-    inputs: [
-      {
-        name: 'info',
-      },
-    ],
-    tags: [
-      'Date of Birth',
-      'Nationality',
-      'Passport or Id',
-      'Marital Status',
-      'Military Service',
-      'Driving License',
-      'Gender or Pronoun',
-    ],
-  },
-  {
-    title: 'Links',
-    name: 'links',
-    inputs: [
-      {
-        name: 'link',
-        link: true,
-      },
-    ],
-    tags: [
-      'Website',
-      'LinkedIn',
-      'Github',
-      'Skype',
-      'Telegram',
-      'Facebook',
-      'WhatsApp',
-    ],
   },
 ];

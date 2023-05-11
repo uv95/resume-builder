@@ -17,6 +17,11 @@ function createApolloClient() {
       typePolicies: {
         Resume: {
           fields: {
+            personalDetails: {
+              merge(existing, incoming) {
+                return incoming;
+              },
+            },
             skills: {
               merge(existing, incoming) {
                 return incoming;

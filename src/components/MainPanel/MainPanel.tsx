@@ -1,15 +1,16 @@
+import { AdditionalInfoProvider } from '@/context/AdditionalInfoContext';
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
-import { contentCards, inputData } from '@/utils/data';
+import { ResumeContext } from '@/context/ResumeContext';
+import { inputData } from '@/utils/data';
 import {
   IEducation,
   ILanguage,
   IProfessionalExperience,
   IProfile,
   IProject,
-  IResume,
   ISkills,
 } from '@/utils/types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AddContent from '../AddContent/AddContent';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
@@ -20,8 +21,6 @@ import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import ResumeName from '../ResumeName/ResumeName';
 import style from './MainPanel.module.scss';
 
-type Props = { resume: IResume };
-
 interface IResumeOptionalFields {
   language: ILanguage[];
   skills: ISkills[];
@@ -31,12 +30,13 @@ interface IResumeOptionalFields {
   profile: IProfile[];
 }
 
-const MainPanel = ({ resume }: Props) => {
+const MainPanel = () => {
   const [showAddContent, setShowAddContent] = useState(false);
   const [contentToEdit, setContentToEdit] = useState({
     section: '',
     itemId: '',
   });
+  const { resume } = useContext(ResumeContext);
 
   const [resumeOptionalFields, setResumeOptionalFields] =
     useState<IResumeOptionalFields>({
@@ -49,85 +49,83 @@ const MainPanel = ({ resume }: Props) => {
     });
 
   useEffect(() => {
-    setResumeOptionalFields({
-      language: resume.content.language,
-      skills: resume.content.skills,
-      professionalExperience: resume.content.professionalExperience,
-      project: resume.content.project,
-      education: resume.content.education,
-      profile: resume.content.profile,
-    });
-
-    console.log(resume.settings.sectionsOrder, '🌿');
+    resume &&
+      setResumeOptionalFields({
+        language: resume.content.language,
+        skills: resume.content.skills,
+        professionalExperience: resume.content.professionalExperience,
+        project: resume.content.project,
+        education: resume.content.education,
+        profile: resume.content.profile,
+      });
   }, [resume]);
 
   return (
-    <CurrentSectionProvider>
-      <div className={style.mainPanel}>
-        <div className="flex-column">
-          <ResumeName resumeName={resume.name} id={resume.id} />
-          {(!contentToEdit.section ||
-            contentToEdit.section === 'personalDetails') && (
-            <PersonalDetails
-              resume={resume}
-              contentToEdit={contentToEdit}
-              setContentToEdit={setContentToEdit}
-            />
-          )}
-          {!contentToEdit.section &&
-            contentToEdit.section !== 'personalDetails' &&
-            contentCards.map(
-              (contentCard) =>
-                resumeOptionalFields[
-                  contentCard.name as keyof typeof resumeOptionalFields
-                ].length !== 0 && (
-                  <ContentCard
-                    resume={resume}
-                    contentToEdit={contentToEdit}
-                    key={contentCard.name}
-                    setContentToEdit={setContentToEdit}
-                    inputData={
-                      inputData[contentCard.name as keyof typeof inputData]
-                    }
-                    resumeData={
-                      resume.content[
-                        contentCard.name as keyof typeof resume.content
-                      ]
-                    }
-                  />
-                )
-            )}
-          {contentToEdit.section &&
-            contentToEdit.section !== 'personalDetails' && (
-              <Card>
-                <InputsSection
-                  itemId={contentToEdit.itemId}
-                  inputData={
-                    inputData[contentToEdit.section as keyof typeof inputData]
-                  }
-                  resume={resume}
+    <AdditionalInfoProvider>
+      <CurrentSectionProvider>
+        {resume && (
+          <div className={style.mainPanel}>
+            <div className="flex-column">
+              <ResumeName resumeName={resume.name} id={resume.id} />
+              {(!contentToEdit.section ||
+                contentToEdit.section === 'personalDetails') && (
+                <PersonalDetails
+                  contentToEdit={contentToEdit}
                   setContentToEdit={setContentToEdit}
                 />
-              </Card>
-            )}
-          <div className="centered">
-            <Button
-              onClick={() => setShowAddContent(true)}
-              color="pink"
-              text="+ Add Content"
-            />
+              )}
+              {!contentToEdit.section &&
+                contentToEdit.section !== 'personalDetails' &&
+                resume.settings.sectionsOrder.map(
+                  (section) =>
+                    resumeOptionalFields[
+                      section as keyof typeof resumeOptionalFields
+                    ].length !== 0 && (
+                      <ContentCard
+                        key={section}
+                        contentToEdit={contentToEdit}
+                        setContentToEdit={setContentToEdit}
+                        inputData={inputData[section as keyof typeof inputData]}
+                        resumeData={
+                          resume.content[section as keyof typeof resume.content]
+                        }
+                      />
+                    )
+                )}
+              {contentToEdit.section &&
+                contentToEdit.section !== 'personalDetails' && (
+                  <Card>
+                    <InputsSection
+                      itemId={contentToEdit.itemId}
+                      inputData={
+                        inputData[
+                          contentToEdit.section as keyof typeof inputData
+                        ]
+                      }
+                      setContentToEdit={setContentToEdit}
+                    />
+                  </Card>
+                )}
+              <div className="centered">
+                <Button
+                  onClick={() => setShowAddContent(true)}
+                  color="pink"
+                  text="+ Add Content"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      {showAddContent && (
-        <Modal setOpen={setShowAddContent} heading="Add Content">
-          <AddContent
-            setContentToEdit={setContentToEdit}
-            setOpen={setShowAddContent}
-          />
-        </Modal>
-      )}
-    </CurrentSectionProvider>
+        )}
+        {showAddContent && (
+          <Modal setOpen={setShowAddContent} heading="Add Content">
+            <AddContent
+              setContentToEdit={setContentToEdit}
+              setOpen={setShowAddContent}
+            />
+          </Modal>
+        )}
+      </CurrentSectionProvider>
+    </AdditionalInfoProvider>
   );
 };
 

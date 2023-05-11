@@ -1,12 +1,11 @@
+import { ResumeContext } from '@/context/ResumeContext';
 import { personalDetailInputData } from '@/utils/data';
-import { IResume } from '@/utils/types';
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from '../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import style from './PersonalDetails.module.scss';
 
 type Props = {
-  resume: IResume;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
       section: string;
@@ -19,18 +18,15 @@ type Props = {
   };
 };
 
-const PersonalDetails = ({
-  resume,
-  setContentToEdit,
-  contentToEdit,
-}: Props) => {
+const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
+  const { resume } = useContext(ResumeContext);
+
   return (
     <Card>
       {contentToEdit.section ? (
         <InputsSection
           itemId={contentToEdit.itemId}
           inputData={personalDetailInputData}
-          resume={resume}
           setContentToEdit={setContentToEdit}
         />
       ) : (
@@ -46,10 +42,10 @@ const PersonalDetails = ({
           <div className="flex spaceBetween p-2">
             <p
               className={`${style.name} ${
-                !resume.content.personalDetails?.fullName ? style.empty : ''
+                !resume?.content.personalDetails?.fullName ? style.empty : ''
               }`}
             >
-              {resume.content.personalDetails?.fullName || 'Your name'}
+              {resume?.content.personalDetails?.fullName || 'Your name'}
             </p>
             <p
               onClick={() =>
@@ -65,24 +61,24 @@ const PersonalDetails = ({
           <div className={style.content}>
             <p
               className={`${style.input} ${
-                !resume.content.personalDetails?.email ? style.empty : ''
+                !resume?.content.personalDetails?.email ? style.empty : ''
               }`}
             >
-              {resume.content.personalDetails?.email || 'Email'}
+              {resume?.content.personalDetails?.email || 'Email'}
             </p>
             <p
               className={`${style.input} ${
-                !resume.content.personalDetails?.phone ? style.empty : ''
+                !resume?.content.personalDetails?.phone ? style.empty : ''
               }`}
             >
-              {resume.content.personalDetails?.phone || 'Phone'}
+              {resume?.content.personalDetails?.phone || 'Phone'}
             </p>
             <p
               className={`${style.input} ${
-                !resume.content.personalDetails?.address ? style.empty : ''
+                !resume?.content.personalDetails?.address ? style.empty : ''
               }`}
             >
-              {resume.content.personalDetails?.address || 'Address'}
+              {resume?.content.personalDetails?.address || 'Address'}
             </p>
           </div>
         </div>

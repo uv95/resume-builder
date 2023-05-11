@@ -7,6 +7,7 @@ export const ADD_PERSONAL_DETAILS = gql`
     $email: String
     $phone: String
     $address: String
+    $additionalInfo: [AdditionalInfoInput]
     $resumeId: ID!
   ) {
     addPersonalDetails(
@@ -15,6 +16,7 @@ export const ADD_PERSONAL_DETAILS = gql`
       email: $email
       phone: $phone
       address: $address
+      additionalInfo: $additionalInfo
       resumeId: $resumeId
     ) {
       fullName
@@ -23,11 +25,7 @@ export const ADD_PERSONAL_DETAILS = gql`
       phone
       address
       additionalInfo {
-        info
-        name
-      }
-      links {
-        link
+        input
         name
       }
       id
@@ -43,6 +41,7 @@ export const UPDATE_PERSONAL_DETAILS = gql`
     $email: String
     $phone: String
     $address: String
+    $additionalInfo: [AdditionalInfoUpdate]
   ) {
     updatePersonalDetails(
       id: $id
@@ -51,6 +50,7 @@ export const UPDATE_PERSONAL_DETAILS = gql`
       email: $email
       phone: $phone
       address: $address
+      additionalInfo: $additionalInfo
     ) {
       fullName
       jobTitle
@@ -58,11 +58,7 @@ export const UPDATE_PERSONAL_DETAILS = gql`
       phone
       address
       additionalInfo {
-        info
-        name
-      }
-      links {
-        link
+        input
         name
       }
       id

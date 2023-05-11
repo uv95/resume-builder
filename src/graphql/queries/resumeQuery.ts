@@ -14,13 +14,7 @@ export const GET_RESUME = gql`
           phone
           address
           additionalInfo {
-            id
-            info
-            name
-          }
-          links {
-            id
-            link
+            input
             name
           }
         }

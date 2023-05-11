@@ -1,5 +1,4 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
-import { IResume } from '@/utils/types';
 import React, { useContext } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
@@ -9,7 +8,6 @@ import style from './ContentCard.module.scss';
 
 type Props = {
   inputData: any;
-  resume: IResume;
   resumeData: any;
   contentToEdit: {
     section: string;
@@ -27,21 +25,18 @@ type Props = {
 const ContentCard = ({
   inputData,
   resumeData,
-  resume,
   contentToEdit,
   setContentToEdit,
 }: Props) => {
   const { currentSection, setCurrentSection } = useContext(
     CurrentSectionContext
   );
-
   return (
     <Card>
       {contentToEdit.section && contentToEdit.section === currentSection ? (
         <InputsSection
           itemId={contentToEdit.itemId}
           inputData={inputData}
-          resume={resume}
           setContentToEdit={setContentToEdit}
         />
       ) : (

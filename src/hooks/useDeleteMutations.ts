@@ -1,7 +1,5 @@
-import { DELETE_ADDITIONAL_INFO } from '@/graphql/mutations/additionalInfoMutations';
 import { DELETE_EDUCATION } from '@/graphql/mutations/educationMutations';
 import { DELETE_LANGUAGE } from '@/graphql/mutations/languageMutations';
-import { DELETE_LINK } from '@/graphql/mutations/linksMutations';
 import { DELETE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
 import { DELETE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
 import { DELETE_PROFILE } from '@/graphql/mutations/profileMutations';
@@ -22,10 +20,8 @@ import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
 function useDeleteMutations(name: string, resumeId: string) {
   const [updateSettings] = useMutation(UPDATE_SETTINGS);
   const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
-  const [deleteAdditionalInfo] = useMutation(DELETE_ADDITIONAL_INFO);
   const [deleteEducation] = useMutation(DELETE_EDUCATION);
   const [deleteLanguage] = useMutation(DELETE_LANGUAGE);
-  const [deleteLink] = useMutation(DELETE_LINK);
   const [deleteProfessionalExperience] = useMutation(
     DELETE_PROFESSIONAL_EXPERIENCE
   );
@@ -39,17 +35,11 @@ function useDeleteMutations(name: string, resumeId: string) {
       fnName: 'deletePersonalDetails',
     },
     {
-      sectionName: 'deleteitionalInfo',
-      fn: deleteAdditionalInfo,
-      fnName: 'deleteAdditionalInfo',
-    },
-    {
       sectionName: 'education',
       fn: deleteEducation,
       fnName: 'deleteEducation',
     },
     { sectionName: 'language', fn: deleteLanguage, fnName: 'deleteLanguage' },
-    { sectionName: 'link', fn: deleteLink, fnName: 'deleteLink' },
     {
       sectionName: 'professionalExperience',
       fn: deleteProfessionalExperience,

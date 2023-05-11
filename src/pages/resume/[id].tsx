@@ -2,10 +2,11 @@ import { addApolloState, initializeApollo } from '@/apollo';
 import MainPanel from '@/components/MainPanel/MainPanel';
 import Navigation from '@/components/Navigation/Navigation';
 import ResumePage from '@/components/ResumePage/ResumePage';
+import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import style from '../../styles/Resume.module.scss';
 
 type Props = {};
@@ -13,7 +14,12 @@ type Props = {};
 const Resume = (props: Props) => {
   const router = useRouter();
   const { id } = router.query;
-  const { loading, error, data } = useQuery(GET_RESUME, { variables: { id } });
+  const { error, data } = useQuery(GET_RESUME, { variables: { id } });
+  const { setResume } = useContext(ResumeContext);
+
+  useEffect(() => {
+    data && setResume(data.resume);
+  }, [data, setResume]);
 
   if (error) return <p>Something Went Wrong</p>;
 
@@ -22,7 +28,7 @@ const Resume = (props: Props) => {
       <div className={style.layout}>
         <div className="flex">
           <Navigation />
-          <MainPanel resume={data.resume} />
+          <MainPanel />
         </div>
         <ResumePage resume={data.resume} />
       </div>

@@ -1,18 +1,18 @@
+import { AdditionalInfoContext } from '@/context/AdditionalInfoContext';
+import { ResumeContext } from '@/context/ResumeContext';
 import useAddMutations from '@/hooks/useAddMutations';
 import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
-import { IResume } from '@/utils/types';
 import { Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../Button/Button';
-import PersonalDetailsAdditionalInfo from '../PersonalDetailsAdditionalInfo/PersonalDetailsAdditionalInfo';
+import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
 import Select from '../Select/Select';
 import style from './InputsSection.module.scss';
 
 type Props = {
   inputData: any;
-  resume: IResume;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
       section: string;
@@ -22,17 +22,14 @@ type Props = {
   itemId: string;
 };
 
-const InputsSection = ({
-  inputData,
-  resume,
-  setContentToEdit,
-  itemId,
-}: Props) => {
-  const initialValues = getInitialValues(inputData, resume, itemId);
+const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
+  const { resume } = useContext(ResumeContext);
+  const { additionalInfo } = useContext(AdditionalInfoContext);
+  const initialValues = getInitialValues(inputData, resume!, itemId);
 
-  const updateContent = useUpdateMutations(inputData.name, resume.id);
-  const addContent = useAddMutations(inputData.name, resume.id);
-  const deleteContent = useDeleteMutations(inputData.name, resume.id);
+  const updateContent = useUpdateMutations(inputData.name, resume?.id!);
+  const addContent = useAddMutations(inputData.name, resume?.id!);
+  const deleteContent = useDeleteMutations(inputData.name, resume?.id!);
 
   return (
     <div>
@@ -40,9 +37,19 @@ const InputsSection = ({
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
+          const finalValues =
+            inputData.name === 'personalDetails'
+              ? { ...values, additionalInfo }
+              : values;
+          console.log(
+            finalValues,
+            'finalValues',
+            initialValues,
+            'initialValues'
+          );
           isInputsEmpty(initialValues)
-            ? addContent(values)
-            : updateContent(values);
+            ? addContent(finalValues)
+            : updateContent(finalValues);
           setContentToEdit({ section: '', itemId: '' });
         }}
       >
@@ -65,9 +72,7 @@ const InputsSection = ({
             </div>
           ))}
 
-          {inputData.name === 'personalDetails' && (
-            <PersonalDetailsAdditionalInfo />
-          )}
+          {inputData.name === 'personalDetails' && <AdditionalInfoSection />}
 
           <div className={style.buttons}>
             {inputData.name !== 'personalDetails' && (

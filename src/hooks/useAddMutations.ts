@@ -1,7 +1,5 @@
-import { ADD_ADDITIONAL_INFO } from '@/graphql/mutations/additionalInfoMutations';
 import { ADD_EDUCATION } from '@/graphql/mutations/educationMutations';
 import { ADD_LANGUAGE } from '@/graphql/mutations/languageMutations';
-import { ADD_LINK } from '@/graphql/mutations/linksMutations';
 import { ADD_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
 import { ADD_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
 import { ADD_PROFILE } from '@/graphql/mutations/profileMutations';
@@ -22,10 +20,8 @@ import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
 function useAddMutations(name: string, resumeId: string) {
   const [updateSettings] = useMutation(UPDATE_SETTINGS);
   const [addPersonalDetails] = useMutation(ADD_PERSONAL_DETAILS);
-  const [addAdditionalInfo] = useMutation(ADD_ADDITIONAL_INFO);
   const [addEducation] = useMutation(ADD_EDUCATION);
   const [addLanguage] = useMutation(ADD_LANGUAGE);
-  const [addLink] = useMutation(ADD_LINK);
   const [addProfessionalExperience] = useMutation(ADD_PROFESSIONAL_EXPERIENCE);
   const [addProfile] = useMutation(ADD_PROFILE);
   const [addProject] = useMutation(ADD_PROJECT);
@@ -37,17 +33,11 @@ function useAddMutations(name: string, resumeId: string) {
       fnName: 'addPersonalDetails',
     },
     {
-      sectionName: 'additionalInfo',
-      fn: addAdditionalInfo,
-      fnName: 'addAdditionalInfo',
-    },
-    {
       sectionName: 'education',
       fn: addEducation,
       fnName: 'addEducation',
     },
     { sectionName: 'language', fn: addLanguage, fnName: 'addLanguage' },
-    { sectionName: 'link', fn: addLink, fnName: 'addLink' },
     {
       sectionName: 'professionalExperience',
       fn: addProfessionalExperience,
@@ -79,6 +69,7 @@ function useAddMutations(name: string, resumeId: string) {
             query: GET_RESUME,
             variables: { id: resumeId },
           })!;
+
           if (sectionName === 'personalDetails') {
             cache.writeQuery({
               query: GET_RESUME,

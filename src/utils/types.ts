@@ -51,8 +51,7 @@ export interface IPersonalDetails {
   email: string;
   phone: string;
   address: string;
-  additionalInfo: IAdditionalInfo;
-  links: ILinks;
+  additionalInfo: IAdditionalInfo[];
   __typename?: string;
 }
 
@@ -92,15 +91,7 @@ export interface ISkills {
 }
 
 export interface IAdditionalInfo {
-  id: string;
   name: string;
-  info: string;
-  __typename?: string;
-}
-
-export interface ILinks {
-  id: string;
-  name: string;
-  link: string;
+  input: string;
   __typename?: string;
 }

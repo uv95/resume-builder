@@ -1,7 +1,6 @@
-import { UPDATE_ADDITIONAL_INFO } from '@/graphql/mutations/additionalInfoMutations';
 import { UPDATE_EDUCATION } from '@/graphql/mutations/educationMutations';
 import { UPDATE_LANGUAGE } from '@/graphql/mutations/languageMutations';
-import { UPDATE_LINK } from '@/graphql/mutations/linksMutations';
+
 import { UPDATE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
 import { UPDATE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
 import { UPDATE_PROFILE } from '@/graphql/mutations/profileMutations';
@@ -20,10 +19,8 @@ import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 
 function useUpdateMutations(name: string, resumeId: string) {
   const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);
-  const [updateAdditionalInfo] = useMutation(UPDATE_ADDITIONAL_INFO);
   const [updateEducation] = useMutation(UPDATE_EDUCATION);
   const [updateLanguage] = useMutation(UPDATE_LANGUAGE);
-  const [updateLink] = useMutation(UPDATE_LINK);
   const [updateProfessionalExperience] = useMutation(
     UPDATE_PROFESSIONAL_EXPERIENCE
   );
@@ -36,15 +33,10 @@ function useUpdateMutations(name: string, resumeId: string) {
       fn: updatePersonalDetails,
     },
     {
-      sectionName: 'additionalInfo',
-      fn: updateAdditionalInfo,
-    },
-    {
       sectionName: 'education',
       fn: updateEducation,
     },
     { sectionName: 'language', fn: updateLanguage },
-    { sectionName: 'link', fn: updateLink },
     {
       sectionName: 'professionalExperience',
       fn: updateProfessionalExperience,
@@ -55,12 +47,12 @@ function useUpdateMutations(name: string, resumeId: string) {
   ];
   const updateContent = (
     variables:
-      | Partial<IEducation>
-      | Partial<ISkills>
-      | Partial<IProfile>
-      | Partial<IProject>
-      | Partial<ILanguage>
-      | Partial<IProfessionalExperience>
+      | IEducation
+      | ISkills
+      | IProfile
+      | IProject
+      | ILanguage
+      | IProfessionalExperience
   ) => {
     const { fn } = updateFunctions.find((item) => name === item.sectionName)!;
 

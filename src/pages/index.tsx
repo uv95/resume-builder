@@ -11,16 +11,17 @@ export default function Home() {
   const [addResume, { data }] = useMutation(ADD_RESUME);
   const [resumeId, setResumeId] = useState<string | null>(null);
   const [resumeName, setResumeName] = useState<string | null>(null);
+
   // const { loading, error, data } = useQuery(GET_RESUMES);
   const router = useRouter();
-  const createResume = () => {
-    addResume();
+
+  useEffect(() => {
     if (data) {
       localStorage.setItem('resumeId', data.addResume.id);
       localStorage.setItem('resumeName', data.addResume.name);
       router.push(`resume/${data.addResume.id}`);
     }
-  };
+  }, [data, router]);
 
   useEffect(() => {
     setResumeId(localStorage.getItem('resumeId') || null);
@@ -30,7 +31,7 @@ export default function Home() {
   return (
     <main className={style.home}>
       <div className="flex">
-        <Button onClick={createResume} text="Create Resume" color="pink" />
+        <Button onClick={() => addResume()} text="Create Resume" color="pink" />
         {resumeId && (
           <Button
             onClick={() => router.push(`resume/${resumeId}`)}

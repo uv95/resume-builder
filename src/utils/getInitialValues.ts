@@ -7,13 +7,20 @@ export const getInitialValues = (
   itemId: string
 ) => {
   if (inputData.name === 'personalDetails') {
-    if (resume.content.personalDetails)
-      return removeTypename(resume.content.personalDetails);
-    else {
+    if (resume.content.personalDetails) {
+      const personalDetails = {
+        ...resume.content.personalDetails,
+        additionalInfo: resume.content.personalDetails.additionalInfo.map(
+          (item) => removeTypename(item)
+        ),
+      };
+
+      return removeTypename(personalDetails);
+    } else {
       const emptyValues = inputData.inputs
         .map((input: any) => input.name)
         .reduce((acc: any, curr: any) => ((acc[curr] = ''), acc), {});
-      return emptyValues;
+      return { ...emptyValues, additionalInfo: [] };
     }
   }
   let currentSection: any;
@@ -79,7 +86,8 @@ export const getInitialValues = (
 
 export const isInputsEmpty = (inputs: Object) => {
   return (
-    Object.values(inputs).filter((val) => val !== '' && val !== 'default')
-      .length === 0
+    Object.values(inputs).filter(
+      (val) => val !== '' && val !== 'default' && val.length
+    ).length === 0
   );
 };
