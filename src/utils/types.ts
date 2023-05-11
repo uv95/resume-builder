@@ -115,3 +115,12 @@ export interface IResumePageContext {
   state: IResumePageState;
   dispatch: Dispatch<IResumePageActions>;
 }
+
+export interface IResumeArraySections {
+  language: ILanguage[];
+  skills: ISkills[];
+  professionalExperience: IProfessionalExperience[];
+  project: IProject[];
+  education: IEducation[];
+  profile: IProfile[];
+}

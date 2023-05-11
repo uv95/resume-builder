@@ -30,7 +30,7 @@ const Resume = (props: Props) => {
           <Navigation />
           <MainPanel />
         </div>
-        <ResumePage resume={data.resume} />
+        <ResumePage />
       </div>
     </main>
   );

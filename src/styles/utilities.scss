@@ -38,6 +38,10 @@
   margin-top: 1rem;
 }
 
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
 .rightPositioned {
   margin-left: auto;
 }
@@ -62,4 +66,8 @@
 
 .pointer {
   cursor: pointer;
+}
+
+.longText {
+  white-space: pre-wrap;
 }

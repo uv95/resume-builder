@@ -2,14 +2,7 @@ import { AdditionalInfoProvider } from '@/context/AdditionalInfoContext';
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
-import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-} from '@/utils/types';
+import { IResumeArraySections } from '@/utils/types';
 import React, { useContext, useEffect, useState } from 'react';
 import AddContent from '../AddContent/AddContent';
 import Button from '../Button/Button';
@@ -21,15 +14,6 @@ import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import ResumeName from '../ResumeName/ResumeName';
 import style from './MainPanel.module.scss';
 
-interface IResumeOptionalFields {
-  language: ILanguage[];
-  skills: ISkills[];
-  professionalExperience: IProfessionalExperience[];
-  project: IProject[];
-  education: IEducation[];
-  profile: IProfile[];
-}
-
 const MainPanel = () => {
   const [showAddContent, setShowAddContent] = useState(false);
   const [contentToEdit, setContentToEdit] = useState({
@@ -38,8 +22,8 @@ const MainPanel = () => {
   });
   const { resume } = useContext(ResumeContext);
 
-  const [resumeOptionalFields, setResumeOptionalFields] =
-    useState<IResumeOptionalFields>({
+  const [resumeArraySections, setResumeArraySections] =
+    useState<IResumeArraySections>({
       language: [],
       skills: [],
       professionalExperience: [],
@@ -50,7 +34,7 @@ const MainPanel = () => {
 
   useEffect(() => {
     resume &&
-      setResumeOptionalFields({
+      setResumeArraySections({
         language: resume.content.language,
         skills: resume.content.skills,
         professionalExperience: resume.content.professionalExperience,
@@ -78,8 +62,8 @@ const MainPanel = () => {
                 contentToEdit.section !== 'personalDetails' &&
                 resume.settings.sectionsOrder.map(
                   (section) =>
-                    resumeOptionalFields[
-                      section as keyof typeof resumeOptionalFields
+                    resumeArraySections[
+                      section as keyof typeof resumeArraySections
                     ].length !== 0 && (
                       <ContentCard
                         key={section}

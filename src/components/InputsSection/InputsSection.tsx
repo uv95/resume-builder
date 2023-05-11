@@ -67,6 +67,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                   id={input.name}
                   type={input.type || 'text'}
                   placeholder={input.placeholder}
+                  as={input.type === 'textarea' ? 'textarea' : 'input'}
                 />
               )}
             </div>
