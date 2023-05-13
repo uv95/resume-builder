@@ -9,7 +9,7 @@ const ProjectBlock = (props: Props) => {
   const content = resume?.content.project;
 
   return (
-    <div className="p-2">
+    <div style={{ padding: '2%' }}>
       {content &&
         content.map((item) => (
           <div key={item.id}>
@@ -24,7 +24,7 @@ const ProjectBlock = (props: Props) => {
                 </p>
               </div>
             </div>
-            <p className="longText">{item.description}</p>
+            <p>{item.description}</p>
           </div>
         ))}
     </div>

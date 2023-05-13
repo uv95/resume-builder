@@ -8,7 +8,7 @@ const LanguageBlock = (props: Props) => {
   const content = resume?.content.language;
 
   return (
-    <div className="p-2">
+    <div style={{ padding: '2%' }}>
       {content &&
         content.map((item) => (
           <div key={item.id}>

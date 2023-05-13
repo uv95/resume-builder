@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
 import { IResumeArraySections } from '@/utils/types';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import EducationBlock from '../pageBlocks/EducationBlock/EducationBlock';
 import LanguageBlock from '../pageBlocks/LanguageBlock/LanguageBlock';
 import PersonalDetailsBlock from '../pageBlocks/PersonalDetailsBlock/PersonalDetailsBlock';
@@ -14,6 +14,7 @@ import style from './ResumePage.module.scss';
 type Props = {};
 
 const ResumePage = ({}: Props) => {
+  const ref = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
   const [resumeArraySections, setResumeArraySections] =
     useState<IResumeArraySections>({
@@ -24,6 +25,18 @@ const ResumePage = ({}: Props) => {
       education: [],
       profile: [],
     });
+
+  const [resumePageWidth, setResumePageWidth] = useState(0);
+
+  useEffect(() => {
+    window.addEventListener('resize', () =>
+      setResumePageWidth(ref?.current ? ref.current.offsetWidth : 0)
+    );
+  });
+
+  useEffect(() => {
+    ref.current && setResumePageWidth(ref.current.offsetWidth);
+  }, []);
 
   useEffect(() => {
     resume &&
@@ -38,8 +51,13 @@ const ResumePage = ({}: Props) => {
   }, [resume]);
 
   return (
-    <div className={style.resume}>
-      <div className={style.page}>
+    <div ref={ref} className={style.resume}>
+      <div
+        className={style.page}
+        style={{
+          transform: `scale(${resumePageWidth * 0.00126})`,
+        }}
+      >
         <PersonalDetailsBlock />
 
         {resume?.settings.sectionsOrder.map((section) => (
