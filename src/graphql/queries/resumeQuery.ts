@@ -64,7 +64,21 @@ export const GET_RESUME = gql`
       }
       settings {
         id
-        sectionsOrder
+        sectionsOrder {
+          top
+          left {
+            leftSide
+            rightSide
+          }
+          right {
+            leftSide
+            rightSide
+          }
+        }
+        layout {
+          columns
+          position
+        }
       }
     }
   }

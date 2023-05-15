@@ -1,12 +1,13 @@
 import { addApolloState, initializeApollo } from '@/apollo';
-import MainPanel from '@/components/MainPanel/MainPanel';
+import Customization from '@/components/Customization/Customization';
+import Content from '@/components/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
 import ResumePage from '@/components/ResumePage/ResumePage';
 import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
 
 type Props = {};
@@ -16,6 +17,8 @@ const Resume = (props: Props) => {
   const { id } = router.query;
   const { error, data } = useQuery(GET_RESUME, { variables: { id } });
   const { setResume } = useContext(ResumeContext);
+
+  const [active, setActive] = useState('Content');
 
   useEffect(() => {
     data && setResume(data.resume);
@@ -27,8 +30,11 @@ const Resume = (props: Props) => {
     <main>
       <div className={style.layout}>
         <div className="flex">
-          <Navigation />
-          <MainPanel />
+          <Navigation active={active} setActive={setActive} />
+          <div className={style.mainPanel}>
+            {active === 'Content' && <Content />}
+            {active === 'Customize' && <Customization />}
+          </div>
         </div>
         <ResumePage />
       </div>

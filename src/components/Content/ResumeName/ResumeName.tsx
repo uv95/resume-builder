@@ -3,8 +3,8 @@ import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 import { useMutation } from '@apollo/client';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import Button from '../Button/Button';
-import Card from '../Card/Card';
+import Button from '../../Button/Button';
+import Card from '../../Card/Card';
 
 type Props = { resumeName: string; id: string };
 

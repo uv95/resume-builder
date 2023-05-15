@@ -21,7 +21,9 @@
   background-color: $color-bg;
   box-shadow: none;
   transition: all 0.2s;
+}
 
+.hoverScale {
   &:hover {
     scale: 1.03;
   }

@@ -1,10 +1,28 @@
 import { gql } from '@apollo/client';
 
 export const UPDATE_SETTINGS = gql`
-  mutation updateSettings($id: ID!, $sectionsOrder: [String]) {
-    updateSettings(id: $id, sectionsOrder: $sectionsOrder) {
+  mutation updateSettings(
+    $id: ID!
+    $sectionsOrder: SectionsOrderInput
+    $layout: LayoutInput
+  ) {
+    updateSettings(id: $id, sectionsOrder: $sectionsOrder, layout: $layout) {
       id
-      sectionsOrder
+      sectionsOrder {
+        top
+        left {
+          leftSide
+          rightSide
+        }
+        right {
+          leftSide
+          rightSide
+        }
+      }
+      layout {
+        columns
+        position
+      }
     }
   }
 `;

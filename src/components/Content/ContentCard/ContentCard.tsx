@@ -1,7 +1,7 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
 import React, { useContext } from 'react';
-import Button from '../Button/Button';
-import Card from '../Card/Card';
+import Button from '../../Button/Button';
+import Card from '../../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import List from '../List/List';
 import style from './ContentCard.module.scss';

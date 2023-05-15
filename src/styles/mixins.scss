@@ -3,3 +3,13 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin borderedBox {
+  border-radius: 1rem;
+  border: 1px solid $color-gray;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+}

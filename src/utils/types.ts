@@ -18,7 +18,15 @@ export interface IResume {
 
 export interface ISettings {
   id: string;
-  sectionsOrder: string[];
+  sectionsOrder: {
+    top: string[];
+    left: { leftSide: string[]; rightSide: string[] };
+    right: { leftSide: string[]; rightSide: string[] };
+  };
+  layout: {
+    columns: number;
+    position: string;
+  };
   __typename?: string;
 }
 export interface IEducation {

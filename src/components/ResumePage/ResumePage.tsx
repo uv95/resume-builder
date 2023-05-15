@@ -2,13 +2,13 @@ import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
 import { IResumeArraySections } from '@/utils/types';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import EducationBlock from '../pageBlocks/EducationBlock/EducationBlock';
-import LanguageBlock from '../pageBlocks/LanguageBlock/LanguageBlock';
-import PersonalDetailsBlock from '../pageBlocks/PersonalDetailsBlock/PersonalDetailsBlock';
-import ProfessionalExperienceBlock from '../pageBlocks/ProfessionalExperienceBlock/ProfessionalExperienceBlock';
-import ProfileBlock from '../pageBlocks/ProfileBlock/ProfileBlock';
-import ProjectBlock from '../pageBlocks/ProjectBlock/ProjectBlock';
-import SkillsBlock from '../pageBlocks/SkillsBlock/SkillsBlock';
+import EducationBlock from './EducationBlock/EducationBlock';
+import LanguageBlock from './LanguageBlock/LanguageBlock';
+import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
+import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/ProfessionalExperienceBlock';
+import ProfileBlock from './ProfileBlock/ProfileBlock';
+import ProjectBlock from './ProjectBlock/ProjectBlock';
+import SkillsBlock from './SkillsBlock/SkillsBlock';
 import style from './ResumePage.module.scss';
 
 type Props = {};
@@ -60,7 +60,7 @@ const ResumePage = ({}: Props) => {
       >
         <PersonalDetailsBlock />
 
-        {resume?.settings.sectionsOrder.map((section) => (
+        {resume?.settings.sectionsOrder.top.map((section) => (
           <div key={section}>
             {resumeArraySections[section as keyof typeof resumeArraySections]
               .length !== 0 && (

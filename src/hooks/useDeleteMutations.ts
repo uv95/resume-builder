@@ -67,15 +67,17 @@ function useDeleteMutations(name: string, resumeId: string) {
           //  ---update sections order---
           const newSectionsOrder =
             resume.content[sectionName].length === 1
-              ? resume.settings.sectionsOrder.filter(
+              ? resume.settings.sectionsOrder.top.filter(
                   (section: string) => section !== sectionName
                 )
-              : resume.settings.sectionsOrder;
+              : resume.settings.sectionsOrder.top;
 
           updateSettings({
             variables: {
               id: resume.settings.id,
-              sectionsOrder: newSectionsOrder,
+              sectionsOrder: {
+                top: newSectionsOrder,
+              },
             },
           });
           // ---update sections order---

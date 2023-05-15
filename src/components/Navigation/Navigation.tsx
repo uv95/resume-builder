@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
 
-type Props = {};
+type Props = {
+  active: string;
+  setActive: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const Navigation = (props: Props) => {
-  const [active, setActive] = useState('Content');
+const Navigation = ({ active, setActive }: Props) => {
   return (
     <Card>
       <div className="flex-column p-2">

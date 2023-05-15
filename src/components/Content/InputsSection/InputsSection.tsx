@@ -5,10 +5,10 @@ import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { Field, Form, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
-import Button from '../Button/Button';
+import React, { useContext } from 'react';
+import Button from '../../Button/Button';
 import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
-import Select from '../Select/Select';
+import Select from '../../Select/Select';
 import style from './InputsSection.module.scss';
 
 type Props = {

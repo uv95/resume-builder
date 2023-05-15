@@ -18,7 +18,7 @@
       font-size: 2rem;
       padding: 1rem;
       background-color: rgba(243, 243, 243, 0.77);
-      color: $color-ui;
+      color: $color-ui-pink;
     }
     &:hover {
       color: $color-font--medium;
@@ -31,10 +31,10 @@
 
   &-pink {
     width: fit-content;
-    background-color: $color-ui;
+    background-color: $color-ui-pink;
     color: white;
     &:hover {
-      background-color: $color-ui--light;
+      background-color: $color-ui-pink--light;
     }
   }
   &-whiteWithBorder {

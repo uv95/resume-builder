@@ -16,6 +16,7 @@ import {
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import { removeTypename } from '@/utils/removeTypename';
 
 function useAddMutations(name: string, resumeId: string) {
   const [updateSettings] = useMutation(UPDATE_SETTINGS);
@@ -82,16 +83,18 @@ function useAddMutations(name: string, resumeId: string) {
             });
           } else {
             // ---update sections order---
-            const newSectionsOrder = resume.settings.sectionsOrder.includes(
+            const newSectionsOrder = resume.settings.sectionsOrder.top.includes(
               sectionName
             )
-              ? resume.settings.sectionsOrder
-              : [...resume.settings.sectionsOrder, sectionName];
+              ? resume.settings.sectionsOrder.top
+              : [...resume.settings.sectionsOrder.top, sectionName];
 
             updateSettings({
               variables: {
                 id: resume.settings.id,
-                sectionsOrder: newSectionsOrder,
+                sectionsOrder: {
+                  top: newSectionsOrder,
+                },
               },
             });
             // ---update sections order---
