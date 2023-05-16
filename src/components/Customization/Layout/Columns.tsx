@@ -1,9 +1,12 @@
-import React from 'react';
+import { ResumeContext } from '@/context/ResumeContext';
+import React, { useContext } from 'react';
 import style from './Layout.module.scss';
 
 type Props = {};
 
 const Columns = (props: Props) => {
+  const { resume } = useContext(ResumeContext);
+
   return (
     <div>
       <h5 className="mb-1">Columns</h5>

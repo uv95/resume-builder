@@ -78,6 +78,10 @@ export const GET_RESUME = gql`
         layout {
           columns
           position
+          columnWidth {
+            left
+            right
+          }
         }
       }
     }

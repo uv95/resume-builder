@@ -1,9 +1,12 @@
-import React from 'react';
+import { ResumeContext } from '@/context/ResumeContext';
+import React, { useContext } from 'react';
 import style from './Layout.module.scss';
 
 type Props = {};
 
 const ColumnWidth = (props: Props) => {
+  const { resume } = useContext(ResumeContext);
+
   return (
     <div>
       <h5>Column width</h5>

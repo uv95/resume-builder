@@ -26,6 +26,10 @@ export interface ISettings {
   layout: {
     columns: number;
     position: string;
+    columnWidth: {
+      left: number;
+      right: number;
+    };
   };
   __typename?: string;
 }

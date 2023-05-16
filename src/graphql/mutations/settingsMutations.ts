@@ -22,6 +22,10 @@ export const UPDATE_SETTINGS = gql`
       layout {
         columns
         position
+        columnWidth {
+          left
+          right
+        }
       }
     }
   }
