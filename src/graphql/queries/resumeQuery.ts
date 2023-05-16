@@ -66,14 +66,8 @@ export const GET_RESUME = gql`
         id
         sectionsOrder {
           top
-          left {
-            leftSide
-            rightSide
-          }
-          right {
-            leftSide
-            rightSide
-          }
+          left
+          right
         }
         layout {
           columns

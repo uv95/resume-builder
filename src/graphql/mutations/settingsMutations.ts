@@ -10,14 +10,8 @@ export const UPDATE_SETTINGS = gql`
       id
       sectionsOrder {
         top
-        left {
-          leftSide
-          rightSide
-        }
-        right {
-          leftSide
-          rightSide
-        }
+        left
+        right
       }
       layout {
         columns

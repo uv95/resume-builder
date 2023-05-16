@@ -20,8 +20,8 @@ export interface ISettings {
   id: string;
   sectionsOrder: {
     top: string[];
-    left: { leftSide: string[]; rightSide: string[] };
-    right: { leftSide: string[]; rightSide: string[] };
+    left: string[];
+    right: string[];
   };
   layout: {
     columns: number;
