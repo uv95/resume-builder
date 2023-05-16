@@ -15,10 +15,9 @@ import {
   ISkills,
 } from '@/utils/types';
 import { GET_RESUME } from '@/graphql/queries/resumeQuery';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import useUpdateSettings from './useUpdateSettings';
 
 function useDeleteMutations(name: string, resumeId: string) {
-  const [updateSettings] = useMutation(UPDATE_SETTINGS);
   const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
   const [deleteEducation] = useMutation(DELETE_EDUCATION);
   const [deleteLanguage] = useMutation(DELETE_LANGUAGE);
@@ -28,6 +27,9 @@ function useDeleteMutations(name: string, resumeId: string) {
   const [deleteProfile] = useMutation(DELETE_PROFILE);
   const [deleteProject] = useMutation(DELETE_PROJECT);
   const [deleteSkill] = useMutation(DELETE_SKILL);
+
+  const { removeFromSectionsOrder } = useUpdateSettings();
+
   const deleteFunctions = [
     {
       sectionName: 'personalDetails',
@@ -65,21 +67,7 @@ function useDeleteMutations(name: string, resumeId: string) {
           })!;
 
           //  ---update sections order---
-          const newSectionsOrder =
-            resume.content[sectionName].length === 1
-              ? resume.settings.sectionsOrder.top.filter(
-                  (section: string) => section !== sectionName
-                )
-              : resume.settings.sectionsOrder.top;
-
-          updateSettings({
-            variables: {
-              id: resume.settings.id,
-              sectionsOrder: {
-                top: newSectionsOrder,
-              },
-            },
-          });
+          removeFromSectionsOrder(sectionName);
           // ---update sections order---
 
           cache.writeQuery({

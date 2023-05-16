@@ -1,26 +1,19 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
-import { useMutation } from '@apollo/client';
+import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
 
 const ColumnWidth = () => {
   const { resume } = useContext(ResumeContext);
-  const [updateSettings] = useMutation(UPDATE_SETTINGS);
+
   const [left, setLeft] = useState(resume?.settings.layout.columnWidth.left);
   const [right, setRight] = useState(resume?.settings.layout.columnWidth.right);
 
+  const { updateColumnWidth } = useUpdateSettings();
+
   useEffect(() => {
-    const updateColumnWidth = (left: number, right: number) => {
-      return updateSettings({
-        variables: {
-          id: resume?.settings.id,
-          layout: { columnWidth: { left, right } },
-        },
-      });
-    };
     left && right && updateColumnWidth(left, right);
-  }, [left, right, resume?.settings.id, updateSettings]);
+  }, [left, right, updateColumnWidth]);
 
   return (
     <div>

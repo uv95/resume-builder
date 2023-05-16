@@ -1,18 +1,12 @@
 import style from './Layout.module.scss';
 import React, { useContext } from 'react';
 import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
-import { useMutation } from '@apollo/client';
+import useUpdateSettings from '@/hooks/useUpdateSettings';
 
 const Position = () => {
   const { resume } = useContext(ResumeContext);
-  const [updateSettings] = useMutation(UPDATE_SETTINGS);
 
-  const updatePosition = (position: string, columns: number) => {
-    return updateSettings({
-      variables: { id: resume?.settings.id, layout: { position, columns } },
-    });
-  };
+  const { updatePosition } = useUpdateSettings();
 
   return (
     <div className="flex">

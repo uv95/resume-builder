@@ -1,6 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
-import { useMutation } from '@apollo/client';
+import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
 import style from './Layout.module.scss';
 
@@ -8,13 +7,7 @@ type Props = {};
 
 const Columns = (props: Props) => {
   const { resume } = useContext(ResumeContext);
-  const [updateSettings] = useMutation(UPDATE_SETTINGS);
-
-  const updateColumns = (columns: number) => {
-    return updateSettings({
-      variables: { id: resume?.settings.id, layout: { columns } },
-    });
-  };
+  const { updateColumns } = useUpdateSettings();
 
   return (
     <div>
