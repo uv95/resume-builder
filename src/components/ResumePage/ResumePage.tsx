@@ -1,19 +1,11 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { inputData } from '@/utils/data';
 import { IResumeArraySections } from '@/utils/types';
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import EducationBlock from './EducationBlock/EducationBlock';
-import LanguageBlock from './LanguageBlock/LanguageBlock';
 import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
-import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/ProfessionalExperienceBlock';
-import ProfileBlock from './ProfileBlock/ProfileBlock';
-import ProjectBlock from './ProjectBlock/ProjectBlock';
-import SkillsBlock from './SkillsBlock/SkillsBlock';
 import style from './ResumePage.module.scss';
+import ResumePageSection from './ResumePageSection';
 
-type Props = {};
-
-const ResumePage = ({}: Props) => {
+const ResumePage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
   const [resumeArraySections, setResumeArraySections] =
@@ -25,6 +17,9 @@ const ResumePage = ({}: Props) => {
       education: [],
       profile: [],
     });
+
+  const [leftColumnWidth, setLeftColumnWidth] = useState(0);
+  const [rightColumnWidth, setRightColumnWidth] = useState(0);
 
   const [resumePageWidth, setResumePageWidth] = useState(0);
 
@@ -39,7 +34,7 @@ const ResumePage = ({}: Props) => {
   }, []);
 
   useEffect(() => {
-    resume &&
+    if (resume) {
       setResumeArraySections({
         language: resume.content.language,
         skills: resume.content.skills,
@@ -48,6 +43,9 @@ const ResumePage = ({}: Props) => {
         education: resume.content.education,
         profile: resume.content.profile,
       });
+      setRightColumnWidth(resume?.settings.layout.columnWidth.right);
+      setLeftColumnWidth(resume?.settings.layout.columnWidth.left);
+    }
   }, [resume]);
 
   return (
@@ -58,26 +56,47 @@ const ResumePage = ({}: Props) => {
           transform: `scale(${resumePageWidth * 0.00126})`,
         }}
       >
-        <PersonalDetailsBlock />
+        {resume?.settings.layout.position === 'top' && <PersonalDetailsBlock />}
 
-        {resume?.settings.sectionsOrder.top.map((section) => (
-          <div key={section}>
-            {resumeArraySections[section as keyof typeof resumeArraySections]
-              .length !== 0 && (
-              <div className={style.sectionTitle}>
-                {inputData[section as keyof typeof inputData].title}
-              </div>
-            )}
-            {section === 'skills' && <SkillsBlock />}
-            {section === 'education' && <EducationBlock />}
-            {section === 'profile' && <ProfileBlock />}
-            {section === 'project' && <ProjectBlock />}
-            {section === 'professionalExperience' && (
-              <ProfessionalExperienceBlock />
-            )}
-            {section === 'language' && <LanguageBlock />}
+        {resume?.settings.layout.columns === 1 &&
+          resume?.settings.sectionsOrder.top.map((section) => (
+            <div key={section}>
+              <ResumePageSection
+                section={section}
+                resumeArraySections={resumeArraySections}
+              />
+            </div>
+          ))}
+        {resume?.settings.layout.columns === 2 && (
+          <div className="flex">
+            <div style={{ width: `${leftColumnWidth}%` }}>
+              {resume?.settings.layout.position === 'left' && (
+                <PersonalDetailsBlock />
+              )}
+              {resume.settings.sectionsOrder.left.map((section) => (
+                <div key={section}>
+                  <ResumePageSection
+                    section={section}
+                    resumeArraySections={resumeArraySections}
+                  />
+                </div>
+              ))}
+            </div>
+            <div style={{ width: `${rightColumnWidth}%` }}>
+              {resume?.settings.layout.position === 'right' && (
+                <PersonalDetailsBlock />
+              )}
+              {resume.settings.sectionsOrder.right.map((section) => (
+                <div key={section}>
+                  <ResumePageSection
+                    section={section}
+                    resumeArraySections={resumeArraySections}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

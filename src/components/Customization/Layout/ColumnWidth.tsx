@@ -1,19 +1,43 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
 
 const ColumnWidth = () => {
   const { resume } = useContext(ResumeContext);
+  const [updateSettings] = useMutation(UPDATE_SETTINGS);
 
-  const [left, setLeft] = useState(resume?.settings.layout.columnWidth.left);
-  const [right, setRight] = useState(resume?.settings.layout.columnWidth.right);
-
-  const { updateColumnWidth } = useUpdateSettings();
+  const [left, setLeft] = useState(
+    resume?.settings.layout.columnWidth.left || 50
+  );
+  const [right, setRight] = useState(
+    resume?.settings.layout.columnWidth.right || 50
+  );
 
   useEffect(() => {
-    left && right && updateColumnWidth(left, right);
-  }, [left, right, updateColumnWidth]);
+    const updateColumnWidth = (left: number, right: number) => {
+      const { position, columns } = resume?.settings.layout!;
+      return updateSettings({
+        variables: {
+          id: resume?.settings.id,
+          layout: {
+            position,
+            columns,
+            columnWidth: { left, right },
+          },
+        },
+      });
+    };
+
+    updateColumnWidth(left, right);
+  }, [
+    left,
+    right,
+    resume?.settings.id,
+    resume?.settings.layout,
+    updateSettings,
+  ]);
 
   return (
     <div>
@@ -24,8 +48,8 @@ const ColumnWidth = () => {
           <div
             className={style.columnWidth_options_box}
             onClick={() => {
-              left && setLeft(left + 1);
-              right && setRight(right - 1);
+              setLeft((prev) => prev + 1);
+              setRight((prev) => prev - 1);
             }}
           >
             +
@@ -36,8 +60,8 @@ const ColumnWidth = () => {
           <div
             className={style.columnWidth_options_box}
             onClick={() => {
-              right && setRight(right + 1);
-              left && setLeft(left - 1);
+              setRight((prev) => prev + 1);
+              setLeft((prev) => prev - 1);
             }}
           >
             +

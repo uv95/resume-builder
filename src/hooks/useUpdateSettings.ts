@@ -1,5 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import { removeTypename } from '@/utils/removeTypename';
 import { IEducation } from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import { useCallback, useContext } from 'react';
@@ -70,33 +71,30 @@ function useUpdateSettings() {
   //position
   const updatePosition = (position: string, columns: number) => {
     return updateSettings({
-      variables: { id: resume?.settings.id, layout: { position, columns } },
+      variables: {
+        id: resume?.settings.id,
+        layout: {
+          columnWidth: removeTypename(resume?.settings.layout.columnWidth!),
+          position,
+          columns,
+        },
+      },
     });
   };
 
   //columns
   const updateColumns = (columns: number) => {
+    const { position, columnWidth } = resume?.settings.layout!;
     return updateSettings({
-      variables: { id: resume?.settings.id, layout: { columns } },
+      variables: {
+        id: resume?.settings.id,
+        layout: { position, columnWidth: removeTypename(columnWidth), columns },
+      },
     });
   };
 
-  //columnWidth
-  const updateColumnWidth = useCallback(
-    (left: number, right: number) => {
-      return updateSettings({
-        variables: {
-          id: resume?.settings.id,
-          layout: { columnWidth: { left, right } },
-        },
-      });
-    },
-    [resume?.settings.id, updateSettings]
-  );
-
   return {
     updateColumns,
-    updateColumnWidth,
     updatePosition,
     addToSectionsOrder,
     removeFromSectionsOrder,
