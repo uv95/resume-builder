@@ -7,7 +7,7 @@ type Props = {};
 const Customization = (props: Props) => {
   return (
     <>
-      <Layout />
+      {/* <Layout /> */}
       <Colors />
     </>
   );

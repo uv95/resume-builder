@@ -16,6 +16,27 @@ export interface IResume {
   __typename?: string;
 }
 
+export interface IBasicMulticolor {
+  accent: string;
+  font: string;
+  background: string;
+}
+
+export interface IAdvancedMulticolor {
+  primary: IBasicMulticolor;
+  secondary: IBasicMulticolor;
+}
+
+export interface IApplyAccentColor {
+  name: boolean;
+  dots: boolean;
+  headings: boolean;
+  dates: boolean;
+  headingsLine: boolean;
+  linkIcons: boolean;
+  headerIcons: boolean;
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -30,6 +51,20 @@ export interface ISettings {
       left: number;
       right: number;
     };
+  };
+  colors: {
+    mode: 'basic' | 'advanced';
+    basic: {
+      selected: 'accent' | 'multicolor';
+      accent: string;
+      multicolor: IBasicMulticolor;
+    };
+    advanced: {
+      selected: 'accent' | 'multicolor';
+      accent: string;
+      multicolor: IAdvancedMulticolor;
+    };
+    applyAccentColor: IApplyAccentColor;
   };
   __typename?: string;
 }

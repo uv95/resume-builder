@@ -3,13 +3,10 @@ import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
-import style from './Layout.module.scss';
 import Position from './Position';
 import RearrangeSections from './RearrangeSections';
 
-type Props = {};
-
-const Layout = (props: Props) => {
+const Layout = () => {
   const { resume } = useContext(ResumeContext);
 
   return (

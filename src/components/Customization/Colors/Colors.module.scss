@@ -1,0 +1,139 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.basicMode {
+  width: 7rem;
+  height: 7rem;
+  margin-bottom: 1rem;
+  @include borderedCircle;
+
+  &_active {
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: 1rem;
+    @include borderedCircle;
+    border: 1px solid $color-ui-blue;
+    background-color: $color-ui-blue--light;
+  }
+}
+
+.advancedMode {
+  background: linear-gradient(180deg, $color-gray 50%, white 50%);
+  &_active {
+    background: linear-gradient(
+      180deg,
+      $color-ui-blue 50%,
+      $color-ui-blue--light 50%
+    );
+    border: 1px solid $color-ui-blue;
+  }
+}
+
+.option {
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-gray--dark;
+  }
+
+  &_accent {
+    width: 9rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    @include borderedBox;
+    border: 0;
+    opacity: 0.4;
+  }
+  &__selected {
+    opacity: 1;
+  }
+  &__notSelected {
+    opacity: 0.4;
+  }
+  &_multicolor {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 9rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    @include borderedBox;
+    border: 1px solid $color-gray--light;
+    display: flex;
+    overflow: hidden;
+
+    &__left,
+    &__right {
+      font-size: 2.5rem;
+      font-weight: bold;
+      width: 50%;
+      @include center;
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+}
+
+.line {
+  width: 2rem;
+  height: 0.5rem;
+}
+
+.multicolorIcon {
+  position: relative;
+}
+
+.underline {
+  width: 100%;
+  height: 0.15rem;
+  background-color: $color-ui-blue;
+  position: absolute;
+  bottom: 3px;
+}
+
+.accentColors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.accentColor {
+  width: 3.5rem;
+  height: 3.5rem;
+  @include borderedCircle;
+  border: 0;
+
+  &_selected {
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      bottom: -4px;
+      @include borderedCircle;
+      border: 0.2rem solid $color-ui-blue;
+      width: 3.9rem;
+      height: 3.9rem;
+    }
+  }
+}
+
+.applyAccentColor {
+  & h5 {
+    margin-bottom: 1rem;
+  }
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.checkboxGroup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+
+  & input {
+    width: 1.5rem;
+  }
+}

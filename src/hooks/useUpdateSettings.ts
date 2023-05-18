@@ -1,9 +1,15 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import { GET_RESUME } from '@/graphql/queries/resumeQuery';
 import { removeTypename } from '@/utils/removeTypename';
-import { IEducation } from '@/utils/types';
+import {
+  IAdvancedMulticolor,
+  IApplyAccentColor,
+  IBasicMulticolor,
+  IResume,
+} from '@/utils/types';
 import { useMutation } from '@apollo/client';
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 
 function useUpdateSettings() {
   const [updateSettings] = useMutation(UPDATE_SETTINGS);
@@ -74,7 +80,7 @@ function useUpdateSettings() {
       variables: {
         id: resume?.settings.id,
         layout: {
-          columnWidth: removeTypename(resume?.settings.layout.columnWidth!),
+          ...removeTypename(resume?.settings.layout!),
           position,
           columns,
         },
@@ -84,20 +90,115 @@ function useUpdateSettings() {
 
   //columns
   const updateColumns = (columns: number) => {
-    const { position, columnWidth } = resume?.settings.layout!;
     return updateSettings({
       variables: {
         id: resume?.settings.id,
-        layout: { position, columnWidth: removeTypename(columnWidth), columns },
+        layout: { ...removeTypename(resume?.settings.layout!), columns },
       },
     });
   };
+
+  //Colors
+  //mode
+  const updateMode = (mode: 'basic' | 'advanced') => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        colors: { ...removeTypename(resume?.settings.colors!), mode },
+      },
+    });
+  };
+
+  //option: basic/advanced
+  const selectOption = (
+    option: 'accent' | 'multicolor',
+    mode: 'basic' | 'advanced'
+  ) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        colors: {
+          ...removeTypename(resume?.settings.colors!),
+          [mode]: {
+            ...removeTypename(resume?.settings.colors[mode]!),
+            selected: option,
+          },
+        },
+      },
+    });
+  };
+
+  //update accent color
+  const updateAccentColor = (accent: string, mode: 'basic' | 'advanced') => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        colors: {
+          ...removeTypename(resume?.settings.colors!),
+          [mode]: { ...removeTypename(resume?.settings.colors[mode]!), accent },
+        },
+      },
+    });
+  };
+
+  //update multicolor
+  const updateMulticolor = (
+    multicolor: IAdvancedMulticolor | IBasicMulticolor,
+    mode: 'basic' | 'advanced'
+  ) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        colors: {
+          ...removeTypename(resume?.settings.colors!),
+          [mode]: {
+            ...removeTypename(resume?.settings.colors[mode]!),
+            multicolor,
+          },
+        },
+      },
+    });
+  };
+
+  //update applyAccentColor
+  // const updateApplyAccentColor = (applyAccentColor: IApplyAccentColor) => {
+  //   return updateSettings({
+  //     variables: {
+  //       id: resume?.settings.id,
+  //       colors: {
+  //         ...removeTypename(resume?.settings.colors!),
+  //         applyAccentColor: removeTypename(applyAccentColor),
+  //       },
+  //     },
+  //     // update(cache, { data }) {
+  //     //   const newData = data.updateSettings;
+  //     //   const { resume: cachedResume } = cache.readQuery({
+  //     //     query: GET_RESUME,
+  //     //     variables: { id: resume?.id },
+  //     //   })!;
+  //     //   console.log(newData, 'newData');
+  //     //   cache.writeQuery({
+  //     //     query: GET_RESUME,
+  //     //     data: {
+  //     //       resume: {
+  //     //         ...cachedResume,
+  //     //         settings: newData,
+  //     //       },
+  //     //     },
+  //     //   });
+  //     // },
+  //   });
+  // };
 
   return {
     updateColumns,
     updatePosition,
     addToSectionsOrder,
     removeFromSectionsOrder,
+    updateMode,
+    selectOption,
+    updateAccentColor,
+    updateMulticolor,
   };
 }
 

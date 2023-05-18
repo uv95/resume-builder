@@ -8,8 +8,22 @@
   border-radius: 1rem;
   border: 1px solid $color-gray;
   cursor: pointer;
+  transition: transform 0.1s;
 
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.1) saturate(0.9);
+    transform: scale(1.02);
+  }
+}
+
+@mixin borderedCircle {
+  border-radius: 50%;
+  border: 1px solid $color-gray;
+  cursor: pointer;
+  transition: transform 0.1s;
+
+  &:hover {
+    filter: brightness(1.2) saturate(0.9);
+    transform: scale(1.02);
   }
 }

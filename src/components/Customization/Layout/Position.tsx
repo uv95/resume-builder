@@ -12,7 +12,7 @@ const Position = () => {
     <div className="flex">
       <div className={style.position} onClick={() => updatePosition('top', 1)}>
         <div
-          className={`test ${style.figure} ${
+          className={`${style.figure} ${
             resume?.settings.layout.position === 'top'
               ? style.top_active
               : style.top
@@ -22,7 +22,7 @@ const Position = () => {
       </div>
       <div className={style.position} onClick={() => updatePosition('left', 2)}>
         <div
-          className={`test ${style.figure} ${
+          className={`${style.figure} ${
             resume?.settings.layout.position === 'left'
               ? style.left_active
               : style.left
@@ -35,7 +35,7 @@ const Position = () => {
         onClick={() => updatePosition('right', 2)}
       >
         <div
-          className={`test ${style.figure} ${
+          className={`${style.figure} ${
             resume?.settings.layout.position === 'right'
               ? style.right_active
               : style.right

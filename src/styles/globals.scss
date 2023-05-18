@@ -42,8 +42,11 @@ h2 {
 h3 {
   font-size: 2rem;
 }
+h5 {
+  font-size: 1.3rem;
+}
 
-input,
+input:not(input[type='checkbox']),
 select,
 textarea {
   padding: 1rem 1.5rem;

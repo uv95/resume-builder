@@ -77,6 +77,43 @@ export const GET_RESUME = gql`
             right
           }
         }
+        colors {
+          mode
+          basic {
+            selected
+            accent
+            multicolor {
+              accent
+              font
+              background
+            }
+          }
+          advanced {
+            selected
+            accent
+            multicolor {
+              primary {
+                accent
+                font
+                background
+              }
+              secondary {
+                accent
+                font
+                background
+              }
+            }
+          }
+          applyAccentColor {
+            name
+            dots
+            headings
+            dates
+            headingsLine
+            linkIcons
+            headerIcons
+          }
+        }
       }
     }
   }
