@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
-import style from './PersonalDetailsBlock.module.scss';
+import style from '../ResumePage.module.scss';
 
 type Props = {};
 
@@ -11,8 +11,10 @@ const PersonalDetailsBlock = (props: Props) => {
     ? Object.values(content)[Object.values(content).length - 1]
     : [];
 
+  const colors = resume?.settings.colors!;
+
   return (
-    <div className={style.container}>
+    <div className={style.personalDetailsBlock}>
       <div>{content?.fullName}</div>
       <div>{content?.jobTitle}</div>
       <div className="flex centered">
