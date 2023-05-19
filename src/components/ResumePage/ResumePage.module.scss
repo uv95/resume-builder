@@ -18,20 +18,19 @@
   top: 0;
 }
 
-.oneColumn {
-  width: 100%;
+.content {
+  display: flex;
+  gap: 1rem;
   height: 100%;
 }
 
 .sectionTitle {
   text-align: center;
-  background-color: rgb(214, 230, 228);
   font-weight: 600;
   padding: 0.5rem;
 }
 
 .personalDetailsBlock {
-  background-color: rgb(255, 212, 212);
   text-align: center;
   padding: 1rem;
 }

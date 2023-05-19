@@ -8,7 +8,7 @@ const SkillsBlock = (props: Props) => {
   const content = resume?.content.skills;
 
   return (
-    <div  style={{ padding: '2%' }}>
+    <>
       {content &&
         content.map((item) => (
           <div key={item.id}>
@@ -21,7 +21,7 @@ const SkillsBlock = (props: Props) => {
             </div>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 

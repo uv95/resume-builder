@@ -46,7 +46,7 @@ export interface ISettings {
   };
   layout: {
     columns: number;
-    position: string;
+    position: 'top' | 'left' | 'right';
     columnWidth: {
       left: number;
       right: number;

@@ -9,6 +9,7 @@ import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
+import ResumeName from '@/components/ResumeName';
 
 type Props = {};
 
@@ -32,6 +33,7 @@ const Resume = (props: Props) => {
         <div className="flex">
           <Navigation active={active} setActive={setActive} />
           <div className={style.mainPanel}>
+            <ResumeName resumeName={data.resume.name} id={data.resume.id} />
             {active === 'Content' && <Content />}
             {active === 'Customize' && <Customization />}
           </div>

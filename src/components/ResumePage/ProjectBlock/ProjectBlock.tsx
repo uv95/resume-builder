@@ -1,15 +1,17 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
+import Dates from '../Dates';
 
-type Props = {};
+type Props = {
+  sectionPosition?: 'left' | 'right';
+};
 
-const ProjectBlock = (props: Props) => {
+const ProjectBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
-
   const content = resume?.content.project;
 
   return (
-    <div style={{ padding: '2%' }}>
+    <>
       {content &&
         content.map((item) => (
           <div key={item.id}>
@@ -17,17 +19,16 @@ const ProjectBlock = (props: Props) => {
               <div className="flex">
                 <p>{item.title}</p>
               </div>
-              <div className="flex">
-                <p>
-                  {item.startDate.replaceAll('-', '/')}-
-                  {item.endDate.replaceAll('-', '/')}
-                </p>
-              </div>
+              <Dates
+                startDate={item.startDate.replaceAll('-', '/')}
+                endDate={item.endDate.replaceAll('-', '/')}
+                sectionPosition={sectionPosition}
+              />
             </div>
             <p>{item.description}</p>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 

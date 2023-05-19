@@ -1,14 +1,17 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
+import Dates from '../Dates';
 
-type Props = {};
+type Props = {
+  sectionPosition?: 'left' | 'right';
+};
 
-const ProfessionalExperienceBlock = (props: Props) => {
+const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.professionalExperience;
 
   return (
-    <div style={{ padding: '2%' }}>
+    <>
       {content &&
         content.map((item) => (
           <div key={item.id}>
@@ -18,9 +21,11 @@ const ProfessionalExperienceBlock = (props: Props) => {
                 <strong>{item.employer}</strong>
               </div>
               <div className="flex">
-                <p>
-                  {item.startDate} - {item.endDate}
-                </p>
+                <Dates
+                  startDate={item.startDate.replaceAll('-', '/')}
+                  endDate={item.endDate.replaceAll('-', '/')}
+                  sectionPosition={sectionPosition}
+                />
                 <p>
                   {item.city}, {item.country}
                 </p>
@@ -29,7 +34,7 @@ const ProfessionalExperienceBlock = (props: Props) => {
             <p>{item.description}</p>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 

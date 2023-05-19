@@ -8,9 +8,7 @@ const ProfileBlock = (props: Props) => {
   const content = resume?.content.profile;
 
   return (
-    <div style={{ padding: '2%' }}>
-      {content && content.map((item) => <p key={item.id}>{item.text}</p>)}
-    </div>
+    <>{content && content.map((item) => <p key={item.id}>{item.text}</p>)}</>
   );
 };
 

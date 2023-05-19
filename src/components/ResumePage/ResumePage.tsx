@@ -1,4 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
+import useSetColor from '@/hooks/useSetColor';
 import { IResumeArraySections } from '@/utils/types';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
@@ -8,6 +9,7 @@ import ResumePageSection from './ResumePageSection';
 const ResumePage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
+  const { setColor } = useSetColor();
   const [resumeArraySections, setResumeArraySections] =
     useState<IResumeArraySections>({
       language: [],
@@ -54,6 +56,9 @@ const ResumePage = () => {
         className={style.page}
         style={{
           transform: `scale(${resumePageWidth * 0.00126})`,
+          background: setColor({
+            colorOf: 'background',
+          }),
         }}
       >
         {resume?.settings.layout.position === 'top' && <PersonalDetailsBlock />}
@@ -68,27 +73,45 @@ const ResumePage = () => {
             </div>
           ))}
         {resume?.settings.layout.columns === 2 && (
-          <div className="flex">
-            <div style={{ width: `${leftColumnWidth}%` }}>
+          <div className={style.content}>
+            <div
+              style={{
+                width: `${leftColumnWidth}%`,
+                background: setColor({
+                  colorOf: 'background',
+                  sectionPosition: 'left',
+                }),
+              }}
+            >
               {resume?.settings.layout.position === 'left' && (
                 <PersonalDetailsBlock />
               )}
               {resume.settings.sectionsOrder.left.map((section) => (
                 <div key={section}>
                   <ResumePageSection
+                    sectionPosition="left"
                     section={section}
                     resumeArraySections={resumeArraySections}
                   />
                 </div>
               ))}
             </div>
-            <div style={{ width: `${rightColumnWidth}%` }}>
+            <div
+              style={{
+                width: `${rightColumnWidth}%`,
+                background: setColor({
+                  colorOf: 'background',
+                  sectionPosition: 'right',
+                }),
+              }}
+            >
               {resume?.settings.layout.position === 'right' && (
                 <PersonalDetailsBlock />
               )}
               {resume.settings.sectionsOrder.right.map((section) => (
                 <div key={section}>
                   <ResumePageSection
+                    sectionPosition="right"
                     section={section}
                     resumeArraySections={resumeArraySections}
                   />

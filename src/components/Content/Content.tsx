@@ -11,7 +11,7 @@ import ContentCard from './ContentCard/ContentCard';
 import InputsSection from './InputsSection/InputsSection';
 import Modal from '../Modal/Modal';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
-import ResumeName from './ResumeName/ResumeName';
+import ResumeName from '../ResumeName';
 
 const Content = () => {
   const [showAddContent, setShowAddContent] = useState(false);
@@ -48,7 +48,6 @@ const Content = () => {
       <CurrentSectionProvider>
         {resume && (
           <>
-            <ResumeName resumeName={resume.name} id={resume.id} />
             {(!contentToEdit.section ||
               contentToEdit.section === 'personalDetails') && (
               <PersonalDetails

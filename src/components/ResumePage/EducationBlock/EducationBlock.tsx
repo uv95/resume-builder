@@ -1,14 +1,19 @@
 import { ResumeContext } from '@/context/ResumeContext';
+import useSetColor from '@/hooks/useSetColor';
 import React, { useContext } from 'react';
+import Dates from '../Dates';
 
-type Props = {};
+type Props = {
+  sectionPosition?: 'left' | 'right';
+};
 
-const EducationBlock = (props: Props) => {
+const EducationBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.education;
+  const { setColor } = useSetColor();
 
   return (
-    <div style={{ padding: '2%' }}>
+    <>
       {content &&
         content.map((item) => (
           <div key={item.id}>
@@ -18,9 +23,11 @@ const EducationBlock = (props: Props) => {
                 <strong>{item.school}</strong>
               </div>
               <div className="flex">
-                <p>
-                  {item.startDate} - {item.endDate}
-                </p>
+                <Dates
+                  startDate={item.startDate.replaceAll('-', '/')}
+                  endDate={item.endDate.replaceAll('-', '/')}
+                  sectionPosition={sectionPosition}
+                />
                 <p>
                   {item.city}, {item.country}
                 </p>
@@ -29,7 +36,7 @@ const EducationBlock = (props: Props) => {
             <p>{item.description}</p>
           </div>
         ))}
-    </div>
+    </>
   );
 };
 
