@@ -60,7 +60,7 @@ const ApplyAccentColor = (props: Props) => {
                     ],
                 })
               }
-              className="checkbox"
+              className={style.input}
             />
             <label htmlFor={option.name}>{option.label}</label>
           </div>

@@ -154,35 +154,27 @@ function useUpdateSettings() {
     });
   };
 
-  //update applyAccentColor
-  // const updateApplyAccentColor = (applyAccentColor: IApplyAccentColor) => {
-  //   return updateSettings({
-  //     variables: {
-  //       id: resume?.settings.id,
-  //       colors: {
-  //         ...removeTypename(resume?.settings.colors!),
-  //         applyAccentColor: removeTypename(applyAccentColor),
-  //       },
-  //     },
-  //     // update(cache, { data }) {
-  //     //   const newData = data.updateSettings;
-  //     //   const { resume: cachedResume } = cache.readQuery({
-  //     //     query: GET_RESUME,
-  //     //     variables: { id: resume?.id },
-  //     //   })!;
-  //     //   console.log(newData, 'newData');
-  //     //   cache.writeQuery({
-  //     //     query: GET_RESUME,
-  //     //     data: {
-  //     //       resume: {
-  //     //         ...cachedResume,
-  //     //         settings: newData,
-  //     //       },
-  //     //     },
-  //     //   });
-  //     // },
-  //   });
-  // };
+  // update spacing
+
+  const updateSpacing = (
+    section:
+      | 'fontSize'
+      | 'lineHeight'
+      | 'leftRightMargin'
+      | 'topBottomMargin'
+      | 'spaceBetweenSections',
+    value: number
+  ) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        spacing: {
+          ...removeTypename(resume?.settings.spacing!),
+          [section]: value,
+        },
+      },
+    });
+  };
 
   return {
     updateColumns,
@@ -193,6 +185,7 @@ function useUpdateSettings() {
     selectOption,
     updateAccentColor,
     updateMulticolor,
+    updateSpacing,
   };
 }
 

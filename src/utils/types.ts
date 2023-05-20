@@ -37,6 +37,14 @@ export interface IApplyAccentColor {
   headerIcons: boolean;
 }
 
+export interface ISpacing {
+  fontSize: number;
+  lineHeight: number;
+  leftRightMargin: number;
+  topBottomMargin: number;
+  spaceBetweenSections: number;
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -66,6 +74,7 @@ export interface ISettings {
     };
     applyAccentColor: IApplyAccentColor;
   };
+  spacing: ISpacing;
   __typename?: string;
 }
 export interface IEducation {

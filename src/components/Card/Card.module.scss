@@ -10,7 +10,7 @@
     font-size: 2rem;
   }
 
-  & input,
+  & input:not(input[type='checkbox']),
   select,
   textarea {
     width: 100%;
