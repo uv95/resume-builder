@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { PERSONAL_DETAILS_FIELDS } from '../fragments/content';
 
 export const ADD_PERSONAL_DETAILS = gql`
+  ${PERSONAL_DETAILS_FIELDS}
   mutation addPersonalDetails(
     $fullName: String!
     $jobTitle: String!
@@ -19,21 +21,13 @@ export const ADD_PERSONAL_DETAILS = gql`
       additionalInfo: $additionalInfo
       resumeId: $resumeId
     ) {
-      fullName
-      jobTitle
-      email
-      phone
-      address
-      additionalInfo {
-        input
-        name
-      }
-      id
+      ...PersonalDetailsFields
     }
   }
 `;
 
 export const UPDATE_PERSONAL_DETAILS = gql`
+  ${PERSONAL_DETAILS_FIELDS}
   mutation updatePersonalDetails(
     $id: ID!
     $fullName: String
@@ -52,16 +46,7 @@ export const UPDATE_PERSONAL_DETAILS = gql`
       address: $address
       additionalInfo: $additionalInfo
     ) {
-      fullName
-      jobTitle
-      email
-      phone
-      address
-      additionalInfo {
-        input
-        name
-      }
-      id
+      ...PersonalDetailsFields
     }
   }
 `;

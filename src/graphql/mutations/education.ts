@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { EDUCATION_FIELDS } from '../fragments/content';
 
 export const ADD_EDUCATION = gql`
+  ${EDUCATION_FIELDS}
   mutation addEducation(
     $degree: String!
     $school: String!
@@ -21,19 +23,13 @@ export const ADD_EDUCATION = gql`
       description: $description
       resumeId: $resumeId
     ) {
-      degree
-      school
-      city
-      country
-      startDate
-      endDate
-      description
-      id
+      ...EducationFields
     }
   }
 `;
 
 export const UPDATE_EDUCATION = gql`
+  ${EDUCATION_FIELDS}
   mutation updateEducation(
     $id: ID!
     $degree: String
@@ -54,14 +50,7 @@ export const UPDATE_EDUCATION = gql`
       endDate: $endDate
       description: $description
     ) {
-      degree
-      school
-      city
-      country
-      startDate
-      endDate
-      description
-      id
+      ...EducationFields
     }
   }
 `;

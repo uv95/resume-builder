@@ -1,7 +1,7 @@
 import { addApolloState, initializeApollo } from '@/apollo';
 import Button from '@/components/Button/Button';
-import { ADD_RESUME } from '@/graphql/mutations/resumeMutations';
-import { GET_RESUMES } from '@/graphql/queries/resumeQuery';
+import { ADD_RESUME } from '@/graphql/mutations/resume';
+import { GET_RESUMES } from '@/graphql/queries/resume';
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

@@ -1,10 +1,10 @@
-import { ADD_EDUCATION } from '@/graphql/mutations/educationMutations';
-import { ADD_LANGUAGE } from '@/graphql/mutations/languageMutations';
-import { ADD_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
-import { ADD_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
-import { ADD_PROFILE } from '@/graphql/mutations/profileMutations';
-import { ADD_PROJECT } from '@/graphql/mutations/projectMutations';
-import { ADD_SKILL } from '@/graphql/mutations/skillsMutations';
+import { ADD_EDUCATION } from '@/graphql/mutations/education';
+import { ADD_LANGUAGE } from '@/graphql/mutations/language';
+import { ADD_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetails';
+import { ADD_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperience';
+import { ADD_PROFILE } from '@/graphql/mutations/profile';
+import { ADD_PROJECT } from '@/graphql/mutations/project';
+import { ADD_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
   IEducation,
@@ -14,7 +14,7 @@ import {
   IProject,
   ISkills,
 } from '@/utils/types';
-import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 
 function useAddMutations(name: string, resumeId: string) {

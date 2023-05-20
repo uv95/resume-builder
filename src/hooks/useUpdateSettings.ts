@@ -1,13 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
-import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
-import {
-  IAdvancedMulticolor,
-  IApplyAccentColor,
-  IBasicMulticolor,
-  IResume,
-} from '@/utils/types';
+import { IAdvancedMulticolor, IBasicMulticolor } from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 

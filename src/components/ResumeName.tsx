@@ -1,5 +1,5 @@
-import { UPDATE_RESUME } from '@/graphql/mutations/resumeMutations';
-import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { UPDATE_RESUME } from '@/graphql/mutations/resume';
+import { GET_RESUME } from '@/graphql/queries/resume';
 import { useMutation } from '@apollo/client';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';

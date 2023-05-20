@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { PROFESSIONAL_EXPERIENCE_FIELDS } from '../fragments/content';
 
 export const ADD_PROFESSIONAL_EXPERIENCE = gql`
+  ${PROFESSIONAL_EXPERIENCE_FIELDS}
   mutation addProfessionalExperience(
     $jobTitle: String!
     $employer: String
@@ -21,19 +23,13 @@ export const ADD_PROFESSIONAL_EXPERIENCE = gql`
       description: $description
       resumeId: $resumeId
     ) {
-      jobTitle
-      employer
-      city
-      country
-      startDate
-      endDate
-      description
-      id
+      ...ProfessionalExperienceFields
     }
   }
 `;
 
 export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
+  ${PROFESSIONAL_EXPERIENCE_FIELDS}
   mutation updateProfessionalExperience(
     $id: ID!
     $jobTitle: String
@@ -54,14 +50,7 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
       endDate: $endDate
       description: $description
     ) {
-      jobTitle
-      employer
-      city
-      country
-      startDate
-      endDate
-      description
-      id
+      ...ProfessionalExperienceFields
     }
   }
 `;

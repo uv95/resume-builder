@@ -1,11 +1,11 @@
-import { UPDATE_EDUCATION } from '@/graphql/mutations/educationMutations';
-import { UPDATE_LANGUAGE } from '@/graphql/mutations/languageMutations';
+import { UPDATE_EDUCATION } from '@/graphql/mutations/education';
+import { UPDATE_LANGUAGE } from '@/graphql/mutations/language';
 
-import { UPDATE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
-import { UPDATE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
-import { UPDATE_PROFILE } from '@/graphql/mutations/profileMutations';
-import { UPDATE_PROJECT } from '@/graphql/mutations/projectMutations';
-import { UPDATE_SKILL } from '@/graphql/mutations/skillsMutations';
+import { UPDATE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetails';
+import { UPDATE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperience';
+import { UPDATE_PROFILE } from '@/graphql/mutations/profile';
+import { UPDATE_PROJECT } from '@/graphql/mutations/project';
+import { UPDATE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
   IEducation,
@@ -15,7 +15,7 @@ import {
   IProject,
   ISkills,
 } from '@/utils/types';
-import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { GET_RESUME } from '@/graphql/queries/resume';
 
 function useUpdateMutations(name: string, resumeId: string) {
   const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);

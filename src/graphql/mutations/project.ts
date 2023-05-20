@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { PROJECT_FIELDS } from '../fragments/content';
 
 export const ADD_PROJECT = gql`
+  ${PROJECT_FIELDS}
   mutation addProject(
     $title: String!
     $startDate: String
@@ -15,16 +17,13 @@ export const ADD_PROJECT = gql`
       description: $description
       resumeId: $resumeId
     ) {
-      title
-      startDate
-      endDate
-      description
-      id
+      ...ProjectFields
     }
   }
 `;
 
 export const UPDATE_PROJECT = gql`
+  ${PROJECT_FIELDS}
   mutation updateProject(
     $id: ID!
     $title: String
@@ -39,11 +38,7 @@ export const UPDATE_PROJECT = gql`
       endDate: $endDate
       description: $description
     ) {
-      title
-      startDate
-      endDate
-      description
-      id
+      ...ProjectFields
     }
   }
 `;

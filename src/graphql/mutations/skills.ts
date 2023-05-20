@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { SKILLS_FIELDS } from '../fragments/content';
 
 export const ADD_SKILL = gql`
+  ${SKILLS_FIELDS}
   mutation addSkill(
     $skill: String!
     $info: String
@@ -13,15 +15,13 @@ export const ADD_SKILL = gql`
       skillLevel: $skillLevel
       resumeId: $resumeId
     ) {
-    id
-      skill
-      info
-      skillLevel
+      ...SkillsFields
     }
   }
 `;
 
 export const UPDATE_SKILL = gql`
+  ${SKILLS_FIELDS}
   mutation updateSkill(
     $id: ID!
     $skill: String
@@ -29,10 +29,7 @@ export const UPDATE_SKILL = gql`
     $skillLevel: SkillLevelUpdate
   ) {
     updateSkill(id: $id, skill: $skill, info: $info, skillLevel: $skillLevel) {
-      skill
-      info
-      skillLevel
-      id
+      ...SkillsFields
     }
   }
 `;

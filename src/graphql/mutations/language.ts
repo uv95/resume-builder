@@ -1,6 +1,8 @@
 import { gql } from '@apollo/client';
+import { LANGUAGE_FIELDS } from '../fragments/content';
 
 export const ADD_LANGUAGE = gql`
+  ${LANGUAGE_FIELDS}
   mutation addLanguage(
     $language: String!
     $info: String
@@ -13,15 +15,13 @@ export const ADD_LANGUAGE = gql`
       languageLevel: $languageLevel
       resumeId: $resumeId
     ) {
-      language
-      info
-      languageLevel
-      id
+      ...LanguageFields
     }
   }
 `;
 
 export const UPDATE_LANGUAGE = gql`
+  ${LANGUAGE_FIELDS}
   mutation updateLanguage(
     $id: ID!
     $language: String
@@ -34,10 +34,7 @@ export const UPDATE_LANGUAGE = gql`
       info: $info
       languageLevel: $languageLevel
     ) {
-      language
-      info
-      languageLevel
-      id
+      ...LanguageFields
     }
   }
 `;

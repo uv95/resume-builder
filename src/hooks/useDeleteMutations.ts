@@ -1,10 +1,10 @@
-import { DELETE_EDUCATION } from '@/graphql/mutations/educationMutations';
-import { DELETE_LANGUAGE } from '@/graphql/mutations/languageMutations';
-import { DELETE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetailsMutations';
-import { DELETE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperienceMutations';
-import { DELETE_PROFILE } from '@/graphql/mutations/profileMutations';
-import { DELETE_PROJECT } from '@/graphql/mutations/projectMutations';
-import { DELETE_SKILL } from '@/graphql/mutations/skillsMutations';
+import { DELETE_EDUCATION } from '@/graphql/mutations/education';
+import { DELETE_LANGUAGE } from '@/graphql/mutations/language';
+import { DELETE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetails';
+import { DELETE_PROFESSIONAL_EXPERIENCE } from '@/graphql/mutations/professionalExperience';
+import { DELETE_PROFILE } from '@/graphql/mutations/profile';
+import { DELETE_PROJECT } from '@/graphql/mutations/project';
+import { DELETE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
   IEducation,
@@ -14,7 +14,7 @@ import {
   IProject,
   ISkills,
 } from '@/utils/types';
-import { GET_RESUME } from '@/graphql/queries/resumeQuery';
+import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 
 function useDeleteMutations(name: string, resumeId: string) {

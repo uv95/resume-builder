@@ -1,5 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settingsMutations';
+import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
