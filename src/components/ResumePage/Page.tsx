@@ -10,6 +10,7 @@ import PageTwoColumns from './PageTwoColumns';
 const Page = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
+  const { font } = resume?.settings.font!;
   const { setColor } = useSetColor();
   const [resumeArraySections, setResumeArraySections] =
     useState<IResumeArraySections>({
@@ -73,6 +74,7 @@ const Page = () => {
             resume?.settings.layout.position === 'top' ? 'flex' : 'block',
           flexDirection:
             resume?.settings.layout.position === 'top' ? 'column' : 'initial',
+          fontFamily: font,
         }}
       >
         {resume?.settings.layout.position === 'top' && <PersonalDetailsBlock />}

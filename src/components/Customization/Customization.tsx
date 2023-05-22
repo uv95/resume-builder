@@ -1,5 +1,6 @@
 import React from 'react';
 import Colors from './Colors/Colors';
+import Font from './Font/Font';
 import Layout from './Layout/Layout';
 import Spacing from './Spacing/Spacing';
 
@@ -11,6 +12,7 @@ const Customization = (props: Props) => {
       <Layout />
       <Colors />
       <Spacing />
+      <Font />
     </>
   );
 };

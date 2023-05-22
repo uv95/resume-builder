@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { useMutation } from '@apollo/client';
@@ -45,27 +46,27 @@ const ColumnWidth = () => {
       <div className={style.columnWidth}>
         <div className={style.columnWidth_options}>
           <p>Left {left}%</p>
-          <div
-            className={style.columnWidth_options_box}
+          <Button
+            type="thinBorder"
             onClick={() => {
               setLeft((prev) => prev + 1);
               setRight((prev) => prev - 1);
             }}
           >
-            +
-          </div>
+            -
+          </Button>
         </div>
         <div className={style.columnWidth_options}>
           <p>Right {right}%</p>
-          <div
-            className={style.columnWidth_options_box}
+          <Button
+            type="thinBorder"
             onClick={() => {
               setRight((prev) => prev + 1);
               setLeft((prev) => prev - 1);
             }}
           >
             +
-          </div>
+          </Button>
         </div>
       </div>
     </div>

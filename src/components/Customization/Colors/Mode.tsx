@@ -1,3 +1,4 @@
+import Button from '@/components/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
@@ -12,19 +13,21 @@ const Mode = (props: Props) => {
   return (
     <div className="flex">
       <div className={style.option} onClick={() => updateMode('basic')}>
-        <div
-          className={`${
-            mode === 'basic' ? style.basicMode_active : style.basicMode
-          }`}
-        ></div>
+        <Button
+          type="customization"
+          classes={`${style.mode} circle`}
+          active={mode === 'basic'}
+        />
         <p>Basic</p>
       </div>
       <div className={style.option} onClick={() => updateMode('advanced')}>
-        <div
-          className={`${style.basicMode} ${
+        <Button
+          type="customization"
+          classes={`${style.mode} ${
             mode === 'advanced' ? style.advancedMode_active : style.advancedMode
-          }`}
-        ></div>
+          } circle`}
+          active={mode === 'advanced'}
+        />
         <p>Advanced</p>
       </div>
     </div>

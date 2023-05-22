@@ -86,11 +86,9 @@ const Content = () => {
                 </Card>
               )}
             <div className="centered">
-              <Button
-                onClick={() => setShowAddContent(true)}
-                color="pink"
-                text="+ Add Content"
-              />
+              <Button onClick={() => setShowAddContent(true)} type="pink">
+                + Add Content
+              </Button>
             </div>
           </>
         )}

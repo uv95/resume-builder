@@ -66,11 +66,19 @@ const SPACING_FIELDS = gql`
   }
 `;
 
+const FONT_FIELDS = gql`
+  fragment FontFields on Font {
+    type
+    font
+  }
+`;
+
 export const SETTINGS_FIELDS = gql`
   ${SECTIONS_ORDER_FIELDS}
   ${LAYOUT_FIELDS}
   ${COLORS_FIELDS}
   ${SPACING_FIELDS}
+  ${FONT_FIELDS}
   fragment SettingsFields on Settings {
     id
     sectionsOrder {
@@ -84,6 +92,9 @@ export const SETTINGS_FIELDS = gql`
     }
     spacing {
       ...SpacingFields
+    }
+    font {
+      ...FontFields
     }
   }
 `;

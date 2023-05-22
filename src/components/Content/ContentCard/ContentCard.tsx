@@ -78,9 +78,10 @@ const ContentCard = ({
                     section: inputData.name,
                   }))
                 }
-                color="whiteWithBorder"
-                text={'+ ' + inputData.title}
-              />
+                type="thickBorder"
+              >
+                {'+ ' + inputData.title}
+              </Button>
             </div>
           </div>
         </>

@@ -14,7 +14,6 @@
   width: 6rem;
   height: 6rem;
   margin-bottom: 1rem;
-  @include borderedBox;
 }
 .top {
   background: linear-gradient(180deg, $color-gray 50%, white 50%);
@@ -24,7 +23,6 @@
       $color-ui-blue 50%,
       $color-ui-blue--light 50%
     );
-    border: 1px solid $color-ui-blue;
   }
 }
 .left {
@@ -35,7 +33,6 @@
       $color-ui-blue 50%,
       $color-ui-blue--light 50%
     );
-    border: 1px solid $color-ui-blue;
   }
 }
 .right {
@@ -46,7 +43,6 @@
       $color-ui-blue 50%,
       $color-ui-blue--light 50%
     );
-    border: 1px solid $color-ui-blue;
   }
 }
 
@@ -55,8 +51,6 @@
 .columns {
   width: 8rem;
   height: 4rem;
-  @include borderedBox;
-  @include center;
 
   &_container {
     &__one {
@@ -76,10 +70,6 @@
   &_active {
     width: 8rem;
     height: 4rem;
-    @include borderedBox;
-    @include center;
-    border: 1px solid $color-ui-blue;
-    background-color: $color-ui-blue--light;
 
     & .line {
       width: 100%;
@@ -119,16 +109,11 @@
   gap: 2rem;
   &_options {
     width: 100%;
-    &_box {
-      @include borderedBox;
-      @include center;
-      padding: 0.5rem;
+    & button {
+      width: 100%;
       margin-top: 0.5rem;
       font-weight: bold;
       font-size: 2rem;
-      &:hover {
-        color: $color-gray--dark;
-      }
     }
   }
 }

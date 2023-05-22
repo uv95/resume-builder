@@ -1,20 +1,10 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
-.basicMode {
+.mode {
   width: 7rem;
   height: 7rem;
   margin-bottom: 1rem;
-  @include borderedCircle;
-
-  &_active {
-    width: 7rem;
-    height: 7rem;
-    margin-bottom: 1rem;
-    @include borderedCircle;
-    border: 1px solid $color-ui-blue;
-    background-color: $color-ui-blue--light;
-  }
 }
 
 .advancedMode {
@@ -25,7 +15,6 @@
       $color-ui-blue 50%,
       $color-ui-blue--light 50%
     );
-    border: 1px solid $color-ui-blue;
   }
 }
 

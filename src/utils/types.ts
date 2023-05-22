@@ -45,6 +45,11 @@ export interface ISpacing {
   spaceBetweenSections: number;
 }
 
+export interface IFont {
+  type: 'serif' | 'sans';
+  font: string;
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -75,8 +80,10 @@ export interface ISettings {
     applyAccentColor: IApplyAccentColor;
   };
   spacing: ISpacing;
+  font: IFont;
   __typename?: string;
 }
+
 export interface IEducation {
   id: string;
   degree: string;

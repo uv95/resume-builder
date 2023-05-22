@@ -1,0 +1,16 @@
+.fonts {
+  display: flex;
+  gap: 2rem;
+
+  & button {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    border-radius: 1.5rem;
+  }
+}
+
+.fontsOptions {
+  display: flex;
+  gap: 1rem;
+}

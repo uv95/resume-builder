@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
-import { IAdvancedMulticolor, IBasicMulticolor } from '@/utils/types';
+import { IAdvancedMulticolor, IBasicMulticolor, IFont } from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
@@ -16,13 +16,16 @@ function useUpdateSettings() {
       ? sectionsOrderTop
       : [...sectionsOrderTop, sectionName];
 
-    const left = resume?.settings.sectionsOrder.left!;
-    const right = resume?.settings.sectionsOrder.right!;
+    const { left, right } = resume?.settings.sectionsOrder!;
 
     const newSectionsOrderRight =
-      left.length > right.length ? [...right, sectionName] : right;
+      left.length > right.length && !right.includes(sectionName)
+        ? [...right, sectionName]
+        : right;
     const newSectionsOrderLeft =
-      left.length > right.length ? left : [...left, sectionName];
+      left.length > right.length && !left.includes(sectionName)
+        ? left
+        : [...left, sectionName];
 
     return updateSettings({
       variables: {
@@ -155,7 +158,6 @@ function useUpdateSettings() {
   };
 
   // update spacing
-
   const updateSpacing = (
     section:
       | 'fontSize'
@@ -176,6 +178,16 @@ function useUpdateSettings() {
     });
   };
 
+  // update font
+  const updateFont = (font: IFont) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        font,
+      },
+    });
+  };
+
   return {
     updateColumns,
     updatePosition,
@@ -186,6 +198,7 @@ function useUpdateSettings() {
     updateAccentColor,
     updateMulticolor,
     updateSpacing,
+    updateFont,
   };
 }
 

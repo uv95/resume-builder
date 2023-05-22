@@ -41,12 +41,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
             inputData.name === 'personalDetails'
               ? { ...values, additionalInfo }
               : values;
-          console.log(
-            finalValues,
-            'finalValues',
-            initialValues,
-            'initialValues'
-          );
+
           isInputsEmpty(initialValues)
             ? addContent(finalValues)
             : updateContent(finalValues);
@@ -78,25 +73,29 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
           <div className={style.buttons}>
             {inputData.name !== 'personalDetails' && (
               <Button
-                color="white"
-                text="Delete"
+                type="white"
                 bold
                 onClick={() => {
                   deleteContent(itemId);
                   setContentToEdit({ section: '', itemId: '' });
                 }}
-              />
+              >
+                Delete
+              </Button>
             )}
             <div className="flex rightPositioned">
               <Button
-                color="white"
-                text="Cancel"
+                type="white"
                 bold
                 onClick={() => {
                   setContentToEdit({ section: '', itemId: '' });
                 }}
-              />
-              <Button type="submit" color="pink" text="Save" bold />
+              >
+                Cancel
+              </Button>
+              <Button submit type="pink" bold>
+                Save
+              </Button>
             </div>
           </div>
         </Form>

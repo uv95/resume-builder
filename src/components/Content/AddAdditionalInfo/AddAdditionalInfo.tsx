@@ -57,8 +57,7 @@ const AddAdditionalInfo = ({ tags }: Props) => {
                 }
               />
               <Button
-                color="pink"
-                text="Delete"
+                type="pink"
                 bold
                 onClick={() => {
                   setAdditionalInfo((prev) =>
@@ -66,7 +65,9 @@ const AddAdditionalInfo = ({ tags }: Props) => {
                   );
                   setCurrentTag('');
                 }}
-              />
+              >
+                Delete
+              </Button>
             </div>
           </div>
         ))}
