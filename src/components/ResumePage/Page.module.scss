@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .resume {
   background-color: white;
@@ -10,27 +11,38 @@
 }
 
 .page {
-  font-size: 1.5rem;
   transform-origin: top left;
   width: 210mm;
   height: 297mm;
   position: absolute;
+  overflow: hidden;
   top: 0;
 }
 
-.content {
+.pageSection:last-of-type {
+  padding-bottom: 0 !important;
+}
+
+.twoColumns {
+  width: 100%;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   height: 100%;
+  padding-top: 1.5rem;
 }
 
 .sectionTitle {
-  text-align: center;
   font-weight: 600;
-  padding: 0.5rem;
 }
 
 .personalDetailsBlock {
   text-align: center;
-  padding: 1rem;
+  @include center;
+  flex-direction: column;
+}
+.additionalInfo {
+  margin-top: 1rem;
+  @include center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }

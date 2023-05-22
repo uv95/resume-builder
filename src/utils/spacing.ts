@@ -2,7 +2,7 @@ export const spacingData = [
   {
     title: 'Font Size',
     name: 'fontSize',
-    values: [9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13],
+    values: [13, 14, 14.5, 15, 16, 17, 18, 18.5, 19],
   },
   {
     title: 'Line Height',
@@ -22,6 +22,6 @@ export const spacingData = [
   {
     title: 'Space between Sections',
     name: 'spaceBetweenSections',
-    values: [3, 6, 9, 12, 15, 18, 21, 24, 27],
+    values: [10, 13, 16, 19, 22, 25, 28, 31, 34],
   },
 ];

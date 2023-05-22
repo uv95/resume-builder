@@ -16,6 +16,8 @@ const HeadingLine = ({ sectionPosition }: Props) => {
           colorOf: 'font',
           sectionPosition,
         }),
+        marginTop: '-2px',
+        marginBottom: '0.8rem',
       }}
     ></div>
   );

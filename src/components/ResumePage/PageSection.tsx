@@ -7,7 +7,7 @@ import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/Professio
 import ProfileBlock from './ProfileBlock/ProfileBlock';
 import ProjectBlock from './ProjectBlock/ProjectBlock';
 import SkillsBlock from './SkillsBlock/SkillsBlock';
-import style from './ResumePage.module.scss';
+import style from './Page.module.scss';
 import useSetColor from '@/hooks/useSetColor';
 import { ResumeContext } from '@/context/ResumeContext';
 import HeadingLine from './HeadingLine';
@@ -18,15 +18,20 @@ type Props = {
   sectionPosition?: 'left' | 'right';
 };
 
-const ResumePageSection = ({
+const PageSection = ({
   section,
   resumeArraySections,
   sectionPosition,
 }: Props) => {
   const { setColor } = useSetColor();
+  const { resume } = useContext(ResumeContext);
+  const { fontSize, spaceBetweenSections } = resume?.settings.spacing!;
 
   return (
-    <>
+    <div
+      className={style.pageSection}
+      style={{ paddingBottom: spaceBetweenSections + 'px' }}
+    >
       {resumeArraySections[section as keyof typeof resumeArraySections]
         .length !== 0 && (
         <>
@@ -42,6 +47,7 @@ const ResumePageSection = ({
                 colorOf: 'font',
                 sectionPosition,
               }),
+              fontSize: fontSize + 1.5 + 'px',
             }}
           >
             {inputData[section as keyof typeof inputData].title}
@@ -51,7 +57,6 @@ const ResumePageSection = ({
       )}
       <div
         style={{
-          padding: '2%',
           background: setColor({
             colorOf: 'background',
             sectionPosition,
@@ -75,8 +80,8 @@ const ResumePageSection = ({
         )}
         {section === 'language' && <LanguageBlock />}
       </div>
-    </>
+    </div>
   );
 };
 
-export default ResumePageSection;
+export default PageSection;

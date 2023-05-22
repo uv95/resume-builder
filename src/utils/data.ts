@@ -188,7 +188,7 @@ export const inputData = {
   //PROJECT
   project: {
     name: 'project',
-    title: 'Project',
+    title: 'Projects',
     editTitle: 'Add Project',
     inputs: [
       {

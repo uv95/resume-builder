@@ -2,7 +2,7 @@ import { addApolloState, initializeApollo } from '@/apollo';
 import Customization from '@/components/Customization/Customization';
 import Content from '@/components/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
-import ResumePage from '@/components/ResumePage/ResumePage';
+import ResumePage from '@/components/ResumePage/Page';
 import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import { useQuery } from '@apollo/client';
