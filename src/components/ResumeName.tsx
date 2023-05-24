@@ -5,6 +5,9 @@ import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import Button from './Button/Button';
 import Card from './Card/Card';
+import edit from '../icons/edit.svg';
+import download from '../icons/download.svg';
+import Image from 'next/image';
 
 type Props = { resumeName: string; id: string };
 
@@ -40,18 +43,34 @@ const ResumeName = ({ id, resumeName }: Props) => {
         <Form>
           <div className="flex p-2">
             <Field name="name" id="name" type="text" />
-            <Button text="Save" type="submit" color="pink" />
+            <Button submit type="pink">
+              Save
+            </Button>
           </div>
         </Form>
       </Formik>
     </Card>
   ) : (
     <Card>
-      <div className="flex p-2">
-        <h3>{resumeName}</h3>
-        <p className="pointer" onClick={() => setIsEdit(true)}>
-          EDIT
-        </p>
+      <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
+        <div
+          style={{ alignItems: 'center' }}
+          className="flex pointer"
+          onClick={() => setIsEdit(true)}
+        >
+          <h3>{resumeName}</h3>
+          <Image src={edit} width="20" height="20" alt="edit" />
+        </div>
+        <Button type="pink">
+          Download
+          <Image
+            src={download}
+            width="20"
+            height="20"
+            alt="edit"
+            style={{ filter: 'invert()', marginLeft: '0.5rem' }}
+          />
+        </Button>
       </div>
     </Card>
   );

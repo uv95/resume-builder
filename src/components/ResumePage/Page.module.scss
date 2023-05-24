@@ -40,9 +40,20 @@
   @include center;
   flex-direction: column;
 }
-.additionalInfo {
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  & svg {
+    margin-top: 0.2rem;
+  }
+}
+
+.infoBlock {
   margin-top: 1rem;
   @include center;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
+  row-gap: 0.5rem;
 }

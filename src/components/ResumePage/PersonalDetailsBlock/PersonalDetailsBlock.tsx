@@ -2,17 +2,15 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import React, { useContext } from 'react';
 import style from '../Page.module.scss';
+import Icon from './Icon';
 
-type Props = {};
-
-const PersonalDetailsBlock = (props: Props) => {
+const PersonalDetailsBlock = () => {
   const { resume } = useContext(ResumeContext);
 
   const { position } = resume?.settings.layout!;
   const content = resume?.content.personalDetails;
-  const fontSize = resume?.settings.spacing.fontSize!;
-  const leftRightMargin = resume?.settings.spacing.leftRightMargin!;
-  const topBottomMargin = resume?.settings.spacing.topBottomMargin!;
+  const { leftRightMargin, topBottomMargin, fontSize } =
+    resume?.settings.spacing!;
 
   const additionalInfo = content
     ? Object.values(content)[Object.values(content).length - 1]
@@ -42,7 +40,7 @@ const PersonalDetailsBlock = (props: Props) => {
       </p>
       <p style={{ fontSize: fontSize + 8 + 'px' }}>{content?.jobTitle}</p>
       <div
-        className={style.additionalInfo}
+        className={style.infoBlock}
         style={{
           color: setColor({
             colorOf: 'font',
@@ -50,11 +48,48 @@ const PersonalDetailsBlock = (props: Props) => {
           }),
         }}
       >
-        {content?.email && <p> {content?.email}</p>}
-        {content?.phone && <p> {content?.phone}</p>}
-        {content?.address && <p> {content?.address}</p>}
+        {content &&
+          ['email', 'phone', 'address'].map(
+            (item) =>
+              content[item as keyof typeof content] && (
+                <div key={item} className={style.info}>
+                  <Icon
+                    fill={
+                      setColor({
+                        section: 'headerIcons',
+                        colorOf: 'font',
+                        sectionPosition: position,
+                      })!
+                    }
+                    size={fontSize}
+                    dataName={item}
+                  />
+                  <p>
+                    {
+                      resume?.content?.personalDetails![
+                        item as keyof typeof resume.content.personalDetails
+                      ]
+                    }
+                  </p>
+                </div>
+              )
+          )}
+
         {...additionalInfo.map((item: any) => (
-          <p key={item.name}>{item.input}</p>
+          <div className={style.info} key={item.name}>
+            <Icon
+              fill={
+                setColor({
+                  section: 'headerIcons',
+                  colorOf: 'font',
+                  sectionPosition: position,
+                })!
+              }
+              size={fontSize}
+              dataName={item.name}
+            />
+            <p>{item.input}</p>
+          </div>
         ))}
       </div>
     </div>

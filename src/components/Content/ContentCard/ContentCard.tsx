@@ -1,9 +1,11 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
+import Image from 'next/image';
 import React, { useContext } from 'react';
 import Button from '../../Button/Button';
 import Card from '../../Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import List from '../List/List';
+import arrow from '../../../icons/arrowDown.svg';
 import style from './ContentCard.module.scss';
 
 type Props = {
@@ -13,7 +15,7 @@ type Props = {
     section: string;
     itemId: string;
   };
-
+  icon: string;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
       section: string;
@@ -26,6 +28,7 @@ const ContentCard = ({
   inputData,
   resumeData,
   contentToEdit,
+  icon,
   setContentToEdit,
 }: Props) => {
   const { currentSection, setCurrentSection } = useContext(
@@ -41,18 +44,32 @@ const ContentCard = ({
         />
       ) : (
         <>
-          <div className="flex spaceBetween p-2">
-            <h3>{inputData.title}</h3>
+          <div
+            className="flex spaceBetween p-2 pointer"
+            onClick={() =>
+              setCurrentSection(
+                currentSection === inputData.name ? '' : inputData.name
+              )
+            }
+          >
+            <div className="flex gap-1" style={{ alignItems: 'center' }}>
+              <Image src={icon} width="24" height="24" alt="icon" />
+              <h3>{inputData.title}</h3>
+            </div>
 
-            <p
-              className="pointer"
-              onClick={() =>
-                setCurrentSection(
-                  currentSection === inputData.name ? '' : inputData.name
-                )
-              }
-            >
-              v
+            <p className="pointer">
+              <Image
+                className={style.icon}
+                src={arrow}
+                width="20"
+                height="20"
+                alt="arrow"
+                style={{
+                  transform: `rotate(${
+                    inputData.name === currentSection ? 180 : 0
+                  }deg)`,
+                }}
+              />
             </p>
           </div>
 

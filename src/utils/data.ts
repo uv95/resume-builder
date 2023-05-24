@@ -36,15 +36,7 @@ export const personalDetailInputData = {
   additionalInfo: [
     {
       title: 'Personal information',
-      tags: [
-        'Date of Birth',
-        'Nationality',
-        'Passport or Id',
-        'Marital Status',
-        'Military Service',
-        'Driving License',
-        'Gender or Pronoun',
-      ],
+      tags: ['Date of Birth', 'Nationality', 'Gender or Pronoun'],
     },
     {
       title: 'Links',

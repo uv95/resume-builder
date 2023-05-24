@@ -9,7 +9,10 @@ import React, { useContext } from 'react';
 import Button from '../../Button/Button';
 import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
 import Select from '../../Select/Select';
+import save from '../../../icons/check.svg';
+import trash from '../../../icons/trash.svg';
 import style from './InputsSection.module.scss';
+import Image from 'next/image';
 
 type Props = {
   inputData: any;
@@ -80,7 +83,10 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                   setContentToEdit({ section: '', itemId: '' });
                 }}
               >
-                Delete
+                <div className="flex gap-1" style={{ alignItems: 'center' }}>
+                  <Image src={trash} width="18" height="18" alt="trash" />
+                  <p>Delete</p>
+                </div>
               </Button>
             )}
             <div className="flex rightPositioned">
@@ -94,7 +100,16 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                 Cancel
               </Button>
               <Button submit type="pink" bold>
-                Save
+                <div className="flex gap-1" style={{ alignItems: 'center' }}>
+                  <Image
+                    src={save}
+                    width="20"
+                    height="20"
+                    alt="save"
+                    style={{ filter: 'invert()' }}
+                  />
+                  <p>Save</p>
+                </div>
               </Button>
             </div>
           </div>

@@ -10,7 +10,7 @@ import PageTwoColumns from './PageTwoColumns';
 const Page = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
-  const { font } = resume?.settings.font!;
+  const font = resume?.settings.font.font!;
   const { setColor } = useSetColor();
   const [resumeArraySections, setResumeArraySections] =
     useState<IResumeArraySections>({

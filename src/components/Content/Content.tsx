@@ -11,7 +11,12 @@ import ContentCard from './ContentCard/ContentCard';
 import InputsSection from './InputsSection/InputsSection';
 import Modal from '../Modal/Modal';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
-import ResumeName from '../ResumeName';
+import skills from '../../icons/skills.svg';
+import work from '../../icons/work.svg';
+import education from '../../icons/education.svg';
+import project from '../../icons/project.svg';
+import profile from '../../icons/profile.svg';
+import language from '../../icons/world.svg';
 
 const Content = () => {
   const [showAddContent, setShowAddContent] = useState(false);
@@ -43,6 +48,15 @@ const Content = () => {
       });
   }, [resume]);
 
+  const getIcon = (section: string) => {
+    if (section === 'language') return language;
+    if (section === 'skills') return skills;
+    if (section === 'professionalExperience') return work;
+    if (section === 'education') return education;
+    if (section === 'project') return project;
+    if (section === 'profile') return profile;
+  };
+
   return (
     <AdditionalInfoProvider>
       <CurrentSectionProvider>
@@ -64,6 +78,7 @@ const Content = () => {
                   ].length !== 0 && (
                     <ContentCard
                       key={section}
+                      icon={getIcon(section)}
                       contentToEdit={contentToEdit}
                       setContentToEdit={setContentToEdit}
                       inputData={inputData[section as keyof typeof inputData]}
