@@ -83,7 +83,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                   setContentToEdit({ section: '', itemId: '' });
                 }}
               >
-                <div className="flex gap-1" style={{ alignItems: 'center' }}>
+                <div className="flex gap-1 aligned">
                   <Image src={trash} width="18" height="18" alt="trash" />
                   <p>Delete</p>
                 </div>
@@ -100,7 +100,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                 Cancel
               </Button>
               <Button submit type="pink" bold>
-                <div className="flex gap-1" style={{ alignItems: 'center' }}>
+                <div className="flex gap-1 aligned">
                   <Image
                     src={save}
                     width="20"

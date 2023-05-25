@@ -32,8 +32,8 @@ export const UPDATE_EDUCATION = gql`
   ${EDUCATION_FIELDS}
   mutation updateEducation(
     $id: ID!
-    $degree: String
-    $school: String
+    $degree: String!
+    $school: String!
     $city: String
     $country: String
     $startDate: String

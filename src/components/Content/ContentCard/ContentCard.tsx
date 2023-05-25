@@ -52,7 +52,7 @@ const ContentCard = ({
               )
             }
           >
-            <div className="flex gap-1" style={{ alignItems: 'center' }}>
+            <div className="flex gap-1 aligned">
               <Image src={icon} width="24" height="24" alt="icon" />
               <h3>{inputData.title}</h3>
             </div>
