@@ -27,3 +27,9 @@
     transform: scale(1.02);
   }
 }
+
+@mixin headingStyle {
+  width: 4rem;
+  height: 1rem;
+  background-color: $color-gray;
+}

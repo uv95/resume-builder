@@ -50,6 +50,12 @@ export interface IFont {
   font: string;
 }
 
+export interface IHeading {
+  style: 'box' | 'line' | 'topBottomLine' | 'simple';
+  uppercase: boolean;
+  size: 's' | 'm' | 'l';
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -81,6 +87,7 @@ export interface ISettings {
   };
   spacing: ISpacing;
   font: IFont;
+  heading: IHeading;
   __typename?: string;
 }
 

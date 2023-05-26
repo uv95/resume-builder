@@ -10,6 +10,7 @@ export const UPDATE_SETTINGS = gql`
     $colors: ColorsInput
     $spacing: SpacingInput
     $font: FontInput
+    $heading: HeadingInput
   ) {
     updateSettings(
       id: $id
@@ -18,6 +19,7 @@ export const UPDATE_SETTINGS = gql`
       colors: $colors
       spacing: $spacing
       font: $font
+      heading: $heading
     ) {
       ...SettingsFields
     }

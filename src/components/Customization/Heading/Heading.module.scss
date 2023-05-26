@@ -1,0 +1,107 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.section {
+  & h5 {
+    margin-bottom: 1rem;
+  }
+}
+
+.style {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  & button {
+    width: 11rem;
+    height: 5rem;
+    @include center;
+  }
+}
+.box {
+  @include headingStyle;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: -1.7rem;
+    top: -0.7rem;
+    width: 7rem;
+    height: 2rem;
+    border: 0.2rem solid $color-gray;
+  }
+  &.active {
+    background-color: $color-ui-blue;
+    &:after {
+      border: 0.2rem solid $color-ui-blue;
+    }
+  }
+}
+.simple {
+  @include headingStyle;
+  margin-right: auto;
+  &.active {
+    background-color: $color-ui-blue;
+  }
+}
+.topBottomLine {
+  @include headingStyle;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: -0.7rem;
+    width: 7rem;
+    height: 2rem;
+    border-top: 0.2rem solid $color-gray;
+    border-bottom: 0.2rem solid $color-gray;
+  }
+  &.active {
+    background-color: $color-ui-blue;
+    &:after {
+      border-top: 0.2rem solid $color-ui-blue;
+      border-bottom: 0.2rem solid $color-ui-blue;
+    }
+  }
+}
+.line {
+  @include headingStyle;
+  margin-right: auto;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -0.7rem;
+    width: 7rem;
+    height: 2rem;
+    border-bottom: 0.2rem solid $color-gray;
+  }
+  &.active {
+    background-color: $color-ui-blue;
+    &:after {
+      border-bottom: 0.2rem solid $color-ui-blue;
+    }
+  }
+}
+
+.size {
+  color: $color-gray--dark;
+  &_active {
+    color: $color-ui-blue;
+  }
+}
+
+.checkboxGroup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+.input {
+  width: 2rem;
+  height: 2rem;
+}

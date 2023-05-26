@@ -31,10 +31,6 @@
   padding-top: 1.5rem;
 }
 
-.sectionTitle {
-  font-weight: 700;
-}
-
 .personalDetailsBlock {
   text-align: center;
   @include center;
@@ -56,4 +52,25 @@
   flex-wrap: wrap;
   gap: 1rem;
   row-gap: 0.5rem;
+}
+
+.headingTopBottomLine {
+  text-align: center;
+  padding: 0.3rem;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.headingBox {
+  text-align: center;
+  padding: 0.3rem;
+  position: relative;
+}
+
+.headingBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0.1;
 }

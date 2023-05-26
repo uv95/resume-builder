@@ -1,6 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { applyAccentColor } from '@/utils/colors';
 import { removeTypename } from '@/utils/removeTypename';
 import { IApplyAccentColor } from '@/utils/types';

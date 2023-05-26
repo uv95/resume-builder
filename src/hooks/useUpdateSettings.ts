@@ -1,7 +1,12 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
-import { IAdvancedMulticolor, IBasicMulticolor, IFont } from '@/utils/types';
+import {
+  IAdvancedMulticolor,
+  IBasicMulticolor,
+  IFont,
+  IHeading,
+} from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
@@ -11,21 +16,19 @@ function useUpdateSettings() {
 
   //sectionsOrder
   const addToSectionsOrder = (sectionName: string) => {
-    const sectionsOrderTop = resume?.settings.sectionsOrder.top!;
-    const newSectionsOrderTop = sectionsOrderTop.includes(sectionName)
-      ? sectionsOrderTop
-      : [...sectionsOrderTop, sectionName];
-
-    const { left, right } = resume?.settings.sectionsOrder!;
+    const { left, right, top } = resume?.settings.sectionsOrder!;
+    const newSectionsOrderTop = top.includes(sectionName)
+      ? top
+      : [...top, sectionName];
 
     const newSectionsOrderRight =
-      left.length > right.length && !right.includes(sectionName)
+      left.length > right.length && !top.includes(sectionName)
         ? [...right, sectionName]
         : right;
     const newSectionsOrderLeft =
-      left.length > right.length && !left.includes(sectionName)
-        ? left
-        : [...left, sectionName];
+      left.length <= right.length && !top.includes(sectionName)
+        ? [...left, sectionName]
+        : left;
 
     return updateSettings({
       variables: {
@@ -188,6 +191,16 @@ function useUpdateSettings() {
     });
   };
 
+  // update heading
+  const updateHeading = (heading: IHeading) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        heading,
+      },
+    });
+  };
+
   return {
     updateColumns,
     updatePosition,
@@ -199,6 +212,7 @@ function useUpdateSettings() {
     updateMulticolor,
     updateSpacing,
     updateFont,
+    updateHeading,
   };
 }
 

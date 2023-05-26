@@ -72,6 +72,13 @@ const FONT_FIELDS = gql`
     font
   }
 `;
+const HEADING_FIELDS = gql`
+  fragment HeadingFields on Heading {
+    style
+    uppercase
+    size
+  }
+`;
 
 export const SETTINGS_FIELDS = gql`
   ${SECTIONS_ORDER_FIELDS}
@@ -79,6 +86,7 @@ export const SETTINGS_FIELDS = gql`
   ${COLORS_FIELDS}
   ${SPACING_FIELDS}
   ${FONT_FIELDS}
+  ${HEADING_FIELDS}
   fragment SettingsFields on Settings {
     id
     sectionsOrder {
@@ -95,6 +103,9 @@ export const SETTINGS_FIELDS = gql`
     }
     font {
       ...FontFields
+    }
+    heading {
+      ...HeadingFields
     }
   }
 `;
