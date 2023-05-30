@@ -20,11 +20,13 @@ const ProjectBlock = ({ sectionPosition }: Props) => {
               <div className="flex">
                 <p>{item.title}</p>
               </div>
-              <Dates
-                startDate={item.startDate.replaceAll('-', '/')}
-                endDate={item.endDate.replaceAll('-', '/')}
-                sectionPosition={sectionPosition}
-              />
+              {item.startDate && (
+                <Dates
+                  startDate={item.startDate.replaceAll('-', '/')}
+                  endDate={item.endDate.replaceAll('-', '/')}
+                  sectionPosition={sectionPosition}
+                />
+              )}
             </div>
             <div>{parse(item.description)}</div>
           </div>

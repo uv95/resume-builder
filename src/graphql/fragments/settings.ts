@@ -79,6 +79,19 @@ const HEADING_FIELDS = gql`
     size
   }
 `;
+const SUBTITLE_FIELDS = gql`
+  fragment SubtitleFields on Subtitle {
+    style
+    placement
+  }
+`;
+const HEADER_FIELDS = gql`
+  fragment HeaderFields on Header {
+    position
+    additionalInfoStyle
+    additionalInfoOrder
+  }
+`;
 
 export const SETTINGS_FIELDS = gql`
   ${SECTIONS_ORDER_FIELDS}
@@ -87,6 +100,8 @@ export const SETTINGS_FIELDS = gql`
   ${SPACING_FIELDS}
   ${FONT_FIELDS}
   ${HEADING_FIELDS}
+  ${SUBTITLE_FIELDS}
+  ${HEADER_FIELDS}
   fragment SettingsFields on Settings {
     id
     sectionsOrder {
@@ -106,6 +121,12 @@ export const SETTINGS_FIELDS = gql`
     }
     heading {
       ...HeadingFields
+    }
+    subtitle {
+      ...SubtitleFields
+    }
+    header {
+      ...HeaderFields
     }
   }
 `;

@@ -56,6 +56,17 @@ export interface IHeading {
   size: 's' | 'm' | 'l';
 }
 
+export interface ISubtitle {
+  style: 'normal' | 'bold' | 'italic';
+  placement: 'sameLine' | 'nextLine';
+}
+
+export interface IHeader {
+  position: 'left' | 'center';
+  additionalInfoStyle: 'icon' | 'bar';
+  additionalInfoOrder: string[];
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -88,6 +99,8 @@ export interface ISettings {
   spacing: ISpacing;
   font: IFont;
   heading: IHeading;
+  subtitle: ISubtitle;
+  header: IHeader;
   __typename?: string;
 }
 

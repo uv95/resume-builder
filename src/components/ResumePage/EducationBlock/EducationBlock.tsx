@@ -24,11 +24,13 @@ const EducationBlock = ({ sectionPosition }: Props) => {
                 <strong>{item.school}</strong>
               </div>
               <div className="flex">
-                <Dates
-                  startDate={item.startDate.replaceAll('-', '/')}
-                  endDate={item.endDate.replaceAll('-', '/')}
-                  sectionPosition={sectionPosition}
-                />
+                {item.startDate && (
+                  <Dates
+                    startDate={item.startDate.replaceAll('-', '/')}
+                    endDate={item.endDate.replaceAll('-', '/')}
+                    sectionPosition={sectionPosition}
+                  />
+                )}
                 <p>
                   {item.city}, {item.country}
                 </p>

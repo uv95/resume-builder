@@ -85,6 +85,10 @@ label {
   font-size: 1.5rem;
   background-color: $color-bg !important;
   border: none !important;
+
+  & li {
+    margin-left: 1rem;
+  }
 }
 
 .ck-toolbar__items {
@@ -97,6 +101,8 @@ label {
 .ck-button[data-cke-tooltip-text='Block quote'],
 .ck-button[data-cke-tooltip-text='Decrease indent'],
 .ck-button[data-cke-tooltip-text='Increase indent'],
+.ck-button[data-cke-tooltip-text='Bulleted List'],
+.ck-button[data-cke-tooltip-text='Numbered List'],
 .ck-powered-by-balloon {
   display: none !important;
 }
