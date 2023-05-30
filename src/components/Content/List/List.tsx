@@ -7,6 +7,7 @@ import {
   ISkills,
 } from '@/utils/types';
 import React from 'react';
+import parse from 'html-react-parser';
 import style from './List.module.scss';
 
 type Props = {
@@ -82,7 +83,7 @@ const List = ({ setContentToEdit, section, list }: Props) => {
 
             {item.__typename === 'Profile' && (
               <>
-                <div className={style.primary}>{item.text}</div>
+                <div className={style.primary}>{parse(item.text)}</div>
               </>
             )}
             {item.__typename === 'Language' && (

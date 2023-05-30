@@ -5,14 +5,12 @@ import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { Field, Form, Formik } from 'formik';
-import React, { useContext } from 'react';
-import Button from '../../Button/Button';
+import React, { useContext, useEffect, useState } from 'react';
 import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
 import Select from '../../Select/Select';
-import save from '../../../icons/check.svg';
-import trash from '../../../icons/trash.svg';
-import style from './InputsSection.module.scss';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import Buttons from './Buttons';
+const Textarea = dynamic(() => import('../Textarea'), { ssr: false });
 
 type Props = {
   inputData: any;
@@ -34,16 +32,26 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
   const addContent = useAddMutations(inputData.name, resume?.id!);
   const deleteContent = useDeleteMutations(inputData.name, resume?.id!);
 
+  const [textareaText, setTextareaText] = useState(
+    initialValues.text || initialValues.description
+  );
+
   return (
     <div>
       <h3 className="p-2">{inputData.editTitle}</h3>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          const finalValues =
+          let finalValues;
+          finalValues =
             inputData.name === 'personalDetails'
               ? { ...values, additionalInfo }
               : values;
+          if (values.hasOwnProperty('description'))
+            finalValues = { ...finalValues, description: textareaText };
+
+          if (values.hasOwnProperty('text'))
+            finalValues = { ...finalValues, text: textareaText };
 
           isInputsEmpty(initialValues)
             ? addContent(finalValues)
@@ -58,6 +66,12 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
 
               {input.type === 'select' ? (
                 <Select input={input} />
+              ) : input.type === 'textarea' ? (
+                <Textarea
+                  setTextareaText={setTextareaText}
+                  textareaText={textareaText}
+                  placeholder={input.placeholder}
+                />
               ) : (
                 <Field
                   // required
@@ -65,7 +79,6 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                   id={input.name}
                   type={input.type || 'text'}
                   placeholder={input.placeholder}
-                  as={input.type === 'textarea' ? 'textarea' : 'input'}
                 />
               )}
             </div>
@@ -73,46 +86,12 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
 
           {inputData.name === 'personalDetails' && <AdditionalInfoSection />}
 
-          <div className={style.buttons}>
-            {inputData.name !== 'personalDetails' && (
-              <Button
-                type="white"
-                bold
-                onClick={() => {
-                  deleteContent(itemId);
-                  setContentToEdit({ section: '', itemId: '' });
-                }}
-              >
-                <div className="flex gap-1 aligned">
-                  <Image src={trash} width="18" height="18" alt="trash" />
-                  <p>Delete</p>
-                </div>
-              </Button>
-            )}
-            <div className="flex rightPositioned">
-              <Button
-                type="white"
-                bold
-                onClick={() => {
-                  setContentToEdit({ section: '', itemId: '' });
-                }}
-              >
-                Cancel
-              </Button>
-              <Button submit type="pink" bold>
-                <div className="flex gap-1 aligned">
-                  <Image
-                    src={save}
-                    width="20"
-                    height="20"
-                    alt="save"
-                    style={{ filter: 'invert()' }}
-                  />
-                  <p>Save</p>
-                </div>
-              </Button>
-            </div>
-          </div>
+          <Buttons
+            itemId={resume?.id!}
+            deleteContent={deleteContent}
+            setContentToEdit={setContentToEdit}
+            inputData={inputData}
+          />
         </Form>
       </Formik>
     </div>

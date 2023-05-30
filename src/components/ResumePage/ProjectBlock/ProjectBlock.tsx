@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
 import Dates from '../Dates';
+import parse from 'html-react-parser';
 
 type Props = {
   sectionPosition?: 'left' | 'right';
@@ -25,7 +26,7 @@ const ProjectBlock = ({ sectionPosition }: Props) => {
                 sectionPosition={sectionPosition}
               />
             </div>
-            <p>{item.description}</p>
+            <div>{parse(item.description)}</div>
           </div>
         ))}
     </>

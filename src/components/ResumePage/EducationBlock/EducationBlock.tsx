@@ -2,6 +2,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import React, { useContext } from 'react';
 import Dates from '../Dates';
+import parse from 'html-react-parser';
 
 type Props = {
   sectionPosition?: 'left' | 'right';
@@ -33,7 +34,7 @@ const EducationBlock = ({ sectionPosition }: Props) => {
                 </p>
               </div>
             </div>
-            <p>{item.description}</p>
+            <div>{parse(item.description)}</div>
           </div>
         ))}
     </>

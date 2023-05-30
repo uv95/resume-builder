@@ -70,3 +70,37 @@ textarea {
 label {
   margin-left: 1rem;
 }
+
+// CKEditor //
+.editor {
+  background-color: $color-bg;
+  border-radius: $border-radius;
+  overflow: hidden;
+  padding: 0.5rem 1rem 1rem 1rem;
+  position: relative;
+}
+.ck {
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
+  background-color: $color-bg !important;
+  border: none !important;
+}
+
+.ck-toolbar__items {
+  border-bottom: 1px solid $color-gray--light !important;
+}
+
+.ck-toolbar__separator,
+.ck-file-dialog-button,
+.ck-dropdown,
+.ck-button[data-cke-tooltip-text='Block quote'],
+.ck-button[data-cke-tooltip-text='Decrease indent'],
+.ck-button[data-cke-tooltip-text='Increase indent'],
+.ck-powered-by-balloon {
+  display: none !important;
+}
+
+.ck-focused {
+  box-shadow: none !important;
+}

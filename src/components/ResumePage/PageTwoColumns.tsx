@@ -27,7 +27,7 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
       sectionPosition: 'left',
     }),
     paddingLeft: leftRightMargin + 'mm',
-    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : 0,
+    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : '1.5rem',
     paddingRight: position === 'top' ? 0 : leftRightMargin + 'mm',
     paddingBottom: topBottomMargin + 'mm',
     overflow: 'hidden', //temporary
@@ -39,7 +39,7 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
       colorOf: 'background',
       sectionPosition: 'right',
     }),
-    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : 0,
+    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : '1.5rem',
     paddingRight: leftRightMargin + 'mm',
     paddingLeft: position === 'top' ? 0 : leftRightMargin + 'mm',
     paddingBottom: topBottomMargin + 'mm',
