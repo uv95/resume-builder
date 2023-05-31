@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = { fill: string; size: number; dataName: string };
 
-const Icon = ({ fill, size, dataName }: Props) => {
+const DetailsIcons = ({ fill, size, dataName }: Props) => {
   if (dataName === 'email')
     return (
       <svg
@@ -187,4 +187,4 @@ const Icon = ({ fill, size, dataName }: Props) => {
   return null;
 };
 
-export default Icon;
+export default DetailsIcons;

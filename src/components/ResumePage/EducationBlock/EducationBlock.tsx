@@ -20,10 +20,10 @@ const EducationBlock = ({ sectionPosition }: Props) => {
         content.map((item) => (
           <div key={item.id}>
             <div className="flex spaceBetween mb-1">
-              <div className="flex">
-                <p
-                  className={`${placement === 'sameLine' ? 'flex gap-1' : ''}`}
-                >
+              <div
+                className={`${placement === 'sameLine' ? 'flex gap-1' : ''}`}
+              >
+                <p>
                   {item.degree}
                   {placement === 'sameLine' && ','}
                 </p>

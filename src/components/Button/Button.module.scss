@@ -58,6 +58,7 @@
     border: 1px solid $color-gray;
     cursor: pointer;
     transition: transform 0.1s;
+    color: $color-gray--dark;
 
     &:hover {
       filter: brightness(1.1) saturate(0.9);
@@ -67,6 +68,14 @@
       border: 1px solid $color-ui-blue;
       background-color: $color-ui-blue--light;
       color: $color-ui-blue;
+    }
+  }
+
+  &-gray {
+    background-color: $color-bg;
+    color: $color-gray--dark;
+    &:hover {
+      filter: brightness(1.015);
     }
   }
 }

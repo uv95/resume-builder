@@ -5,6 +5,7 @@ import {
   IAdvancedMulticolor,
   IBasicMulticolor,
   IFont,
+  IHeader,
   IHeading,
   ISubtitle,
 } from '@/utils/types';
@@ -204,11 +205,20 @@ function useUpdateSettings() {
 
   // update subtitle
   const updateSubtitle = (subtitle: ISubtitle) => {
-    console.log(subtitle);
     return updateSettings({
       variables: {
         id: resume?.settings.id,
         subtitle,
+      },
+    });
+  };
+
+  // update header
+  const updateHeader = (header: IHeader) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        header,
       },
     });
   };
@@ -226,6 +236,7 @@ function useUpdateSettings() {
     updateFont,
     updateHeading,
     updateSubtitle,
+    updateHeader,
   };
 }
 
