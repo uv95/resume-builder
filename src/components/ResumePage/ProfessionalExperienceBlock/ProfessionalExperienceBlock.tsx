@@ -9,7 +9,7 @@ type Props = {
 
 const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
-  const { style: subtitleStyle, placement } = resume?.settings.subtitle!;
+  const { style: subtitleStyle, position } = resume?.settings.subtitle!;
   const content = resume?.content.professionalExperience;
 
   return (
@@ -18,12 +18,10 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
         content.map((item) => (
           <div key={item.id}>
             <div className="flex spaceBetween mb-1">
-              <div
-                className={`${placement === 'sameLine' ? 'flex gap-1' : ''}`}
-              >
+              <div className={`${position === 'sameLine' ? 'flex gap-1' : ''}`}>
                 <p>
                   {item.jobTitle}
-                  {placement === 'sameLine' && ','}
+                  {position === 'sameLine' && ','}
                 </p>
                 <p
                   style={{

@@ -3,7 +3,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { fonts } from '@/utils/fonts';
 import React, { useContext } from 'react';
-import SettingsCard from '../SettingsCard';
+import SettingsCard from '../UI/SettingsCard';
 import style from './Font.module.scss';
 
 type Props = {};

@@ -7,7 +7,7 @@ import BasicMulticolor from './BasicMulticolor';
 import BasicOptions from './BasicOptions';
 import Mode from './Mode';
 import AdvancedMulticolor from './AdvancedMulticolor';
-import SettingsCard from '../SettingsCard';
+import SettingsCard from '../UI/SettingsCard';
 
 const Colors = () => {
   const { resume } = useContext(ResumeContext);

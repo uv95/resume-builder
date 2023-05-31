@@ -1,12 +1,6 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
-.section {
-  & h5 {
-    margin-bottom: 1rem;
-  }
-}
-
 .style {
   display: flex;
   gap: 2rem;
@@ -85,13 +79,6 @@
     &:after {
       border-bottom: 0.2rem solid $color-ui-blue;
     }
-  }
-}
-
-.size {
-  color: $color-gray--dark;
-  &_active {
-    color: $color-ui-blue;
   }
 }
 

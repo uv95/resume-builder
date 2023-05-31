@@ -13,6 +13,7 @@ export const UPDATE_SETTINGS = gql`
     $heading: HeadingInput
     $subtitle: SubtitleInput
     $header: HeaderInput
+    $jobTitle: JobTitleInput
   ) {
     updateSettings(
       id: $id
@@ -24,6 +25,7 @@ export const UPDATE_SETTINGS = gql`
       heading: $heading
       subtitle: $subtitle
       header: $header
+      jobTitle: $jobTitle
     ) {
       ...SettingsFields
     }

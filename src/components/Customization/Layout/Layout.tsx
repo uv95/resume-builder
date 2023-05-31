@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
-import SettingsCard from '../SettingsCard';
+import SettingsCard from '../UI/SettingsCard';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
 import Position from './Position';

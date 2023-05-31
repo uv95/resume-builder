@@ -5,6 +5,7 @@ import { removeTypename } from '@/utils/removeTypename';
 import { IApplyAccentColor } from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
+import Section from '../UI/Section';
 import style from './Colors.module.scss';
 
 type Props = {};
@@ -36,8 +37,7 @@ const ApplyAccentColor = (props: Props) => {
     updateSettings,
   ]);
   return (
-    <div className={style.applyAccentColor}>
-      <h5>Apply accent color</h5>
+    <Section title="Apply accent color">
       <div className={style.inputs}>
         {applyAccentColor.map((option) => (
           <div key={option.name} className={style.checkboxGroup}>
@@ -65,7 +65,7 @@ const ApplyAccentColor = (props: Props) => {
           </div>
         ))}
       </div>
-    </div>
+    </Section>
   );
 };
 

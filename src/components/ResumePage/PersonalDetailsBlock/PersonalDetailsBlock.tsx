@@ -1,8 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
-import React, { useContext } from 'react';
-import style from '../Page.module.scss';
-import DetailsIcons from '../../DetailsIcons';
+import React, { useContext, useState } from 'react';
+import AdditionalInfoBlock from './AdditionalInfoBlock';
 
 const PersonalDetailsBlock = () => {
   const { resume } = useContext(ResumeContext);
@@ -11,27 +10,16 @@ const PersonalDetailsBlock = () => {
   const content = resume?.content.personalDetails;
   const { leftRightMargin, topBottomMargin, fontSize } =
     resume?.settings.spacing!;
-  const {
-    additionalInfoOrder,
-    additionalInfoStyle,
-    position: headerPosition,
-  } = resume?.settings.header!;
+  const { position: headerPosition } = resume?.settings.header!;
+  const { size, style } = resume?.settings.jobTitle!;
 
-  const additionalInfo = content
-    ? Object.values(content)[Object.values(content).length - 1]
-    : [];
+  const [jobTitleSize] = useState({
+    s: fontSize + 5,
+    m: fontSize + 8,
+    l: fontSize + 11,
+  });
 
   const { setColor } = useSetColor();
-
-  const addBar = (condition: boolean) => {
-    return (
-      additionalInfoStyle === 'bar' &&
-      ((headerPosition !== 'left' && position !== 'top') ||
-        position === 'top') &&
-      condition &&
-      '  |'
-    );
-  };
 
   const personalDetailsStyle = {
     background: setColor({
@@ -48,6 +36,7 @@ const PersonalDetailsBlock = () => {
     paddingTop: position === 'top' ? topBottomMargin + 'mm' : '0',
     paddingBottom: `calc(${topBottomMargin}mm - 1rem)`,
     textAlign: headerPosition,
+    marginTop: 'auto',
   };
 
   return (
@@ -55,73 +44,17 @@ const PersonalDetailsBlock = () => {
       <p style={{ fontSize: fontSize + 17 + 'px', fontWeight: 'bold' }}>
         {content?.fullName}
       </p>
-      <p style={{ fontSize: fontSize + 8 + 'px' }}>{content?.jobTitle}</p>
-      <div
-        className={style.infoBlock}
+      <p
         style={{
-          color: setColor({
-            colorOf: 'font',
-            sectionPosition: position,
-          }),
-          display:
-            headerPosition === 'left' &&
-            (position === 'left' || position === 'right')
-              ? 'block'
-              : 'flex',
-          justifyContent: headerPosition === 'center' ? 'center' : 'flex-start',
+          fontSize: jobTitleSize[size] + 'px',
+          fontWeight: style === 'bold' ? 'bold' : 'normal',
+          fontStyle: style === 'italic' ? 'italic' : 'normal',
         }}
       >
-        {content &&
-          ['email', 'phone', 'address'].map(
-            (item) =>
-              content[item as keyof typeof content] && (
-                <div key={item} className={style.info}>
-                  {additionalInfoStyle === 'icon' && (
-                    <DetailsIcons
-                      fill={
-                        setColor({
-                          section: 'headerIcons',
-                          colorOf: 'font',
-                          sectionPosition: position,
-                        })!
-                      }
-                      size={fontSize}
-                      dataName={item}
-                    />
-                  )}
-                  <p>
-                    {
-                      resume?.content?.personalDetails![
-                        item as keyof typeof resume.content.personalDetails
-                      ]
-                    }
-                    {addBar(additionalInfo.length !== 0)}
-                  </p>
-                </div>
-              )
-          )}
+        {content?.jobTitle}
+      </p>
 
-        {...additionalInfo.map((item: any, i: number) => (
-          <div className={style.info} key={item.name}>
-            {additionalInfoStyle === 'icon' && (
-              <DetailsIcons
-                fill={
-                  setColor({
-                    section: 'headerIcons',
-                    colorOf: 'font',
-                    sectionPosition: position,
-                  })!
-                }
-                size={fontSize}
-                dataName={item.name}
-              />
-            )}
-            <p>
-              {item.input} {addBar(i !== additionalInfo.length - 1)}
-            </p>
-          </div>
-        ))}
-      </div>
+      <AdditionalInfoBlock />
     </div>
   );
 };

@@ -58,13 +58,18 @@ export interface IHeading {
 
 export interface ISubtitle {
   style: 'normal' | 'bold' | 'italic';
-  placement: 'sameLine' | 'nextLine';
+  position: 'sameLine' | 'nextLine';
 }
 
 export interface IHeader {
   position: 'left' | 'center';
   additionalInfoStyle: 'icon' | 'bar';
   additionalInfoOrder: string[];
+}
+
+export interface IJobTitle {
+  size: 's' | 'm' | 'l';
+  style: 'normal' | 'bold' | 'italic';
 }
 
 export interface ISettings {
@@ -101,6 +106,7 @@ export interface ISettings {
   heading: IHeading;
   subtitle: ISubtitle;
   header: IHeader;
+  jobTitle: IJobTitle;
   __typename?: string;
 }
 

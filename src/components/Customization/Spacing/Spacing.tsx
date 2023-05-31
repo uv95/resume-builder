@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { spacingData } from '@/utils/spacing';
 import React, { useContext } from 'react';
-import SettingsCard from '../SettingsCard';
+import SettingsCard from '../UI/SettingsCard';
 import Bar from './Bar';
 
 type Props = {};

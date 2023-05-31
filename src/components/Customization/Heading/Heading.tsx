@@ -1,9 +1,11 @@
 import Button from '@/components/Button/Button';
 import React, { useContext } from 'react';
 import style from './Heading.module.scss';
-import SettingsCard from '../SettingsCard';
+import SettingsCard from '../UI/SettingsCard';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ResumeContext } from '@/context/ResumeContext';
+import Size from '../Size';
+import Section from '../UI/Section';
 
 const Heading = () => {
   const { resume } = useContext(ResumeContext);
@@ -13,8 +15,7 @@ const Heading = () => {
 
   return (
     <SettingsCard title="Heading">
-      <div className={style.section}>
-        <h5>Style</h5>
+      <Section title="Style">
         <div className={style.style}>
           <Button
             type="customization"
@@ -63,32 +64,9 @@ const Heading = () => {
             ></div>
           </Button>
         </div>
-      </div>
+      </Section>
 
-      <div className={style.section}>
-        <h5>Size</h5>
-        <div className="flex">
-          {['s', 'm', 'l'].map((headingSize) => (
-            <Button
-              key={headingSize}
-              classes={`${
-                size === headingSize ? style.size_active : style.size
-              }`}
-              type="customization"
-              active={size === headingSize}
-              onClick={() =>
-                updateHeading({
-                  size: headingSize as 's' | 'm' | 'l',
-                  uppercase,
-                  style: headingStyle,
-                })
-              }
-            >
-              <p>{headingSize.toUpperCase()}</p>
-            </Button>
-          ))}
-        </div>
-      </div>
+      <Size section="heading" />
 
       <div className={style.checkboxGroup}>
         <input

@@ -1,13 +1,11 @@
 import Button from '@/components/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
-import Image from 'next/image';
 import React, { useContext } from 'react';
-import SettingsCard from '../SettingsCard';
-import smile from '../../../icons/smile.svg';
-import style from './Header.module.scss';
+import SettingsCard from '../UI/SettingsCard';
 import SmileIcon from './SmileIcon';
 import DetailsIcons from '@/components/DetailsIcons';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import Section from '../UI/Section';
 
 type Props = {};
 
@@ -20,8 +18,7 @@ const Header = (props: Props) => {
 
   return (
     <SettingsCard title="Header">
-      <div className={style.section}>
-        <h5>Position</h5>
+      <Section title="Position">
         <div className="flex">
           {['left', 'center'].map((headerPosition) => (
             <Button
@@ -46,9 +43,9 @@ const Header = (props: Props) => {
             </Button>
           ))}
         </div>
-      </div>
-      <div className={style.section}>
-        <h5>Details Style</h5>
+      </Section>
+
+      <Section title="Details Style">
         <div className="flex">
           {['icon', 'bar'].map((detailsStyle) => (
             <Button
@@ -85,10 +82,10 @@ const Header = (props: Props) => {
             </Button>
           ))}
         </div>
-      </div>
+      </Section>
+
       {additionalInfoOrder.length !== 0 && (
-        <div className={style.section}>
-          <h5>Change Order</h5>
+        <Section title="Change Order">
           <div className="flex">
             {additionalInfoOrder.map((info) => (
               <Button key={info} type="gray" onClick={() => {}}>
@@ -102,7 +99,7 @@ const Header = (props: Props) => {
               </Button>
             ))}
           </div>
-        </div>
+        </Section>
       )}
     </SettingsCard>
   );

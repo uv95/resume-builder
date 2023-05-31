@@ -79,17 +79,26 @@ const HEADING_FIELDS = gql`
     size
   }
 `;
+
 const SUBTITLE_FIELDS = gql`
   fragment SubtitleFields on Subtitle {
     style
-    placement
+    position
   }
 `;
+
 const HEADER_FIELDS = gql`
   fragment HeaderFields on Header {
     position
     additionalInfoStyle
     additionalInfoOrder
+  }
+`;
+
+const JOBTITLE_FIELDS = gql`
+  fragment JobTitleFields on JobTitle {
+    size
+    style
   }
 `;
 
@@ -102,6 +111,7 @@ export const SETTINGS_FIELDS = gql`
   ${HEADING_FIELDS}
   ${SUBTITLE_FIELDS}
   ${HEADER_FIELDS}
+  ${JOBTITLE_FIELDS}
   fragment SettingsFields on Settings {
     id
     sectionsOrder {
@@ -127,6 +137,9 @@ export const SETTINGS_FIELDS = gql`
     }
     header {
       ...HeaderFields
+    }
+    jobTitle {
+      ...JobTitleFields
     }
   }
 `;
