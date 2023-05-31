@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../Button/Button';
 import Section from './UI/Section';
 
@@ -10,27 +10,29 @@ const Style = ({ section }: Props) => {
   const { resume } = useContext(ResumeContext);
   const { style: subtitleStyle, position: subtitlePosition } =
     resume?.settings.subtitle!;
-  const {
-    style: jobTitleStyle,
-    position: jobTitlePosition,
-    size: jobTitleSize,
-  } = resume?.settings.jobTitle!;
+  const { style: jobTitleStyle, size: jobTitleSize } =
+    resume?.settings.jobTitle!;
+
+  const [sectionStyle, setSectionStyle] = useState({
+    subtitle: subtitleStyle,
+    jobTitle: jobTitleStyle,
+  });
 
   const { updateSubtitle, updateJobTitle } = useUpdateSettings();
 
   const updateStyle = (style: 'normal' | 'bold' | 'italic') => {
     if (section === 'subtitle')
       return updateSubtitle({
-        position: subtitlePosition,
         style,
+        position: subtitlePosition,
       });
     if (section === 'jobTitle')
       return updateJobTitle({
-        position: jobTitlePosition,
-        size: jobTitleSize,
         style,
+        size: jobTitleSize,
       });
   };
+
   return (
     <Section title="Style">
       <div className="flex">
@@ -38,10 +40,11 @@ const Style = ({ section }: Props) => {
           <Button
             key={item}
             type="customization"
-            active={
-              item === (section === 'subtitle' ? subtitleStyle : jobTitleStyle)
-            }
-            onClick={() => updateStyle(item as 'normal' | 'bold' | 'italic')}
+            active={sectionStyle[section as keyof typeof sectionStyle] === item}
+            onClick={() => {
+              updateStyle(item as 'normal' | 'bold' | 'italic');
+              setSectionStyle((prev) => ({ ...prev, [section]: item }));
+            }}
           >
             <p
               style={{

@@ -95,6 +95,13 @@ const HEADER_FIELDS = gql`
   }
 `;
 
+const NAME_FIELDS = gql`
+  fragment NameFields on Name {
+    size
+    style
+  }
+`;
+
 const JOBTITLE_FIELDS = gql`
   fragment JobTitleFields on JobTitle {
     size
@@ -111,6 +118,7 @@ export const SETTINGS_FIELDS = gql`
   ${HEADING_FIELDS}
   ${SUBTITLE_FIELDS}
   ${HEADER_FIELDS}
+  ${NAME_FIELDS}
   ${JOBTITLE_FIELDS}
   fragment SettingsFields on Settings {
     id
@@ -137,6 +145,9 @@ export const SETTINGS_FIELDS = gql`
     }
     header {
       ...HeaderFields
+    }
+    name {
+      ...NameFields
     }
     jobTitle {
       ...JobTitleFields

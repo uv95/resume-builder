@@ -67,6 +67,11 @@ export interface IHeader {
   additionalInfoOrder: string[];
 }
 
+export interface IName {
+  size: 's' | 'm' | 'l';
+  style: 'normal' | 'bold';
+}
+
 export interface IJobTitle {
   size: 's' | 'm' | 'l';
   style: 'normal' | 'bold' | 'italic';
@@ -106,6 +111,7 @@ export interface ISettings {
   heading: IHeading;
   subtitle: ISubtitle;
   header: IHeader;
+  name: IName;
   jobTitle: IJobTitle;
   __typename?: string;
 }

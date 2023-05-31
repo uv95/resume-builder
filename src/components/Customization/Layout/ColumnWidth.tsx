@@ -53,7 +53,7 @@ const ColumnWidth = () => {
               setRight((prev) => prev - 1);
             }}
           >
-            -
+            +
           </Button>
         </div>
         <div className={style.columnWidth_options}>

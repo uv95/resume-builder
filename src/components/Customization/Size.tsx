@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../Button/Button';
 import Section from './UI/Section';
 
@@ -13,12 +13,18 @@ const Size = ({ section }: Props) => {
     size: headingSize,
     uppercase,
   } = resume?.settings.heading!;
-  const {
-    style: jobTitleStyle,
-    position,
-    size: jobTitleSize,
-  } = resume?.settings.jobTitle!;
-  const { updateHeading, updateJobTitle } = useUpdateSettings();
+
+  const { style: jobTitleStyle, size: jobTitleSize } =
+    resume?.settings.jobTitle!;
+
+  const { style: nameStyle, size: nameSize } = resume?.settings.name!;
+
+  const [size, setSize] = useState({
+    heading: headingSize,
+    jobTitle: jobTitleSize,
+    name: nameSize,
+  });
+  const { updateHeading, updateJobTitle, updateName } = useUpdateSettings();
 
   const updateSize = (size: 's' | 'm' | 'l') => {
     if (section === 'heading')
@@ -30,10 +36,15 @@ const Size = ({ section }: Props) => {
     if (section === 'jobTitle')
       return updateJobTitle({
         size,
-        position,
         style: jobTitleStyle,
       });
+    if (section === 'name')
+      return updateName({
+        size,
+        style: nameStyle,
+      });
   };
+
   return (
     <Section title="Size">
       <div className="flex">
@@ -41,10 +52,11 @@ const Size = ({ section }: Props) => {
           <Button
             key={item}
             type="customization"
-            active={
-              item === (section === 'heading' ? headingSize : jobTitleSize)
-            }
-            onClick={() => updateSize(item as 's' | 'm' | 'l')}
+            active={size[section as keyof typeof size] === item}
+            onClick={() => {
+              updateSize(item as 's' | 'm' | 'l');
+              setSize((prev) => ({ ...prev, [section]: item }));
+            }}
           >
             <p>{item.toUpperCase()}</p>
           </Button>

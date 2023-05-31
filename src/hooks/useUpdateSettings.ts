@@ -8,6 +8,7 @@ import {
   IHeader,
   IHeading,
   IJobTitle,
+  IName,
   ISubtitle,
 } from '@/utils/types';
 import { useMutation } from '@apollo/client';
@@ -224,7 +225,16 @@ function useUpdateSettings() {
     });
   };
 
-  // update header
+  // update name
+  const updateName = (name: IName) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        name,
+      },
+    });
+  };
+  // update job title
   const updateJobTitle = (jobTitle: IJobTitle) => {
     return updateSettings({
       variables: {
@@ -248,6 +258,7 @@ function useUpdateSettings() {
     updateHeading,
     updateSubtitle,
     updateHeader,
+    updateName,
     updateJobTitle,
   };
 }
