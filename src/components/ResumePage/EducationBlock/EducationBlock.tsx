@@ -11,6 +11,7 @@ type Props = {
 const EducationBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.education;
+  const { style: subtitleStyle, placement } = resume?.settings.subtitle!;
   const { setColor } = useSetColor();
 
   return (
@@ -20,8 +21,20 @@ const EducationBlock = ({ sectionPosition }: Props) => {
           <div key={item.id}>
             <div className="flex spaceBetween mb-1">
               <div className="flex">
-                <p>{item.degree}</p>
-                <strong>{item.school}</strong>
+                <p
+                  className={`${placement === 'sameLine' ? 'flex gap-1' : ''}`}
+                >
+                  {item.degree}
+                  {placement === 'sameLine' && ','}
+                </p>
+                <p
+                  style={{
+                    fontWeight: subtitleStyle === 'bold' ? 'bold' : 'normal',
+                    fontStyle: subtitleStyle === 'italic' ? 'italic' : 'normal',
+                  }}
+                >
+                  {item.school}
+                </p>
               </div>
               <div className="flex">
                 {item.startDate && (

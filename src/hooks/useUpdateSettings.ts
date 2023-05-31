@@ -6,6 +6,7 @@ import {
   IBasicMulticolor,
   IFont,
   IHeading,
+  ISubtitle,
 } from '@/utils/types';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
@@ -201,6 +202,17 @@ function useUpdateSettings() {
     });
   };
 
+  // update subtitle
+  const updateSubtitle = (subtitle: ISubtitle) => {
+    console.log(subtitle);
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        subtitle,
+      },
+    });
+  };
+
   return {
     updateColumns,
     updatePosition,
@@ -213,6 +225,7 @@ function useUpdateSettings() {
     updateSpacing,
     updateFont,
     updateHeading,
+    updateSubtitle,
   };
 }
 

@@ -68,36 +68,25 @@ const Heading = () => {
       <div className={style.section}>
         <h5>Size</h5>
         <div className="flex">
-          <Button
-            classes={`${size === 's' ? style.size_active : style.size}`}
-            type="customization"
-            active={size === 's'}
-            onClick={() =>
-              updateHeading({ size: 's', uppercase, style: headingStyle })
-            }
-          >
-            <p>S</p>
-          </Button>
-          <Button
-            classes={`${size === 'm' ? style.size_active : style.size}`}
-            type="customization"
-            active={size === 'm'}
-            onClick={() =>
-              updateHeading({ size: 'm', uppercase, style: headingStyle })
-            }
-          >
-            <p>M</p>
-          </Button>
-          <Button
-            classes={`${size === 'l' ? style.size_active : style.size}`}
-            type="customization"
-            active={size === 'l'}
-            onClick={() =>
-              updateHeading({ size: 'l', uppercase, style: headingStyle })
-            }
-          >
-            <p>L</p>
-          </Button>
+          {['s', 'm', 'l'].map((headingSize) => (
+            <Button
+              key={headingSize}
+              classes={`${
+                size === headingSize ? style.size_active : style.size
+              }`}
+              type="customization"
+              active={size === headingSize}
+              onClick={() =>
+                updateHeading({
+                  size: headingSize as 's' | 'm' | 'l',
+                  uppercase,
+                  style: headingStyle,
+                })
+              }
+            >
+              <p>{headingSize.toUpperCase()}</p>
+            </Button>
+          ))}
         </div>
       </div>
 

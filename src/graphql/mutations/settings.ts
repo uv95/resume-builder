@@ -11,6 +11,8 @@ export const UPDATE_SETTINGS = gql`
     $spacing: SpacingInput
     $font: FontInput
     $heading: HeadingInput
+    $subtitle: SubtitleInput
+    $header: HeaderInput
   ) {
     updateSettings(
       id: $id
@@ -20,6 +22,8 @@ export const UPDATE_SETTINGS = gql`
       spacing: $spacing
       font: $font
       heading: $heading
+      subtitle: $subtitle
+      header: $header
     ) {
       ...SettingsFields
     }

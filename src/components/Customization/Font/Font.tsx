@@ -46,12 +46,9 @@ const Font = (props: Props) => {
                 key={font}
                 type="customization"
                 active={currentFont === font}
-                onClick={() => {
-                  console.log({ type: fontType.type, font }, 'font');
-                  updateFont({ type: fontType.type, font });
-                }}
+                onClick={() => updateFont({ type: fontType.type, font })}
               >
-                {font}
+                <p style={{ minWidth: '6rem' }}>{font}</p>
               </Button>
             ))
         )}
