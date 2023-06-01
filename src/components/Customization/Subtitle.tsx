@@ -1,59 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import SettingsCard from './UI/SettingsCard';
-import Style from './Style';
-import Section from './UI/Section';
-import Button from '../Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { removeTypename } from '@/utils/removeTypename';
+import SettingsButtons from './UI/SettingsButtons';
 
 const Subtitle = () => {
   const { resume } = useContext(ResumeContext);
-  const { style, position } = resume?.settings.subtitle!;
   const { updateSubtitle } = useUpdateSettings();
+  const [values, setValues] = useState(
+    removeTypename(resume?.settings.subtitle!)
+  );
+  const update = (updatedField: 'position' | 'style', newVal: string) =>
+    updateSubtitle({
+      ...values,
+      [updatedField]: newVal,
+    });
 
   return (
     <SettingsCard title="Subtitle">
-      <Style section="subtitle" />
-      <Section title="Position">
-        <div className="flex">
-          <Button
-            type="customization"
-            active={position === 'sameLine'}
-            onClick={() =>
-              updateSubtitle({
-                position: 'sameLine',
-                style,
-              })
-            }
-          >
-            <p
-              style={{
-                minWidth: '6rem',
-              }}
-            >
-              Same Line
-            </p>
-          </Button>
-          <Button
-            type="customization"
-            active={position === 'nextLine'}
-            onClick={() =>
-              updateSubtitle({
-                position: 'nextLine',
-                style,
-              })
-            }
-          >
-            <p
-              style={{
-                minWidth: '6rem',
-              }}
-            >
-              Next Line
-            </p>
-          </Button>
-        </div>
-      </Section>
+      <SettingsButtons
+        options={['normal', 'bold', 'italic']}
+        updatedField="style"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
+      <SettingsButtons
+        options={['sameLine', 'nextLine']}
+        updatedField="position"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
     </SettingsCard>
   );
 };

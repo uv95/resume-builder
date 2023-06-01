@@ -1,13 +1,16 @@
-export const removeTypename = (object: Object | null) => {
+export const removeTypename = (object: Object | [] | null) => {
   if (!object) return;
   return Object.keys(object)
     .filter((key) => key !== '__typename')
     .reduce((obj: any, key: string) => {
+      const value = object[key as keyof typeof object] as any;
       let newobj;
-      if (typeof object[key as keyof typeof object] === 'object') {
-        newobj = removeTypename(object[key as keyof typeof object]);
+      if (typeof value === 'object') {
+        newobj = value.hasOwnProperty('length')
+          ? value.map(removeTypename)
+          : removeTypename(value);
       } else {
-        newobj = object[key as keyof typeof object];
+        newobj = value;
       }
       obj[key] = newobj;
       return obj;

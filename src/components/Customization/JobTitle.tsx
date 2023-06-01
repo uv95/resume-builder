@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import SettingsCard from './UI/SettingsCard';
-import Size from './Size';
-import Style from './Style';
+import SettingsButtons from './UI/SettingsButtons';
+import { ResumeContext } from '@/context/ResumeContext';
+import { removeTypename } from '@/utils/removeTypename';
+import useUpdateSettings from '@/hooks/useUpdateSettings';
 
 const JobTitle = () => {
+  const { resume } = useContext(ResumeContext);
+  const { updateJobTitle } = useUpdateSettings();
+
+  const [values, setValues] = useState(
+    removeTypename(resume?.settings.jobTitle!)
+  );
+  const update = (updatedField: 'size' | 'style', newVal: string) =>
+    updateJobTitle({
+      ...values,
+      [updatedField]: newVal,
+    });
+
   return (
     <SettingsCard title="Job Title">
-      <Size section="jobTitle" />
-      <Style section="jobTitle" />
+      <SettingsButtons
+        options={['s', 'm', 'l']}
+        updatedField="size"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
+      <SettingsButtons
+        options={['normal', 'bold', 'italic']}
+        updatedField="style"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
     </SettingsCard>
   );
 };

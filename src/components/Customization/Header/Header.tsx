@@ -1,49 +1,41 @@
 import Button from '@/components/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import SettingsCard from '../UI/SettingsCard';
 import SmileIcon from './SmileIcon';
 import DetailsIcons from '@/components/DetailsIcons';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Section from '../UI/Section';
+import { removeTypename } from '@/utils/removeTypename';
+import SettingsButtons from '../UI/SettingsButtons';
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   const { resume } = useContext(ResumeContext);
   const { additionalInfoOrder, additionalInfoStyle, position } =
     resume?.settings.header!;
 
   const { updateHeader } = useUpdateSettings();
+  const [values, setValues] = useState(
+    removeTypename(resume?.settings.header!)
+  );
+  const update = (
+    updatedField: 'additionalInfoStyle' | 'position',
+    newVal: string
+  ) =>
+    updateHeader({
+      ...values,
+      [updatedField]: newVal,
+    });
 
   return (
     <SettingsCard title="Header">
-      <Section title="Position">
-        <div className="flex">
-          {['left', 'center'].map((headerPosition) => (
-            <Button
-              key={headerPosition}
-              type="customization"
-              active={position === headerPosition}
-              onClick={() =>
-                updateHeader({
-                  additionalInfoOrder,
-                  additionalInfoStyle,
-                  position: headerPosition as 'left' | 'center',
-                })
-              }
-            >
-              <p
-                style={{
-                  minWidth: '6rem',
-                }}
-              >
-                {headerPosition[0].toUpperCase() + headerPosition.slice(1)}
-              </p>
-            </Button>
-          ))}
-        </div>
-      </Section>
+      <SettingsButtons
+        options={['left', 'center']}
+        updatedField="position"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
 
       <Section title="Details Style">
         <div className="flex">

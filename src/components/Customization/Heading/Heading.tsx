@@ -1,17 +1,26 @@
 import Button from '@/components/Button/Button';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import style from './Heading.module.scss';
 import SettingsCard from '../UI/SettingsCard';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ResumeContext } from '@/context/ResumeContext';
-import Size from '../Size';
 import Section from '../UI/Section';
+import { removeTypename } from '@/utils/removeTypename';
+import SettingsButtons from '../UI/SettingsButtons';
 
 const Heading = () => {
   const { resume } = useContext(ResumeContext);
   const { style: headingStyle, size, uppercase } = resume?.settings.heading!;
 
   const { updateHeading } = useUpdateSettings();
+  const [values, setValues] = useState(
+    removeTypename(resume?.settings.heading!)
+  );
+  const update = (updatedField: 'size' | 'style', newVal: string) =>
+    updateHeading({
+      ...values,
+      [updatedField]: newVal,
+    });
 
   return (
     <SettingsCard title="Heading">
@@ -66,7 +75,13 @@ const Heading = () => {
         </div>
       </Section>
 
-      <Size section="heading" />
+      <SettingsButtons
+        options={['s', 'm', 'l']}
+        updatedField="size"
+        allValues={values}
+        setValues={setValues}
+        update={update}
+      />
 
       <div className={style.checkboxGroup}>
         <input
