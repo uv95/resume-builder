@@ -77,6 +77,29 @@ export interface IJobTitle {
   style: 'normal' | 'bold' | 'italic';
 }
 
+export interface IDate {
+  month: 'digits' | 'short' | 'long';
+  delimiter: '/ Slash' | '- Hyphen' | '. Dot';
+}
+
+export interface ISkillsLanguageSettings {
+  format: 'grid' | 'level' | 'text' | 'bubble';
+  textFormat: 'bullet' | 'pipe' | 'wrap';
+  infoItalic: boolean;
+}
+
+export interface IProfileSettings {
+  showHeading: boolean;
+}
+
+export interface IEducationSettings {
+  degreeFirst: boolean;
+}
+
+export interface IProfessionalExperienceSettings {
+  jobTitleFirst: boolean;
+}
+
 export interface ISettings {
   id: string;
   sectionsOrder: {
@@ -113,6 +136,12 @@ export interface ISettings {
   header: IHeader;
   name: IName;
   jobTitle: IJobTitle;
+  date: IDate;
+  skills: ISkillsLanguageSettings;
+  language: ISkillsLanguageSettings;
+  profile: IProfileSettings;
+  education: IEducationSettings;
+  professionalExperience: IProfessionalExperienceSettings;
   __typename?: string;
 }
 

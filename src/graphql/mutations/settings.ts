@@ -15,6 +15,12 @@ export const UPDATE_SETTINGS = gql`
     $header: HeaderInput
     $name: NameInput
     $jobTitle: JobTitleInput
+    $date: DateInput
+    $skills: SkillsSettingsInput
+    $language: LanguageSettingsInput
+    $profile: ProfileSettingsInput
+    $education: EducationSettingsInput
+    $professionalExperience: ProfessionalExperienceSettingsInput
   ) {
     updateSettings(
       id: $id
@@ -28,6 +34,12 @@ export const UPDATE_SETTINGS = gql`
       header: $header
       name: $name
       jobTitle: $jobTitle
+      date: $date
+      skills: $skills
+      language: $language
+      profile: $profile
+      education: $education
+      professionalExperience: $professionalExperience
     ) {
       ...SettingsFields
     }

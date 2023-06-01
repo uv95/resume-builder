@@ -109,6 +109,42 @@ const JOBTITLE_FIELDS = gql`
   }
 `;
 
+const DATE_FIELDS = gql`
+  fragment DateFields on Date {
+    month
+    delimiter
+  }
+`;
+const SKILLS_SETTINGS_FIELDS = gql`
+  fragment SkillsSettingsFields on SkillsSettings {
+    format
+    textFormat
+    infoItalic
+  }
+`;
+const LANGUAGE_SETTINGS_FIELDS = gql`
+  fragment LanguageSettingsFields on LanguageSettings {
+    format
+    textFormat
+    infoItalic
+  }
+`;
+const PROFILE_SETTINGS_FIELDS = gql`
+  fragment ProfileSettingsFields on ProfileSettings {
+    showHeading
+  }
+`;
+const EDUCATION_SETTINGS_FIELDS = gql`
+  fragment EducationSettingsFields on EducationSettings {
+    degreeFirst
+  }
+`;
+const PROFESSIONAL_EXPERIENCE_SETTINGS_FIELDS = gql`
+  fragment ProfessionalExperienceSettingsFields on ProfessionalExperienceSettings {
+    jobTitleFirst
+  }
+`;
+
 export const SETTINGS_FIELDS = gql`
   ${SECTIONS_ORDER_FIELDS}
   ${LAYOUT_FIELDS}
@@ -120,6 +156,12 @@ export const SETTINGS_FIELDS = gql`
   ${HEADER_FIELDS}
   ${NAME_FIELDS}
   ${JOBTITLE_FIELDS}
+  ${DATE_FIELDS}
+  ${SKILLS_SETTINGS_FIELDS}
+  ${LANGUAGE_SETTINGS_FIELDS}
+  ${PROFILE_SETTINGS_FIELDS}
+  ${EDUCATION_SETTINGS_FIELDS}
+  ${PROFESSIONAL_EXPERIENCE_SETTINGS_FIELDS}
   fragment SettingsFields on Settings {
     id
     sectionsOrder {
@@ -151,6 +193,24 @@ export const SETTINGS_FIELDS = gql`
     }
     jobTitle {
       ...JobTitleFields
+    }
+    date {
+      ...DateFields
+    }
+    skills {
+      ...SkillsSettingsFields
+    }
+    language {
+      ...LanguageSettingsFields
+    }
+    profile {
+      ...ProfileSettingsFields
+    }
+    education {
+      ...EducationSettingsFields
+    }
+    professionalExperience {
+      ...ProfessionalExperienceSettingsFields
     }
   }
 `;
