@@ -4,6 +4,7 @@ import { removeTypename } from '@/utils/removeTypename';
 import {
   IAdvancedMulticolor,
   IBasicMulticolor,
+  IDate,
   IFont,
   IHeader,
   IHeading,
@@ -244,6 +245,16 @@ function useUpdateSettings() {
     });
   };
 
+  // update date
+  const updateDate = (date: IDate) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        date,
+      },
+    });
+  };
+
   return {
     updateColumns,
     updatePosition,
@@ -260,6 +271,7 @@ function useUpdateSettings() {
     updateHeader,
     updateName,
     updateJobTitle,
+    updateDate,
   };
 }
 

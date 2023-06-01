@@ -1,5 +1,6 @@
 import React from 'react';
 import Colors from './Colors/Colors';
+import Date from './Date';
 import Font from './Font/Font';
 import Header from './Header/Header';
 import Heading from './Heading/Heading';
@@ -23,6 +24,7 @@ const Customization = (props: Props) => {
       <Header />
       <Name />
       <JobTitle />
+      <Date />
     </>
   );
 };

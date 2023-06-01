@@ -10,6 +10,7 @@ type Props = {
 const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const { style: subtitleStyle, position } = resume?.settings.subtitle!;
+  const { date } = resume?.settings!;
   const content = resume?.content.professionalExperience;
 
   return (
@@ -35,8 +36,9 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
               <div className="flex">
                 {item.startDate && (
                   <Dates
-                    startDate={item.startDate.replaceAll('-', '/')}
-                    endDate={item.endDate.replaceAll('-', '/')}
+                    format={date}
+                    startDate={item.startDate}
+                    endDate={item.endDate}
                     sectionPosition={sectionPosition}
                   />
                 )}

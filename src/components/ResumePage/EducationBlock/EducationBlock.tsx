@@ -12,6 +12,7 @@ const EducationBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.education;
   const { style: subtitleStyle, position } = resume?.settings.subtitle!;
+  const { date } = resume?.settings!;
   const { setColor } = useSetColor();
 
   return (
@@ -37,8 +38,9 @@ const EducationBlock = ({ sectionPosition }: Props) => {
               <div className="flex">
                 {item.startDate && (
                   <Dates
-                    startDate={item.startDate.replaceAll('-', '/')}
-                    endDate={item.endDate.replaceAll('-', '/')}
+                    format={date}
+                    startDate={item.startDate}
+                    endDate={item.endDate}
                     sectionPosition={sectionPosition}
                   />
                 )}

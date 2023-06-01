@@ -10,6 +10,7 @@ type Props = {
 const ProjectBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.project;
+  const { date } = resume?.settings!;
 
   return (
     <>
@@ -22,8 +23,9 @@ const ProjectBlock = ({ sectionPosition }: Props) => {
               </div>
               {item.startDate && (
                 <Dates
-                  startDate={item.startDate.replaceAll('-', '/')}
-                  endDate={item.endDate.replaceAll('-', '/')}
+                  format={date}
+                  startDate={item.startDate}
+                  endDate={item.endDate}
                   sectionPosition={sectionPosition}
                 />
               )}
