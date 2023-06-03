@@ -35,7 +35,6 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
   const [textareaText, setTextareaText] = useState(
     initialValues.text || initialValues.description
   );
-
   return (
     <div>
       <h3 className="p-2">{inputData.editTitle}</h3>

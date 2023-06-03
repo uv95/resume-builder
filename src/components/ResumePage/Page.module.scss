@@ -73,3 +73,40 @@
   top: 0;
   opacity: 0.1;
 }
+
+//skills & language settings
+.gridFormat,
+.levelFormat {
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 1rem;
+}
+.levelFormat {
+  grid-template-columns: 1fr 1fr;
+}
+.textFormat,
+.bubbleFormat {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.bubbleFormat {
+  gap: 1rem;
+}
+
+.bubble {
+  border: 1px solid $color-font;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+//level bar
+.level {
+  display: flex;
+  gap: 0.5rem;
+}
+.levelBubble {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}

@@ -2,11 +2,10 @@ import { inputData } from '@/utils/data';
 import { IResumeArraySections } from '@/utils/types';
 import React, { useContext } from 'react';
 import EducationBlock from './EducationBlock/EducationBlock';
-import LanguageBlock from './LanguageBlock/LanguageBlock';
 import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/ProfessionalExperienceBlock';
 import ProfileBlock from './ProfileBlock/ProfileBlock';
 import ProjectBlock from './ProjectBlock/ProjectBlock';
-import SkillsBlock from './SkillsBlock/SkillsBlock';
+import SkillsLanguageBlock from './SkillsLanguageBlock/SkillsLanguageBlock';
 import style from './Page.module.scss';
 import useSetColor from '@/hooks/useSetColor';
 import { ResumeContext } from '@/context/ResumeContext';
@@ -51,7 +50,7 @@ const PageSection = ({
           }),
         }}
       >
-        {section === 'skills' && <SkillsBlock />}
+        {section === 'skills' && <SkillsLanguageBlock section="skills" />}
         {section === 'education' && (
           <EducationBlock sectionPosition={sectionPosition} />
         )}
@@ -62,7 +61,7 @@ const PageSection = ({
         {section === 'professionalExperience' && (
           <ProfessionalExperienceBlock sectionPosition={sectionPosition} />
         )}
-        {section === 'language' && <LanguageBlock />}
+        {section === 'language' && <SkillsLanguageBlock section="language" />}
       </div>
     </div>
   );

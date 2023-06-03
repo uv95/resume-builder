@@ -64,6 +64,7 @@ export const getInitialValues = (
           break;
         case 'Highly proficient (B2-C1)':
           currentItem.languageLevel = 'highlyProficient';
+          break;
         case 'Native / full working proficiency (C2)':
           currentItem.languageLevel = 'fullProficiency';
           break;

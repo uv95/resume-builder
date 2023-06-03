@@ -84,6 +84,7 @@ export interface IDate {
 
 export interface ISkillsLanguageSettings {
   format: 'grid' | 'level' | 'text' | 'bubble';
+  gridCols: 'one' | 'two' | 'three' | 'four';
   textFormat: 'bullet' | 'pipe' | 'wrap';
   infoItalic: boolean;
 }

@@ -10,6 +10,7 @@ import {
   IHeading,
   IJobTitle,
   IName,
+  ISkillsLanguageSettings,
   ISubtitle,
 } from '@/utils/types';
 import { useMutation } from '@apollo/client';
@@ -165,7 +166,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update spacing
   const updateSpacing = (
     section:
       | 'fontSize'
@@ -186,7 +186,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update font
   const updateFont = (font: IFont) => {
     return updateSettings({
       variables: {
@@ -196,7 +195,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update heading
   const updateHeading = (heading: IHeading) => {
     return updateSettings({
       variables: {
@@ -206,7 +204,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update subtitle
   const updateSubtitle = (subtitle: ISubtitle) => {
     return updateSettings({
       variables: {
@@ -216,7 +213,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update header
   const updateHeader = (header: IHeader) => {
     return updateSettings({
       variables: {
@@ -226,7 +222,6 @@ function useUpdateSettings() {
     });
   };
 
-  // update name
   const updateName = (name: IName) => {
     return updateSettings({
       variables: {
@@ -235,7 +230,7 @@ function useUpdateSettings() {
       },
     });
   };
-  // update job title
+
   const updateJobTitle = (jobTitle: IJobTitle) => {
     return updateSettings({
       variables: {
@@ -245,12 +240,29 @@ function useUpdateSettings() {
     });
   };
 
-  // update date
   const updateDate = (date: IDate) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
         date,
+      },
+    });
+  };
+
+  const updateSkillsSettings = (skills: ISkillsLanguageSettings) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        skills,
+      },
+    });
+  };
+
+  const updateLanguageSettings = (language: ISkillsLanguageSettings) => {
+    return updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        language,
       },
     });
   };
@@ -272,6 +284,8 @@ function useUpdateSettings() {
     updateName,
     updateJobTitle,
     updateDate,
+    updateSkillsSettings,
+    updateLanguageSettings,
   };
 }
 

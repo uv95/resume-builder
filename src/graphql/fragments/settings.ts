@@ -118,6 +118,7 @@ const DATE_FIELDS = gql`
 const SKILLS_SETTINGS_FIELDS = gql`
   fragment SkillsSettingsFields on SkillsSettings {
     format
+    gridCols
     textFormat
     infoItalic
   }
@@ -125,6 +126,7 @@ const SKILLS_SETTINGS_FIELDS = gql`
 const LANGUAGE_SETTINGS_FIELDS = gql`
   fragment LanguageSettingsFields on LanguageSettings {
     format
+    gridCols
     textFormat
     infoItalic
   }

@@ -1,10 +1,11 @@
 import { camelCaseToString } from '@/utils/camelCaseToString';
 import React from 'react';
 import Button from '../../Button/Button';
-import Section from './Section';
 
 type Props = {
   options: string[];
+  hasNoTitle?: boolean;
+  title?: string;
   updatedField: string;
   allValues: any;
   update: any;
@@ -16,10 +17,17 @@ const SettingsButtons = ({
   options,
   updatedField,
   allValues,
+  hasNoTitle,
+  title,
   setValues,
 }: Props) => {
   return (
-    <Section title={updatedField[0].toUpperCase() + updatedField.slice(1)}>
+    <div>
+      {!hasNoTitle && (
+        <h5 style={{ marginBottom: '1rem' }}>
+          {title || updatedField[0].toUpperCase() + updatedField.slice(1)}
+        </h5>
+      )}
       <div className="flex">
         {options.map((item: any) => (
           <Button
@@ -43,7 +51,7 @@ const SettingsButtons = ({
           </Button>
         ))}
       </div>
-    </Section>
+    </div>
   );
 };
 

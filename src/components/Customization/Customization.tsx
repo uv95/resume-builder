@@ -9,6 +9,7 @@ import Layout from './Layout/Layout';
 import Name from './Name';
 import Spacing from './Spacing/Spacing';
 import Subtitle from './Subtitle';
+import SkillsLanguageSettings from './SkillsLanguageSettings/SkillsLanguageSettings';
 
 type Props = {};
 
@@ -25,6 +26,8 @@ const Customization = (props: Props) => {
       <Name />
       <JobTitle />
       <Date />
+      <SkillsLanguageSettings section="skills" />
+      <SkillsLanguageSettings section="language" />
     </>
   );
 };

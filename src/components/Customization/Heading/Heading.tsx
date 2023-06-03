@@ -83,7 +83,7 @@ const Heading = () => {
         update={update}
       />
 
-      <div className={style.checkboxGroup}>
+      <div className="checkboxGroup">
         <input
           type="checkbox"
           id="uppercase"
@@ -91,7 +91,7 @@ const Heading = () => {
           onChange={() =>
             updateHeading({ size, uppercase: !uppercase, style: headingStyle })
           }
-          className={style.input}
+          className="checkboxInput"
         />
         <label htmlFor="uppercase">Uppercase</label>
       </div>
