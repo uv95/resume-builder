@@ -11,9 +11,13 @@ type Props = {
 const EducationBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.education;
+  const { degreeFirst } = resume?.settings.education!;
   const { style: subtitleStyle, position } = resume?.settings.subtitle!;
   const { date } = resume?.settings!;
-  const { setColor } = useSetColor();
+
+  const positionStyle = {
+    display: position === 'sameLine' ? 'inline' : 'block',
+  };
 
   return (
     <>
@@ -21,19 +25,46 @@ const EducationBlock = ({ sectionPosition }: Props) => {
         content.map((item) => (
           <div key={item.id}>
             <div className="flex spaceBetween mb-1">
-              <div className={`${position === 'sameLine' ? 'flex gap-1' : ''}`}>
-                <p>
-                  {item.degree}
-                  {position === 'sameLine' && ','}
-                </p>
+              <div>
+                {degreeFirst && (
+                  <p style={positionStyle}>
+                    {item.degree}
+                    {position === 'sameLine' && ', '}
+                  </p>
+                )}
                 <p
                   style={{
-                    fontWeight: subtitleStyle === 'bold' ? 'bold' : 'normal',
-                    fontStyle: subtitleStyle === 'italic' ? 'italic' : 'normal',
+                    fontWeight:
+                      degreeFirst && subtitleStyle === 'bold'
+                        ? 'bold'
+                        : 'normal',
+                    fontStyle:
+                      degreeFirst && subtitleStyle === 'italic'
+                        ? 'italic'
+                        : 'normal',
+                    ...positionStyle,
                   }}
                 >
                   {item.school}
+                  {position === 'sameLine' && !degreeFirst && ', '}
                 </p>
+                {!degreeFirst && (
+                  <p
+                    style={{
+                      fontWeight:
+                        !degreeFirst && subtitleStyle === 'bold'
+                          ? 'bold'
+                          : 'normal',
+                      fontStyle:
+                        !degreeFirst && subtitleStyle === 'italic'
+                          ? 'italic'
+                          : 'normal',
+                      ...positionStyle,
+                    }}
+                  >
+                    {item.degree}
+                  </p>
+                )}
               </div>
               <div className="flex">
                 {item.startDate && (

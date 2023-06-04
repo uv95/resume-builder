@@ -5,11 +5,14 @@ import {
   IAdvancedMulticolor,
   IBasicMulticolor,
   IDate,
+  IEducationSettings,
   IFont,
   IHeader,
   IHeading,
   IJobTitle,
   IName,
+  IProfessionalExperienceSettings,
+  IProfileSettings,
   ISkillsLanguageSettings,
   ISubtitle,
 } from '@/utils/types';
@@ -186,86 +189,103 @@ function useUpdateSettings() {
     });
   };
 
-  const updateFont = (font: IFont) => {
-    return updateSettings({
+  const updateFont = (font: IFont) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         font,
       },
     });
-  };
 
-  const updateHeading = (heading: IHeading) => {
-    return updateSettings({
+  const updateHeading = (heading: IHeading) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         heading,
       },
     });
-  };
 
-  const updateSubtitle = (subtitle: ISubtitle) => {
-    return updateSettings({
+  const updateSubtitle = (subtitle: ISubtitle) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         subtitle,
       },
     });
-  };
 
-  const updateHeader = (header: IHeader) => {
-    return updateSettings({
+  const updateHeader = (header: IHeader) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         header,
       },
     });
-  };
 
-  const updateName = (name: IName) => {
-    return updateSettings({
+  const updateName = (name: IName) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         name,
       },
     });
-  };
 
-  const updateJobTitle = (jobTitle: IJobTitle) => {
-    return updateSettings({
+  const updateJobTitle = (jobTitle: IJobTitle) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         jobTitle,
       },
     });
-  };
 
-  const updateDate = (date: IDate) => {
-    return updateSettings({
+  const updateDate = (date: IDate) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         date,
       },
     });
-  };
 
-  const updateSkillsSettings = (skills: ISkillsLanguageSettings) => {
-    return updateSettings({
+  const updateSkillsSettings = (skills: ISkillsLanguageSettings) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         skills,
       },
     });
-  };
 
-  const updateLanguageSettings = (language: ISkillsLanguageSettings) => {
-    return updateSettings({
+  const updateLanguageSettings = (language: ISkillsLanguageSettings) =>
+    updateSettings({
       variables: {
         id: resume?.settings.id,
         language,
       },
     });
-  };
+
+  const updateProfileSettings = (profile: IProfileSettings) =>
+    updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        profile,
+      },
+    });
+
+  const updateEducationSettings = (education: IEducationSettings) =>
+    updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        education,
+      },
+    });
+
+  const updateProfExperienceSettings = (
+    professionalExperience: IProfessionalExperienceSettings
+  ) =>
+    updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        professionalExperience,
+      },
+    });
 
   return {
     updateColumns,
@@ -286,6 +306,9 @@ function useUpdateSettings() {
     updateDate,
     updateSkillsSettings,
     updateLanguageSettings,
+    updateProfileSettings,
+    updateEducationSettings,
+    updateProfExperienceSettings,
   };
 }
 

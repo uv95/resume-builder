@@ -24,6 +24,7 @@ const PageSection = ({
 }: Props) => {
   const { setColor } = useSetColor();
   const { resume } = useContext(ResumeContext);
+  const { showHeading } = resume?.settings.profile!;
   const { spaceBetweenSections } = resume?.settings.spacing!;
 
   return (
@@ -32,12 +33,13 @@ const PageSection = ({
       style={{ paddingBottom: spaceBetweenSections + 'px' }}
     >
       {resumeArraySections[section as keyof typeof resumeArraySections]
-        .length !== 0 && (
-        <Heading
-          sectionPosition={sectionPosition}
-          title={inputData[section as keyof typeof inputData].title}
-        />
-      )}
+        .length !== 0 &&
+        (section !== 'profile' || (section === 'profile' && showHeading)) && (
+          <Heading
+            sectionPosition={sectionPosition}
+            title={inputData[section as keyof typeof inputData].title}
+          />
+        )}
       <div
         style={{
           background: setColor({
@@ -50,7 +52,12 @@ const PageSection = ({
           }),
         }}
       >
-        {section === 'skills' && <SkillsLanguageBlock section="skills" />}
+        {section === 'skills' && (
+          <SkillsLanguageBlock
+            section="skills"
+            sectionPosition={sectionPosition}
+          />
+        )}
         {section === 'education' && (
           <EducationBlock sectionPosition={sectionPosition} />
         )}
@@ -61,7 +68,12 @@ const PageSection = ({
         {section === 'professionalExperience' && (
           <ProfessionalExperienceBlock sectionPosition={sectionPosition} />
         )}
-        {section === 'language' && <SkillsLanguageBlock section="language" />}
+        {section === 'language' && (
+          <SkillsLanguageBlock
+            section="language"
+            sectionPosition={sectionPosition}
+          />
+        )}
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
         <div className="checkboxGroup">
           <input
             type="checkbox"
-            id="uppercase"
+            id="infoItalic"
             checked={infoItalic}
             onChange={() => {
               setValues({ ...values, infoItalic: !infoItalic });
@@ -68,7 +68,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
             }}
             className="checkboxInput"
           />
-          <label htmlFor="uppercase">Italic</label>
+          <label htmlFor="infoItalic">Italic</label>
         </div>
       </Section>
     </SettingsCard>

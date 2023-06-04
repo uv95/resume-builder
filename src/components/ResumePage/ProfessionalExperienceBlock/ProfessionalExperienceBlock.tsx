@@ -11,7 +11,12 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const { style: subtitleStyle, position } = resume?.settings.subtitle!;
   const { date } = resume?.settings!;
+  const { jobTitleFirst } = resume?.settings.professionalExperience!;
   const content = resume?.content.professionalExperience;
+
+  const positionStyle = {
+    display: position === 'sameLine' ? 'inline' : 'block',
+  };
 
   return (
     <>
@@ -19,19 +24,46 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
         content.map((item) => (
           <div key={item.id}>
             <div className="flex spaceBetween mb-1">
-              <div className={`${position === 'sameLine' ? 'flex gap-1' : ''}`}>
-                <p>
-                  {item.jobTitle}
-                  {position === 'sameLine' && ','}
-                </p>
+              <div>
+                {jobTitleFirst && (
+                  <p style={positionStyle}>
+                    {item.jobTitle}
+                    {position === 'sameLine' && ', '}
+                  </p>
+                )}
                 <p
                   style={{
-                    fontWeight: subtitleStyle === 'bold' ? 'bold' : 'normal',
-                    fontStyle: subtitleStyle === 'italic' ? 'italic' : 'normal',
+                    fontWeight:
+                      jobTitleFirst && subtitleStyle === 'bold'
+                        ? 'bold'
+                        : 'normal',
+                    fontStyle:
+                      jobTitleFirst && subtitleStyle === 'italic'
+                        ? 'italic'
+                        : 'normal',
+                    ...positionStyle,
                   }}
                 >
                   {item.employer}
+                  {position === 'sameLine' && !jobTitleFirst && ', '}
                 </p>
+                {!jobTitleFirst && (
+                  <p
+                    style={{
+                      fontWeight:
+                        !jobTitleFirst && subtitleStyle === 'bold'
+                          ? 'bold'
+                          : 'normal',
+                      fontStyle:
+                        !jobTitleFirst && subtitleStyle === 'italic'
+                          ? 'italic'
+                          : 'normal',
+                      ...positionStyle,
+                    }}
+                  >
+                    {item.jobTitle}
+                  </p>
+                )}
               </div>
               <div className="flex">
                 {item.startDate && (

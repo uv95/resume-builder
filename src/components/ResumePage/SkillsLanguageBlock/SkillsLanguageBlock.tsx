@@ -1,15 +1,22 @@
 import { ResumeContext } from '@/context/ResumeContext';
+import useSetColor from '@/hooks/useSetColor';
 import React, { useContext } from 'react';
 import style from '../Page.module.scss';
 import Level from './Level';
 
-type Props = { section: 'language' | 'skills' };
+type Props = {
+  section: 'language' | 'skills';
+  sectionPosition?: 'left' | 'right';
+};
 
-const SkillsLanguageBlock = ({ section }: Props) => {
+const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content[section];
   const { format, textFormat, gridCols, infoItalic } =
     resume?.settings[section]!;
+  const { applyAccentColor } = resume?.settings?.colors!;
+  const { position, columns } = resume?.settings.layout!;
+  const { setColor } = useSetColor();
 
   const containerStyle = {
     gridTemplateColumns: `repeat(${
@@ -17,10 +24,43 @@ const SkillsLanguageBlock = ({ section }: Props) => {
         ? ['one', 'two', 'three', 'four'].indexOf(gridCols) + 1
         : 2
     }, 1fr)`,
+    display:
+      format === 'level' || format === 'grid'
+        ? columns === 2
+          ? 'block'
+          : 'grid'
+        : 'flex',
   };
 
   const itemStyle = {
     display: format === 'grid' || format === 'level' ? 'block' : 'flex',
+    marginBottom:
+      (format === 'level' || format === 'grid') && columns === 2 ? '1rem' : 0,
+    background:
+      format === 'bubble' && applyAccentColor.dots
+        ? setColor({
+            section: 'dots',
+            colorOf: 'font',
+            sectionPosition,
+          })
+        : 'inherit',
+    color:
+      format === 'bubble' && applyAccentColor.dots
+        ? position !== 'top' && position === sectionPosition
+          ? setColor({
+              colorOf: 'background',
+              sectionPosition,
+            })
+          : '#ffffff'
+        : 'inherit',
+    border:
+      format === 'bubble'
+        ? `1px solid ${setColor({
+            section: 'dots',
+            colorOf: 'font',
+            sectionPosition,
+          })}`
+        : 0,
   };
 
   const getDivider = () => {

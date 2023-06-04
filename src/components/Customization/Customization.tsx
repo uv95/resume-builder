@@ -10,6 +10,9 @@ import Name from './Name';
 import Spacing from './Spacing/Spacing';
 import Subtitle from './Subtitle';
 import SkillsLanguageSettings from './SkillsLanguageSettings/SkillsLanguageSettings';
+import ProfileSettings from './ProfileSettings';
+import EducationSettings from './EducationSettings';
+import ProfessionalExperienceSettings from './ProfessionalExperienceSettings';
 
 type Props = {};
 
@@ -28,6 +31,9 @@ const Customization = (props: Props) => {
       <Date />
       <SkillsLanguageSettings section="skills" />
       <SkillsLanguageSettings section="language" />
+      <ProfileSettings />
+      <EducationSettings />
+      <ProfessionalExperienceSettings />
     </>
   );
 };

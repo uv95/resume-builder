@@ -22,6 +22,13 @@ const Heading = () => {
       [updatedField]: newVal,
     });
 
+  const updateHeadingSetValues = (
+    style: 'box' | 'simple' | 'topBottomLine' | 'line'
+  ) => {
+    updateHeading({ size, uppercase, style });
+    setValues({ size, uppercase, style });
+  };
+
   return (
     <SettingsCard title="Heading">
       <Section title="Style">
@@ -29,7 +36,7 @@ const Heading = () => {
           <Button
             type="customization"
             active={headingStyle === 'box'}
-            onClick={() => updateHeading({ size, uppercase, style: 'box' })}
+            onClick={() => updateHeadingSetValues('box')}
           >
             <div
               className={`${style.box} ${
@@ -40,7 +47,7 @@ const Heading = () => {
           <Button
             type="customization"
             active={headingStyle === 'simple'}
-            onClick={() => updateHeading({ size, uppercase, style: 'simple' })}
+            onClick={() => updateHeadingSetValues('simple')}
           >
             <div
               className={`${style.simple} ${
@@ -51,9 +58,7 @@ const Heading = () => {
           <Button
             type="customization"
             active={headingStyle === 'topBottomLine'}
-            onClick={() =>
-              updateHeading({ size, uppercase, style: 'topBottomLine' })
-            }
+            onClick={() => updateHeadingSetValues('topBottomLine')}
           >
             <div
               className={`${style.topBottomLine} ${
@@ -64,7 +69,7 @@ const Heading = () => {
           <Button
             type="customization"
             active={headingStyle === 'line'}
-            onClick={() => updateHeading({ size, uppercase, style: 'line' })}
+            onClick={() => updateHeadingSetValues('line')}
           >
             <div
               className={`${style.line} ${
