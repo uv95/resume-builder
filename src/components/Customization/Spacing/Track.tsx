@@ -1,23 +1,14 @@
+import { SpacingSectionsType } from '@/utils/types';
 import { FetchResult } from '@apollo/client';
 import React from 'react';
 import style from './Spacing.module.scss';
 
 type Props = {
-  sectionName:
-    | 'fontSize'
-    | 'lineHeight'
-    | 'leftRightMargin'
-    | 'topBottomMargin'
-    | 'spaceBetweenSections';
+  sectionName: SpacingSectionsType;
   currentValue: number;
   values: number[];
   updateSpacing: (
-    section:
-      | 'fontSize'
-      | 'lineHeight'
-      | 'leftRightMargin'
-      | 'topBottomMargin'
-      | 'spaceBetweenSections',
+    section: SpacingSectionsType,
     value: number
   ) => Promise<FetchResult<any, Record<string, any>, Record<string, any>>>;
 };

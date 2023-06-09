@@ -1,4 +1,5 @@
 export const removeTypename = (object: Object | [] | null) => {
+  if (typeof object !== 'object') return object;
   if (!object) return;
   return Object.keys(object)
     .filter((key) => key !== '__typename')

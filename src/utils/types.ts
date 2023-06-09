@@ -37,6 +37,13 @@ export interface IApplyAccentColor {
   headerIcons: boolean;
 }
 
+export type SpacingSectionsType =
+  | 'fontSize'
+  | 'lineHeight'
+  | 'leftRightMargin'
+  | 'topBottomMargin'
+  | 'spaceBetweenSections';
+
 export interface ISpacing {
   fontSize: number;
   lineHeight: number;

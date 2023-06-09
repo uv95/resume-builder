@@ -26,16 +26,16 @@ const GridCols = ({ setValues, values, section }: Props) => {
           onClick={() => {
             setValues({
               ...values,
-              gridCols: col as 'one' | 'two' | 'three' | 'four',
+              gridCols: col as ISkillsLanguageSettings['gridCols'],
             });
             section === 'language'
               ? updateLanguageSettings({
                   ...values,
-                  gridCols: col as 'one' | 'two' | 'three' | 'four',
+                  gridCols: col as ISkillsLanguageSettings['gridCols'],
                 })
               : updateSkillsSettings({
                   ...values,
-                  gridCols: col as 'one' | 'two' | 'three' | 'four',
+                  gridCols: col as ISkillsLanguageSettings['gridCols'],
                 });
           }}
         >

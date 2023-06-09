@@ -1,17 +1,13 @@
 import Button from '@/components/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { SpacingSectionsType } from '@/utils/types';
 import React from 'react';
 import style from './Spacing.module.scss';
 import Track from './Track';
 
 type Props = {
   sectionTitle: string;
-  sectionName:
-    | 'fontSize'
-    | 'lineHeight'
-    | 'leftRightMargin'
-    | 'topBottomMargin'
-    | 'spaceBetweenSections';
+  sectionName: SpacingSectionsType;
   currentValue: number;
   values: number[];
 };

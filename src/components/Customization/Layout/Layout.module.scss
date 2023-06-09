@@ -101,6 +101,7 @@
     flex-direction: column;
     gap: 1rem;
     width: 100%;
+    transition: all 0.2s;
   }
 }
 
@@ -116,4 +117,14 @@
       font-size: 2rem;
     }
   }
+}
+
+.draggableCard {
+  height: fit-content;
+  border-radius: $border-radius;
+  font-size: 1.5rem;
+  background-color: $color-bg;
+  box-shadow: none;
+  transition: all 0.2s;
+  cursor: grab;
 }

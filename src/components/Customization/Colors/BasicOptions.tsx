@@ -9,7 +9,8 @@ type Props = {};
 const BasicOptions = (props: Props) => {
   const { resume } = useContext(ResumeContext);
   const selected = resume?.settings.colors.basic.selected;
-  const selectedMulticolor = resume?.settings.colors.basic.multicolor!;
+  const { accent, multicolor: selectedMulticolor } =
+    resume?.settings.colors.basic!;
   const { selectOption } = useUpdateSettings();
 
   return (
@@ -22,7 +23,7 @@ const BasicOptions = (props: Props) => {
           className={`${style.option_accent} ${
             selected === 'accent' ? style.option__selected : ''
           }`}
-          style={{ background: 'red' }}
+          style={{ background: accent }}
         ></div>
         <p>Accent</p>
       </div>

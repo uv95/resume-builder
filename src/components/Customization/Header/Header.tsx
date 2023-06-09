@@ -8,6 +8,7 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Section from '../UI/Section';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from '../UI/SettingsButtons';
+import { IHeader } from '@/utils/types';
 
 const Header = () => {
   const { resume } = useContext(ResumeContext);
@@ -48,7 +49,8 @@ const Header = () => {
                 updateHeader({
                   additionalInfoOrder,
                   position,
-                  additionalInfoStyle: detailsStyle as 'icon' | 'bar',
+                  additionalInfoStyle:
+                    detailsStyle as IHeader['additionalInfoStyle'],
                 })
               }
             >

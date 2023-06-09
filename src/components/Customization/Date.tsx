@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
+import { IDate } from '@/utils/types';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
@@ -30,7 +31,7 @@ const Date = () => {
     if (updatedField === 'month') {
       updateDate({
         delimiter,
-        month: newVal as 'digits' | 'short' | 'long',
+        month: newVal as IDate['month'],
       });
     } else {
       updateDate({

@@ -7,6 +7,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import Section from '../UI/Section';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from '../UI/SettingsButtons';
+import { IHeading } from '@/utils/types';
 
 const Heading = () => {
   const { resume } = useContext(ResumeContext);
@@ -22,9 +23,7 @@ const Heading = () => {
       [updatedField]: newVal,
     });
 
-  const updateHeadingSetValues = (
-    style: 'box' | 'simple' | 'topBottomLine' | 'line'
-  ) => {
+  const updateHeadingSetValues = (style: IHeading['style']) => {
     updateHeading({ size, uppercase, style });
     setValues({ size, uppercase, style });
   };
@@ -93,9 +92,10 @@ const Heading = () => {
           type="checkbox"
           id="uppercase"
           checked={uppercase}
-          onChange={() =>
-            updateHeading({ size, uppercase: !uppercase, style: headingStyle })
-          }
+          onChange={() => {
+            updateHeading({ size, uppercase: !uppercase, style: headingStyle });
+            setValues({ size, uppercase: !uppercase, style: headingStyle });
+          }}
           className="checkboxInput"
         />
         <label htmlFor="uppercase">Uppercase</label>

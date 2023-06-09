@@ -83,6 +83,26 @@ function useUpdateSettings() {
     });
   };
 
+  const updateSectionsOrderDragAndDrop = ({
+    top,
+    left,
+    right,
+  }: {
+    top: string[];
+    left: string[];
+    right: string[];
+  }) =>
+    updateSettings({
+      variables: {
+        id: resume?.settings.id,
+        sectionsOrder: {
+          top,
+          left,
+          right,
+        },
+      },
+    });
+
   //position
   const updatePosition = (position: string, columns: number) => {
     return updateSettings({
@@ -288,6 +308,7 @@ function useUpdateSettings() {
     });
 
   return {
+    updateSectionsOrderDragAndDrop,
     updateColumns,
     updatePosition,
     addToSectionsOrder,
