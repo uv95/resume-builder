@@ -74,6 +74,15 @@
   opacity: 0.1;
 }
 
+.item {
+  margin-bottom: 1rem;
+}
+
+.content {
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem;
+}
+
 //skills & language settings
 .gridFormat,
 .levelFormat {
