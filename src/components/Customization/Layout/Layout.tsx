@@ -1,11 +1,16 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import {
+  addTransitionToAllCardsFrom,
+  allCardsAreDown,
+  allCardsAreUp,
   checkHoveredCardPosition,
   getIndexToPutCard,
   increasePaddingBottom,
   isDown,
   isUp,
+  moveAllCardsDown,
+  moveAllCardsUp,
   moveCardsIfDraggingOutside,
   moveDown,
   moveUp,
@@ -13,6 +18,7 @@ import {
   placeBackAllCardsFrom,
   removeTransitionFromAllCardsFrom,
   returnOpacityTo,
+  someCardsAreUp,
 } from '@/utils/dragAndDropUtilityFunctions';
 import { removeTypename } from '@/utils/removeTypename';
 import React, { DragEvent, useContext, useState } from 'react';
@@ -83,21 +89,16 @@ const Layout = () => {
       target.id !== 'right'
     ) {
       const hoveredCard = target.id;
-
       const currentColumnElement =
         columns[currentColumn as keyof typeof columns];
-
       const currentSectionsOrder =
         sectionsOrder[currentColumn as keyof typeof sectionsOrder];
-
       const hoveredCardIndex = (
         initialColumn === currentColumn
           ? initialSectionsOrder
           : currentSectionsOrder
       ).indexOf(hoveredCard);
-
       const initialCardIndex = initialSectionsOrder.indexOf(initialCard);
-
       const hoveredCardIs = (
         position: 'first' | 'next' | 'previous' | 'medium' | 'last'
       ) =>
@@ -108,6 +109,18 @@ const Layout = () => {
           hoveredCard,
           currentSectionsOrder,
         });
+
+      const addPaddingBottom = () =>
+        increasePaddingBottom({
+          sectionsOrder,
+          initialColumn,
+          currentColumn,
+          leftColumn: columns.left,
+          rightColumn: columns.right,
+          position,
+        });
+
+      //____________________LOGIC_________________________//
 
       if (initialCard === hoveredCard)
         placeBackAllCardsFrom(initialColumnElement);
@@ -122,12 +135,8 @@ const Layout = () => {
           columns.right.style.paddingBottom = '0';
         }
         if (
-          Array.from(initialColumnElement.children).every((el) =>
-            isUp(el as HTMLDivElement)
-          ) ||
-          (Array.from(initialColumnElement.children).some((el) =>
-            isUp(el as HTMLDivElement)
-          ) &&
+          allCardsAreUp(initialColumnElement) ||
+          (someCardsAreUp(initialColumnElement) &&
             previousColumn !== currentColumn)
         )
           placeBackAllCardsFrom(initialColumnElement);
@@ -141,55 +150,37 @@ const Layout = () => {
 
       ///if in another column
       if (initialColumn !== currentColumn) {
-        const addPaddingBottom = () =>
-          increasePaddingBottom({
-            sectionsOrder,
-            initialColumn,
-            currentColumn,
-            leftColumn: columns.left,
-            rightColumn: columns.right,
-            position,
-          });
         //initial column
         if (initialCardIndex === 0) {
           placeBackAllCardsFrom(initialColumnElement);
-
-          Array.from(initialColumnElement.children)
-            .filter((el) => el.id)
-            .forEach((el) => moveUp(el as HTMLDivElement));
+          moveAllCardsUp({ column: initialColumnElement });
         }
         if (initialCardIndex !== 0) placeBackAllCardsFrom(initialColumnElement);
 
         if (
           initialCardIndex !== 0 &&
           initialCardIndex !== initialSectionsOrder.length - 1
-        ) {
-          Array.from(initialColumnElement.children)
-            .filter((el) => el.id)
-            .slice(initialCardIndex + 1)
-            .forEach((el) => moveUp(el as HTMLDivElement));
-        }
+        )
+          moveAllCardsUp({
+            column: initialColumnElement,
+            sliceFromIndex: initialCardIndex + 1,
+          });
 
         //current column
         if (hoveredCardIs('first')) {
-          Array.from(currentColumnElement.children)
-            .filter((el) => el.id)
-            .every((el) => isDown(el as HTMLDivElement))
+          allCardsAreDown(currentColumnElement)
             ? placeBack(target)
-            : Array.from(currentColumnElement.children)
-                .filter((el) => el.id)
-                .forEach((el) => moveDown(el as HTMLDivElement));
+            : moveAllCardsDown({ column: currentColumnElement });
 
           addPaddingBottom();
         }
         if (hoveredCardIs('medium')) {
           if (isDown(target)) placeBack(target);
           else {
-            Array.from(currentColumnElement.children)
-              .filter((el) => el.id)
-              .slice(hoveredCardIndex)
-              .forEach((el) => moveDown(el as HTMLDivElement));
-
+            moveAllCardsDown({
+              column: currentColumnElement,
+              sliceFromIndex: hoveredCardIndex,
+            });
             addPaddingBottom();
           }
         }
@@ -210,13 +201,7 @@ const Layout = () => {
     e.stopPropagation();
 
     const target = e.target as HTMLDivElement;
-    if (!target.id) {
-      placeBackAllCardsFrom(initialColumnElement);
-      (
-        document.querySelector('#' + initialCard) as HTMLDivElement
-      ).style.opacity = '1';
-    }
-    if (target.id === initialCard) returnOpacityTo(initialCard);
+    if (!target.id) placeBackAllCardsFrom(initialColumnElement);
 
     setIsWithinDropArea(true);
 
@@ -267,8 +252,8 @@ const Layout = () => {
         columns.left.style.paddingBottom = '0';
         columns.right.style.paddingBottom = '0';
       }
-      returnOpacityTo(initialCard);
     }
+    returnOpacityTo(initialCard);
   };
 
   const dragEndHandler = (e: DragEvent<HTMLDivElement>) => {
@@ -276,9 +261,7 @@ const Layout = () => {
       placeBackAllCardsFrom(initialColumnElement);
       returnOpacityTo(initialCard);
     }
-    Array.from(initialColumnElement.children).forEach(
-      (el) => ((el as HTMLDivElement).style.transition = 'all 0.2s')
-    );
+    addTransitionToAllCardsFrom(initialColumnElement);
   };
 
   return (
@@ -307,4 +290,3 @@ const Layout = () => {
 };
 
 export default Layout;
-//309

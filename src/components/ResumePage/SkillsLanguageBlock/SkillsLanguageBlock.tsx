@@ -80,11 +80,11 @@ const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
                   style={itemStyle}
                   className={`${format === 'bubble' ? style.bubble : ''}`}
                 >
-                  <strong>
+                  <b>
                     {section === 'language'
                       ? item[section as keyof typeof item]
                       : item[section.slice(0, -1) as keyof typeof item]}
-                  </strong>
+                  </b>
                   {item.info && (
                     <p
                       style={{
@@ -120,6 +120,7 @@ const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
                             ]!
                       }
                       section={section}
+                      sectionPosition={sectionPosition}
                     />
                   )}
               </div>

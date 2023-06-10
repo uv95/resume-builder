@@ -22,6 +22,43 @@ export const placeBackAllCardsFrom = (column: HTMLDivElement) =>
     .filter((el) => el.id)
     .forEach((el) => placeBack(el as HTMLDivElement));
 
+export const moveAllCardsDown = ({
+  column,
+  sliceFromIndex = 0,
+}: {
+  column: HTMLDivElement;
+  sliceFromIndex?: number;
+}) =>
+  Array.from(column.children)
+    .filter((el) => el.id)
+    .slice(sliceFromIndex)
+    .forEach((el) => moveDown(el as HTMLDivElement));
+
+export const moveAllCardsUp = ({
+  column,
+  sliceFromIndex = 0,
+}: {
+  column: HTMLDivElement;
+  sliceFromIndex?: number;
+}) =>
+  Array.from(column.children)
+    .filter((el) => el.id)
+    .slice(sliceFromIndex)
+    .forEach((el) => moveUp(el as HTMLDivElement));
+
+export const allCardsAreDown = (column: HTMLDivElement) =>
+  Array.from(column.children)
+    .filter((el) => el.id)
+    .every((el) => isDown(el as HTMLDivElement));
+
+export const allCardsAreUp = (column: HTMLDivElement) =>
+  Array.from(column.children)
+    .filter((el) => el.id)
+    .every((el) => isUp(el as HTMLDivElement));
+
+export const someCardsAreUp = (column: HTMLDivElement) =>
+  Array.from(column.children).some((el) => isUp(el as HTMLDivElement));
+
 export const removeTransitionFromAllCardsFrom = (column: HTMLDivElement) =>
   Array.from(column.children).forEach(
     (el) => ((el as HTMLDivElement).style.transition = 'none')

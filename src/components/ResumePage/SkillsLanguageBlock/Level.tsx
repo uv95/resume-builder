@@ -2,9 +2,13 @@ import useSetColor from '@/hooks/useSetColor';
 import React from 'react';
 import style from '../Page.module.scss';
 
-type Props = { section: 'language' | 'skills'; level: string };
+type Props = {
+  section: 'language' | 'skills';
+  level: string;
+  sectionPosition?: 'left' | 'right';
+};
 
-const Level = ({ section, level }: Props) => {
+const Level = ({ section, level, sectionPosition }: Props) => {
   const { setColor } = useSetColor();
 
   const levels =
@@ -28,6 +32,7 @@ const Level = ({ section, level }: Props) => {
             background: setColor({
               section: 'dots',
               colorOf: 'font',
+              sectionPosition,
             }),
             opacity: i > levels.indexOf(level) ? 0.1 : 1,
           }}
