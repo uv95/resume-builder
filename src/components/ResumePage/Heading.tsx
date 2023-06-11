@@ -57,7 +57,6 @@ const Heading = ({ sectionPosition, title }: Props) => {
       </div>
       {headingStyle === 'line' && (
         <div
-          className={``}
           style={{
             width: '100%',
             height: '0.2rem',
@@ -66,7 +65,7 @@ const Heading = ({ sectionPosition, title }: Props) => {
               colorOf: 'font',
               sectionPosition,
             }),
-            marginTop: '-2px',
+            marginTop: '-1px',
             marginBottom: '1rem',
           }}
         ></div>

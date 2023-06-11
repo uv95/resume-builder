@@ -47,6 +47,20 @@ h5 {
   font-size: 1.3rem;
 }
 
+ul {
+  list-style-position: inside;
+}
+
+li::marker {
+  content: '';
+}
+
+li::before {
+  content: '●';
+  padding-right: 5px;
+  font-size: 80%;
+}
+
 input:not(input[type='checkbox']),
 select,
 textarea {

@@ -34,8 +34,6 @@ const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
 
   const itemStyle = {
     display: format === 'grid' || format === 'level' ? 'block' : 'flex',
-    marginBottom:
-      (format === 'level' || format === 'grid') && columns === 2 ? '1rem' : 0,
     background:
       format === 'bubble' && applyAccentColor.dots
         ? setColor({
@@ -74,8 +72,16 @@ const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
       {content && (
         <div style={containerStyle} className={`${style[format + 'Format']}`}>
           {content.map((item, i) => (
-            <div key={item.id}>
-              <div className="flex spaceBetween">
+            <div
+              key={item.id}
+              style={{
+                marginBottom:
+                  (format === 'level' || format === 'grid') && columns === 2
+                    ? '1rem'
+                    : 0,
+              }}
+            >
+              <div className="flex spaceBetween aligned">
                 <div
                   style={itemStyle}
                   className={`${format === 'bubble' ? style.bubble : ''}`}

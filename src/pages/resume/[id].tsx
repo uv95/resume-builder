@@ -2,12 +2,18 @@ import { addApolloState, initializeApollo } from '@/apollo';
 import Customization from '@/components/Customization/Customization';
 import Content from '@/components/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
-import ResumePage from '@/components/ResumePage/Page';
+import Page from '@/components/ResumePage/Page';
 import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useState } from 'react';
+import React, {
+  ForwardedRef,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import style from '../../styles/Resume.module.scss';
 import ResumeName from '@/components/ResumeName';
 
@@ -18,6 +24,8 @@ const Resume = (props: Props) => {
   const { id } = router.query;
   const { error, data } = useQuery(GET_RESUME, { variables: { id } });
   const { resume, setResume } = useContext(ResumeContext);
+
+  const componentRef = useRef<HTMLDivElement>(null);
 
   const [active, setActive] = useState('Content');
 
@@ -34,13 +42,17 @@ const Resume = (props: Props) => {
           <Navigation active={active} setActive={setActive} />
           <div className={style.mainPanel}>
             {data && (
-              <ResumeName resumeName={data.resume.name} id={data.resume.id} />
+              <ResumeName
+                resumeName={data.resume.name}
+                id={data.resume.id}
+                reactToPrintContent={() => componentRef.current}
+              />
             )}
             {active === 'Content' && <Content />}
             {active === 'Customize' && <Customization />}
           </div>
         </div>
-        <ResumePage />
+        <Page ref={componentRef} />
       </div>
     </main>
   );

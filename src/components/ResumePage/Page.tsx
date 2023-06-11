@@ -1,14 +1,20 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { IResumeArraySections } from '@/utils/types';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
 import style from './Page.module.scss';
 import PageOneColumn from './PageOneColumn';
 import PageTwoColumns from './PageTwoColumns';
 
-const Page = () => {
-  const ref = useRef<HTMLDivElement>(null);
+const Page = forwardRef(function Page(props, ref) {
+  const pageRef = useRef<HTMLDivElement>(null);
   const { resume } = useContext(ResumeContext);
   const font = resume?.settings.font.font!;
   const { setColor } = useSetColor();
@@ -30,12 +36,12 @@ const Page = () => {
 
   useEffect(() => {
     window.addEventListener('resize', () =>
-      setResumePageWidth(ref?.current ? ref.current.offsetWidth : 0)
+      setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth : 0)
     );
   });
 
   useEffect(() => {
-    ref.current && setResumePageWidth(ref.current.offsetWidth);
+    pageRef.current && setResumePageWidth(pageRef.current.offsetWidth);
   }, []);
 
   useEffect(() => {
@@ -60,8 +66,9 @@ const Page = () => {
   }, [resume]);
 
   return (
-    <div ref={ref} className={style.resume}>
+    <div id="resumePage" ref={pageRef} className={style.resume}>
       <div
+        ref={ref as React.RefObject<HTMLDivElement>}
         className={style.page}
         style={{
           transform: `scale(${resumePageWidth * 0.00126})`,
@@ -95,6 +102,6 @@ const Page = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Page;

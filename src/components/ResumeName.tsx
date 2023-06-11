@@ -6,12 +6,19 @@ import React, { useState } from 'react';
 import Button from './Button/Button';
 import Card from './Card/Card';
 import edit from '../icons/edit.svg';
-import download from '../icons/download.svg';
 import Image from 'next/image';
+import { useReactToPrint } from 'react-to-print';
 
-type Props = { resumeName: string; id: string };
+type Props = {
+  resumeName: string;
+  id: string;
+  reactToPrintContent: () => React.ReactInstance | null;
+};
 
-const ResumeName = ({ id, resumeName }: Props) => {
+const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
+  const handlePrint = useReactToPrint({
+    content: reactToPrintContent,
+  });
   const [isEdit, setIsEdit] = useState(false);
   const [updateResume] = useMutation(UPDATE_RESUME, {
     // update(cache, { data }) {
@@ -26,6 +33,8 @@ const ResumeName = ({ id, resumeName }: Props) => {
     //   });
     // },
   });
+
+  const printHandler = () => {};
 
   return isEdit ? (
     <Card>
@@ -61,15 +70,8 @@ const ResumeName = ({ id, resumeName }: Props) => {
           <h3>{resumeName}</h3>
           <Image src={edit} width="20" height="20" alt="edit" />
         </div>
-        <Button type="pink">
-          Download
-          <Image
-            src={download}
-            width="20"
-            height="20"
-            alt="edit"
-            style={{ filter: 'invert()', marginLeft: '0.5rem' }}
-          />
+        <Button type="pink" onClick={handlePrint}>
+          Print
         </Button>
       </div>
     </Card>
