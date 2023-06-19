@@ -56,6 +56,8 @@ function useDeleteMutations(name: string, resumeId: string) {
       (item) => name === item.sectionName
     )!;
 
+    console.log('im from function, itemid is', itemId);
+
     if (fn)
       return fn({
         variables: { id: itemId },
@@ -65,6 +67,8 @@ function useDeleteMutations(name: string, resumeId: string) {
             query: GET_RESUME,
             variables: { id: resumeId },
           })!;
+
+          console.log('from update, resumeid is', resumeId);
 
           //  ---update sections order---
           removeFromSectionsOrder(sectionName);

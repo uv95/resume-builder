@@ -1,9 +1,9 @@
-export const moveUp = (element: HTMLDivElement) => {
-  element.style.transform = 'translateY(-125%)';
+export const moveUp = (element: HTMLDivElement, percent: number) => {
+  element.style.transform = `translateY(-${percent}%)`;
   element.dataset.position = 'movedUp';
 };
-export const moveDown = (element: HTMLDivElement) => {
-  element.style.transform = 'translateY(125%)';
+export const moveDown = (element: HTMLDivElement, percent: number) => {
+  element.style.transform = `translateY(${percent}%)`;
   element.dataset.position = 'movedDown';
 };
 export const isUp = (element: HTMLDivElement) =>
@@ -25,26 +25,30 @@ export const placeBackAllCardsFrom = (column: HTMLDivElement) =>
 export const moveAllCardsDown = ({
   column,
   sliceFromIndex = 0,
+  percent,
 }: {
   column: HTMLDivElement;
   sliceFromIndex?: number;
+  percent: number;
 }) =>
   Array.from(column.children)
     .filter((el) => el.id)
     .slice(sliceFromIndex)
-    .forEach((el) => moveDown(el as HTMLDivElement));
+    .forEach((el) => moveDown(el as HTMLDivElement, percent));
 
 export const moveAllCardsUp = ({
   column,
   sliceFromIndex = 0,
+  percent,
 }: {
   column: HTMLDivElement;
   sliceFromIndex?: number;
+  percent: number;
 }) =>
   Array.from(column.children)
     .filter((el) => el.id)
     .slice(sliceFromIndex)
-    .forEach((el) => moveUp(el as HTMLDivElement));
+    .forEach((el) => moveUp(el as HTMLDivElement, percent));
 
 export const allCardsAreDown = (column: HTMLDivElement) =>
   Array.from(column.children)
@@ -69,7 +73,7 @@ export const addTransitionToAllCardsFrom = (column: HTMLDivElement) =>
   );
 
 export const returnOpacityTo = (card: string) =>
-  ((document.querySelector('#' + card) as HTMLDivElement).style.opacity = '1');
+  ((document.getElementById(card) as HTMLDivElement).style.opacity = '1');
 
 export const checkHoveredCardPosition = ({
   position,
@@ -97,7 +101,7 @@ export const checkHoveredCardPosition = ({
     );
 };
 
-export const moveCardsIfDraggingOutside = ({
+export const moveCardsIfDraggingOutside_Layout = ({
   target,
   sectionsOrder,
   initialColumn,
@@ -129,7 +133,7 @@ export const moveCardsIfDraggingOutside = ({
       Array.from(currentColumnElement.children)
         .filter((el) => el.id)
         .slice(currentColumn === 'top' ? 1 : 0)
-        .forEach((el) => moveUp(el as HTMLDivElement));
+        .forEach((el) => moveUp(el as HTMLDivElement, 125));
     }
     if (initialCardIndex === initialSectionsOrder.length - 1) {
       placeBackAllCardsFrom(currentColumnElement as HTMLDivElement);
@@ -144,7 +148,7 @@ export const moveCardsIfDraggingOutside = ({
 
       Array.from(currentColumnElement.children)
         .slice(initialCardIndex + 1)
-        .forEach((el) => moveUp(el as HTMLDivElement));
+        .forEach((el) => moveUp(el as HTMLDivElement, 125));
     }
     (currentColumn === 'left' || currentColumn === 'right') &&
       placeBackAllCardsFrom(

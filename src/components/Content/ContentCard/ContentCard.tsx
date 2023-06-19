@@ -85,7 +85,9 @@ const ContentCard = ({
             <List
               setContentToEdit={setContentToEdit}
               list={resumeData}
-              section={currentSection}
+              section={inputData.name}
+              currentSection={currentSection}
+              listId={`${inputData.name}-list`}
             />
             <div className="p-2 centered">
               <Button

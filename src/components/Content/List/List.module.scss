@@ -6,6 +6,18 @@
   list-style: none;
 }
 
+.listItem {
+  background: white;
+  transition: all 0.2s;
+  padding: 2rem;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    display: none;
+  }
+}
+
 .devider {
   width: 100%;
   height: 0.5rem;

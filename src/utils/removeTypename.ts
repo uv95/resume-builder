@@ -6,7 +6,7 @@ export const removeTypename = (object: Object | [] | null) => {
     .reduce((obj: any, key: string) => {
       const value = object[key as keyof typeof object] as any;
       let newobj;
-      if (typeof value === 'object') {
+      if (value !== null && typeof value === 'object') {
         newobj = value.hasOwnProperty('length')
           ? value.map(removeTypename)
           : removeTypename(value);

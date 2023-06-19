@@ -3,17 +3,20 @@ import { Dispatch } from 'react';
 export interface IResume {
   id: string;
   name: string;
-  content: {
-    education: IEducation[];
-    language: ILanguage[];
-    personalDetails: null | IPersonalDetails;
-    professionalExperience: IProfessionalExperience[];
-    profile: IProfile[];
-    project: IProject[];
-    skills: ISkills[];
-  };
+  content: IContent;
   settings: ISettings;
   __typename?: string;
+}
+
+interface IContent {
+  id: string;
+  education: IEducation[];
+  language: ILanguage[];
+  personalDetails: null | IPersonalDetails;
+  professionalExperience: IProfessionalExperience[];
+  profile: IProfile[];
+  project: IProject[];
+  skills: ISkills[];
 }
 
 export interface IBasicMulticolor {
@@ -162,19 +165,7 @@ export interface IEducation {
   startDate: string;
   endDate: string;
   description: string;
-  __typename?: string;
-}
-
-export interface ILanguage {
-  id: string;
-  language: string;
-  info: string;
-  languageLevel:
-    | 'Beginner (A1)'
-    | 'Elementary (A2)'
-    | 'Limited working proficiency (B1)'
-    | 'Highly proficient (B2-C1)'
-    | 'Native / full working proficiency (C2)';
+  index: number;
   __typename?: string;
 }
 
@@ -198,12 +189,14 @@ export interface IProfessionalExperience {
   startDate: string;
   endDate: string;
   description: string;
+  index: number;
   __typename?: string;
 }
 
 export interface IProfile {
   id: string;
   text: string;
+  index: number;
   __typename?: string;
 }
 
@@ -213,21 +206,48 @@ export interface IProject {
   startDate: string;
   endDate: string;
   description: string;
+  index: number;
   __typename?: string;
+}
+
+export interface ILanguage {
+  id: string;
+  language: string;
+  info: string;
+  languageLevel: LanguageLevel | string;
+  index: number;
+  __typename?: string;
+}
+export enum LanguageLevel {
+  beginner = 'Beginner (A1)',
+  elementary = 'Elementary (A2)',
+  limited = 'Limited working proficiency (B1)',
+  highlyProficient = 'Highly proficient (B2-C1)',
+  fullProficiency = 'Native / full working proficiency (C2)',
+  default = '',
 }
 
 export interface ISkills {
   id: string;
   skill: string;
   info: string;
-  skillLevel: 'Novice' | 'Beginner' | 'Skillful' | 'Experienced' | 'Expert';
+  skillLevel: SkillLevel | string;
+  index: number;
   __typename?: string;
+}
+
+export enum SkillLevel {
+  novice = 'Novice',
+  beginner = 'Beginner',
+  skillful = 'Skillful',
+  experienced = 'Experienced',
+  expert = 'Expert',
+  default = '',
 }
 
 export interface IAdditionalInfo {
   name: string;
   input: string;
-  __typename?: string;
 }
 
 export interface IResumePageState {

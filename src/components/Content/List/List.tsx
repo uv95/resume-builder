@@ -5,10 +5,13 @@ import {
   IProfile,
   IProject,
   ISkills,
+  LanguageLevel,
+  SkillLevel,
 } from '@/utils/types';
-import React from 'react';
+import React, { DragEvent } from 'react';
 import parse from 'html-react-parser';
 import style from './List.module.scss';
+import useContentDnD from '@/hooks/useContentDnD';
 
 type Props = {
   setContentToEdit: React.Dispatch<
@@ -24,23 +27,60 @@ type Props = {
     | IProject[]
     | ILanguage[]
     | IProfessionalExperience[];
+  currentSection: string;
   section: string;
+  listId: string;
 };
 
-const List = ({ setContentToEdit, section, list }: Props) => {
+const List = ({
+  setContentToEdit,
+  currentSection,
+  section,
+  list,
+  listId,
+}: Props) => {
+  const {
+    dragEnterHandler,
+    dropHandler,
+    dragEndHandler,
+    setInitialCard,
+    itemsOrder,
+  } = useContentDnD(section, list);
+
+  const dragStartHandlerListItem = (e: DragEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    const currentTarget = e.currentTarget as HTMLDivElement;
+    setInitialCard(currentTarget.id);
+    currentTarget.style.opacity = '0';
+  };
+
   return (
-    <ul className={style.list}>
-      {list.map((item: any) => (
-        <div key={item.id}>
-          <div className={style.devider}></div>
-          <li
-            className="p-2 pointer"
-            onClick={() => setContentToEdit({ section, itemId: item.id })}
-          >
-            {item.__typename === 'Education' && (
+    <ul
+      id={listId}
+      className={style.list}
+      onDragEnter={(e) => dragEnterHandler(e)}
+      onDrop={(e) => dropHandler(e)}
+      onDragOver={(e: DragEvent<HTMLUListElement>) => e.preventDefault()}
+      onDragEnd={(e) => dragEndHandler(e)}
+    >
+      <div className={style.devider}></div>
+      {itemsOrder.map((item: any) => (
+        <div
+          key={item.id}
+          onDragStart={(e) => dragStartHandlerListItem(e)}
+          id={item.id}
+          data-position="default"
+          draggable
+          style={{ transition: 'all 0.2s', cursor: 'pointer' }}
+          onClick={() =>
+            setContentToEdit({ section: currentSection, itemId: item.id })
+          }
+        >
+          <li className={style.listItem}>
+            {list[0].__typename === 'Education' && (
               <>
                 <div className={style.primary}>
-                  <strong>{item.degree}</strong>, <i>{item.school}</i>
+                  <b>{item.degree}</b>, <i>{item.school}</i>
                 </div>
                 <p className={style.secondary}>
                   {item.startDate.replaceAll('-', '/')} -{' '}
@@ -49,10 +89,10 @@ const List = ({ setContentToEdit, section, list }: Props) => {
                 </p>
               </>
             )}
-            {item.__typename === 'ProfessionalExperience' && (
+            {list[0].__typename === 'ProfessionalExperience' && (
               <>
                 <div className={style.primary}>
-                  <strong>{item.jobTitle}</strong>, <i>{item.employer}</i>
+                  <b>{item.jobTitle}</b>, <i>{item.employer}</i>
                 </div>
                 <p className={style.secondary}>
                   {item.startDate.replaceAll('-', '/')} -{' '}
@@ -61,18 +101,21 @@ const List = ({ setContentToEdit, section, list }: Props) => {
                 </p>
               </>
             )}
-            {item.__typename === 'Skills' && (
+            {list[0].__typename === 'Skills' && (
               <div className="flex gap-1 aligned">
                 <div className={style.primary}>
-                  <strong>{item.skill}</strong>
+                  <b>{item.skill}</b>
                 </div>
-                <p className={style.secondary}>{item.skillLevel}</p>
+                <p className={style.secondary}>
+                  {SkillLevel[item.skillLevel as keyof typeof SkillLevel] ||
+                    item.skillLevel}
+                </p>
               </div>
             )}
-            {item.__typename === 'Project' && (
+            {list[0].__typename === 'Project' && (
               <>
                 <div className={style.primary}>
-                  <strong>{item.title}</strong>
+                  <b>{item.title}</b>
                 </div>
                 <p className={style.secondary}>
                   {item.startDate.replaceAll('-', '/')} -{' '}
@@ -81,24 +124,27 @@ const List = ({ setContentToEdit, section, list }: Props) => {
               </>
             )}
 
-            {item.__typename === 'Profile' && (
+            {list[0].__typename === 'Profile' && (
               <>
                 <div className={style.primary}>{parse(item.text)}</div>
               </>
             )}
-            {item.__typename === 'Language' && (
+            {list[0].__typename === 'Language' && (
               <div className="flex gap-1 aligned">
                 <div className={style.primary}>
-                  <strong>{item.language}</strong>
+                  <b>{item.language}</b>
                 </div>
-                <p className={style.secondary}>{item.languageLevel}</p>
+                <p className={style.secondary}>
+                  {LanguageLevel[
+                    item.languageLevel as keyof typeof LanguageLevel
+                  ] || item.languageLevel}
+                </p>
               </div>
             )}
           </li>
+          <div className={style.devider}></div>
         </div>
       ))}
-
-      <div className={style.devider}></div>
     </ul>
   );
 };

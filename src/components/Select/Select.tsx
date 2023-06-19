@@ -1,17 +1,21 @@
+import { LanguageLevel, SkillLevel } from '@/utils/types';
 import { Field } from 'formik';
 import React from 'react';
 
-type Props = { input: any };
+type Props = { input: 'languageLevel' | 'skillLevel' };
 
 const Select = ({ input }: Props) => {
+  const options = input === 'languageLevel' ? LanguageLevel : SkillLevel;
   return (
-    <Field name={input.name} id={input.name} as="select">
+    <Field name={input} id={input} as="select">
       <option value="default"> --- Select level ---</option>
-      {input.options.map((option: { value: string; text: string }) => (
-        <option key={option.text} value={option.value}>
-          {option.text}
-        </option>
-      ))}
+      {Object.keys(options)
+        .filter((key) => key !== 'default')
+        .map((objKey) => (
+          <option key={objKey} value={objKey}>
+            {options[objKey as keyof typeof options]}
+          </option>
+        ))}
     </Field>
   );
 };

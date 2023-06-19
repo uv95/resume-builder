@@ -30,8 +30,8 @@ export const UPDATE_PERSONAL_DETAILS = gql`
   ${PERSONAL_DETAILS_FIELDS}
   mutation updatePersonalDetails(
     $id: ID!
-    $fullName: String
-    $jobTitle: String
+    $fullName: String!
+    $jobTitle: String!
     $email: String
     $phone: String
     $address: String

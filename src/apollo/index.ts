@@ -15,7 +15,7 @@ function createApolloClient() {
     uri: 'http://localhost:8000/graphql',
     cache: new InMemoryCache({
       typePolicies: {
-        Resume: {
+        Content: {
           fields: {
             personalDetails: {
               merge(existing, incoming) {

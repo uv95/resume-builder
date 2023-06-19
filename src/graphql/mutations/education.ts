@@ -11,6 +11,7 @@ export const ADD_EDUCATION = gql`
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
     $resumeId: ID!
   ) {
     addEducation(
@@ -21,6 +22,7 @@ export const ADD_EDUCATION = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
       resumeId: $resumeId
     ) {
       ...EducationFields
@@ -39,6 +41,7 @@ export const UPDATE_EDUCATION = gql`
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
   ) {
     updateEducation(
       id: $id
@@ -49,7 +52,17 @@ export const UPDATE_EDUCATION = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
     ) {
+      ...EducationFields
+    }
+  }
+`;
+
+export const UPDATE_ALL_EDUCATIONS = gql`
+  ${EDUCATION_FIELDS}
+  mutation updateAllEducations($items: [EducationTypeAll]) {
+    updateAllEducations(items: $items) {
       ...EducationFields
     }
   }

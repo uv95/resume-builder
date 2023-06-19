@@ -53,7 +53,9 @@ function useUpdateSettings() {
 
   const removeFromSectionsOrder = (sectionName: string) => {
     const content = resume?.content!;
-    const sectionLength = content[sectionName as keyof typeof content]!.length;
+    const sectionLength =
+      //@ts-ignore
+      content[sectionName as keyof typeof content]!.length;
 
     let newSectionsOrderTop = resume?.settings.sectionsOrder.top!;
     let newSectionsOrderLeft = resume?.settings.sectionsOrder.left!;

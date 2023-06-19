@@ -23,6 +23,7 @@ export const EDUCATION_FIELDS = gql`
     startDate
     endDate
     description
+    index
     id
   }
 `;
@@ -31,6 +32,7 @@ export const LANGUAGE_FIELDS = gql`
     language
     info
     languageLevel
+    index
     id
   }
 `;
@@ -43,6 +45,7 @@ export const PROFESSIONAL_EXPERIENCE_FIELDS = gql`
     startDate
     endDate
     description
+    index
     id
   }
 `;
@@ -52,6 +55,7 @@ export const PROJECT_FIELDS = gql`
     startDate
     endDate
     description
+    index
     id
   }
 `;
@@ -60,6 +64,7 @@ export const SKILLS_FIELDS = gql`
     skill
     info
     skillLevel
+    index
     id
   }
 `;
@@ -72,6 +77,7 @@ export const CONTENT_FIELDS = gql`
   ${PROJECT_FIELDS}
   ${SKILLS_FIELDS}
   fragment ContentFields on Content {
+    id
     personalDetails {
       ...PersonalDetailsFields
     }
@@ -87,6 +93,7 @@ export const CONTENT_FIELDS = gql`
     profile {
       id
       text
+      index
     }
     education {
       ...EducationFields

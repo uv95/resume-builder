@@ -8,6 +8,7 @@ export const ADD_PROJECT = gql`
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
     $resumeId: ID!
   ) {
     addProject(
@@ -15,6 +16,7 @@ export const ADD_PROJECT = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
       resumeId: $resumeId
     ) {
       ...ProjectFields
@@ -26,10 +28,11 @@ export const UPDATE_PROJECT = gql`
   ${PROJECT_FIELDS}
   mutation updateProject(
     $id: ID!
-    $title: String
+    $title: String!
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
   ) {
     updateProject(
       id: $id
@@ -37,7 +40,17 @@ export const UPDATE_PROJECT = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
     ) {
+      ...ProjectFields
+    }
+  }
+`;
+
+export const UPDATE_ALL_PROJECTS = gql`
+  ${PROJECT_FIELDS}
+  mutation updateAllSkills($items: [ProjectTypeAll]) {
+    updateAllProjects(items: $items) {
       ...ProjectFields
     }
   }

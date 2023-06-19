@@ -11,6 +11,7 @@ export const ADD_PROFESSIONAL_EXPERIENCE = gql`
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
     $resumeId: ID!
   ) {
     addProfessionalExperience(
@@ -21,6 +22,7 @@ export const ADD_PROFESSIONAL_EXPERIENCE = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
       resumeId: $resumeId
     ) {
       ...ProfessionalExperienceFields
@@ -32,13 +34,14 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
   ${PROFESSIONAL_EXPERIENCE_FIELDS}
   mutation updateProfessionalExperience(
     $id: ID!
-    $jobTitle: String
+    $jobTitle: String!
     $employer: String
     $city: String
     $country: String
     $startDate: String
     $endDate: String
     $description: String
+    $index: Int
   ) {
     updateProfessionalExperience(
       id: $id
@@ -49,7 +52,19 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
       startDate: $startDate
       endDate: $endDate
       description: $description
+      index: $index
     ) {
+      ...ProfessionalExperienceFields
+    }
+  }
+`;
+
+export const UPDATE_ALL_PROFESSIONAL_EXPERIENCE = gql`
+  ${PROFESSIONAL_EXPERIENCE_FIELDS}
+  mutation updateAllProfessionalExperience(
+    $items: [ProfessionalExperienceTypeAll]
+  ) {
+    updateAllProfessionalExperience(items: $items) {
       ...ProfessionalExperienceFields
     }
   }
