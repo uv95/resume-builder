@@ -14,9 +14,7 @@ import ProfileSettings from './ProfileSettings';
 import EducationSettings from './EducationSettings';
 import ProfessionalExperienceSettings from './ProfessionalExperienceSettings';
 
-type Props = {};
-
-const Customization = (props: Props) => {
+const Customization = () => {
   return (
     <>
       <Layout />

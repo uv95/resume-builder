@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
-import { IResumeArraySections } from '@/utils/types';
+import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import React, {
   forwardRef,
   useContext,
@@ -12,6 +12,7 @@ import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
 import style from './Page.module.scss';
 import PageOneColumn from './PageOneColumn';
 import PageTwoColumns from './PageTwoColumns';
+import { ColorOf, Position } from '@/utils/types/settingsTypes';
 
 const Page = forwardRef(function Page(props, ref) {
   const pageRef = useRef<HTMLDivElement>(null);
@@ -73,22 +74,28 @@ const Page = forwardRef(function Page(props, ref) {
         style={{
           transform: `scale(${resumePageWidth * 0.00126})`,
           background: setColor({
-            colorOf: 'background',
+            colorOf: ColorOf.BG,
           }),
           fontSize,
           lineHeight,
           display:
-            resume?.settings.layout.position === 'top' ? 'flex' : 'block',
+            resume?.settings.layout.position === Position.TOP
+              ? 'flex'
+              : 'block',
           flexDirection:
-            resume?.settings.layout.position === 'top' ? 'column' : 'initial',
+            resume?.settings.layout.position === Position.TOP
+              ? 'column'
+              : 'initial',
           fontFamily: font,
         }}
       >
-        {resume?.settings.layout.position === 'top' && <PersonalDetailsBlock />}
+        {resume?.settings.layout.position === Position.TOP && (
+          <PersonalDetailsBlock />
+        )}
 
         {resume && columns === 1 && (
           <PageOneColumn
-            sections={resume.settings.sectionsOrder.top}
+            sections={resume.settings.sectionsOrder.top as Sections[]}
             resumeArraySections={resumeArraySections}
           />
         )}

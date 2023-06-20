@@ -1,13 +1,13 @@
 import { formatLevelProp } from './formatLevelProp';
 import { removeTypename } from './removeTypename';
-import { IResume } from './types';
+import { IResume, Sections } from './types/resumeTypes';
 
 export const getInitialValues = (
   inputData: any,
   resume: IResume,
   itemId: string
 ) => {
-  if (inputData.name === 'personalDetails') {
+  if (inputData.name === Sections.PERSONAL_DETAILS) {
     if (resume.content.personalDetails) {
       const personalDetails = {
         ...resume.content.personalDetails,
@@ -31,14 +31,14 @@ export const getInitialValues = (
     currentSection.find((item: any) => item.id === itemId)
   );
   if (currentItem) {
-    if (inputData.name === 'skills')
+    if (inputData.name === Sections.SKILLS)
       currentItem.skillLevel = formatLevelProp({
-        section: 'skills',
+        section: Sections.SKILLS,
         item: currentItem,
       });
     if (inputData.name === 'language')
       currentItem.languageLevel = formatLevelProp({
-        section: 'language',
+        section: Sections.LANGUAGE,
         item: currentItem,
       });
 

@@ -6,7 +6,7 @@ import style from './Colors.module.scss';
 
 type Props = {};
 
-const Mode = (props: Props) => {
+const ModeComponent = (props: Props) => {
   const { resume } = useContext(ResumeContext);
   const mode = resume?.settings.colors.mode;
   const { updateMode } = useUpdateSettings();
@@ -34,4 +34,4 @@ const Mode = (props: Props) => {
   );
 };
 
-export default Mode;
+export default ModeComponent;

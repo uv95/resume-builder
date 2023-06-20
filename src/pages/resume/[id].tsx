@@ -7,13 +7,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import React, {
-  ForwardedRef,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
 import ResumeName from '@/components/ResumeName';
 

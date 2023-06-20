@@ -6,15 +6,12 @@ import React, { useContext } from 'react';
 import DraggableCard from './DraggableCard';
 import style from './Layout.module.scss';
 import user from '../../../icons/user.svg';
+import { Position } from '@/utils/types/settingsTypes';
 
 type Props = {
-  setInitialColumn: React.Dispatch<
-    React.SetStateAction<'right' | 'left' | 'top' | undefined>
-  >;
-  setPreviousColumn: React.Dispatch<
-    React.SetStateAction<'right' | 'left' | 'top' | undefined>
-  >;
-  previousColumn: 'right' | 'left' | 'top' | undefined;
+  setInitialColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
+  setPreviousColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
+  previousColumn: Position | undefined;
   setInitialCard: React.Dispatch<React.SetStateAction<string>>;
   initialCard: string;
   sectionsOrder: any;
@@ -35,8 +32,8 @@ const RearrangeSections = ({
       <h5 className="mb-1">Rearrange sections</h5>
 
       {/* TOP / 1 column */}
-      {position === 'top' && (
-        <div id={'top'} className="flex-column gap-1">
+      {position === Position.TOP && (
+        <div id={Position.TOP} className="flex-column gap-1">
           <Card gray>
             <div className="p-2 centered">
               <Image src={user} width="20" height="20" alt="icon" />
@@ -55,7 +52,7 @@ const RearrangeSections = ({
                 previousColumn={previousColumn}
                 setInitialCard={setInitialCard}
                 initialCard={initialCard}
-                column="top"
+                column={Position.TOP}
               />
             ))}
         </div>
@@ -64,8 +61,8 @@ const RearrangeSections = ({
       {/* 2 columns */}
       {columns === 2 && (
         <div id="columnsArea" className={style.rearrangeSections}>
-          <div id={'left'} className={style.rearrangeSections_column}>
-            {position === 'left' && (
+          <div id={Position.LEFT} className={style.rearrangeSections_column}>
+            {position === Position.LEFT && (
               <Card gray>
                 <div className="p-2 centered">
                   <Image src={user} width="20" height="20" alt="icon" />
@@ -78,7 +75,7 @@ const RearrangeSections = ({
                 section={section}
                 sectionsOrder={sectionsOrder.left}
                 icon={getSectionIcon(section)}
-                column="left"
+                column={Position.LEFT}
                 setInitialColumn={setInitialColumn}
                 setInitialCard={setInitialCard}
                 initialCard={initialCard}
@@ -88,8 +85,8 @@ const RearrangeSections = ({
             ))}
           </div>
 
-          <div id={'right'} className={style.rearrangeSections_column}>
-            {position === 'right' && (
+          <div id={Position.RIGHT} className={style.rearrangeSections_column}>
+            {position === Position.RIGHT && (
               <Card gray>
                 <div className="p-2 centered">
                   <Image src={user} width="20" height="20" alt="icon" />
@@ -102,7 +99,7 @@ const RearrangeSections = ({
                 section={section}
                 sectionsOrder={sectionsOrder.right}
                 icon={getSectionIcon(section)}
-                column="right"
+                column={Position.RIGHT}
                 setInitialColumn={setInitialColumn}
                 setInitialCard={setInitialCard}
                 initialCard={initialCard}

@@ -1,12 +1,18 @@
+import { FontType } from './types/settingsTypes';
+
 export const fonts: {
-  type: 'serif' | 'sans';
+  type: FontType;
   title: 'Serif' | 'Sans';
   fonts: string[];
 }[] = [
   {
-    type: 'serif',
+    type: FontType.SERIF,
     title: 'Serif',
     fonts: ['Times New Roman', 'Georgia', 'EB Garamond'],
   },
-  { type: 'sans', title: 'Sans', fonts: ['Arial', 'Open Sans', 'Roboto'] },
+  {
+    type: FontType.SANS,
+    title: 'Sans',
+    fonts: ['Arial', 'Open Sans', 'Roboto'],
+  },
 ];

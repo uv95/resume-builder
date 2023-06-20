@@ -3,26 +3,13 @@ import * as dnd from '@/utils/dragAndDropUtilityFunctions';
 import { formatLevelProp } from '@/utils/formatLevelProp';
 import { removeTypename } from '@/utils/removeTypename';
 import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-} from '@/utils/types';
+  IterableSectionsArraysType,
+  Sections,
+} from '@/utils/types/resumeTypes';
 import { DragEvent, useContext, useEffect, useState } from 'react';
 import useUpdateMutations from './useUpdateMutations';
 
-function useContentDnD(
-  section: string,
-  list:
-    | IEducation[]
-    | ISkills[]
-    | IProfile[]
-    | IProject[]
-    | ILanguage[]
-    | IProfessionalExperience[]
-) {
+function useContentDnD(section: Sections, list: IterableSectionsArraysType) {
   const { resume } = useContext(ResumeContext);
   const updateContent = useUpdateMutations({
     section,
@@ -104,24 +91,18 @@ function useContentDnD(
       indexToPutCard,
       0,
       //@ts-ignore
-      itemsOrder.find((item: any) => item.id === initialCard) as
-        | IEducation
-        | ILanguage
-        | IProfessionalExperience
-        | IProfile
-        | IProject
-        | ISkills
+      itemsOrder.find((item: any) => item.id === initialCard)
     );
     const newItemsOrder = newItemsIdOrder.map((item: any, index: number) => {
       const modifiedItem = removeTypename(item);
-      if (section === 'language')
+      if (section === Sections.LANGUAGE)
         modifiedItem.languageLevel = formatLevelProp({
-          section: 'language',
+          section: Sections.LANGUAGE,
           item: modifiedItem,
         });
-      if (section === 'skills')
+      if (section === Sections.SKILLS)
         modifiedItem.skillLevel = formatLevelProp({
-          section: 'skills',
+          section: Sections.SKILLS,
           item: modifiedItem,
         });
       modifiedItem.index = index;

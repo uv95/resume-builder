@@ -6,9 +6,7 @@ import React, { useContext } from 'react';
 import SettingsCard from '../UI/SettingsCard';
 import style from './Font.module.scss';
 
-type Props = {};
-
-const Font = (props: Props) => {
+const Font = () => {
   const { resume } = useContext(ResumeContext);
   const { type: currentType, font: currentFont } = resume?.settings.font!;
   const { updateFont } = useUpdateSettings();

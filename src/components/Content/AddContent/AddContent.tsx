@@ -1,4 +1,5 @@
 import { contentCards } from '@/utils/data';
+import { Sections } from '@/utils/types/resumeTypes';
 import React from 'react';
 import Card from '../../Card/Card';
 import style from './AddContent.module.scss';
@@ -6,7 +7,7 @@ import style from './AddContent.module.scss';
 type Props = {
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;
@@ -21,7 +22,10 @@ const AddContent = ({ setContentToEdit, setOpen }: Props) => {
           <div
             className="p-2 pointer"
             onClick={() => {
-              setContentToEdit((prev) => ({ itemId: '', section: card.name }));
+              setContentToEdit((prev) => ({
+                itemId: '',
+                section: card.name as Sections,
+              }));
               setOpen(false);
             }}
           >

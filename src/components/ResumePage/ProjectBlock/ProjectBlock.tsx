@@ -3,9 +3,10 @@ import React, { useContext } from 'react';
 import Dates from '../Dates';
 import parse from 'html-react-parser';
 import style from '../Page.module.scss';
+import { Position } from '@/utils/types/settingsTypes';
 
 type Props = {
-  sectionPosition?: 'left' | 'right';
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const ProjectBlock = ({ sectionPosition }: Props) => {

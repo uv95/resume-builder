@@ -5,12 +5,13 @@ import style from './InputsSection.module.scss';
 import save from '../../../icons/check.svg';
 import trash from '../../../icons/trash.svg';
 import { FetchResult } from '@apollo/client';
+import { Sections } from '@/utils/types/resumeTypes';
 
 type Props = {
   inputData: any;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;
@@ -30,7 +31,7 @@ const Buttons = ({
 }: Props) => {
   return (
     <div className={style.buttons}>
-      {inputData.name !== 'personalDetails' && (
+      {inputData.name !== Sections.PERSONAL_DETAILS && (
         <Button
           type="white"
           bold

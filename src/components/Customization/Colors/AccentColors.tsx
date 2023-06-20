@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { colors } from '@/utils/colors';
+import { Mode } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from './Colors.module.scss';
 
@@ -16,8 +17,8 @@ const AccentColors = () => {
         <div
           onClick={() => updateAccentColor(color, mode)}
           className={`${style.accentColor} ${
-            (mode === 'basic' && accentBasic === color) ||
-            (mode === 'advanced' && accentAdvanced === color)
+            (mode === Mode.BASIC && accentBasic === color) ||
+            (mode === Mode.ADVANCED && accentAdvanced === color)
               ? style.accentColor_selected
               : ''
           }`}

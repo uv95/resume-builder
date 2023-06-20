@@ -5,9 +5,7 @@ import { removeTypename } from '@/utils/removeTypename';
 import React, { useContext, useEffect } from 'react';
 import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';
 
-type Props = {};
-
-const PersonalDetailsAdditionalInfo = ({}: Props) => {
+const PersonalDetailsAdditionalInfo = () => {
   const { setAdditionalInfo } = useContext(AdditionalInfoContext);
   const { resume } = useContext(ResumeContext);
 

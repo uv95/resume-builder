@@ -1,7 +1,9 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
+import { Sections } from '@/utils/types/resumeTypes';
 import {
+  ColorOption,
   IAdvancedMulticolor,
   IBasicMulticolor,
   IDate,
@@ -15,7 +17,10 @@ import {
   IProfileSettings,
   ISkillsLanguageSettings,
   ISubtitle,
-} from '@/utils/types';
+  Mode,
+  Position,
+  SpacingSections,
+} from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
@@ -24,7 +29,7 @@ function useUpdateSettings() {
   const { resume } = useContext(ResumeContext);
 
   //sectionsOrder
-  const addToSectionsOrder = (sectionName: string) => {
+  const addToSectionsOrder = (sectionName: Sections) => {
     const { left, right, top } = resume?.settings.sectionsOrder!;
     const newSectionsOrderTop = top.includes(sectionName)
       ? top
@@ -51,25 +56,27 @@ function useUpdateSettings() {
     });
   };
 
-  const removeFromSectionsOrder = (sectionName: string) => {
+  const removeFromSectionsOrder = (sectionName: Sections) => {
     const content = resume?.content!;
     const sectionLength =
       //@ts-ignore
       content[sectionName as keyof typeof content]!.length;
 
-    let newSectionsOrderTop = resume?.settings.sectionsOrder.top!;
-    let newSectionsOrderLeft = resume?.settings.sectionsOrder.left!;
-    let newSectionsOrderRight = resume?.settings.sectionsOrder.right!;
+    let newSectionsOrderTop = resume?.settings.sectionsOrder.top! as Sections[];
+    let newSectionsOrderLeft = resume?.settings.sectionsOrder
+      .left! as Sections[];
+    let newSectionsOrderRight = resume?.settings.sectionsOrder
+      .right! as Sections[];
 
     if (sectionLength === 1) {
       newSectionsOrderTop = newSectionsOrderTop.filter(
-        (section: string) => section !== sectionName
+        (section: Sections) => section !== sectionName
       );
       newSectionsOrderRight = newSectionsOrderRight.filter(
-        (section: string) => section !== sectionName
+        (section: Sections) => section !== sectionName
       );
       newSectionsOrderLeft = newSectionsOrderLeft.filter(
-        (section: string) => section !== sectionName
+        (section: Sections) => section !== sectionName
       );
     }
 
@@ -90,9 +97,9 @@ function useUpdateSettings() {
     left,
     right,
   }: {
-    top: string[];
-    left: string[];
-    right: string[];
+    top: Sections[];
+    left: Sections[];
+    right: Sections[];
   }) =>
     updateSettings({
       variables: {
@@ -106,7 +113,7 @@ function useUpdateSettings() {
     });
 
   //position
-  const updatePosition = (position: string, columns: number) => {
+  const updatePosition = (position: Position, columns: number) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
@@ -120,7 +127,7 @@ function useUpdateSettings() {
   };
 
   //columns
-  const updateColumns = (columns: number) => {
+  const updateColumns = (columns: 1 | 2) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
@@ -131,7 +138,7 @@ function useUpdateSettings() {
 
   //Colors
   //mode
-  const updateMode = (mode: 'basic' | 'advanced') => {
+  const updateMode = (mode: Mode) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
@@ -141,10 +148,7 @@ function useUpdateSettings() {
   };
 
   //option: basic/advanced
-  const selectOption = (
-    option: 'accent' | 'multicolor',
-    mode: 'basic' | 'advanced'
-  ) => {
+  const selectOption = (option: ColorOption, mode: Mode) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
@@ -160,7 +164,7 @@ function useUpdateSettings() {
   };
 
   //update accent color
-  const updateAccentColor = (accent: string, mode: 'basic' | 'advanced') => {
+  const updateAccentColor = (accent: string, mode: Mode) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,
@@ -175,7 +179,7 @@ function useUpdateSettings() {
   //update multicolor
   const updateMulticolor = (
     multicolor: IAdvancedMulticolor | IBasicMulticolor,
-    mode: 'basic' | 'advanced'
+    mode: Mode
   ) => {
     return updateSettings({
       variables: {
@@ -191,15 +195,7 @@ function useUpdateSettings() {
     });
   };
 
-  const updateSpacing = (
-    section:
-      | 'fontSize'
-      | 'lineHeight'
-      | 'leftRightMargin'
-      | 'topBottomMargin'
-      | 'spaceBetweenSections',
-    value: number
-  ) => {
+  const updateSpacing = (section: SpacingSections, value: number) => {
     return updateSettings({
       variables: {
         id: resume?.settings.id,

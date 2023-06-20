@@ -1,26 +1,30 @@
 import useSetColor from '@/hooks/useSetColor';
+import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
+import { Sections } from '@/utils/types/resumeTypes';
+import {
+  AccentColorSections,
+  ColorOf,
+  Position,
+} from '@/utils/types/settingsTypes';
 import React from 'react';
 import style from '../Page.module.scss';
 
 type Props = {
-  section: 'language' | 'skills';
-  level: string;
-  sectionPosition?: 'left' | 'right';
+  section: Sections.LANGUAGE | Sections.SKILLS;
+  level: LanguageLevel | SkillLevel;
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const Level = ({ section, level, sectionPosition }: Props) => {
   const { setColor } = useSetColor();
 
   const levels =
-    section === 'language'
-      ? [
-          'Beginner (A1)',
-          'Elementary (A2)',
-          'Limited working proficiency (B1)',
-          'Highly proficient (B2-C1)',
-          'Native / full working proficiency (C2)',
-        ]
-      : ['Novice', 'Beginner', 'Skillful', 'Experienced', 'Expert'];
+    section === Sections.LANGUAGE
+      ? Object.values(LanguageLevel).filter((level) => level !== '')
+      : Object.values(SkillLevel).filter((level) => level !== '');
+
+  //@ts-ignore
+  const numericLevel: number = levels.indexOf(level);
 
   return (
     <div className={style.level}>
@@ -30,11 +34,11 @@ const Level = ({ section, level, sectionPosition }: Props) => {
           className={style.levelBubble}
           style={{
             background: setColor({
-              section: 'dots',
-              colorOf: 'font',
+              section: AccentColorSections.DOTS,
+              colorOf: ColorOf.FONT,
               sectionPosition,
             }),
-            opacity: i > levels.indexOf(level) ? 0.1 : 1,
+            opacity: i > numericLevel ? 0.1 : 1,
           }}
         ></div>
       ))}

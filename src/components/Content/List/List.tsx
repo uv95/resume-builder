@@ -1,34 +1,23 @@
 import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-  LanguageLevel,
-  SkillLevel,
-} from '@/utils/types';
+  IterableSectionsArraysType,
+  Sections,
+} from '@/utils/types/resumeTypes';
 import React, { DragEvent } from 'react';
 import parse from 'html-react-parser';
 import style from './List.module.scss';
 import useContentDnD from '@/hooks/useContentDnD';
+import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
 
 type Props = {
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;
-  list:
-    | IEducation[]
-    | ISkills[]
-    | IProfile[]
-    | IProject[]
-    | ILanguage[]
-    | IProfessionalExperience[];
-  currentSection: string;
-  section: string;
+  list: IterableSectionsArraysType;
+  currentSection: Sections | '';
+  section: Sections;
   listId: string;
 };
 
@@ -77,7 +66,7 @@ const List = ({
           }
         >
           <li className={style.listItem}>
-            {list[0].__typename === 'Education' && (
+            {section === Sections.EDUCATION && (
               <>
                 <div className={style.primary}>
                   <b>{item.degree}</b>, <i>{item.school}</i>
@@ -89,7 +78,7 @@ const List = ({
                 </p>
               </>
             )}
-            {list[0].__typename === 'ProfessionalExperience' && (
+            {section === Sections.PROFESSIONAL_EXPERIENCE && (
               <>
                 <div className={style.primary}>
                   <b>{item.jobTitle}</b>, <i>{item.employer}</i>
@@ -101,7 +90,7 @@ const List = ({
                 </p>
               </>
             )}
-            {list[0].__typename === 'Skills' && (
+            {section === Sections.SKILLS && (
               <div className="flex gap-1 aligned">
                 <div className={style.primary}>
                   <b>{item.skill}</b>
@@ -112,7 +101,7 @@ const List = ({
                 </p>
               </div>
             )}
-            {list[0].__typename === 'Project' && (
+            {section === Sections.PROJECT && (
               <>
                 <div className={style.primary}>
                   <b>{item.title}</b>
@@ -124,12 +113,12 @@ const List = ({
               </>
             )}
 
-            {list[0].__typename === 'Profile' && (
+            {section === Sections.PROFILE && (
               <>
                 <div className={style.primary}>{parse(item.text)}</div>
               </>
             )}
-            {list[0].__typename === 'Language' && (
+            {section === Sections.LANGUAGE && (
               <div className="flex gap-1 aligned">
                 <div className={style.primary}>
                   <b>{item.language}</b>

@@ -2,11 +2,12 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { camelCaseToString } from '@/utils/camelCaseToString';
 import { removeTypename } from '@/utils/removeTypename';
+import { Format, TextFormat } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import Section from '../UI/Section';
 import SettingsButtons from '../UI/SettingsButtons';
 import SettingsCard from '../UI/SettingsCard';
-import GridCols from './GridCols';
+import GridColsComponent from './GridColsComponent';
 
 type Props = { section: 'skills' | 'language' };
 
@@ -34,7 +35,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
   return (
     <SettingsCard title={camelCaseToString(section)}>
       <SettingsButtons
-        options={['grid', 'level', 'text', 'bubble']}
+        options={Object.values(Format)}
         updatedField="format"
         allValues={values}
         setValues={setValues}
@@ -42,11 +43,15 @@ const SkillsLanguageSettings = ({ section }: Props) => {
         hasNoTitle
       />
       {values.format === 'grid' && (
-        <GridCols section={section} setValues={setValues} values={values} />
+        <GridColsComponent
+          section={section}
+          setValues={setValues}
+          values={values}
+        />
       )}
       {values.format === 'text' && (
         <SettingsButtons
-          options={['bullet', 'pipe', 'wrap']}
+          options={Object.values(TextFormat)}
           updatedField="textFormat"
           allValues={values}
           setValues={setValues}

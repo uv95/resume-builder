@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
-import { IResumeArraySections } from '@/utils/types';
+import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
+import { ColorOf, Position } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from './Page.module.scss';
 import PageSection from './PageSection';
@@ -14,8 +15,8 @@ type Props = {
 const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
   const { resume } = useContext(ResumeContext);
   const { position } = resume?.settings.layout!;
-  const { left: leftSections, right: rightSections } =
-    resume?.settings.sectionsOrder!;
+  const { left: leftSections, right: rightSections } = resume?.settings
+    .sectionsOrder! as { left: Sections[]; right: Sections[] };
   const { leftRightMargin, topBottomMargin } = resume?.settings.spacing!;
 
   const { setColor } = useSetColor();
@@ -23,12 +24,12 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
   const leftSectionsStyle = {
     width: `${columnWidth.left}%`,
     background: setColor({
-      colorOf: 'background',
-      sectionPosition: 'left',
+      colorOf: ColorOf.BG,
+      sectionPosition: Position.LEFT,
     }),
     paddingLeft: leftRightMargin + 'mm',
-    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : '1.5rem',
-    paddingRight: position === 'top' ? 0 : leftRightMargin + 'mm',
+    paddingTop: position !== Position.TOP ? topBottomMargin + 'mm' : '1.5rem',
+    paddingRight: position === Position.TOP ? 0 : leftRightMargin + 'mm',
     paddingBottom: topBottomMargin + 'mm',
     overflow: 'hidden', //temporary
   };
@@ -36,12 +37,12 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
   const rightSectionsStyle = {
     width: `${columnWidth.right}%`,
     background: setColor({
-      colorOf: 'background',
-      sectionPosition: 'right',
+      colorOf: ColorOf.BG,
+      sectionPosition: Position.RIGHT,
     }),
-    paddingTop: position !== 'top' ? topBottomMargin + 'mm' : '1.5rem',
+    paddingTop: position !== Position.TOP ? topBottomMargin + 'mm' : '1.5rem',
     paddingRight: leftRightMargin + 'mm',
-    paddingLeft: position === 'top' ? 0 : leftRightMargin + 'mm',
+    paddingLeft: position === Position.TOP ? 0 : leftRightMargin + 'mm',
     paddingBottom: topBottomMargin + 'mm',
     overflow: 'hidden', //temporary
   };
@@ -49,25 +50,25 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
   return (
     <div
       className={style.twoColumns}
-      style={{ gap: position === 'top' ? '3rem' : '0' }}
+      style={{ gap: position === Position.TOP ? '3rem' : '0' }}
     >
       <div style={leftSectionsStyle}>
-        {position === 'left' && <PersonalDetailsBlock />}
+        {position === Position.LEFT && <PersonalDetailsBlock />}
         {leftSections.map((section) => (
           <PageSection
             key={section}
-            sectionPosition="left"
+            sectionPosition={Position.LEFT}
             section={section}
             resumeArraySections={resumeArraySections}
           />
         ))}
       </div>
       <div style={rightSectionsStyle}>
-        {position === 'right' && <PersonalDetailsBlock />}
+        {position === Position.RIGHT && <PersonalDetailsBlock />}
         {rightSections.map((section) => (
           <PageSection
             key={section}
-            sectionPosition="right"
+            sectionPosition={Position.RIGHT}
             section={section}
             resumeArraySections={resumeArraySections}
           />

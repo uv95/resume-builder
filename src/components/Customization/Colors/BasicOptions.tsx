@@ -3,10 +3,9 @@ import React, { useContext } from 'react';
 import style from './Colors.module.scss';
 import BasicMulticolorIcon from './BasicMulticolorIcon';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 
-type Props = {};
-
-const BasicOptions = (props: Props) => {
+const BasicOptions = () => {
   const { resume } = useContext(ResumeContext);
   const selected = resume?.settings.colors.basic.selected;
   const { accent, multicolor: selectedMulticolor } =
@@ -17,11 +16,11 @@ const BasicOptions = (props: Props) => {
     <div className="flex">
       <div
         className={style.option}
-        onClick={() => selectOption('accent', 'basic')}
+        onClick={() => selectOption(ColorOption.ACCENT, Mode.BASIC)}
       >
         <div
           className={`${style.option_accent} ${
-            selected === 'accent' ? style.option__selected : ''
+            selected === ColorOption.ACCENT ? style.option__selected : ''
           }`}
           style={{ background: accent }}
         ></div>
@@ -29,7 +28,7 @@ const BasicOptions = (props: Props) => {
       </div>
       <div
         className={style.option}
-        onClick={() => selectOption('multicolor', 'basic')}
+        onClick={() => selectOption(ColorOption.MULTICOLOR, Mode.BASIC)}
       >
         <BasicMulticolorIcon
           optionSelected={selected === 'multicolor'}

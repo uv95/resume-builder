@@ -1,5 +1,5 @@
 import { inputData } from '@/utils/data';
-import { IResumeArraySections } from '@/utils/types';
+import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import React, { useContext } from 'react';
 import EducationBlock from './EducationBlock/EducationBlock';
 import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/ProfessionalExperienceBlock';
@@ -10,11 +10,12 @@ import style from './Page.module.scss';
 import useSetColor from '@/hooks/useSetColor';
 import { ResumeContext } from '@/context/ResumeContext';
 import Heading from './Heading';
+import { ColorOf, Position } from '@/utils/types/settingsTypes';
 
 type Props = {
-  section: string;
+  section: Sections;
   resumeArraySections: IResumeArraySections;
-  sectionPosition?: 'left' | 'right';
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const PageSection = ({
@@ -34,7 +35,8 @@ const PageSection = ({
     >
       {resumeArraySections[section as keyof typeof resumeArraySections]
         .length !== 0 &&
-        (section !== 'profile' || (section === 'profile' && showHeading)) && (
+        (section !== Sections.PROFILE ||
+          (section === Sections.PROFILE && showHeading)) && (
           <Heading
             sectionPosition={sectionPosition}
             title={inputData[section as keyof typeof inputData].title}
@@ -43,34 +45,34 @@ const PageSection = ({
       <div
         style={{
           background: setColor({
-            colorOf: 'background',
+            colorOf: ColorOf.BG,
             sectionPosition,
           }),
           color: setColor({
-            colorOf: 'font',
+            colorOf: ColorOf.FONT,
             sectionPosition,
           }),
         }}
       >
-        {section === 'skills' && (
+        {section === Sections.SKILLS && (
           <SkillsLanguageBlock
-            section="skills"
+            section={Sections.SKILLS}
             sectionPosition={sectionPosition}
           />
         )}
-        {section === 'education' && (
+        {section === Sections.EDUCATION && (
           <EducationBlock sectionPosition={sectionPosition} />
         )}
-        {section === 'profile' && <ProfileBlock />}
-        {section === 'project' && (
+        {section === Sections.PROFILE && <ProfileBlock />}
+        {section === Sections.PROJECT && (
           <ProjectBlock sectionPosition={sectionPosition} />
         )}
-        {section === 'professionalExperience' && (
+        {section === Sections.PROFESSIONAL_EXPERIENCE && (
           <ProfessionalExperienceBlock sectionPosition={sectionPosition} />
         )}
-        {section === 'language' && (
+        {section === Sections.LANGUAGE && (
           <SkillsLanguageBlock
-            section="language"
+            section={Sections.LANGUAGE}
             sectionPosition={sectionPosition}
           />
         )}

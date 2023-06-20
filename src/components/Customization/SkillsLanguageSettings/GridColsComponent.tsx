@@ -1,6 +1,6 @@
 import Button from '@/components/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { ISkillsLanguageSettings } from '@/utils/types';
+import { GridCols, ISkillsLanguageSettings } from '@/utils/types/settingsTypes';
 import React from 'react';
 import style from './SkillsLanguageSettings.module.scss';
 
@@ -10,12 +10,12 @@ type Props = {
   section: 'skills' | 'language';
 };
 
-const GridCols = ({ setValues, values, section }: Props) => {
+const GridColsComponent = ({ setValues, values, section }: Props) => {
   const { updateSkillsSettings, updateLanguageSettings } = useUpdateSettings();
 
   return (
     <div className="flex">
-      {['one', 'two', 'three', 'four'].map((col, i) => (
+      {Object.values(GridCols).map((col, i) => (
         <Button
           key={col}
           classes={`${style.button} ${
@@ -26,16 +26,16 @@ const GridCols = ({ setValues, values, section }: Props) => {
           onClick={() => {
             setValues({
               ...values,
-              gridCols: col as ISkillsLanguageSettings['gridCols'],
+              gridCols: col,
             });
             section === 'language'
               ? updateLanguageSettings({
                   ...values,
-                  gridCols: col as ISkillsLanguageSettings['gridCols'],
+                  gridCols: col,
                 })
               : updateSkillsSettings({
                   ...values,
-                  gridCols: col as ISkillsLanguageSettings['gridCols'],
+                  gridCols: col,
                 });
           }}
         >
@@ -50,4 +50,4 @@ const GridCols = ({ setValues, values, section }: Props) => {
   );
 };
 
-export default GridCols;
+export default GridColsComponent;

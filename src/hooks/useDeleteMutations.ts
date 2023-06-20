@@ -6,18 +6,11 @@ import { DELETE_PROFILE } from '@/graphql/mutations/profile';
 import { DELETE_PROJECT } from '@/graphql/mutations/project';
 import { DELETE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-} from '@/utils/types';
+import { ArraySectionsType, Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 
-function useDeleteMutations(name: string, resumeId: string) {
+function useDeleteMutations(section: Sections, resumeId: string) {
   const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
   const [deleteEducation] = useMutation(DELETE_EDUCATION);
   const [deleteLanguage] = useMutation(DELETE_LANGUAGE);
@@ -32,31 +25,41 @@ function useDeleteMutations(name: string, resumeId: string) {
 
   const deleteFunctions = [
     {
-      sectionName: 'personalDetails',
+      sectionName: Sections.PERSONAL_DETAILS,
       fn: deletePersonalDetails,
       fnName: 'deletePersonalDetails',
     },
     {
-      sectionName: 'education',
+      sectionName: Sections.EDUCATION,
       fn: deleteEducation,
       fnName: 'deleteEducation',
     },
-    { sectionName: 'language', fn: deleteLanguage, fnName: 'deleteLanguage' },
     {
-      sectionName: 'professionalExperience',
+      sectionName: Sections.LANGUAGE,
+      fn: deleteLanguage,
+      fnName: 'deleteLanguage',
+    },
+    {
+      sectionName: Sections.PROFESSIONAL_EXPERIENCE,
       fn: deleteProfessionalExperience,
       fnName: 'deleteProfessionalExperience',
     },
-    { sectionName: 'profile', fn: deleteProfile, fnName: 'deleteProfile' },
-    { sectionName: 'project', fn: deleteProject, fnName: 'deleteProject' },
-    { sectionName: 'skills', fn: deleteSkill, fnName: 'deleteSkill' },
+    {
+      sectionName: Sections.PROFILE,
+      fn: deleteProfile,
+      fnName: 'deleteProfile',
+    },
+    {
+      sectionName: Sections.PROJECT,
+      fn: deleteProject,
+      fnName: 'deleteProject',
+    },
+    { sectionName: Sections.SKILLS, fn: deleteSkill, fnName: 'deleteSkill' },
   ];
   const deleteContent = (itemId: string) => {
     const { fn, fnName, sectionName } = deleteFunctions.find(
-      (item) => name === item.sectionName
+      (item) => section === item.sectionName
     )!;
-
-    console.log('im from function, itemid is', itemId);
 
     if (fn)
       return fn({
@@ -67,8 +70,6 @@ function useDeleteMutations(name: string, resumeId: string) {
             query: GET_RESUME,
             variables: { id: resumeId },
           })!;
-
-          console.log('from update, resumeid is', resumeId);
 
           //  ---update sections order---
           removeFromSectionsOrder(sectionName);
@@ -82,15 +83,7 @@ function useDeleteMutations(name: string, resumeId: string) {
                 content: {
                   ...resume.content,
                   [sectionName]: resume.content[sectionName].filter(
-                    (
-                      item:
-                        | Partial<IEducation>
-                        | Partial<ISkills>
-                        | Partial<IProfile>
-                        | Partial<IProject>
-                        | Partial<ILanguage>
-                        | Partial<IProfessionalExperience>
-                    ) => item.id !== deletedData.id
+                    (item: ArraySectionsType) => item.id !== deletedData.id
                   ),
                 },
               },

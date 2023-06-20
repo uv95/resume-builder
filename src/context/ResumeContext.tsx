@@ -1,4 +1,4 @@
-import { IResume } from '@/utils/types';
+import { IResume } from '@/utils/types/resumeTypes';
 import React, { createContext, useState } from 'react';
 
 interface IResumeContext {

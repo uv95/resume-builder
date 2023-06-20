@@ -3,9 +3,14 @@ import React, { useContext } from 'react';
 import Dates from '../Dates';
 import parse from 'html-react-parser';
 import style from '../Page.module.scss';
+import {
+  FontStyle,
+  Position,
+  SubtitlePosition,
+} from '@/utils/types/settingsTypes';
 
 type Props = {
-  sectionPosition?: 'left' | 'right';
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
@@ -17,7 +22,7 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
   const content = resume?.content.professionalExperience;
 
   const subtitlePositionStyle = {
-    display: position === 'sameLine' ? 'inline' : 'block',
+    display: position === SubtitlePosition.SAME_LINE ? 'inline' : 'block',
   };
   const contentStyle = { display: columns === 1 ? 'grid' : 'block' };
 
@@ -45,18 +50,22 @@ const ProfessionalExperienceBlock = ({ sectionPosition }: Props) => {
               <div>
                 <b style={subtitlePositionStyle}>
                   {jobTitleFirst ? item.jobTitle : item.employer}
-                  {position === 'sameLine' && ', '}
+                  {position === SubtitlePosition.SAME_LINE && ', '}
                 </b>
 
                 <p
                   style={{
-                    fontWeight: subtitleStyle === 'bold' ? 'bold' : 'normal',
-                    fontStyle: subtitleStyle === 'italic' ? 'italic' : 'normal',
+                    fontWeight:
+                      subtitleStyle === FontStyle.BOLD ? 'bold' : 'normal',
+                    fontStyle:
+                      subtitleStyle === FontStyle.ITALIC ? 'italic' : 'normal',
                     ...subtitlePositionStyle,
                   }}
                 >
                   {jobTitleFirst ? item.employer : item.jobTitle}
-                  {position === 'sameLine' && !jobTitleFirst && ', '}
+                  {position === SubtitlePosition.SAME_LINE &&
+                    !jobTitleFirst &&
+                    ', '}
                 </p>
                 {columns === 2 && (
                   <div>

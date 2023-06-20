@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
-import { IDate } from '@/utils/types';
+import { Delimiter, Month } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
@@ -17,21 +17,21 @@ const Date = () => {
     switch (
       updatedField === 'month' ? resume?.settings.date.delimiter : newVal
     ) {
-      case '/ Slash':
+      case Delimiter.SLASH:
         updatedField === 'month' ? (delimiter = 'slash') : (newVal = 'slash');
         break;
-      case '- Hyphen':
+      case Delimiter.HYPHEN:
         updatedField === 'month' ? (delimiter = 'hyphen') : (newVal = 'hyphen');
 
         break;
-      case '. Dot':
+      case Delimiter.DOT:
         updatedField === 'month' ? (delimiter = 'dot') : (newVal = 'dot');
     }
 
     if (updatedField === 'month') {
       updateDate({
         delimiter,
-        month: newVal as IDate['month'],
+        month: newVal as Month,
       });
     } else {
       updateDate({
@@ -44,7 +44,7 @@ const Date = () => {
   return (
     <SettingsCard title="Date">
       <SettingsButtons
-        options={['digits', 'short', 'long']}
+        options={Object.values(Month)}
         updatedField="month"
         allValues={values}
         setValues={setValues}
@@ -52,7 +52,7 @@ const Date = () => {
       />
       {values.month === 'digits' && (
         <SettingsButtons
-          options={['/ Slash', '- Hyphen', '. Dot']}
+          options={Object.values(Delimiter)}
           updatedField="delimiter"
           allValues={values}
           setValues={setValues}

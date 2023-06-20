@@ -22,13 +22,10 @@ import {
 import { UPDATE_ALL_SKILLS, UPDATE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-} from '@/utils/types';
+  ArraySectionsType,
+  IterableSectionsArraysType,
+  Sections,
+} from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 
 function useUpdateMutations({
@@ -36,7 +33,7 @@ function useUpdateMutations({
   updateAll,
   resumeId,
 }: {
-  section: string;
+  section: Sections;
   updateAll?: boolean;
   resumeId: string;
 }) {
@@ -65,22 +62,22 @@ function useUpdateMutations({
 
   const updateFunctions = [
     {
-      sectionName: 'personalDetails',
+      sectionName: Sections.PERSONAL_DETAILS,
       fn: updatePersonalDetails,
       fnName: 'updatePersonalDetails',
     },
     {
-      sectionName: 'education',
+      sectionName: Sections.EDUCATION,
       fn: updateAll ? updateAllEducations : updateEducation,
       fnName: updateAll ? 'updateAllEducations' : 'updateEducation',
     },
     {
-      sectionName: 'language',
+      sectionName: Sections.LANGUAGE,
       fn: updateAll ? updateAllLanguages : updateLanguage,
       fnName: updateAll ? 'updateAllLanguages' : 'updateLanguage',
     },
     {
-      sectionName: 'professionalExperience',
+      sectionName: Sections.PROFESSIONAL_EXPERIENCE,
       fn: updateAll
         ? updateAllProfessionalExperience
         : updateProfessionalExperience,
@@ -89,37 +86,26 @@ function useUpdateMutations({
         : 'updateProfessionalExperience',
     },
     {
-      sectionName: 'profile',
+      sectionName: Sections.PROFILE,
       fn: updateAll ? updateAllProfiles : updateProfile,
       fnName: updateAll ? 'updateAllProfiles' : 'updateProfile',
     },
     {
-      sectionName: 'project',
+      sectionName: Sections.PROJECT,
       fn: updateAll ? updateAllProjects : updateProject,
       fnName: updateAll ? 'updateAllProjects' : 'updateProject',
     },
     {
-      sectionName: 'skills',
+      sectionName: Sections.SKILLS,
       fn: updateAll ? updateAllSkills : updateSkill,
       fnName: updateAll ? 'updateAllSkills' : 'updateSkill',
     },
   ];
   const updateContent = (
     variables:
-      | IEducation
-      | ISkills
-      | IProfile
-      | IProject
-      | ILanguage
-      | IProfessionalExperience
+      | ArraySectionsType
       | {
-          items:
-            | IEducation[]
-            | ISkills[]
-            | IProfile[]
-            | IProject[]
-            | ILanguage[]
-            | IProfessionalExperience[];
+          items: IterableSectionsArraysType;
         }
   ) => {
     const { fn, fnName } = updateFunctions.find(
@@ -137,15 +123,7 @@ function useUpdateMutations({
           })!;
 
           if (!updateAll) {
-            const itemId = (
-              variables as
-                | IEducation
-                | ISkills
-                | IProfile
-                | IProject
-                | ILanguage
-                | IProfessionalExperience
-            ).id;
+            const itemId = (variables as ArraySectionsType).id;
 
             cache.writeQuery({
               query: GET_RESUME,
@@ -154,11 +132,14 @@ function useUpdateMutations({
                   ...resume,
                   content: {
                     ...resume.content,
-                    [section]: [
-                      ...resume.content[section].map((item: any) =>
-                        item.id === itemId ? newData : item
-                      ),
-                    ],
+                    [section]:
+                      section === Sections.PERSONAL_DETAILS
+                        ? newData
+                        : [
+                            ...resume.content[section].map((item: any) =>
+                              item.id === itemId ? newData : item
+                            ),
+                          ],
                   },
                 },
               },

@@ -1,4 +1,4 @@
-import { LanguageLevel, SkillLevel } from '@/utils/types';
+import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
 import { Field } from 'formik';
 import React from 'react';
 

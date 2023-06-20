@@ -6,7 +6,7 @@ type Props = { text: string; onClick: () => void };
 const Tag = ({ text, onClick }: Props) => {
   return (
     <div className={style.tag} onClick={onClick}>
-      <strong>+</strong>
+      <b>+</b>
       <p>{text}</p>
     </div>
   );

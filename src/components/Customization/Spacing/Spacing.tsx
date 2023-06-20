@@ -4,9 +4,7 @@ import React, { useContext } from 'react';
 import SettingsCard from '../UI/SettingsCard';
 import Bar from './Bar';
 
-type Props = {};
-
-const Spacing = (props: Props) => {
+const Spacing = () => {
   const { resume } = useContext(ResumeContext);
   const spacing = resume?.settings.spacing!;
   return (
@@ -15,14 +13,7 @@ const Spacing = (props: Props) => {
         <Bar
           key={item.name}
           sectionTitle={item.title}
-          sectionName={
-            item.name as
-              | 'fontSize'
-              | 'lineHeight'
-              | 'leftRightMargin'
-              | 'topBottomMargin'
-              | 'spaceBetweenSections'
-          }
+          sectionName={item.name}
           currentValue={spacing[item.name as keyof typeof spacing]}
           values={item.values}
         />

@@ -1,17 +1,31 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import {
+  ILanguage,
+  ISkills,
+  LanguageLevel,
+  SkillLevel,
+} from '@/utils/types/contentTypes';
+import { Sections } from '@/utils/types/resumeTypes';
+import {
+  AccentColorSections,
+  ColorOf,
+  Format,
+  Position,
+  TextFormat,
+} from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from '../Page.module.scss';
 import Level from './Level';
 
 type Props = {
-  section: 'language' | 'skills';
-  sectionPosition?: 'left' | 'right';
+  section: Sections.LANGUAGE | Sections.SKILLS;
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
   const { resume } = useContext(ResumeContext);
-  const content = resume?.content[section];
+  const content = resume?.content[section] as ISkills[] | ILanguage[];
 
   const { format, textFormat, gridCols, infoItalic } =
     resume?.settings[section]!;
@@ -21,122 +35,119 @@ const SkillsLanguageBlock = ({ section, sectionPosition }: Props) => {
 
   const containerStyle = {
     gridTemplateColumns: `repeat(${
-      format === 'grid'
+      format === Format.GRID
         ? ['one', 'two', 'three', 'four'].indexOf(gridCols) + 1
         : 2
     }, 1fr)`,
     display:
-      format === 'level' || format === 'grid'
+      format === Format.LEVEL || format === Format.GRID
         ? columns === 2
           ? 'block'
-          : 'grid'
+          : Format.GRID
         : 'flex',
   };
 
   const itemStyle = {
-    display: format === 'grid' || format === 'level' ? 'block' : 'flex',
+    display:
+      format === Format.GRID || format === Format.LEVEL ? 'block' : 'flex',
     background:
-      format === 'bubble' && applyAccentColor.dots
+      format === Format.BUBBLE && applyAccentColor.dots
         ? setColor({
-            section: 'dots',
-            colorOf: 'font',
+            section: AccentColorSections.DOTS,
+            colorOf: ColorOf.FONT,
             sectionPosition,
           })
         : 'inherit',
     color:
-      format === 'bubble' && applyAccentColor.dots
-        ? position !== 'top' && position === sectionPosition
+      format === Format.BUBBLE && applyAccentColor.dots
+        ? position !== Position.TOP && position === sectionPosition
           ? setColor({
-              colorOf: 'background',
+              colorOf: ColorOf.BG,
               sectionPosition,
             })
           : '#ffffff'
         : 'inherit',
     border:
-      format === 'bubble'
+      format === Format.BUBBLE
         ? `1px solid ${setColor({
-            section: 'dots',
-            colorOf: 'font',
+            section: AccentColorSections.DOTS,
+            colorOf: ColorOf.FONT,
             sectionPosition,
           })}`
         : 0,
   };
 
   const getDivider = () => {
-    if (textFormat === 'bullet') return '  ● ';
-    if (textFormat === 'pipe') return '  | ';
-    if (textFormat === 'wrap') return ',';
+    if (textFormat === TextFormat.BULLET) return '  ● ';
+    if (textFormat === TextFormat.PIPE) return '  | ';
+    if (textFormat === TextFormat.WRAP) return ',';
   };
 
   return (
     <>
       {content && (
         <div style={containerStyle} className={`${style[format + 'Format']}`}>
-          {content
-            // .sort((a, b) => a.index - b.index)
-            .map((item, i) => (
-              <div
-                key={item.id}
-                style={{
-                  marginBottom:
-                    (format === 'level' || format === 'grid') && columns === 2
-                      ? '1rem'
-                      : 0,
-                }}
-              >
-                <div className="flex spaceBetween aligned">
-                  <div
-                    style={itemStyle}
-                    className={`${format === 'bubble' ? style.bubble : ''}`}
-                  >
-                    <b>
-                      {section === 'language'
-                        ? item[section as keyof typeof item]
-                        : item[section.slice(0, -1) as keyof typeof item]}
-                    </b>
-                    {item.info && (
-                      <p
-                        style={{
-                          marginLeft:
-                            format === 'text' || format === 'bubble'
-                              ? '0.5rem'
-                              : 0,
-                          fontStyle: infoItalic ? 'italic' : 'normal',
-                        }}
-                      >
-                        {format === 'grid' || format === 'level'
-                          ? item.info
-                          : `(${item.info})`}
-                      </p>
-                    )}
-                    {format === 'text' &&
-                      content.length - 1 !== i &&
-                      getDivider()}
-                  </div>
-                  {format === 'level' &&
-                    (section === 'language'
-                      ? item[(section + 'Level') as keyof typeof item]
-                      : item[
-                          (section.slice(0, -1) + 'Level') as keyof typeof item
-                        ]) && (
-                      <Level
-                        level={
-                          section === 'language'
-                            ? (item[
-                                (section + 'Level') as keyof typeof item
-                              ]! as string)
-                            : (item[
-                                (section.slice(0, -1) +
-                                  'Level') as keyof typeof item
-                              ]! as string)
-                        }
-                        section={section}
-                        sectionPosition={sectionPosition}
-                      />
-                    )}
+          {content.map((item, i) => (
+            <div
+              key={item.id}
+              style={{
+                marginBottom:
+                  (format === Format.LEVEL || format === Format.GRID) &&
+                  columns === 2
+                    ? '1rem'
+                    : 0,
+              }}
+            >
+              <div className="flex spaceBetween aligned">
+                <div
+                  style={itemStyle}
+                  className={`${format === Format.BUBBLE ? style.bubble : ''}`}
+                >
+                  <b>
+                    {section === Sections.LANGUAGE
+                      ? item['language' as keyof typeof item]
+                      : item['skill' as keyof typeof item]}
+                  </b>
+                  {item.info && (
+                    <p
+                      style={{
+                        marginLeft:
+                          format === Format.TEXT || format === Format.BUBBLE
+                            ? '0.5rem'
+                            : 0,
+                        fontStyle: infoItalic ? 'italic' : 'normal',
+                      }}
+                    >
+                      {format === Format.GRID || format === Format.LEVEL
+                        ? item.info
+                        : `(${item.info})`}
+                    </p>
+                  )}
+                  {format === Format.TEXT &&
+                    content.length - 1 !== i &&
+                    getDivider()}
                 </div>
+                {format === Format.LEVEL &&
+                  (section === Sections.LANGUAGE
+                    ? item['languageLevel' as keyof typeof item]
+                    : item['skillLevel' as keyof typeof item]) && (
+                    <Level
+                      level={
+                        section === Sections.LANGUAGE
+                          ? (item[
+                              'languageLevel' as keyof typeof item
+                            ] as LanguageLevel)
+                          : (item[
+                              'skillLevel' as keyof typeof item
+                            ] as SkillLevel)
+                      }
+                      section={section}
+                      sectionPosition={sectionPosition}
+                    />
+                  )}
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       )}
     </>

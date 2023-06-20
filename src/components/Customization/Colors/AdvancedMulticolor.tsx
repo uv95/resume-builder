@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { colors } from '@/utils/colors';
-import { IAdvancedMulticolor } from '@/utils/types';
+import { IAdvancedMulticolor } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 

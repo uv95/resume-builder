@@ -7,18 +7,19 @@ import InputsSection from '../InputsSection/InputsSection';
 import List from '../List/List';
 import arrow from '../../../icons/arrowDown.svg';
 import style from './ContentCard.module.scss';
+import { Sections } from '@/utils/types/resumeTypes';
 
 type Props = {
   inputData: any;
   resumeData: any;
   contentToEdit: {
-    section: string;
+    section: Sections | '';
     itemId: string;
   };
   icon: string;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;

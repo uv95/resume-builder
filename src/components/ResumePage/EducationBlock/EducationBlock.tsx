@@ -3,9 +3,14 @@ import React, { useContext } from 'react';
 import Dates from '../Dates';
 import parse from 'html-react-parser';
 import style from '../Page.module.scss';
+import {
+  FontStyle,
+  Position,
+  SubtitlePosition,
+} from '@/utils/types/settingsTypes';
 
 type Props = {
-  sectionPosition?: 'left' | 'right';
+  sectionPosition?: Position.LEFT | Position.RIGHT;
 };
 
 const EducationBlock = ({ sectionPosition }: Props) => {
@@ -17,7 +22,7 @@ const EducationBlock = ({ sectionPosition }: Props) => {
   const { date } = resume?.settings!;
 
   const subtitlePositionStyle = {
-    display: position === 'sameLine' ? 'inline' : 'block',
+    display: position === SubtitlePosition.SAME_LINE ? 'inline' : 'block',
   };
   const contentStyle = { display: columns === 1 ? 'grid' : 'block' };
 
@@ -45,19 +50,23 @@ const EducationBlock = ({ sectionPosition }: Props) => {
               <div>
                 <b style={subtitlePositionStyle}>
                   {degreeFirst ? item.degree : item.school}
-                  {position === 'sameLine' && ', '}
+                  {position === SubtitlePosition.SAME_LINE && ', '}
                 </b>
 
                 <p
                   style={{
-                    fontWeight: subtitleStyle === 'bold' ? 'bold' : 'normal',
-                    fontStyle: subtitleStyle === 'italic' ? 'italic' : 'normal',
+                    fontWeight:
+                      subtitleStyle === FontStyle.BOLD ? 'bold' : 'normal',
+                    fontStyle:
+                      subtitleStyle === FontStyle.ITALIC ? 'italic' : 'normal',
                     ...subtitlePositionStyle,
                   }}
                 >
                   {degreeFirst ? item.school : item.degree}
 
-                  {position === 'sameLine' && !degreeFirst && ', '}
+                  {position === SubtitlePosition.SAME_LINE &&
+                    !degreeFirst &&
+                    ', '}
                 </p>
               </div>
             </div>

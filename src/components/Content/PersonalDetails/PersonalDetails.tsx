@@ -9,16 +9,17 @@ import phoneIcon from '../../../icons/phone_regular.svg';
 import location from '../../../icons/location_regular.svg';
 import edit from '../../../icons/edit.svg';
 import Image from 'next/image';
+import { Sections } from '@/utils/types/resumeTypes';
 
 type Props = {
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;
   contentToEdit: {
-    section: string;
+    section: Sections | '';
     itemId: string;
   };
 };
@@ -41,7 +42,7 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
           onClick={() =>
             setContentToEdit((prev) => ({
               ...prev,
-              section: 'personalDetails',
+              section: Sections.PERSONAL_DETAILS,
             }))
           }
         >
@@ -57,7 +58,7 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
               onClick={() =>
                 setContentToEdit((prev) => ({
                   ...prev,
-                  section: 'personalDetails',
+                  section: Sections.PERSONAL_DETAILS,
                 }))
               }
             />

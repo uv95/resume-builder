@@ -1,5 +1,5 @@
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { IBasicMulticolor } from '@/utils/types';
+import { IBasicMulticolor, Mode } from '@/utils/types/settingsTypes';
 import React from 'react';
 import style from './Colors.module.scss';
 
@@ -15,7 +15,7 @@ const BasicMulticolorIcon = ({ color, optionSelected, isOption }: Props) => {
   return (
     <div
       className={style.multicolorIcon}
-      onClick={() => !isOption && updateMulticolor(color, 'basic')}
+      onClick={() => !isOption && updateMulticolor(color, Mode.BASIC)}
     >
       <div
         className={`${style.option_multicolor} ${

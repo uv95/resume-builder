@@ -1,11 +1,16 @@
 import useSetColor from '@/hooks/useSetColor';
-import { IDate } from '@/utils/types';
+import {
+  AccentColorSections,
+  ColorOf,
+  IDate,
+  Position,
+} from '@/utils/types/settingsTypes';
 import React from 'react';
 
 type Props = {
   startDate: string;
   endDate: string;
-  sectionPosition?: 'left' | 'right';
+  sectionPosition?: Position.LEFT | Position.RIGHT;
   format: IDate;
 };
 
@@ -28,8 +33,8 @@ const Dates = ({ startDate, endDate, sectionPosition, format }: Props) => {
       className="flex"
       style={{
         color: setColor({
-          section: 'dates',
-          colorOf: 'font',
+          section: AccentColorSections.DATES,
+          colorOf: ColorOf.FONT,
           sectionPosition,
         }),
       }}

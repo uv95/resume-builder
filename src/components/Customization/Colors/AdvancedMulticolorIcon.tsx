@@ -1,5 +1,5 @@
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { IAdvancedMulticolor } from '@/utils/types';
+import { IAdvancedMulticolor, Mode } from '@/utils/types/settingsTypes';
 import React from 'react';
 import style from './Colors.module.scss';
 
@@ -16,7 +16,7 @@ const AdvancedMulticolorIcon = ({ color, optionSelected, isOption }: Props) => {
   return (
     <div
       className={style.multicolorIcon}
-      onClick={() => !isOption && updateMulticolor(color, 'advanced')}
+      onClick={() => !isOption && updateMulticolor(color, Mode.ADVANCED)}
     >
       <div
         className={`${style.option_multicolor} ${

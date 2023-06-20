@@ -5,9 +5,10 @@ import ApplyAccentColor from './ApplyAccentColor';
 import AccentColors from './AccentColors';
 import BasicMulticolor from './BasicMulticolor';
 import BasicOptions from './BasicOptions';
-import Mode from './Mode';
+import ModeComponent from './ModeComponent';
 import AdvancedMulticolor from './AdvancedMulticolor';
 import SettingsCard from '../UI/SettingsCard';
+import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 
 const Colors = () => {
   const { resume } = useContext(ResumeContext);
@@ -17,11 +18,11 @@ const Colors = () => {
 
   return (
     <SettingsCard title="Colors">
-      <Mode />
-      {mode === 'basic' ? (
+      <ModeComponent />
+      {mode === Mode.BASIC ? (
         <>
           <BasicOptions />
-          {selectedOptionBasic === 'accent' ? (
+          {selectedOptionBasic === ColorOption.ACCENT ? (
             <AccentColors />
           ) : (
             <BasicMulticolor />
@@ -30,7 +31,7 @@ const Colors = () => {
       ) : (
         <>
           <AdvancedOptions />
-          {selectedOptionAdvanced === 'accent' ? (
+          {selectedOptionAdvanced === ColorOption.ACCENT ? (
             <AccentColors />
           ) : (
             <AdvancedMulticolor />

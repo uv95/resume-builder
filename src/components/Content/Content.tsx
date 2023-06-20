@@ -2,7 +2,7 @@ import { AdditionalInfoProvider } from '@/context/AdditionalInfoContext';
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
-import { IResumeArraySections } from '@/utils/types';
+import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import React, { useContext, useEffect, useState } from 'react';
 import AddContent from './AddContent/AddContent';
 import Button from '../Button/Button';
@@ -15,7 +15,10 @@ import { getSectionIcon } from '@/utils/getSectionIcon';
 
 const Content = () => {
   const [showAddContent, setShowAddContent] = useState(false);
-  const [contentToEdit, setContentToEdit] = useState({
+  const [contentToEdit, setContentToEdit] = useState<{
+    section: Sections | '';
+    itemId: string;
+  }>({
     section: '',
     itemId: '',
   });
@@ -43,20 +46,25 @@ const Content = () => {
       });
   }, [resume]);
 
+  const showPersonalDetailsIfNotEditingAnything =
+    !contentToEdit.section ||
+    contentToEdit.section === Sections.PERSONAL_DETAILS;
+  const isEditOtherSection =
+    contentToEdit.section &&
+    contentToEdit.section !== Sections.PERSONAL_DETAILS;
+
   return (
     <AdditionalInfoProvider>
       <CurrentSectionProvider>
         {resume && (
           <>
-            {(!contentToEdit.section ||
-              contentToEdit.section === 'personalDetails') && (
+            {showPersonalDetailsIfNotEditingAnything && (
               <PersonalDetails
                 contentToEdit={contentToEdit}
                 setContentToEdit={setContentToEdit}
               />
             )}
             {!contentToEdit.section &&
-              contentToEdit.section !== 'personalDetails' &&
               resume.settings.sectionsOrder.top.map(
                 (section) =>
                   resumeArraySections[
@@ -74,18 +82,17 @@ const Content = () => {
                     />
                   )
               )}
-            {contentToEdit.section &&
-              contentToEdit.section !== 'personalDetails' && (
-                <Card>
-                  <InputsSection
-                    itemId={contentToEdit.itemId}
-                    inputData={
-                      inputData[contentToEdit.section as keyof typeof inputData]
-                    }
-                    setContentToEdit={setContentToEdit}
-                  />
-                </Card>
-              )}
+            {isEditOtherSection && (
+              <Card>
+                <InputsSection
+                  itemId={contentToEdit.itemId}
+                  inputData={
+                    inputData[contentToEdit.section as keyof typeof inputData]
+                  }
+                  setContentToEdit={setContentToEdit}
+                />
+              </Card>
+            )}
             <div className="centered">
               <Button onClick={() => setShowAddContent(true)} type="pink">
                 + Add Content

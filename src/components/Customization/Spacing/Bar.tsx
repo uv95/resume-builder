@@ -1,13 +1,13 @@
 import Button from '@/components/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { SpacingSectionsType } from '@/utils/types';
+import { SpacingSections } from '@/utils/types/settingsTypes';
 import React from 'react';
 import style from './Spacing.module.scss';
 import Track from './Track';
 
 type Props = {
   sectionTitle: string;
-  sectionName: SpacingSectionsType;
+  sectionName: SpacingSections;
   currentValue: number;
   values: number[];
 };
@@ -21,8 +21,8 @@ const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
         <h5>{sectionTitle}</h5>
         <p>
           {currentValue}
-          {(sectionName === 'leftRightMargin' ||
-            sectionName === 'topBottomMargin') &&
+          {(sectionName === SpacingSections.LEFT_RIGHT_MARGIN ||
+            sectionName === SpacingSections.TOP_BOTTOM_MARGIN) &&
             'mm'}
         </p>
       </div>

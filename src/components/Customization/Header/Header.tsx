@@ -8,7 +8,10 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Section from '../UI/Section';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from '../UI/SettingsButtons';
-import { IHeader } from '@/utils/types';
+import {
+  HeaderAdditionalInfoStyle,
+  HeaderPosition,
+} from '@/utils/types/settingsTypes';
 
 const Header = () => {
   const { resume } = useContext(ResumeContext);
@@ -31,7 +34,7 @@ const Header = () => {
   return (
     <SettingsCard title="Header">
       <SettingsButtons
-        options={['left', 'center']}
+        options={Object.values(HeaderPosition)}
         updatedField="position"
         allValues={values}
         setValues={setValues}
@@ -40,7 +43,7 @@ const Header = () => {
 
       <Section title="Details Style">
         <div className="flex">
-          {['icon', 'bar'].map((detailsStyle) => (
+          {Object.values(HeaderAdditionalInfoStyle).map((detailsStyle) => (
             <Button
               key={detailsStyle}
               type="customization"
@@ -49,8 +52,7 @@ const Header = () => {
                 updateHeader({
                   additionalInfoOrder,
                   position,
-                  additionalInfoStyle:
-                    detailsStyle as IHeader['additionalInfoStyle'],
+                  additionalInfoStyle: detailsStyle,
                 })
               }
             >
@@ -60,10 +62,10 @@ const Header = () => {
                   minWidth: '6rem',
                 }}
               >
-                {detailsStyle === 'icon' ? (
+                {detailsStyle === HeaderAdditionalInfoStyle.ICON ? (
                   <SmileIcon
                     fill={
-                      additionalInfoStyle === 'icon'
+                      additionalInfoStyle === HeaderAdditionalInfoStyle.ICON
                         ? 'rgb(33, 72, 200)'
                         : 'rgb(75, 75, 75)'
                     }

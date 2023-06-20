@@ -1,8 +1,9 @@
+import { Sections } from '@/utils/types/resumeTypes';
 import React, { createContext, useState } from 'react';
 
 interface ICurrentSectionContext {
-  currentSection: string;
-  setCurrentSection: React.Dispatch<React.SetStateAction<string>>;
+  currentSection: Sections | '';
+  setCurrentSection: React.Dispatch<React.SetStateAction<Sections | ''>>;
 }
 
 export const CurrentSectionContext = createContext<ICurrentSectionContext>({
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export const CurrentSectionProvider = ({ children }: Props) => {
-  const [currentSection, setCurrentSection] = useState('');
+  const [currentSection, setCurrentSection] = useState<Sections | ''>('');
   return (
     <CurrentSectionContext.Provider
       value={{ currentSection, setCurrentSection }}

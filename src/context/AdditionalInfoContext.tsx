@@ -1,4 +1,4 @@
-import { IAdditionalInfo } from '@/utils/types';
+import { IAdditionalInfo } from '@/utils/types/contentTypes';
 import React, { createContext, useState } from 'react';
 
 interface IAdditionalInfoContext {

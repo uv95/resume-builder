@@ -2,15 +2,13 @@ import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { applyAccentColor } from '@/utils/colors';
 import { removeTypename } from '@/utils/removeTypename';
-import { IApplyAccentColor } from '@/utils/types';
+import { IApplyAccentColor } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
 import Section from '../UI/Section';
 import style from './Colors.module.scss';
 
-type Props = {};
-
-const ApplyAccentColor = (props: Props) => {
+const ApplyAccentColor = () => {
   const { resume } = useContext(ResumeContext);
   const [applyAccentColorFields, setApplyAccentColorFields] = useState(
     resume?.settings.colors.applyAccentColor!

@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import * as dnd from '@/utils/dragAndDropUtilityFunctions';
 import { removeTypename } from '@/utils/removeTypename';
+import { Position } from '@/utils/types/settingsTypes';
 import { DragEvent, useContext, useState } from 'react';
 import useUpdateSettings from './useUpdateSettings';
 
@@ -14,12 +15,12 @@ function useLayoutDnD() {
   );
 
   const [isWithinDropArea, setIsWithinDropArea] = useState(false);
-  const [initialColumn, setInitialColumn] = useState<
-    'left' | 'right' | 'top' | undefined
-  >(undefined);
-  const [previousColumn, setPreviousColumn] = useState<
-    'left' | 'right' | 'top' | undefined
-  >(undefined);
+  const [initialColumn, setInitialColumn] = useState<Position | undefined>(
+    undefined
+  );
+  const [previousColumn, setPreviousColumn] = useState<Position | undefined>(
+    undefined
+  );
   const [initialCard, setInitialCard] = useState('');
 
   const columns = {
@@ -42,7 +43,9 @@ function useLayoutDnD() {
     const target = e.target as HTMLDivElement;
     let currentColumn = target.parentElement?.id;
     if (
-      (target.parentElement?.id === 'left' || 'right' || 'top') &&
+      Object.values(Position).some(
+        (position) => position === target.parentElement?.id
+      ) &&
       target.parentElement?.id !== currentColumn
     ) {
       currentColumn = target.parentElement?.id;
@@ -61,8 +64,8 @@ function useLayoutDnD() {
       currentColumn &&
       initialCard &&
       target.id &&
-      target.id !== 'left' &&
-      target.id !== 'right'
+      target.id !== Position.LEFT &&
+      target.id !== Position.RIGHT
     ) {
       const hoveredCard = target.id;
       const currentColumnElement =
@@ -190,7 +193,7 @@ function useLayoutDnD() {
 
     setIsWithinDropArea(true);
 
-    if (target.id === 'left' || target.id === 'right' || target.id === 'top') {
+    if (Object.values(Position).some((position) => position === target.id)) {
       const newInitialSectionsOrder = sectionsOrder[
         initialColumn as keyof typeof sectionsOrder
       ].filter((el: string) => el !== initialCard);
@@ -214,7 +217,8 @@ function useLayoutDnD() {
         const newSectionsOrder = {
           ...removeTypename(sectionsOrder),
           [target.id]: currentSectionsOrder,
-          [target.id === 'left' ? 'right' : 'left']: newInitialSectionsOrder,
+          [target.id === Position.LEFT ? Position.RIGHT : Position.LEFT]:
+            newInitialSectionsOrder,
         };
 
         setSectionsOrder(newSectionsOrder);

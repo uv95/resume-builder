@@ -1,9 +1,12 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import { IResumeArraySections } from '@/utils/types';
+import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import React, { useContext } from 'react';
 import PageSection from './PageSection';
 
-type Props = { sections: string[]; resumeArraySections: IResumeArraySections };
+type Props = {
+  sections: Sections[];
+  resumeArraySections: IResumeArraySections;
+};
 
 const PageOneColumn = ({ sections, resumeArraySections }: Props) => {
   const { resume } = useContext(ResumeContext);

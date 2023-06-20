@@ -1,9 +1,18 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import {
+  AccentColorSections,
+  ColorOf,
+  HeadingStyle,
+  Position,
+} from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import style from './Page.module.scss';
 
-type Props = { sectionPosition: 'left' | 'right' | undefined; title: string };
+type Props = {
+  sectionPosition: Position.LEFT | Position.RIGHT | undefined;
+  title: string;
+};
 
 const Heading = ({ sectionPosition, title }: Props) => {
   const { setColor } = useSetColor();
@@ -20,34 +29,36 @@ const Heading = ({ sectionPosition, title }: Props) => {
     <>
       <div
         className={`${
-          headingStyle === 'topBottomLine' ? style.headingTopBottomLine : ''
-        } ${headingStyle === 'box' ? style.headingBox : ''}`}
+          headingStyle === HeadingStyle.TOP_BOTTOM_LINE
+            ? style.headingTopBottomLine
+            : ''
+        } ${headingStyle === HeadingStyle.BOX ? style.headingBox : ''}`}
         style={{
           color: setColor({
-            section: 'headings',
-            colorOf: 'font',
+            section: AccentColorSections.HEADINGS,
+            colorOf: ColorOf.FONT,
             sectionPosition,
           }),
           fontSize: headingSize[size] + 'px',
           fontWeight: 700,
           borderColor: setColor({
-            section: 'headings',
-            colorOf: 'font',
+            section: AccentColorSections.HEADINGS,
+            colorOf: ColorOf.FONT,
             sectionPosition,
           }),
-          marginBottom: headingStyle !== 'line' ? '1rem' : 0,
+          marginBottom: headingStyle !== HeadingStyle.LINE ? '1rem' : 0,
         }}
       >
         {uppercase ? title.toUpperCase() : title}
-        {headingStyle === 'box' && (
+        {headingStyle === HeadingStyle.BOX && (
           <div
             className={style.headingBackground}
             style={{
               background:
-                headingStyle === 'box'
+                headingStyle === HeadingStyle.BOX
                   ? setColor({
-                      section: 'headings',
-                      colorOf: 'font',
+                      section: AccentColorSections.HEADINGS,
+                      colorOf: ColorOf.FONT,
                       sectionPosition,
                     })
                   : 'inherit',
@@ -55,14 +66,14 @@ const Heading = ({ sectionPosition, title }: Props) => {
           ></div>
         )}
       </div>
-      {headingStyle === 'line' && (
+      {headingStyle === HeadingStyle.LINE && (
         <div
           style={{
             width: '100%',
             height: '0.2rem',
             background: setColor({
-              section: 'headingsLine',
-              colorOf: 'font',
+              section: AccentColorSections.HEADINGS_LINE,
+              colorOf: ColorOf.FONT,
               sectionPosition,
             }),
             marginTop: '-1px',

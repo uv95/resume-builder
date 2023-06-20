@@ -1,13 +1,19 @@
-import { ILanguage, ISkills, LanguageLevel, SkillLevel } from './types';
+import {
+  ILanguage,
+  ISkills,
+  LanguageLevel,
+  SkillLevel,
+} from './types/contentTypes';
+import { Sections } from './types/resumeTypes';
 
 export const formatLevelProp = ({
   section,
   item,
 }: {
-  section: 'skills' | 'language';
+  section: Sections.SKILLS | Sections.LANGUAGE;
   item: ILanguage | ISkills;
 }) => {
-  if (section === 'skills') {
+  if (section === Sections.SKILLS) {
     const enumValue = item['skillLevel' as keyof typeof item];
     const enumKey = Object.values(SkillLevel).includes(enumValue as SkillLevel)
       ? Object.keys(SkillLevel)[
@@ -18,7 +24,7 @@ export const formatLevelProp = ({
     return enumKey;
   }
 
-  if (section === 'language') {
+  if (section === Sections.LANGUAGE) {
     const enumValue = item['languageLevel' as keyof typeof item];
     const enumKey = Object.values(LanguageLevel).includes(
       enumValue as LanguageLevel

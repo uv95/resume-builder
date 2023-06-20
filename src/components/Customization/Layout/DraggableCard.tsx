@@ -4,19 +4,16 @@ import Image from 'next/image';
 
 import style from './Layout.module.scss';
 import { addTransitionToAllCardsFrom } from '@/utils/dragAndDropUtilityFunctions';
+import { Position } from '@/utils/types/settingsTypes';
 
 type Props = {
   section: string;
-  column: 'left' | 'right' | 'top';
+  column: Position;
   sectionsOrder: string[];
   icon: string;
-  setInitialColumn: React.Dispatch<
-    React.SetStateAction<'right' | 'left' | 'top' | undefined>
-  >;
-  setPreviousColumn: React.Dispatch<
-    React.SetStateAction<'right' | 'left' | 'top' | undefined>
-  >;
-  previousColumn: 'right' | 'left' | 'top' | undefined;
+  setInitialColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
+  setPreviousColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
+  previousColumn: Position | undefined;
   setInitialCard: React.Dispatch<React.SetStateAction<string>>;
   initialCard: string;
 };

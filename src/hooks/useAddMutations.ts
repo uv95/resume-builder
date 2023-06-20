@@ -6,18 +6,11 @@ import { ADD_PROFILE } from '@/graphql/mutations/profile';
 import { ADD_PROJECT } from '@/graphql/mutations/project';
 import { ADD_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import {
-  IEducation,
-  ILanguage,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
-} from '@/utils/types';
+import { ArraySectionsType, Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 
-function useAddMutations(name: string, resumeId: string) {
+function useAddMutations(section: Sections, resumeId: string) {
   const [addPersonalDetails] = useMutation(ADD_PERSONAL_DETAILS);
   const [addEducation] = useMutation(ADD_EDUCATION);
   const [addLanguage] = useMutation(ADD_LANGUAGE);
@@ -30,36 +23,28 @@ function useAddMutations(name: string, resumeId: string) {
 
   const addFunctions = [
     {
-      sectionName: 'personalDetails',
+      sectionName: Sections.PERSONAL_DETAILS,
       fn: addPersonalDetails,
       fnName: 'addPersonalDetails',
     },
     {
-      sectionName: 'education',
+      sectionName: Sections.EDUCATION,
       fn: addEducation,
       fnName: 'addEducation',
     },
-    { sectionName: 'language', fn: addLanguage, fnName: 'addLanguage' },
+    { sectionName: Sections.LANGUAGE, fn: addLanguage, fnName: 'addLanguage' },
     {
-      sectionName: 'professionalExperience',
+      sectionName: Sections.PROFESSIONAL_EXPERIENCE,
       fn: addProfessionalExperience,
       fnName: 'addProfessionalExperience',
     },
-    { sectionName: 'profile', fn: addProfile, fnName: 'addProfile' },
-    { sectionName: 'project', fn: addProject, fnName: 'addProject' },
-    { sectionName: 'skills', fn: addSkill, fnName: 'addSkill' },
+    { sectionName: Sections.PROFILE, fn: addProfile, fnName: 'addProfile' },
+    { sectionName: Sections.PROJECT, fn: addProject, fnName: 'addProject' },
+    { sectionName: Sections.SKILLS, fn: addSkill, fnName: 'addSkill' },
   ];
-  const addContent = (
-    variables:
-      | Partial<IEducation>
-      | Partial<ISkills>
-      | Partial<IProfile>
-      | Partial<IProject>
-      | Partial<ILanguage>
-      | Partial<IProfessionalExperience>
-  ) => {
+  const addContent = (variables: ArraySectionsType) => {
     const { fn, fnName, sectionName } = addFunctions.find(
-      (item) => name === item.sectionName
+      (item) => section === item.sectionName
     )!;
 
     if (fn)
@@ -72,34 +57,24 @@ function useAddMutations(name: string, resumeId: string) {
             variables: { id: resumeId },
           })!;
 
-          if (sectionName === 'personalDetails') {
-            cache.writeQuery({
-              query: GET_RESUME,
-              data: {
-                resume: {
-                  ...resume,
-                  content: { ...resume.content, [sectionName]: newData },
-                },
-              },
-            });
-          } else {
-            // ---update sections order---
+          sectionName !== Sections.PERSONAL_DETAILS &&
             addToSectionsOrder(sectionName);
-            // ---update sections order---
 
-            cache.writeQuery({
-              query: GET_RESUME,
-              data: {
-                resume: {
-                  ...resume,
-                  content: {
-                    ...resume.content,
-                    [sectionName]: [...resume.content[sectionName], newData],
-                  },
+          cache.writeQuery({
+            query: GET_RESUME,
+            data: {
+              resume: {
+                ...resume,
+                content: {
+                  ...resume.content,
+                  [sectionName]:
+                    sectionName === Sections.PERSONAL_DETAILS
+                      ? newData
+                      : [...resume.content[sectionName], newData],
                 },
               },
-            });
-          }
+            },
+          });
         },
       });
     return null;

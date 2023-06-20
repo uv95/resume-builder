@@ -5,18 +5,19 @@ import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { Field, Form, Formik } from 'formik';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
 import Select from '../../Select/Select';
 import dynamic from 'next/dynamic';
 import Buttons from './Buttons';
+import { Sections } from '@/utils/types/resumeTypes';
 const Textarea = dynamic(() => import('../Textarea'), { ssr: false });
 
 type Props = {
   inputData: any;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
-      section: string;
+      section: Sections | '';
       itemId: string;
     }>
   >;
@@ -46,7 +47,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
         initialValues={initialValues}
         onSubmit={(values) => {
           let finalValues;
-          if (inputData.name === 'personalDetails')
+          if (inputData.name === Sections.PERSONAL_DETAILS)
             finalValues = { ...values, additionalInfo };
           else
             finalValues = isInputsEmpty(initialValues)
@@ -97,7 +98,9 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
             </div>
           ))}
 
-          {inputData.name === 'personalDetails' && <AdditionalInfoSection />}
+          {inputData.name === Sections.PERSONAL_DETAILS && (
+            <AdditionalInfoSection />
+          )}
 
           <Buttons
             itemId={itemId}

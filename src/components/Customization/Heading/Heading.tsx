@@ -7,7 +7,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import Section from '../UI/Section';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from '../UI/SettingsButtons';
-import { IHeading } from '@/utils/types';
+import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
 
 const Heading = () => {
   const { resume } = useContext(ResumeContext);
@@ -23,7 +23,7 @@ const Heading = () => {
       [updatedField]: newVal,
     });
 
-  const updateHeadingSetValues = (style: IHeading['style']) => {
+  const updateHeadingSetValues = (style: HeadingStyle) => {
     updateHeading({ size, uppercase, style });
     setValues({ size, uppercase, style });
   };
@@ -32,55 +32,25 @@ const Heading = () => {
     <SettingsCard title="Heading">
       <Section title="Style">
         <div className={style.style}>
-          <Button
-            type="customization"
-            active={headingStyle === 'box'}
-            onClick={() => updateHeadingSetValues('box')}
-          >
-            <div
-              className={`${style.box} ${
-                headingStyle === 'box' ? style.active : ''
-              }`}
-            ></div>
-          </Button>
-          <Button
-            type="customization"
-            active={headingStyle === 'simple'}
-            onClick={() => updateHeadingSetValues('simple')}
-          >
-            <div
-              className={`${style.simple} ${
-                headingStyle === 'simple' ? style.active : ''
-              }`}
-            ></div>
-          </Button>
-          <Button
-            type="customization"
-            active={headingStyle === 'topBottomLine'}
-            onClick={() => updateHeadingSetValues('topBottomLine')}
-          >
-            <div
-              className={`${style.topBottomLine} ${
-                headingStyle === 'topBottomLine' ? style.active : ''
-              }`}
-            ></div>
-          </Button>
-          <Button
-            type="customization"
-            active={headingStyle === 'line'}
-            onClick={() => updateHeadingSetValues('line')}
-          >
-            <div
-              className={`${style.line} ${
-                headingStyle === 'line' ? style.active : ''
-              }`}
-            ></div>
-          </Button>
+          {Object.values(HeadingStyle).map((headingStyleItem) => (
+            <Button
+              key={headingStyleItem}
+              type="customization"
+              active={headingStyle === headingStyleItem}
+              onClick={() => updateHeadingSetValues(headingStyleItem)}
+            >
+              <div
+                className={`${style[headingStyleItem]} ${
+                  headingStyle === headingStyleItem ? style.active : ''
+                }`}
+              ></div>
+            </Button>
+          ))}
         </div>
       </Section>
 
       <SettingsButtons
-        options={['s', 'm', 'l']}
+        options={Object.values(Size)}
         updatedField="size"
         allValues={values}
         setValues={setValues}

@@ -4,6 +4,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from './UI/SettingsButtons';
+import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 
 const Subtitle = () => {
   const { resume } = useContext(ResumeContext);
@@ -20,14 +21,14 @@ const Subtitle = () => {
   return (
     <SettingsCard title="Subtitle">
       <SettingsButtons
-        options={['normal', 'bold', 'italic']}
+        options={Object.values(FontStyle)}
         updatedField="style"
         allValues={values}
         setValues={setValues}
         update={update}
       />
       <SettingsButtons
-        options={['sameLine', 'nextLine']}
+        options={Object.values(SubtitlePosition)}
         updatedField="position"
         allValues={values}
         setValues={setValues}

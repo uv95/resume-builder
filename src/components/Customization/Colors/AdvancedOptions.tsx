@@ -1,13 +1,11 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import useSetColor from '@/hooks/useSetColor';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 import style from './Colors.module.scss';
 
-type Props = {};
-
-const AdvancedOptions = (props: Props) => {
+const AdvancedOptions = () => {
   const { resume } = useContext(ResumeContext);
   const { selectOption } = useUpdateSettings();
   const selected = resume?.settings.colors.advanced.selected;
@@ -18,11 +16,11 @@ const AdvancedOptions = (props: Props) => {
     <div className="flex">
       <div
         className={style.option}
-        onClick={() => selectOption('accent', 'advanced')}
+        onClick={() => selectOption(ColorOption.ACCENT, Mode.ADVANCED)}
       >
         <div
           className={`${style.option_accent} ${
-            selected === 'accent' ? style.option__selected : ''
+            selected === ColorOption.ACCENT ? style.option__selected : ''
           }`}
           style={{ background: accent }}
         ></div>
@@ -30,10 +28,10 @@ const AdvancedOptions = (props: Props) => {
       </div>
       <div
         className={style.option}
-        onClick={() => selectOption('multicolor', 'advanced')}
+        onClick={() => selectOption(ColorOption.MULTICOLOR, Mode.ADVANCED)}
       >
         <AdvancedMulticolorIcon
-          optionSelected={selected === 'multicolor'}
+          optionSelected={selected === ColorOption.MULTICOLOR}
           color={selectedMulticolor}
           isOption
         />

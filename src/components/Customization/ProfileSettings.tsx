@@ -3,9 +3,7 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
 import SettingsCard from './UI/SettingsCard';
 
-type Props = {};
-
-const ProfileSettings = (props: Props) => {
+const ProfileSettings = () => {
   const { resume } = useContext(ResumeContext);
   const { showHeading } = resume?.settings.profile!;
   const { updateProfileSettings } = useUpdateSettings();

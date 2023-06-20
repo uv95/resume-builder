@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import SettingsCard from '../UI/SettingsCard';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
-import Position from './Position';
+import PositionComponent from './PositionComponent';
 import RearrangeSections from './RearrangeSections';
 
 const Layout = () => {
@@ -30,7 +30,7 @@ const Layout = () => {
       onDragEnd={(e) => dragEndHandler(e)}
     >
       <SettingsCard title="Layout">
-        <Position />
+        <PositionComponent />
         <Columns />
         <RearrangeSections
           setInitialColumn={setInitialColumn}

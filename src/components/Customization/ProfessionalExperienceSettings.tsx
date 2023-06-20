@@ -4,9 +4,7 @@ import React, { useContext } from 'react';
 import Button from '../Button/Button';
 import SettingsCard from './UI/SettingsCard';
 
-type Props = {};
-
-const ProfessionalExperienceSettings = (props: Props) => {
+const ProfessionalExperienceSettings = () => {
   const { resume } = useContext(ResumeContext);
   const { jobTitleFirst } = resume?.settings.professionalExperience!;
 

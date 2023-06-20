@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
+import { FontStyle, Size } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
@@ -18,14 +19,14 @@ const Name = () => {
   return (
     <SettingsCard title="Name">
       <SettingsButtons
-        options={['s', 'm', 'l']}
+        options={Object.values(Size)}
         updatedField="size"
         allValues={values}
         setValues={setValues}
         update={update}
       />
       <SettingsButtons
-        options={['normal', 'bold']}
+        options={[FontStyle.NORMAL, FontStyle.BOLD]}
         updatedField="style"
         allValues={values}
         setValues={setValues}

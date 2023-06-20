@@ -2,9 +2,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext } from 'react';
 import parse from 'html-react-parser';
 
-type Props = {};
-
-const ProfileBlock = (props: Props) => {
+const ProfileBlock = () => {
   const { resume } = useContext(ResumeContext);
   const content = resume?.content.profile;
 

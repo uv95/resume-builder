@@ -1,6 +1,13 @@
 import DetailsIcons from '@/components/DetailsIcons';
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import {
+  AccentColorSections,
+  ColorOf,
+  HeaderAdditionalInfoStyle,
+  HeaderPosition,
+  Position,
+} from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from '../Page.module.scss';
 
@@ -24,9 +31,9 @@ const AdditionalInfoBlock = () => {
 
   const addBar = (condition: boolean) => {
     return (
-      additionalInfoStyle === 'bar' &&
-      ((headerPosition !== 'left' && position !== 'top') ||
-        position === 'top') &&
+      additionalInfoStyle === HeaderAdditionalInfoStyle.BAR &&
+      ((headerPosition !== HeaderPosition.LEFT && position !== Position.TOP) ||
+        position === Position.TOP) &&
       condition &&
       '  |'
     );
@@ -37,15 +44,16 @@ const AdditionalInfoBlock = () => {
       className={style.infoBlock}
       style={{
         color: setColor({
-          colorOf: 'font',
+          colorOf: ColorOf.FONT,
           sectionPosition: position,
         }),
         display:
-          headerPosition === 'left' &&
-          (position === 'left' || position === 'right')
+          headerPosition === HeaderPosition.LEFT &&
+          (position === Position.LEFT || position === Position.RIGHT)
             ? 'block'
             : 'flex',
-        justifyContent: headerPosition === 'center' ? 'center' : 'flex-start',
+        justifyContent:
+          headerPosition === HeaderPosition.CENTER ? 'center' : 'flex-start',
       }}
     >
       {content &&
@@ -53,12 +61,12 @@ const AdditionalInfoBlock = () => {
           (item) =>
             content[item as keyof typeof content] && (
               <div key={item} className={style.info}>
-                {additionalInfoStyle === 'icon' && (
+                {additionalInfoStyle === HeaderAdditionalInfoStyle.ICON && (
                   <DetailsIcons
                     fill={
                       setColor({
-                        section: 'headerIcons',
-                        colorOf: 'font',
+                        section: AccentColorSections.HEADER_ICONS,
+                        colorOf: ColorOf.FONT,
                         sectionPosition: position,
                       })!
                     }
@@ -80,12 +88,12 @@ const AdditionalInfoBlock = () => {
 
       {...additionalInfo.map((item: any, i: number) => (
         <div className={style.info} key={item.name}>
-          {additionalInfoStyle === 'icon' && (
+          {additionalInfoStyle === HeaderAdditionalInfoStyle.ICON && (
             <DetailsIcons
               fill={
                 setColor({
-                  section: 'headerIcons',
-                  colorOf: 'font',
+                  section: AccentColorSections.HEADER_ICONS,
+                  colorOf: ColorOf.FONT,
                   sectionPosition: position,
                 })!
               }

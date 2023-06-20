@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Button from '../../Button/Button';
 import Tag from '../Tag/Tag';
 import style from './AddAdditionalInfo.module.scss';
-import { IAdditionalInfo } from '../../../utils/types';
+import { IAdditionalInfo } from '../../../utils/types/contentTypes';
 
 type Props = {
   tags: string[];

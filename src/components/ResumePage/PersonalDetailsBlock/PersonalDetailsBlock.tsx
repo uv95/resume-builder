@@ -1,5 +1,11 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import {
+  AccentColorSections,
+  ColorOf,
+  FontStyle,
+  Position,
+} from '@/utils/types/settingsTypes';
 import React, { useContext, useEffect, useState } from 'react';
 import AdditionalInfoBlock from './AdditionalInfoBlock';
 
@@ -39,17 +45,17 @@ const PersonalDetailsBlock = () => {
 
   const personalDetailsStyle = {
     background: setColor({
-      colorOf: 'background',
+      colorOf: ColorOf.BG,
       sectionPosition: position,
     }),
     color: setColor({
-      section: 'name',
-      colorOf: 'font',
+      section: AccentColorSections.NAME,
+      colorOf: ColorOf.FONT,
       sectionPosition: position,
     }),
-    paddingLeft: position === 'top' ? leftRightMargin + 'mm' : 0,
-    paddingRight: position === 'top' ? leftRightMargin + 'mm' : 0,
-    paddingTop: position === 'top' ? topBottomMargin + 'mm' : '0',
+    paddingLeft: position === Position.TOP ? leftRightMargin + 'mm' : 0,
+    paddingRight: position === Position.TOP ? leftRightMargin + 'mm' : 0,
+    paddingTop: position === Position.TOP ? topBottomMargin + 'mm' : '0',
     paddingBottom: `calc(${topBottomMargin}mm - 1rem)`,
     textAlign: headerPosition,
   };
@@ -59,7 +65,7 @@ const PersonalDetailsBlock = () => {
       <p
         style={{
           fontSize: nameFontSize[nameSize] + 'px',
-          fontWeight: nameStyle === 'bold' ? 'bold' : 'normal',
+          fontWeight: nameStyle === FontStyle.BOLD ? 'bold' : 'normal',
         }}
       >
         {content?.fullName}
@@ -67,8 +73,8 @@ const PersonalDetailsBlock = () => {
       <p
         style={{
           fontSize: jobTitleFontSize[jobTitleSize] + 'px',
-          fontWeight: jobTitleStyle === 'bold' ? 'bold' : 'normal',
-          fontStyle: jobTitleStyle === 'italic' ? 'italic' : 'normal',
+          fontWeight: jobTitleStyle === FontStyle.BOLD ? 'bold' : 'normal',
+          fontStyle: jobTitleStyle === FontStyle.ITALIC ? 'italic' : 'normal',
         }}
       >
         {content?.jobTitle}
