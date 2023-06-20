@@ -14,15 +14,15 @@ const EducationSettings = () => {
     <SettingsCard title="Education">
       <div className="flex">
         <Button
-          type="customization"
-          active={degreeFirst}
+          btnType="customization"
+          isActive={degreeFirst}
           onClick={() => updateEducationSettings({ degreeFirst: true })}
         >
           Degree - School
         </Button>
         <Button
-          type="customization"
-          active={!degreeFirst}
+          btnType="customization"
+          isActive={!degreeFirst}
           onClick={() => updateEducationSettings({ degreeFirst: false })}
         >
           School - Degree

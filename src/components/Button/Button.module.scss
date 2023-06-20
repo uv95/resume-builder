@@ -10,72 +10,76 @@
   border-radius: $radius-btn--l;
   transition: all 0.1s;
   @include center;
+}
 
-  &-nav,
-  &-white {
-    padding: 1rem;
-    &--active {
-      font-size: 2rem;
-      background-color: rgba(243, 243, 243, 0.77);
-      color: $color-ui-pink;
-    }
-    &:hover {
-      color: $color-font--medium;
-    }
-  }
+.button-nav,
+.button-white {
+  padding: 1rem;
 
-  &-nav {
-    font-size: 2rem;
+  &:hover {
+    color: $color-font--medium;
   }
+}
 
-  &-pink {
-    width: fit-content;
-    background-color: $color-ui-pink;
-    color: white;
-    &:hover {
-      background-color: $color-ui-pink--light;
-    }
-  }
-  &-thickBorder {
-    width: fit-content;
-    border: 5px solid $color-bg;
-    &:hover {
-      border: 5px solid $color-bg--light;
-      color: $color-font--medium;
-    }
-  }
-  &-thinBorder {
-    width: fit-content;
-    border: 2px solid $color-bg;
-    &:hover {
-      border: 2px solid $color-bg--light;
-      color: $color-font--medium;
-    }
-  }
+.button-nav {
+  font-size: 2rem;
+}
 
-  &-customization {
-    border-radius: $radius-btn--m;
-    border: 1px solid $color-gray;
-    cursor: pointer;
-    transition: transform 0.1s;
-    color: $color-gray--dark;
+.button-nav--active {
+  background-color: rgba(243, 243, 243, 0.77);
+  color: $color-ui-pink;
+}
 
-    &:hover {
-      filter: brightness(1.1) saturate(0.9);
-      transform: scale(1.02);
-    }
-    &--active {
-      border: 1px solid $color-ui-blue;
-      background-color: $color-ui-blue--light;
-      color: $color-ui-blue;
-    }
+.button-gray {
+  background-color: $color-bg;
+  color: $color-gray--dark;
+  &:hover {
+    filter: brightness(1.015);
   }
+}
 
-  &-gray {
-    background-color: $color-bg;
-    color: $color-gray--dark;
-    &:hover {
-      filter: brightness(1.015);
-    }
+.button-customization {
+  border-radius: $radius-btn--m;
+  border: 1px solid $color-gray;
+  cursor: pointer;
+  transition: transform 0.1s;
+  color: $color-gray--dark;
+
+  &:hover {
+    filter: brightness(1.1) saturate(0.9);
+    transform: scale(1.02);
+  }
+}
+
+.button-customization--active {
+  border: 1px solid $color-ui-blue;
+  background-color: $color-ui-blue--light;
+  color: $color-ui-blue;
+}
+
+.button-pink {
+  width: fit-content;
+  background-color: $color-ui-pink;
+  color: white;
+  &:hover {
+    background-color: $color-ui-pink--light;
+  }
+}
+
+.button-thickBorder {
+  width: fit-content;
+  border: 5px solid $color-bg;
+  &:hover {
+    border: 5px solid $color-bg--light;
+    color: $color-font--medium;
+  }
+}
+
+.button-thinBorder {
+  width: fit-content;
+  border: 2px solid $color-bg;
+  &:hover {
+    border: 2px solid $color-bg--light;
+    color: $color-font--medium;
   }
 }

@@ -52,7 +52,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
         <Form>
           <div className="flex p-2">
             <Field name="name" id="name" type="text" />
-            <Button submit type="pink">
+            <Button isSubmit btnType="pink">
               Save
             </Button>
           </div>
@@ -70,7 +70,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
           <h3>{resumeName}</h3>
           <Image src={edit} width="20" height="20" alt="edit" />
         </div>
-        <Button type="pink" onClick={handlePrint}>
+        <Button btnType="pink" onClick={handlePrint}>
           Print
         </Button>
       </div>

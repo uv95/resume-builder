@@ -98,7 +98,7 @@ const ContentCard = ({
                     section: inputData.name,
                   }))
                 }
-                type="thickBorder"
+                btnType="thickBorder"
               >
                 {'+ ' + inputData.title}
               </Button>

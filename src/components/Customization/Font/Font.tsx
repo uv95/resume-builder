@@ -17,8 +17,8 @@ const Font = () => {
         {fonts.map((fontType) => (
           <Button
             key={fontType.type}
-            type="customization"
-            active={currentType === fontType.type}
+            btnType="customization"
+            isActive={currentType === fontType.type}
             onClick={() =>
               updateFont({ type: fontType.type, font: fontType.fonts[0] })
             }
@@ -42,8 +42,8 @@ const Font = () => {
             fontType.fonts.map((font) => (
               <Button
                 key={font}
-                type="customization"
-                active={currentFont === font}
+                btnType="customization"
+                isActive={currentFont === font}
                 onClick={() => updateFont({ type: fontType.type, font })}
               >
                 <p style={{ minWidth: '6rem' }}>{font}</p>

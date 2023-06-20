@@ -15,9 +15,11 @@ const Columns = () => {
       <div className="flex">
         {position === 'top' && (
           <Button
-            type="customization"
-            active={columns === 1}
-            classes={`${columns === 1 ? style.columns_active : style.columns}`}
+            btnType="customization"
+            isActive={columns === 1}
+            className={`${
+              columns === 1 ? style.columns_active : style.columns
+            }`}
             onClick={() => updateColumns(1)}
           >
             <div className={style.columns_container__one}>
@@ -28,9 +30,9 @@ const Columns = () => {
           </Button>
         )}
         <Button
-          type="customization"
-          active={columns === 2}
-          classes={`${columns === 2 ? style.columns_active : style.columns}`}
+          btnType="customization"
+          isActive={columns === 2}
+          className={`${columns === 2 ? style.columns_active : style.columns}`}
           onClick={() => updateColumns(2)}
         >
           <div className={style.columns_container__two}>

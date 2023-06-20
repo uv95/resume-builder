@@ -32,8 +32,8 @@ const SettingsButtons = ({
         {options.map((item: any) => (
           <Button
             key={item}
-            type="customization"
-            active={allValues[updatedField] === item}
+            btnType="customization"
+            isActive={allValues[updatedField] === item}
             onClick={() => {
               setValues({ ...allValues, [updatedField]: item });
               update(updatedField, item);

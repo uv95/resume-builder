@@ -21,9 +21,9 @@ const PositionComponent = () => {
           }
         >
           <Button
-            type="customization"
-            active={position === positionItem}
-            classes={`${style.figure} ${
+            btnType="customization"
+            isActive={position === positionItem}
+            className={`${style.figure} ${
               position === positionItem
                 ? style[`${positionItem}_active`]
                 : style[positionItem]

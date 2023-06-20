@@ -1,32 +1,45 @@
-import React from 'react';
+import { classNames } from '@/utils/classNames';
+import { ButtonHTMLAttributes, FC } from 'react';
+
 import style from './Button.module.scss';
 
-type Props = {
-  type?: string;
-  active?: boolean;
-  bold?: boolean;
-  submit?: boolean;
-  classes?: string;
-  children?: React.ReactNode;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  isSubmit?: boolean;
+  className?: string;
   onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
-};
+  btnType?: string;
+  isActive?: boolean;
+  isBold?: boolean;
+}
 
-const Button = ({
-  type,
-  active,
-  classes,
-  submit,
-  bold,
-  children,
-  onClick,
-}: Props) => {
+const Button: FC<ButtonProps> = (props) => {
+  const {
+    isSubmit,
+    className,
+    onClick,
+    btnType,
+    children,
+    isActive,
+    isBold,
+    ...otherProps
+  } = props;
+
   return (
     <button
-      type={submit ? 'submit' : 'button'}
-      className={`${style.button} ${style[`button-${type}`]} ${
-        style[`button-${type}${active ? '--active' : ''}`]
-      } ${bold ? 'bold' : ''} ${classes || ''}`}
+      type={isSubmit ? 'submit' : 'button'}
+      className={classNames(
+        style.button,
+        {
+          [style[`button-${btnType}`]]: !!btnType,
+          [style[`button-${btnType}--active`]]: !!isActive,
+        },
+        [className || '']
+      )}
+      {...otherProps}
       onClick={onClick}
+      style={{
+        fontWeight: isBold ? 'bold' : 'normal',
+      }}
     >
       {children}
     </button>

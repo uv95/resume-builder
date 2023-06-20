@@ -14,15 +14,15 @@ const ProfessionalExperienceSettings = () => {
     <SettingsCard title="Professional Experience">
       <div className="flex">
         <Button
-          type="customization"
-          active={jobTitleFirst}
+          btnType="customization"
+          isActive={jobTitleFirst}
           onClick={() => updateProfExperienceSettings({ jobTitleFirst: true })}
         >
           Job Title - Employer
         </Button>
         <Button
-          type="customization"
-          active={!jobTitleFirst}
+          btnType="customization"
+          isActive={!jobTitleFirst}
           onClick={() => updateProfExperienceSettings({ jobTitleFirst: false })}
         >
           Employer - Job Title

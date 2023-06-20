@@ -57,8 +57,8 @@ const AddAdditionalInfo = ({ tags }: Props) => {
                 }
               />
               <Button
-                type="pink"
-                bold
+                btnType="pink"
+                isBold
                 onClick={() => {
                   setAdditionalInfo((prev) =>
                     prev.filter((info) => info.name !== item.name)

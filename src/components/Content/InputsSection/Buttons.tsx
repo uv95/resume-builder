@@ -33,8 +33,8 @@ const Buttons = ({
     <div className={style.buttons}>
       {inputData.name !== Sections.PERSONAL_DETAILS && (
         <Button
-          type="white"
-          bold
+          btnType="white"
+          isBold
           onClick={() => {
             deleteContent(itemId);
             setContentToEdit({ section: '', itemId: '' });
@@ -48,15 +48,15 @@ const Buttons = ({
       )}
       <div className="flex rightPositioned">
         <Button
-          type="white"
-          bold
+          btnType="white"
+          isBold
           onClick={() => {
             setContentToEdit({ section: '', itemId: '' });
           }}
         >
           Cancel
         </Button>
-        <Button submit type="pink" bold>
+        <Button isSubmit btnType="pink" isBold>
           <div className="flex gap-1 aligned">
             <Image
               src={save}

@@ -46,8 +46,8 @@ const Header = () => {
           {Object.values(HeaderAdditionalInfoStyle).map((detailsStyle) => (
             <Button
               key={detailsStyle}
-              type="customization"
-              active={additionalInfoStyle === detailsStyle}
+              btnType="customization"
+              isActive={additionalInfoStyle === detailsStyle}
               onClick={() =>
                 updateHeader({
                   additionalInfoOrder,
@@ -84,7 +84,7 @@ const Header = () => {
         <Section title="Change Order">
           <div className="flex">
             {additionalInfoOrder.map((info) => (
-              <Button key={info} type="gray" onClick={() => {}}>
+              <Button key={info} btnType="gray" onClick={() => {}}>
                 <div className="centered" style={{ height: '2.5rem' }}>
                   <DetailsIcons
                     fill="rgb(75, 75, 75)"

@@ -18,11 +18,11 @@ const GridColsComponent = ({ setValues, values, section }: Props) => {
       {Object.values(GridCols).map((col, i) => (
         <Button
           key={col}
-          classes={`${style.button} ${
+          className={`${style.button} ${
             values.gridCols === col ? style.button_active : ''
           }`}
-          type="customization"
-          active={values.gridCols === col}
+          btnType="customization"
+          isActive={values.gridCols === col}
           onClick={() => {
             setValues({
               ...values,

@@ -12,15 +12,15 @@ const Navigation = ({ active, setActive }: Props) => {
     <Card>
       <div className="flex-column p-2">
         <Button
-          type="nav"
-          active={active === 'Content'}
+          btnType="nav"
+          isActive={active === 'Content'}
           onClick={() => setActive('Content')}
         >
           Content
         </Button>
         <Button
-          type="nav"
-          active={active === 'Customize'}
+          btnType="nav"
+          isActive={active === 'Customize'}
           onClick={() => setActive('Customize')}
         >
           Customize

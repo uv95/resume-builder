@@ -47,7 +47,7 @@ const ColumnWidth = () => {
         <div className={style.columnWidth_options}>
           <p>Left {left}%</p>
           <Button
-            type="thinBorder"
+            btnType="thinBorder"
             onClick={() => {
               setLeft((prev) => prev + 1);
               setRight((prev) => prev - 1);
@@ -59,7 +59,7 @@ const ColumnWidth = () => {
         <div className={style.columnWidth_options}>
           <p>Right {right}%</p>
           <Button
-            type="thinBorder"
+            btnType="thinBorder"
             onClick={() => {
               setRight((prev) => prev + 1);
               setLeft((prev) => prev - 1);

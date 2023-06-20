@@ -35,8 +35,8 @@ const Heading = () => {
           {Object.values(HeadingStyle).map((headingStyleItem) => (
             <Button
               key={headingStyleItem}
-              type="customization"
-              active={headingStyle === headingStyleItem}
+              btnType="customization"
+              isActive={headingStyle === headingStyleItem}
               onClick={() => updateHeadingSetValues(headingStyleItem)}
             >
               <div

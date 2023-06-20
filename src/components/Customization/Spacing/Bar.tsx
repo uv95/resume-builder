@@ -38,7 +38,7 @@ const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
         </div>
         <div className={style.buttons}>
           <Button
-            type="thickBorder"
+            btnType="thickBorder"
             onClick={() =>
               values.indexOf(currentValue) !== 0 &&
               updateSpacing(
@@ -50,7 +50,7 @@ const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
             -
           </Button>
           <Button
-            type="thickBorder"
+            btnType="thickBorder"
             onClick={() =>
               values.indexOf(currentValue) !== 8 &&
               updateSpacing(

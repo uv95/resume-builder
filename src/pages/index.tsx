@@ -31,13 +31,13 @@ export default function Home() {
   return (
     <main className={style.home}>
       <div className="flex">
-        <Button onClick={() => addResume()} type="pink">
+        <Button onClick={() => addResume()} btnType="pink">
           Create Resume
         </Button>
         {resumeId && (
           <Button
             onClick={() => router.push(`resume/${resumeId}`)}
-            type="pink"
+            btnType="pink"
           >{`Continue editing ${resumeName}`}</Button>
         )}
       </div>
