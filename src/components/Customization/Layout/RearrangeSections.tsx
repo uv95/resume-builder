@@ -18,100 +18,100 @@ type Props = {
 };
 
 const RearrangeSections = ({
-  setInitialColumn,
-  setPreviousColumn,
-  previousColumn,
-  setInitialCard,
-  initialCard,
-  sectionsOrder,
+    setInitialColumn,
+    setPreviousColumn,
+    previousColumn,
+    setInitialCard,
+    initialCard,
+    sectionsOrder,
 }: Props) => {
-  const { resume } = useContext(ResumeContext);
-  const { columns, position } = resume?.settings.layout!;
-  return (
-    <div>
-      <h5 className="mb-1">Rearrange sections</h5>
+    const { resume } = useContext(ResumeContext);
+    const { columns, position } = resume?.settings.layout!;
+    return (
+        <div>
+            <h5 className="mb-1">Rearrange sections</h5>
 
-      {/* TOP / 1 column */}
-      {position === Position.TOP && (
-        <div id={Position.TOP} className="flex-column gap-1">
-          <Card gray>
-            <div className="p-2 centered">
-              <Image src={user} width="20" height="20" alt="icon" />
-            </div>
-          </Card>
-          {/* TOP */}
-          {columns === 1 &&
+            {/* TOP / 1 column */}
+            {position === Position.TOP && (
+                <div id={Position.TOP} className="flex-column gap-1">
+                    <Card gray>
+                        <div className="p-2 centered">
+                            <Image src={user} width="20" height="20" alt="icon" />
+                        </div>
+                    </Card>
+                    {/* TOP */}
+                    {columns === 1 &&
             sectionsOrder.top.map((section: string) => (
-              <DraggableCard
-                key={section}
-                section={section}
-                sectionsOrder={sectionsOrder.top}
-                icon={getSectionIcon(section)}
-                setInitialColumn={setInitialColumn}
-                setPreviousColumn={setPreviousColumn}
-                previousColumn={previousColumn}
-                setInitialCard={setInitialCard}
-                initialCard={initialCard}
-                column={Position.TOP}
-              />
+                <DraggableCard
+                    key={section}
+                    section={section}
+                    sectionsOrder={sectionsOrder.top}
+                    icon={getSectionIcon(section)}
+                    setInitialColumn={setInitialColumn}
+                    setPreviousColumn={setPreviousColumn}
+                    previousColumn={previousColumn}
+                    setInitialCard={setInitialCard}
+                    initialCard={initialCard}
+                    column={Position.TOP}
+                />
             ))}
-        </div>
-      )}
-
-      {/* 2 columns */}
-      {columns === 2 && (
-        <div id="columnsArea" className={style.rearrangeSections}>
-          <div id={Position.LEFT} className={style.rearrangeSections_column}>
-            {position === Position.LEFT && (
-              <Card gray>
-                <div className="p-2 centered">
-                  <Image src={user} width="20" height="20" alt="icon" />
                 </div>
-              </Card>
             )}
-            {sectionsOrder.left.map((section: string) => (
-              <DraggableCard
-                key={section}
-                section={section}
-                sectionsOrder={sectionsOrder.left}
-                icon={getSectionIcon(section)}
-                column={Position.LEFT}
-                setInitialColumn={setInitialColumn}
-                setInitialCard={setInitialCard}
-                initialCard={initialCard}
-                setPreviousColumn={setPreviousColumn}
-                previousColumn={previousColumn}
-              />
-            ))}
-          </div>
 
-          <div id={Position.RIGHT} className={style.rearrangeSections_column}>
-            {position === Position.RIGHT && (
-              <Card gray>
-                <div className="p-2 centered">
-                  <Image src={user} width="20" height="20" alt="icon" />
+            {/* 2 columns */}
+            {columns === 2 && (
+                <div id="columnsArea" className={style.rearrangeSections}>
+                    <div id={Position.LEFT} className={style.rearrangeSections_column}>
+                        {position === Position.LEFT && (
+                            <Card gray>
+                                <div className="p-2 centered">
+                                    <Image src={user} width="20" height="20" alt="icon" />
+                                </div>
+                            </Card>
+                        )}
+                        {sectionsOrder.left.map((section: string) => (
+                            <DraggableCard
+                                key={section}
+                                section={section}
+                                sectionsOrder={sectionsOrder.left}
+                                icon={getSectionIcon(section)}
+                                column={Position.LEFT}
+                                setInitialColumn={setInitialColumn}
+                                setInitialCard={setInitialCard}
+                                initialCard={initialCard}
+                                setPreviousColumn={setPreviousColumn}
+                                previousColumn={previousColumn}
+                            />
+                        ))}
+                    </div>
+
+                    <div id={Position.RIGHT} className={style.rearrangeSections_column}>
+                        {position === Position.RIGHT && (
+                            <Card gray>
+                                <div className="p-2 centered">
+                                    <Image src={user} width="20" height="20" alt="icon" />
+                                </div>
+                            </Card>
+                        )}
+                        {sectionsOrder.right.map((section: string) => (
+                            <DraggableCard
+                                key={section}
+                                section={section}
+                                sectionsOrder={sectionsOrder.right}
+                                icon={getSectionIcon(section)}
+                                column={Position.RIGHT}
+                                setInitialColumn={setInitialColumn}
+                                setInitialCard={setInitialCard}
+                                initialCard={initialCard}
+                                setPreviousColumn={setPreviousColumn}
+                                previousColumn={previousColumn}
+                            />
+                        ))}
+                    </div>
                 </div>
-              </Card>
             )}
-            {sectionsOrder.right.map((section: string) => (
-              <DraggableCard
-                key={section}
-                section={section}
-                sectionsOrder={sectionsOrder.right}
-                icon={getSectionIcon(section)}
-                column={Position.RIGHT}
-                setInitialColumn={setInitialColumn}
-                setInitialCard={setInitialCard}
-                initialCard={initialCard}
-                setPreviousColumn={setPreviousColumn}
-                previousColumn={previousColumn}
-              />
-            ))}
-          </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default RearrangeSections;

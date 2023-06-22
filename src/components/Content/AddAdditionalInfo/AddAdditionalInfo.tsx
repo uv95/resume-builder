@@ -10,82 +10,82 @@ type Props = {
 };
 
 const AddAdditionalInfo = ({ tags }: Props) => {
-  const { additionalInfo, setAdditionalInfo } = useContext(
-    AdditionalInfoContext
-  );
+    const { additionalInfo, setAdditionalInfo } = useContext(
+        AdditionalInfoContext
+    );
 
-  const [remainedTags, setRemainedTags] = useState<string[]>([]);
-  const [currentTag, setCurrentTag] = useState<string>('');
-  const [currentAdditionalInfo, setCurrentAdditionalInfo] = useState<
+    const [remainedTags, setRemainedTags] = useState<string[]>([]);
+    const [currentTag, setCurrentTag] = useState<string>('');
+    const [currentAdditionalInfo, setCurrentAdditionalInfo] = useState<
     IAdditionalInfo[]
   >([]);
 
-  useEffect(() => {
-    setCurrentAdditionalInfo(
-      additionalInfo.filter((item) => tags.includes(item.name))
-    );
-    setRemainedTags(
-      tags.filter(
-        (tag) =>
-          !additionalInfo.map((item) => item.name).includes(tag) &&
+    useEffect(() => {
+        setCurrentAdditionalInfo(
+            additionalInfo.filter((item) => tags.includes(item.name))
+        );
+        setRemainedTags(
+            tags.filter(
+                (tag) =>
+                    !additionalInfo.map((item) => item.name).includes(tag) &&
           tag !== currentTag
-      )
-    );
-  }, [additionalInfo, tags, currentTag]);
+            )
+        );
+    }, [additionalInfo, tags, currentTag]);
 
-  return (
-    <>
-      {currentAdditionalInfo.length !== 0 &&
+    return (
+        <>
+            {currentAdditionalInfo.length !== 0 &&
         currentAdditionalInfo.map((item) => (
-          <div className="inputGroup mt-1" key={item.name}>
-            <label htmlFor={item.name}>{item.name}</label>
-            <div className="flex spaceBetween">
-              <input
-                type="text"
-                name={item.name}
-                id={item.name}
-                value={item.input}
-                placeholder={item.input || `Enter ${item.name}`}
-                onChange={(e) =>
-                  setAdditionalInfo((prev) =>
-                    prev.map((info) =>
-                      info.name === item.name
-                        ? { ...info, input: e.target.value }
-                        : info
-                    )
-                  )
-                }
-              />
-              <Button
-                btnType="pink"
-                isBold
-                onClick={() => {
-                  setAdditionalInfo((prev) =>
-                    prev.filter((info) => info.name !== item.name)
-                  );
-                  setCurrentTag('');
-                }}
-              >
-                Delete
-              </Button>
+            <div className="inputGroup mt-1" key={item.name}>
+                <label htmlFor={item.name}>{item.name}</label>
+                <div className="flex spaceBetween">
+                    <input
+                        type="text"
+                        name={item.name}
+                        id={item.name}
+                        value={item.input}
+                        placeholder={item.input || `Enter ${item.name}`}
+                        onChange={(e) =>
+                            setAdditionalInfo((prev) =>
+                                prev.map((info) =>
+                                    info.name === item.name
+                                        ? { ...info, input: e.target.value }
+                                        : info
+                                )
+                            )
+                        }
+                    />
+                    <Button
+                        btnType="pink"
+                        isBold
+                        onClick={() => {
+                            setAdditionalInfo((prev) =>
+                                prev.filter((info) => info.name !== item.name)
+                            );
+                            setCurrentTag('');
+                        }}
+                    >
+                        Delete
+                    </Button>
+                </div>
             </div>
-          </div>
         ))}
 
-      <div className={style.tags}>
-        {remainedTags.map((tag) => (
-          <Tag
-            text={tag}
-            key={tag}
-            onClick={() => {
-              setCurrentTag(tag);
-              setAdditionalInfo((prev) => [...prev, { name: tag, input: '' }]);
-            }}
-          />
-        ))}
-      </div>
-    </>
-  );
+            <div className={style.tags}>
+                {remainedTags.map((tag) => (
+                    <Tag
+                        text={tag}
+                        key={tag}
+                        onClick={() => {
+                            setCurrentTag(tag);
+                            setAdditionalInfo((prev) => [...prev, { name: tag, input: '' }]);
+                        }}
+                    />
+                ))}
+            </div>
+        </>
+    );
 };
 
 export default AddAdditionalInfo;

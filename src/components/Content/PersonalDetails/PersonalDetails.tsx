@@ -25,86 +25,86 @@ type Props = {
 };
 
 const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
-  const { resume } = useContext(ResumeContext);
-  const { address, email, phone, fullName } = resume?.content.personalDetails!;
+    const { resume } = useContext(ResumeContext);
+    const { address, email, phone, fullName } = resume?.content.personalDetails!;
 
-  return (
-    <Card>
-      {contentToEdit.section ? (
-        <InputsSection
-          itemId={contentToEdit.itemId}
-          inputData={personalDetailInputData}
-          setContentToEdit={setContentToEdit}
-        />
-      ) : (
-        <div
-          className={style.cardContainer}
-          onClick={() =>
-            setContentToEdit((prev) => ({
-              ...prev,
-              section: Sections.PERSONAL_DETAILS,
-            }))
-          }
-        >
-          <div className="flex spaceBetween p-2">
-            <p className={`${style.name} ${!fullName ? style.empty : ''}`}>
-              {fullName || 'Your name'}
-            </p>
-            <Image
-              src={edit}
-              width="20"
-              height="20"
-              alt="edit"
-              onClick={() =>
-                setContentToEdit((prev) => ({
-                  ...prev,
-                  section: Sections.PERSONAL_DETAILS,
-                }))
-              }
-            />
-          </div>
-          <div className={style.content}>
-            <div className="flex gap-1">
-              <Image
-                src={emailIcon}
-                width="20"
-                height="20"
-                alt="email"
-                style={{ filter: `contrast(${email ? 1 : 0})` }}
-              />
-              <p className={`${style.input} ${!email ? style.empty : ''}`}>
-                {email || 'Email'}
-              </p>
-            </div>
-            <div className="flex gap-1">
-              <Image
-                src={phoneIcon}
-                width="20"
-                height="20"
-                alt="phone"
-                style={{ filter: `contrast(${phone ? 1 : 0})` }}
-              />
-              <p className={`${style.input} ${!phone ? style.empty : ''}`}>
-                {phone || 'Phone'}
-              </p>
-            </div>
-            <div className="flex gap-1">
-              <Image
-                src={location}
-                width="20"
-                height="20"
-                alt="location"
-                style={{ filter: `contrast(${address ? 1 : 0})` }}
-              />
-              <p className={`${style.input} ${!address ? style.empty : ''}`}>
-                {address || 'Address'}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-    </Card>
-  );
+    return (
+        <Card>
+            {contentToEdit.section ? (
+                <InputsSection
+                    itemId={contentToEdit.itemId}
+                    inputData={personalDetailInputData}
+                    setContentToEdit={setContentToEdit}
+                />
+            ) : (
+                <div
+                    className={style.cardContainer}
+                    onClick={() =>
+                        setContentToEdit((prev) => ({
+                            ...prev,
+                            section: Sections.PERSONAL_DETAILS,
+                        }))
+                    }
+                >
+                    <div className="flex spaceBetween p-2">
+                        <p className={`${style.name} ${!fullName ? style.empty : ''}`}>
+                            {fullName || 'Your name'}
+                        </p>
+                        <Image
+                            src={edit}
+                            width="20"
+                            height="20"
+                            alt="edit"
+                            onClick={() =>
+                                setContentToEdit((prev) => ({
+                                    ...prev,
+                                    section: Sections.PERSONAL_DETAILS,
+                                }))
+                            }
+                        />
+                    </div>
+                    <div className={style.content}>
+                        <div className="flex gap-1">
+                            <Image
+                                src={emailIcon}
+                                width="20"
+                                height="20"
+                                alt="email"
+                                style={{ filter: `contrast(${email ? 1 : 0})` }}
+                            />
+                            <p className={`${style.input} ${!email ? style.empty : ''}`}>
+                                {email || 'Email'}
+                            </p>
+                        </div>
+                        <div className="flex gap-1">
+                            <Image
+                                src={phoneIcon}
+                                width="20"
+                                height="20"
+                                alt="phone"
+                                style={{ filter: `contrast(${phone ? 1 : 0})` }}
+                            />
+                            <p className={`${style.input} ${!phone ? style.empty : ''}`}>
+                                {phone || 'Phone'}
+                            </p>
+                        </div>
+                        <div className="flex gap-1">
+                            <Image
+                                src={location}
+                                width="20"
+                                height="20"
+                                alt="location"
+                                style={{ filter: `contrast(${address ? 1 : 0})` }}
+                            />
+                            <p className={`${style.input} ${!address ? style.empty : ''}`}>
+                                {address || 'Address'}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </Card>
+    );
 };
 
 export default PersonalDetails;

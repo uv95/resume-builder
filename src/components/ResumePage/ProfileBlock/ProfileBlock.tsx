@@ -3,15 +3,15 @@ import React, { useContext } from 'react';
 import parse from 'html-react-parser';
 
 const ProfileBlock = () => {
-  const { resume } = useContext(ResumeContext);
-  const content = resume?.content.profile;
+    const { resume } = useContext(ResumeContext);
+    const content = resume?.content.profile.items;
 
-  return (
-    <>
-      {content &&
+    return (
+        <>
+            {content &&
         content.map((item) => <div key={item.id}>{parse(item.text)}</div>)}
-    </>
-  );
+        </>
+    );
 };
 
 export default ProfileBlock;

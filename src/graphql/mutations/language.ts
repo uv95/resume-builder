@@ -17,7 +17,7 @@ export const ADD_LANGUAGE = gql`
       index: $index
       resumeId: $resumeId
     ) {
-      ...LanguageFields
+      ...LanguageItemFields
     }
   }
 `;
@@ -38,16 +38,26 @@ export const UPDATE_LANGUAGE = gql`
       languageLevel: $languageLevel
       index: $index
     ) {
-      ...LanguageFields
+      ...LanguageItemFields
     }
   }
 `;
 
-export const UPDATE_ALL_LANGUAGES = gql`
+export const UPDATE_LANGUAGES_ORDER = gql`
   ${LANGUAGE_FIELDS}
-  mutation updateAllLanguages($items: [LanguageTypeAll]) {
-    updateAllLanguages(items: $items) {
-      ...LanguageFields
+  mutation updateLanguagesOrder($items: [LanguagesOrder]) {
+    updateLanguagesOrder(items: $items) {
+      ...LanguageItemFields
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_LANGUAGE = gql`
+  mutation updateSectionNameLanguage($id: ID! $sectionName: String!) {
+    updateSectionNameLanguage( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;

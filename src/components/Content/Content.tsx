@@ -2,8 +2,8 @@ import { AdditionalInfoProvider } from '@/context/AdditionalInfoContext';
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
-import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
-import React, { useContext, useEffect, useState } from 'react';
+import { Sections } from '@/utils/types/resumeTypes';
+import React, { useContext, useState } from 'react';
 import AddContent from './AddContent/AddContent';
 import Button from '../Button/Button';
 import Card from '../Card/Card';
@@ -12,105 +12,85 @@ import InputsSection from './InputsSection/InputsSection';
 import Modal from '../Modal/Modal';
 import PersonalDetails from './PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
+import { AdditionalContentSection } from '@/utils/types/contentTypes';
 
 const Content = () => {
-  const [showAddContent, setShowAddContent] = useState(false);
-  const [contentToEdit, setContentToEdit] = useState<{
+    const [showAddContent, setShowAddContent] = useState(false);
+    const [contentToEdit, setContentToEdit] = useState<{
     section: Sections | '';
     itemId: string;
   }>({
-    section: '',
-    itemId: '',
+      section: '',
+      itemId: '',
   });
-  const { resume } = useContext(ResumeContext);
+    const { resume } = useContext(ResumeContext);
+    const additionalContentSections = resume?.settings.sectionsOrder.top.filter(section=>section!=='personalDetails')!
 
-  const [resumeArraySections, setResumeArraySections] =
-    useState<IResumeArraySections>({
-      language: [],
-      skills: [],
-      professionalExperience: [],
-      project: [],
-      education: [],
-      profile: [],
-    });
-
-  useEffect(() => {
-    resume &&
-      setResumeArraySections({
-        language: resume.content.language,
-        skills: resume.content.skills,
-        professionalExperience: resume.content.professionalExperience,
-        project: resume.content.project,
-        education: resume.content.education,
-        profile: resume.content.profile,
-      });
-  }, [resume]);
-
-  const showPersonalDetailsIfNotEditingAnything =
+    const showPersonalDetailsIfNotEditingAnything =
     !contentToEdit.section ||
     contentToEdit.section === Sections.PERSONAL_DETAILS;
-  const isEditOtherSection =
+    const isEditOtherSection =
     contentToEdit.section &&
     contentToEdit.section !== Sections.PERSONAL_DETAILS;
 
-  return (
-    <AdditionalInfoProvider>
-      <CurrentSectionProvider>
-        {resume && (
-          <>
-            {showPersonalDetailsIfNotEditingAnything && (
-              <PersonalDetails
-                contentToEdit={contentToEdit}
-                setContentToEdit={setContentToEdit}
-              />
-            )}
-            {!contentToEdit.section &&
-              resume.settings.sectionsOrder.top.map(
-                (section) =>
-                  resumeArraySections[
-                    section as keyof typeof resumeArraySections
-                  ].length !== 0 && (
-                    <ContentCard
-                      key={section}
-                      icon={getSectionIcon(section)}
-                      contentToEdit={contentToEdit}
-                      setContentToEdit={setContentToEdit}
-                      inputData={inputData[section as keyof typeof inputData]}
-                      resumeData={
-                        resume.content[section as keyof typeof resume.content]
-                      }
-                    />
-                  )
+    return (
+        <AdditionalInfoProvider>
+            <CurrentSectionProvider>
+                {resume && (
+                    <>
+                        {showPersonalDetailsIfNotEditingAnything && (
+                            <PersonalDetails
+                                contentToEdit={contentToEdit}
+                                setContentToEdit={setContentToEdit}
+                            />
+                        )}
+                        {!contentToEdit.section &&
+              additionalContentSections.map(
+                  (section) =>
+                      ( resume.content[
+                      section as keyof typeof resume.content] as AdditionalContentSection).items
+                          .length !== 0 && (
+                          <ContentCard
+                              key={section}
+                              icon={getSectionIcon(section)}
+                              contentToEdit={contentToEdit}
+                              setContentToEdit={setContentToEdit}
+                              inputData={inputData[section as keyof typeof inputData]}
+                              items={
+                                  (resume.content[section as keyof typeof resume.content] as AdditionalContentSection).items
+                              }
+                          />
+                      )
               )}
-            {isEditOtherSection && (
-              <Card>
-                <InputsSection
-                  itemId={contentToEdit.itemId}
-                  inputData={
-                    inputData[contentToEdit.section as keyof typeof inputData]
-                  }
-                  setContentToEdit={setContentToEdit}
-                />
-              </Card>
-            )}
-            <div className="centered">
-              <Button onClick={() => setShowAddContent(true)} btnType="pink">
-                + Add Content
-              </Button>
-            </div>
-          </>
-        )}
-        {showAddContent && (
-          <Modal setOpen={setShowAddContent} heading="Add Content">
-            <AddContent
-              setContentToEdit={setContentToEdit}
-              setOpen={setShowAddContent}
-            />
-          </Modal>
-        )}
-      </CurrentSectionProvider>
-    </AdditionalInfoProvider>
-  );
+                        {isEditOtherSection && (
+                            <Card>
+                                <InputsSection
+                                    itemId={contentToEdit.itemId}
+                                    inputData={
+                                        inputData[contentToEdit.section as keyof typeof inputData]
+                                    }
+                                    setContentToEdit={setContentToEdit}
+                                />
+                            </Card>
+                        )}
+                        {!contentToEdit.section && <div className="centered">
+                            <Button  onClick={() => setShowAddContent(true)} btnType="pink">
+                                + Add Content
+                            </Button>
+                        </div>}
+                    </>
+                )}
+                {showAddContent && (
+                    <Modal setOpen={setShowAddContent} heading="Add Content">
+                        <AddContent
+                            setContentToEdit={setContentToEdit}
+                            setOpen={setShowAddContent}
+                        />
+                    </Modal>
+                )}
+            </CurrentSectionProvider>
+        </AdditionalInfoProvider>
+    );
 };
 
 export default Content;

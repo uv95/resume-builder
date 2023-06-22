@@ -11,43 +11,43 @@ type Props = {
 };
 
 const GridColsComponent = ({ setValues, values, section }: Props) => {
-  const { updateSkillsSettings, updateLanguageSettings } = useUpdateSettings();
+    const { updateSkillsSettings, updateLanguageSettings } = useUpdateSettings();
 
-  return (
-    <div className="flex">
-      {Object.values(GridCols).map((col, i) => (
-        <Button
-          key={col}
-          className={`${style.button} ${
-            values.gridCols === col ? style.button_active : ''
-          }`}
-          btnType="customization"
-          isActive={values.gridCols === col}
-          onClick={() => {
-            setValues({
-              ...values,
-              gridCols: col,
-            });
-            section === 'language'
-              ? updateLanguageSettings({
-                  ...values,
-                  gridCols: col,
-                })
-              : updateSkillsSettings({
-                  ...values,
-                  gridCols: col,
-                });
-          }}
-        >
-          <div className={style.itemContainer}>
-            {[...Array(i + 1)].map((_, index) => (
-              <div key={index} className={style.item}></div>
+    return (
+        <div className="flex">
+            {Object.values(GridCols).map((col, i) => (
+                <Button
+                    key={col}
+                    className={`${style.button} ${
+                        values.gridCols === col ? style.button_active : ''
+                    }`}
+                    btnType="customization"
+                    isActive={values.gridCols === col}
+                    onClick={() => {
+                        setValues({
+                            ...values,
+                            gridCols: col,
+                        });
+                        section === 'language'
+                            ? updateLanguageSettings({
+                                ...values,
+                                gridCols: col,
+                            })
+                            : updateSkillsSettings({
+                                ...values,
+                                gridCols: col,
+                            });
+                    }}
+                >
+                    <div className={style.itemContainer}>
+                        {[...Array(i + 1)].map((_, index) => (
+                            <div key={index} className={style.item}></div>
+                        ))}
+                    </div>
+                </Button>
             ))}
-          </div>
-        </Button>
-      ))}
-    </div>
-  );
+        </div>
+    );
 };
 
 export default GridColsComponent;

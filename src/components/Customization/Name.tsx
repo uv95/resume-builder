@@ -7,33 +7,33 @@ import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
 
 const Name = () => {
-  const { resume } = useContext(ResumeContext);
+    const { resume } = useContext(ResumeContext);
 
-  const { updateName } = useUpdateSettings();
-  const [values, setValues] = useState(removeTypename(resume?.settings.name!));
-  const update = (updatedField: 'size' | 'style', newVal: string) =>
-    updateName({
-      ...values,
-      [updatedField]: newVal,
-    });
-  return (
-    <SettingsCard title="Name">
-      <SettingsButtons
-        options={Object.values(Size)}
-        updatedField="size"
-        allValues={values}
-        setValues={setValues}
-        update={update}
-      />
-      <SettingsButtons
-        options={[FontStyle.NORMAL, FontStyle.BOLD]}
-        updatedField="style"
-        allValues={values}
-        setValues={setValues}
-        update={update}
-      />
-    </SettingsCard>
-  );
+    const { updateName } = useUpdateSettings();
+    const [values, setValues] = useState(removeTypename(resume?.settings.name!));
+    const update = (updatedField: 'size' | 'style', newVal: string) =>
+        updateName({
+            ...values,
+            [updatedField]: newVal,
+        });
+    return (
+        <SettingsCard title="Name">
+            <SettingsButtons
+                options={Object.values(Size)}
+                updatedField="size"
+                allValues={values}
+                setValues={setValues}
+                update={update}
+            />
+            <SettingsButtons
+                options={[FontStyle.NORMAL, FontStyle.BOLD]}
+                updatedField="style"
+                allValues={values}
+                setValues={setValues}
+                update={update}
+            />
+        </SettingsCard>
+    );
 };
 
 export default Name;

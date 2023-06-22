@@ -1,169 +1,172 @@
 import {
-  UPDATE_ALL_EDUCATIONS,
-  UPDATE_EDUCATION,
+    UPDATE_EDUCATION_ORDER,
+    UPDATE_EDUCATION,
 } from '@/graphql/mutations/education';
 import {
-  UPDATE_ALL_LANGUAGES,
-  UPDATE_LANGUAGE,
+    UPDATE_LANGUAGES_ORDER,
+    UPDATE_LANGUAGE,
 } from '@/graphql/mutations/language';
 import { UPDATE_PERSONAL_DETAILS } from '@/graphql/mutations/personalDetails';
 import {
-  UPDATE_ALL_PROFESSIONAL_EXPERIENCE,
-  UPDATE_PROFESSIONAL_EXPERIENCE,
+    UPDATE_PROFESSIONAL_EXPERIENCE_ORDER,
+    UPDATE_PROFESSIONAL_EXPERIENCE,
 } from '@/graphql/mutations/professionalExperience';
 import {
-  UPDATE_ALL_PROFILES,
-  UPDATE_PROFILE,
+    UPDATE_PROFILES_ORDER,
+    UPDATE_PROFILE,
 } from '@/graphql/mutations/profile';
 import {
-  UPDATE_ALL_PROJECTS,
-  UPDATE_PROJECT,
+    UPDATE_PROJECTS_ORDER,
+    UPDATE_PROJECT,
 } from '@/graphql/mutations/project';
-import { UPDATE_ALL_SKILLS, UPDATE_SKILL } from '@/graphql/mutations/skills';
+import { UPDATE_SKILLS_ORDER, UPDATE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
-  ArraySectionsType,
-  IterableSectionsArraysType,
-  Sections,
+    Sections,
 } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
+import { AdditionalContentItem } from '@/utils/types/contentTypes';
 
 function useUpdateMutations({
-  section,
-  updateAll,
-  resumeId,
+    section,
+    updateOrder,
+    resumeId,
 }: {
   section: Sections;
-  updateAll?: boolean;
+  updateOrder?: boolean;
   resumeId: string;
 }) {
-  const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);
+    const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);
 
-  const [updateEducation] = useMutation(UPDATE_EDUCATION);
-  const [updateAllEducations] = useMutation(UPDATE_ALL_EDUCATIONS);
+    const [updateEducation] = useMutation(UPDATE_EDUCATION);
+    const [updateEducationsOrder] = useMutation(UPDATE_EDUCATION_ORDER);
 
-  const [updateLanguage] = useMutation(UPDATE_LANGUAGE);
-  const [updateAllLanguages] = useMutation(UPDATE_ALL_LANGUAGES);
+    const [updateLanguage] = useMutation(UPDATE_LANGUAGE);
+    const [updateLanguagesOrder] = useMutation(UPDATE_LANGUAGES_ORDER);
 
-  const [updateProfessionalExperience] = useMutation(
-    UPDATE_PROFESSIONAL_EXPERIENCE
-  );
-  const [updateAllProfessionalExperience] = useMutation(
-    UPDATE_ALL_PROFESSIONAL_EXPERIENCE
-  );
-  const [updateProfile] = useMutation(UPDATE_PROFILE);
-  const [updateAllProfiles] = useMutation(UPDATE_ALL_PROFILES);
+    const [updateProfessionalExperience] = useMutation(
+        UPDATE_PROFESSIONAL_EXPERIENCE
+    );
+    const [updateProfessionalExperienceOrder] = useMutation(
+        UPDATE_PROFESSIONAL_EXPERIENCE_ORDER
+    );
+    const [updateProfile] = useMutation(UPDATE_PROFILE);
+    const [updateProfilesOrder] = useMutation(UPDATE_PROFILES_ORDER);
 
-  const [updateProject] = useMutation(UPDATE_PROJECT);
-  const [updateAllProjects] = useMutation(UPDATE_ALL_PROJECTS);
+    const [updateProject] = useMutation(UPDATE_PROJECT);
+    const [updateProjectsOrder] = useMutation(UPDATE_PROJECTS_ORDER);
 
-  const [updateSkill] = useMutation(UPDATE_SKILL);
-  const [updateAllSkills] = useMutation(UPDATE_ALL_SKILLS);
+    const [updateSkill] = useMutation(UPDATE_SKILL);
+    const [updateSkillsOrder] = useMutation(UPDATE_SKILLS_ORDER);
 
-  const updateFunctions = [
-    {
-      sectionName: Sections.PERSONAL_DETAILS,
-      fn: updatePersonalDetails,
-      fnName: 'updatePersonalDetails',
-    },
-    {
-      sectionName: Sections.EDUCATION,
-      fn: updateAll ? updateAllEducations : updateEducation,
-      fnName: updateAll ? 'updateAllEducations' : 'updateEducation',
-    },
-    {
-      sectionName: Sections.LANGUAGE,
-      fn: updateAll ? updateAllLanguages : updateLanguage,
-      fnName: updateAll ? 'updateAllLanguages' : 'updateLanguage',
-    },
-    {
-      sectionName: Sections.PROFESSIONAL_EXPERIENCE,
-      fn: updateAll
-        ? updateAllProfessionalExperience
-        : updateProfessionalExperience,
-      fnName: updateAll
-        ? 'updateAllProfessionalExperience'
-        : 'updateProfessionalExperience',
-    },
-    {
-      sectionName: Sections.PROFILE,
-      fn: updateAll ? updateAllProfiles : updateProfile,
-      fnName: updateAll ? 'updateAllProfiles' : 'updateProfile',
-    },
-    {
-      sectionName: Sections.PROJECT,
-      fn: updateAll ? updateAllProjects : updateProject,
-      fnName: updateAll ? 'updateAllProjects' : 'updateProject',
-    },
-    {
-      sectionName: Sections.SKILLS,
-      fn: updateAll ? updateAllSkills : updateSkill,
-      fnName: updateAll ? 'updateAllSkills' : 'updateSkill',
-    },
-  ];
-  const updateContent = (
-    variables:
-      | ArraySectionsType
-      | {
-          items: IterableSectionsArraysType;
-        }
-  ) => {
-    const { fn, fnName } = updateFunctions.find(
-      (item) => section === item.sectionName
-    )!;
-
-    if (fn)
-      return fn({
-        variables,
-        update(cache, { data }) {
-          const newData = data[fnName];
-          const { resume } = cache.readQuery({
-            query: GET_RESUME,
-            variables: { id: resumeId },
-          })!;
-
-          if (!updateAll) {
-            const itemId = (variables as ArraySectionsType).id;
-
-            cache.writeQuery({
-              query: GET_RESUME,
-              data: {
-                resume: {
-                  ...resume,
-                  content: {
-                    ...resume.content,
-                    [section]:
-                      section === Sections.PERSONAL_DETAILS
-                        ? newData
-                        : [
-                            ...resume.content[section].map((item: any) =>
-                              item.id === itemId ? newData : item
-                            ),
-                          ],
-                  },
-                },
-              },
-            });
-          }
-          if (updateAll) {
-            cache.writeQuery({
-              query: GET_RESUME,
-              data: {
-                resume: {
-                  ...resume,
-                  content: {
-                    ...resume.content,
-                    [section]: newData,
-                  },
-                },
-              },
-            });
-          }
+    const updateFunctions = [
+        {
+            sectionName: Sections.PERSONAL_DETAILS,
+            fn: updatePersonalDetails,
+            fnName: 'updatePersonalDetails',
         },
-      });
-    return null;
-  };
-  return updateContent;
+        {
+            sectionName: Sections.EDUCATION,
+            fn: updateOrder ? updateEducationsOrder : updateEducation,
+            fnName: updateOrder ? 'updateEducationsOrder' : 'updateEducation',
+        },
+        {
+            sectionName: Sections.LANGUAGE,
+            fn: updateOrder ? updateLanguagesOrder : updateLanguage,
+            fnName: updateOrder ? 'updateLanguagesOrder' : 'updateLanguage',
+        },
+        {
+            sectionName: Sections.PROFESSIONAL_EXPERIENCE,
+            fn: updateOrder
+                ? updateProfessionalExperienceOrder
+                : updateProfessionalExperience,
+            fnName: updateOrder
+                ? 'updateProfessionalExperienceOrder'
+                : 'updateProfessionalExperience',
+        },
+        {
+            sectionName: Sections.PROFILE,
+            fn: updateOrder ? updateProfilesOrder : updateProfile,
+            fnName: updateOrder ? 'updateProfilesOrder' : 'updateProfile',
+        },
+        {
+            sectionName: Sections.PROJECT,
+            fn: updateOrder ? updateProjectsOrder : updateProject,
+            fnName: updateOrder ? 'updateProjectsOrder' : 'updateProject',
+        },
+        {
+            sectionName: Sections.SKILLS,
+            fn: updateOrder ? updateSkillsOrder : updateSkill,
+            fnName: updateOrder ? 'updateSkillsOrder' : 'updateSkill',
+        },
+    ];
+    const updateContent = (
+        variables:
+      | AdditionalContentItem
+      | {
+          items: AdditionalContentItem[];
+        }
+    ) => {
+        const { fn, fnName } = updateFunctions.find(
+            (item) => section === item.sectionName
+        )!;
+
+        if (fn)
+            return fn({
+                variables,
+                update(cache, { data }) {
+                    const newData = data[fnName];
+                    const { resume } = cache.readQuery({
+                        query: GET_RESUME,
+                        variables: { id: resumeId },
+                    })!;
+
+                    if (!updateOrder) {
+                        const itemId = (variables as AdditionalContentItem).id;
+
+                        cache.writeQuery({
+                            query: GET_RESUME,
+                            data: {
+                                resume: {
+                                    ...resume,
+                                    content: {
+                                        ...resume.content,
+                                        [section]:
+                      section === Sections.PERSONAL_DETAILS
+                          ? newData
+                          : {...resume.content[section],
+                              items:[
+                                  ...resume.content[section].items.map((item: any) =>
+                                      item.id === itemId ? newData : item
+                                  ),
+                              ]},
+                                    },
+                                },
+                            },
+                        });
+                    }
+                    if (updateOrder) {
+                        cache.writeQuery({
+                            query: GET_RESUME,
+                            data: {
+                                resume: {
+                                    ...resume,
+                                    content: {
+                                        ...resume.content,
+                                        [section]: {
+                                            ...resume.content[section],
+                                            items: newData
+                                        },
+                                    },
+                                },
+                            },
+                        });
+                    }
+                },
+            });
+        return null;
+    };
+    return updateContent;
 }
 
 export default useUpdateMutations;

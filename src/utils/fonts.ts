@@ -5,14 +5,14 @@ export const fonts: {
   title: 'Serif' | 'Sans';
   fonts: string[];
 }[] = [
-  {
-    type: FontType.SERIF,
-    title: 'Serif',
-    fonts: ['Times New Roman', 'Georgia', 'EB Garamond'],
-  },
-  {
-    type: FontType.SANS,
-    title: 'Sans',
-    fonts: ['Arial', 'Open Sans', 'Roboto'],
-  },
+    {
+        type: FontType.SERIF,
+        title: 'Serif',
+        fonts: ['Times New Roman', 'Georgia', 'EB Garamond'],
+    },
+    {
+        type: FontType.SANS,
+        title: 'Sans',
+        fonts: ['Arial', 'Open Sans', 'Roboto'],
+    },
 ];

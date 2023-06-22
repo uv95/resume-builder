@@ -6,27 +6,27 @@ import React, { useContext, useEffect } from 'react';
 import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';
 
 const PersonalDetailsAdditionalInfo = () => {
-  const { setAdditionalInfo } = useContext(AdditionalInfoContext);
-  const { resume } = useContext(ResumeContext);
+    const { setAdditionalInfo } = useContext(AdditionalInfoContext);
+    const { resume } = useContext(ResumeContext);
 
-  useEffect(() => {
-    const additionalInfoTypenameRemoved =
+    useEffect(() => {
+        const additionalInfoTypenameRemoved =
       resume?.content.personalDetails?.additionalInfo.map((item) =>
-        removeTypename(item)
+          removeTypename(item)
       );
-    setAdditionalInfo(additionalInfoTypenameRemoved || []);
-  }, [resume?.content.personalDetails?.additionalInfo, setAdditionalInfo]);
+        setAdditionalInfo(additionalInfoTypenameRemoved || []);
+    }, [resume?.content.personalDetails?.additionalInfo, setAdditionalInfo]);
 
-  return (
-    <div>
-      {personalDetailInputData.additionalInfo.map((info: any) => (
-        <div key={info.title}>
-          <h3 className="mt-1">{info.title}</h3>
-          <AddAdditionalInfo tags={info.tags} />
+    return (
+        <div>
+            {personalDetailInputData.additionalInfo.map((info: any) => (
+                <div key={info.title}>
+                    <h3 className="mt-1">{info.title}</h3>
+                    <AddAdditionalInfo tags={info.tags} />
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default PersonalDetailsAdditionalInfo;

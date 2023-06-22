@@ -9,32 +9,32 @@ type Props = {
 };
 
 const Textarea = ({ setTextareaText, textareaText, placeholder }: Props) => {
-  return (
-    <div className="editor">
-      {!textareaText && (
-        <i
-          style={{
-            position: 'absolute',
-            left: '2.5rem',
-            top: '5.8rem',
-            zIndex: 1,
-            pointerEvents: 'none',
-            opacity: 0.5,
-          }}
-        >
-          {placeholder}
-        </i>
-      )}
-      <CKEditor
-        editor={ClassicEditor}
-        data={textareaText}
-        onChange={(event, editor) => {
-          const data = editor.getData();
-          setTextareaText(data);
-        }}
-      />
-    </div>
-  );
+    return (
+        <div className="editor">
+            {!textareaText && (
+                <i
+                    style={{
+                        position: 'absolute',
+                        left: '2.5rem',
+                        top: '5.8rem',
+                        zIndex: 1,
+                        pointerEvents: 'none',
+                        opacity: 0.5,
+                    }}
+                >
+                    {placeholder}
+                </i>
+            )}
+            <CKEditor
+                editor={ClassicEditor}
+                data={textareaText}
+                onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setTextareaText(data);
+                }}
+            />
+        </div>
+    );
 };
 
 export default Textarea;

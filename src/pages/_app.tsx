@@ -6,12 +6,12 @@ import useApollo from '@/hooks/useApollo';
 import { ResumeProvider } from '@/context/ResumeContext';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const client = useApollo(pageProps);
-  return (
-    <ApolloProvider client={client}>
-      <ResumeProvider>
-        <Component {...pageProps} />;
-      </ResumeProvider>
-    </ApolloProvider>
-  );
+    const client = useApollo(pageProps);
+    return (
+        <ApolloProvider client={client}>
+            <ResumeProvider>
+                <Component {...pageProps} />;
+            </ResumeProvider>
+        </ApolloProvider>
+    );
 }

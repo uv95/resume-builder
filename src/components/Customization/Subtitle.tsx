@@ -7,35 +7,35 @@ import SettingsButtons from './UI/SettingsButtons';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 
 const Subtitle = () => {
-  const { resume } = useContext(ResumeContext);
-  const { updateSubtitle } = useUpdateSettings();
-  const [values, setValues] = useState(
-    removeTypename(resume?.settings.subtitle!)
-  );
-  const update = (updatedField: 'position' | 'style', newVal: string) =>
-    updateSubtitle({
-      ...values,
-      [updatedField]: newVal,
-    });
+    const { resume } = useContext(ResumeContext);
+    const { updateSubtitle } = useUpdateSettings();
+    const [values, setValues] = useState(
+        removeTypename(resume?.settings.subtitle!)
+    );
+    const update = (updatedField: 'position' | 'style', newVal: string) =>
+        updateSubtitle({
+            ...values,
+            [updatedField]: newVal,
+        });
 
-  return (
-    <SettingsCard title="Subtitle">
-      <SettingsButtons
-        options={Object.values(FontStyle)}
-        updatedField="style"
-        allValues={values}
-        setValues={setValues}
-        update={update}
-      />
-      <SettingsButtons
-        options={Object.values(SubtitlePosition)}
-        updatedField="position"
-        allValues={values}
-        setValues={setValues}
-        update={update}
-      />
-    </SettingsCard>
-  );
+    return (
+        <SettingsCard title="Subtitle">
+            <SettingsButtons
+                options={Object.values(FontStyle)}
+                updatedField="style"
+                allValues={values}
+                setValues={setValues}
+                update={update}
+            />
+            <SettingsButtons
+                options={Object.values(SubtitlePosition)}
+                updatedField="position"
+                allValues={values}
+                setValues={setValues}
+                update={update}
+            />
+        </SettingsCard>
+    );
 };
 
 export default Subtitle;

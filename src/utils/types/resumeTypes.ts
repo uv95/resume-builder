@@ -1,31 +1,37 @@
 import {
-  IEducation,
-  ILanguage,
-  IPersonalDetails,
-  IProfessionalExperience,
-  IProfile,
-  IProject,
-  ISkills,
+    IEducationItem,
+    ILanguageItem,
+    IPersonalDetails,
+    IProfessionalExperienceItem,
+    IProfileItem,
+    IProjectItem,
+    ISkillsItem,
+    IEducation,
+    ILanguage,
+    IProfessionalExperience,
+    IProfile,
+    IProject,
+    ISkills
 } from './contentTypes';
 import {
-  Position,
-  Mode,
-  ColorOption,
-  IBasicMulticolor,
-  IAdvancedMulticolor,
-  IApplyAccentColor,
-  ISpacing,
-  IFont,
-  IHeading,
-  ISubtitle,
-  IHeader,
-  IName,
-  IJobTitle,
-  IDate,
-  ISkillsLanguageSettings,
-  IProfileSettings,
-  IEducationSettings,
-  IProfessionalExperienceSettings,
+    Position,
+    Mode,
+    ColorOption,
+    IBasicMulticolor,
+    IAdvancedMulticolor,
+    IApplyAccentColor,
+    ISpacing,
+    IFont,
+    IHeading,
+    ISubtitle,
+    IHeader,
+    IName,
+    IJobTitle,
+    IDate,
+    ISkillsLanguageSettings,
+    IProfileSettings,
+    IEducationSettings,
+    IProfessionalExperienceSettings,
 } from './settingsTypes';
 
 export interface IResume {
@@ -35,15 +41,15 @@ export interface IResume {
   settings: ISettings;
 }
 
-interface IContent {
+export interface IContent {
   id: string;
-  education: IEducation[];
-  language: ILanguage[];
-  personalDetails: null | IPersonalDetails;
-  professionalExperience: IProfessionalExperience[];
-  profile: IProfile[];
-  project: IProject[];
-  skills: ISkills[];
+  education: IEducation;
+  language: ILanguage;
+  personalDetails: IPersonalDetails;
+  professionalExperience: IProfessionalExperience;
+  profile: IProfile;
+  project: IProject;
+  skills: ISkills;
 }
 
 export enum Sections {
@@ -101,26 +107,10 @@ export interface ISettings {
 }
 
 export interface IResumeArraySections {
-  language: ILanguage[];
-  skills: ISkills[];
-  professionalExperience: IProfessionalExperience[];
-  project: IProject[];
-  education: IEducation[];
-  profile: IProfile[];
+  language: ILanguageItem[];
+  skills: ISkillsItem[];
+  professionalExperience: IProfessionalExperienceItem[];
+  project: IProjectItem[];
+  education: IEducationItem[];
+  profile: IProfileItem[];
 }
-
-export type IterableSectionsArraysType =
-  | ILanguage[]
-  | ISkills[]
-  | IProfessionalExperience[]
-  | IProject[]
-  | IEducation[]
-  | IProfile[];
-
-export type ArraySectionsType =
-  | ILanguage
-  | ISkills
-  | IProfessionalExperience
-  | IProject
-  | IEducation
-  | IProfile;

@@ -8,15 +8,15 @@ type Props = {
 };
 
 const Card = ({ children, gray, hoverScale }: Props) => {
-  return (
-    <div
-      className={`${style.card} ${gray ? style.gray : ''} ${
-        hoverScale ? style.hoverScale : ''
-      }`}
-    >
-      {children}
-    </div>
-  );
+    return (
+        <div
+            className={`${style.card} ${gray ? style.gray : ''} ${
+                hoverScale ? style.hoverScale : ''
+            }`}
+        >
+            {children}
+        </div>
+    );
 };
 
 export default Card;

@@ -16,11 +16,11 @@ type Props = {
 };
 
 const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
-  const handlePrint = useReactToPrint({
-    content: reactToPrintContent,
-  });
-  const [isEdit, setIsEdit] = useState(false);
-  const [updateResume] = useMutation(UPDATE_RESUME, {
+    const handlePrint = useReactToPrint({
+        content: reactToPrintContent,
+    });
+    const [isEdit, setIsEdit] = useState(false);
+    const [updateResume] = useMutation(UPDATE_RESUME, {
     // update(cache, { data }) {
     //   const { name } = data.updateResume;
     //   const { resume } = cache.readQuery({
@@ -32,50 +32,50 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     //     data: { resume: { ...resume, name } },
     //   });
     // },
-  });
+    });
 
-  const printHandler = () => {};
+    const printHandler = () => {};
 
-  return isEdit ? (
-    <Card>
-      <Formik
-        initialValues={{ name: resumeName }}
-        onSubmit={({ name }) => {
-          updateResume({
-            variables: { id, name },
-          });
-          localStorage.setItem('resumeName', name);
+    return isEdit ? (
+        <Card>
+            <Formik
+                initialValues={{ name: resumeName }}
+                onSubmit={({ name }) => {
+                    updateResume({
+                        variables: { id, name },
+                    });
+                    localStorage.setItem('resumeName', name);
 
-          setIsEdit(false);
-        }}
-      >
-        <Form>
-          <div className="flex p-2">
-            <Field name="name" id="name" type="text" />
-            <Button isSubmit btnType="pink">
-              Save
-            </Button>
-          </div>
-        </Form>
-      </Formik>
-    </Card>
-  ) : (
-    <Card>
-      <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
-        <div
-          style={{ alignItems: 'center' }}
-          className="flex pointer"
-          onClick={() => setIsEdit(true)}
-        >
-          <h3>{resumeName}</h3>
-          <Image src={edit} width="20" height="20" alt="edit" />
-        </div>
-        <Button btnType="pink" onClick={handlePrint}>
-          Print
-        </Button>
-      </div>
-    </Card>
-  );
+                    setIsEdit(false);
+                }}
+            >
+                <Form>
+                    <div className="flex p-2">
+                        <Field name="name" id="name" type="text" />
+                        <Button isSubmit btnType="pink">
+                            Save
+                        </Button>
+                    </div>
+                </Form>
+            </Formik>
+        </Card>
+    ) : (
+        <Card>
+            <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
+                <div
+                    style={{ alignItems: 'center' }}
+                    className="flex pointer"
+                    onClick={() => setIsEdit(true)}
+                >
+                    <h3>{resumeName}</h3>
+                    <Image src={edit} width="20" height="20" alt="edit" />
+                </div>
+                <Button btnType="pink" onClick={handlePrint}>
+                    Print
+                </Button>
+            </div>
+        </Card>
+    );
 };
 
 export default ResumeName;

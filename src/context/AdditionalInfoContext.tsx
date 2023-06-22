@@ -7,8 +7,8 @@ interface IAdditionalInfoContext {
 }
 
 export const AdditionalInfoContext = createContext<IAdditionalInfoContext>({
-  additionalInfo: [],
-  setAdditionalInfo: () => {},
+    additionalInfo: [],
+    setAdditionalInfo: () => {},
 });
 
 interface Props {
@@ -16,12 +16,12 @@ interface Props {
 }
 
 export const AdditionalInfoProvider = ({ children }: Props) => {
-  const [additionalInfo, setAdditionalInfo] = useState<IAdditionalInfo[]>([]);
-  return (
-    <AdditionalInfoContext.Provider
-      value={{ additionalInfo, setAdditionalInfo }}
-    >
-      {children}
-    </AdditionalInfoContext.Provider>
-  );
+    const [additionalInfo, setAdditionalInfo] = useState<IAdditionalInfo[]>([]);
+    return (
+        <AdditionalInfoContext.Provider
+            value={{ additionalInfo, setAdditionalInfo }}
+        >
+            {children}
+        </AdditionalInfoContext.Provider>
+    );
 };

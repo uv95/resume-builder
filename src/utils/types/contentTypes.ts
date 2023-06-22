@@ -1,5 +1,10 @@
-export interface IEducation {
+interface ContentItem {
   id: string;
+  index: number;
+  __typename?: string;
+}
+
+export interface IEducationItem extends ContentItem {
   degree: string;
   school: string;
   city: string;
@@ -7,8 +12,11 @@ export interface IEducation {
   startDate: string;
   endDate: string;
   description: string;
-  index: number;
-  __typename?: string;
+}
+
+export interface IAdditionalInfo {
+  name: string;
+  input: string;
 }
 
 export interface IPersonalDetails {
@@ -22,8 +30,7 @@ export interface IPersonalDetails {
   __typename?: string;
 }
 
-export interface IProfessionalExperience {
-  id: string;
+export interface IProfessionalExperienceItem extends ContentItem {
   jobTitle: string;
   employer: string;
   city: string;
@@ -31,35 +38,25 @@ export interface IProfessionalExperience {
   startDate: string;
   endDate: string;
   description: string;
-  index: number;
-  __typename?: string;
 }
 
-export interface IProfile {
-  id: string;
+export interface IProfileItem extends ContentItem {
   text: string;
-  index: number;
-  __typename?: string;
 }
 
-export interface IProject {
-  id: string;
+export interface IProjectItem extends ContentItem {
   title: string;
   startDate: string;
   endDate: string;
   description: string;
-  index: number;
-  __typename?: string;
 }
 
-export interface ILanguage {
-  id: string;
+export interface ILanguageItem extends ContentItem {
   language: string;
   info: string;
   languageLevel: LanguageLevel;
-  index: number;
-  __typename?: string;
 }
+
 export enum LanguageLevel {
   beginner = 'Beginner (A1)',
   elementary = 'Elementary (A2)',
@@ -69,13 +66,10 @@ export enum LanguageLevel {
   default = '',
 }
 
-export interface ISkills {
-  id: string;
+export interface ISkillsItem extends ContentItem {
   skill: string;
   info: string;
   skillLevel: SkillLevel;
-  index: number;
-  __typename?: string;
 }
 
 export enum SkillLevel {
@@ -87,7 +81,35 @@ export enum SkillLevel {
   default = '',
 }
 
-export interface IAdditionalInfo {
-  name: string;
-  input: string;
+export type  AdditionalContentItem =
+  | ILanguageItem
+  | ISkillsItem
+  | IProfessionalExperienceItem
+  | IProjectItem
+  | IEducationItem
+  | IProfileItem;
+
+export interface AdditionalContentSection {
+  id:string;
+  sectionName: string;
+  items:  AdditionalContentItem[]
+}
+
+export interface ILanguage extends AdditionalContentSection{
+  items: ILanguageItem[]
+}
+export interface IEducation extends AdditionalContentSection{
+  items: IEducationItem[]
+}
+export interface IProfessionalExperience extends AdditionalContentSection{
+  items: IProfessionalExperienceItem[]
+}
+export interface IProfile extends AdditionalContentSection{
+  items: IProfileItem[]
+}
+export interface IProject extends AdditionalContentSection{
+  items: IProjectItem[]
+}
+export interface ISkills extends AdditionalContentSection{
+  items: ISkillsItem[]
 }

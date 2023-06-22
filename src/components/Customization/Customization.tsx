@@ -15,25 +15,25 @@ import EducationSettings from './EducationSettings';
 import ProfessionalExperienceSettings from './ProfessionalExperienceSettings';
 
 const Customization = () => {
-  return (
-    <>
-      <Layout />
-      <Colors />
-      <Spacing />
-      <Font />
-      <Heading />
-      <Subtitle />
-      <Header />
-      <Name />
-      <JobTitle />
-      <Date />
-      <SkillsLanguageSettings section="skills" />
-      <SkillsLanguageSettings section="language" />
-      <ProfileSettings />
-      <EducationSettings />
-      <ProfessionalExperienceSettings />
-    </>
-  );
+    return (
+        <>
+            <Layout />
+            <Colors />
+            <Spacing />
+            <Font />
+            <Heading />
+            <Subtitle />
+            <Header />
+            <Name />
+            <JobTitle />
+            <Date />
+            <SkillsLanguageSettings section="skills" />
+            <SkillsLanguageSettings section="language" />
+            <ProfileSettings />
+            <EducationSettings />
+            <ProfessionalExperienceSettings />
+        </>
+    );
 };
 
 export default Customization;

@@ -19,7 +19,7 @@ export const ADD_PROJECT = gql`
       index: $index
       resumeId: $resumeId
     ) {
-      ...ProjectFields
+      ...ProjectItemFields
     }
   }
 `;
@@ -42,16 +42,26 @@ export const UPDATE_PROJECT = gql`
       description: $description
       index: $index
     ) {
-      ...ProjectFields
+      ...ProjectItemFields
     }
   }
 `;
 
-export const UPDATE_ALL_PROJECTS = gql`
+export const UPDATE_PROJECTS_ORDER = gql`
   ${PROJECT_FIELDS}
-  mutation updateAllSkills($items: [ProjectTypeAll]) {
-    updateAllProjects(items: $items) {
-      ...ProjectFields
+  mutation updateProjectsOrder($items: [ProjectOrder]) {
+    updateProjectsOrder(items: $items) {
+      ...ProjectItemFields
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_PROJECTS = gql`
+  mutation updateSectionNameProject($id: ID! $sectionName: String!) {
+    updateSectionNameProject( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;

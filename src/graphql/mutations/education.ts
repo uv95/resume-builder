@@ -25,7 +25,7 @@ export const ADD_EDUCATION = gql`
       index: $index
       resumeId: $resumeId
     ) {
-      ...EducationFields
+      ...EducationItemFields
     }
   }
 `;
@@ -54,16 +54,26 @@ export const UPDATE_EDUCATION = gql`
       description: $description
       index: $index
     ) {
-      ...EducationFields
+      ...EducationItemFields
     }
   }
 `;
 
-export const UPDATE_ALL_EDUCATIONS = gql`
+export const UPDATE_EDUCATION_ORDER = gql`
   ${EDUCATION_FIELDS}
-  mutation updateAllEducations($items: [EducationTypeAll]) {
-    updateAllEducations(items: $items) {
-      ...EducationFields
+  mutation updateEducationOrder($items: [EducationOrder]) {
+    updateEducationOrder(items: $items) {
+      ...EducationItemFields
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_EDUCATION = gql`
+  mutation updateSectionNameEducation($id: ID! $sectionName: String!) {
+    updateSectionNameEducation( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;

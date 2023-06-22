@@ -7,8 +7,8 @@ interface ICurrentSectionContext {
 }
 
 export const CurrentSectionContext = createContext<ICurrentSectionContext>({
-  currentSection: '',
-  setCurrentSection: () => {},
+    currentSection: '',
+    setCurrentSection: () => {},
 });
 
 interface Props {
@@ -16,12 +16,12 @@ interface Props {
 }
 
 export const CurrentSectionProvider = ({ children }: Props) => {
-  const [currentSection, setCurrentSection] = useState<Sections | ''>('');
-  return (
-    <CurrentSectionContext.Provider
-      value={{ currentSection, setCurrentSection }}
-    >
-      {children}
-    </CurrentSectionContext.Provider>
-  );
+    const [currentSection, setCurrentSection] = useState<Sections | ''>('');
+    return (
+        <CurrentSectionContext.Provider
+            value={{ currentSection, setCurrentSection }}
+        >
+            {children}
+        </CurrentSectionContext.Provider>
+    );
 };

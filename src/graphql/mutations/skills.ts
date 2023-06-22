@@ -17,7 +17,7 @@ export const ADD_SKILL = gql`
       index: $index
       resumeId: $resumeId
     ) {
-      ...SkillsFields
+      ...SkillsItemFields
     }
   }
 `;
@@ -38,16 +38,26 @@ export const UPDATE_SKILL = gql`
       skillLevel: $skillLevel
       index: $index
     ) {
-      ...SkillsFields
+      ...SkillsItemFields
     }
   }
 `;
 
-export const UPDATE_ALL_SKILLS = gql`
+export const UPDATE_SKILLS_ORDER = gql`
   ${SKILLS_FIELDS}
-  mutation updateAllSkills($items: [SkillsTypeAll]) {
-    updateAllSkills(items: $items) {
-      ...SkillsFields
+  mutation updateSkillsOrder($items: [SkillsOrder]) {
+    updateSkillsOrder(items: $items) {
+      ...SkillsItemFields
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_SKILLS = gql`
+  mutation updateSectionNameSkills($id: ID! $sectionName: String!) {
+    updateSectionNameSkills( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;

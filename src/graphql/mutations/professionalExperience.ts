@@ -25,7 +25,7 @@ export const ADD_PROFESSIONAL_EXPERIENCE = gql`
       index: $index
       resumeId: $resumeId
     ) {
-      ...ProfessionalExperienceFields
+      ...ProfessionalExperienceItemFields
     }
   }
 `;
@@ -54,18 +54,28 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE = gql`
       description: $description
       index: $index
     ) {
-      ...ProfessionalExperienceFields
+      ...ProfessionalExperienceItemFields
     }
   }
 `;
 
-export const UPDATE_ALL_PROFESSIONAL_EXPERIENCE = gql`
+export const UPDATE_PROFESSIONAL_EXPERIENCE_ORDER = gql`
   ${PROFESSIONAL_EXPERIENCE_FIELDS}
-  mutation updateAllProfessionalExperience(
-    $items: [ProfessionalExperienceTypeAll]
+  mutation updateProfessionalExperienceOrder(
+    $items: [ProfessionalExperienceOrder]
   ) {
-    updateAllProfessionalExperience(items: $items) {
-      ...ProfessionalExperienceFields
+    updateProfessionalExperienceOrder(items: $items) {
+      ...ProfessionalExperienceItemFields
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_PROFESSIONAL_EXPERIENCE = gql`
+  mutation updateSectionNameProfessionalExperience($id: ID! $sectionName: String!) {
+    updateSectionNameProfessionalExperience( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;

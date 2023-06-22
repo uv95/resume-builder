@@ -9,28 +9,28 @@ type Props = {
 };
 
 const PageOneColumn = ({ sections, resumeArraySections }: Props) => {
-  const { resume } = useContext(ResumeContext);
-  const leftRightMargin = resume?.settings.spacing.leftRightMargin!;
-  const topBottomMargin = resume?.settings.spacing.topBottomMargin!;
+    const { resume } = useContext(ResumeContext);
+    const leftRightMargin = resume?.settings.spacing.leftRightMargin!;
+    const topBottomMargin = resume?.settings.spacing.topBottomMargin!;
 
-  return (
-    <div
-      style={{
-        paddingLeft: leftRightMargin + 'mm',
-        paddingRight: leftRightMargin + 'mm',
-        paddingTop: '1.5rem',
-        paddingBottom: topBottomMargin + 'mm',
-      }}
-    >
-      {sections.map((section) => (
-        <PageSection
-          key={section}
-          section={section}
-          resumeArraySections={resumeArraySections}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div
+            style={{
+                paddingLeft: leftRightMargin + 'mm',
+                paddingRight: leftRightMargin + 'mm',
+                paddingTop: '1.5rem',
+                paddingBottom: topBottomMargin + 'mm',
+            }}
+        >
+            {sections.map((section) => (
+                <PageSection
+                    key={section}
+                    section={section}
+                    resumeArraySections={resumeArraySections}
+                />
+            ))}
+        </div>
+    );
 };
 
 export default PageOneColumn;

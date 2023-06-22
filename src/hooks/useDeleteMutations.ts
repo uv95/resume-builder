@@ -6,94 +6,97 @@ import { DELETE_PROFILE } from '@/graphql/mutations/profile';
 import { DELETE_PROJECT } from '@/graphql/mutations/project';
 import { DELETE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import { ArraySectionsType, Sections } from '@/utils/types/resumeTypes';
+import {  Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
+import { AdditionalContentItem } from '@/utils/types/contentTypes';
 
 function useDeleteMutations(section: Sections, resumeId: string) {
-  const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
-  const [deleteEducation] = useMutation(DELETE_EDUCATION);
-  const [deleteLanguage] = useMutation(DELETE_LANGUAGE);
-  const [deleteProfessionalExperience] = useMutation(
-    DELETE_PROFESSIONAL_EXPERIENCE
-  );
-  const [deleteProfile] = useMutation(DELETE_PROFILE);
-  const [deleteProject] = useMutation(DELETE_PROJECT);
-  const [deleteSkill] = useMutation(DELETE_SKILL);
+    const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
+    const [deleteEducation] = useMutation(DELETE_EDUCATION);
+    const [deleteLanguage] = useMutation(DELETE_LANGUAGE);
+    const [deleteProfessionalExperience] = useMutation(
+        DELETE_PROFESSIONAL_EXPERIENCE
+    );
+    const [deleteProfile] = useMutation(DELETE_PROFILE);
+    const [deleteProject] = useMutation(DELETE_PROJECT);
+    const [deleteSkill] = useMutation(DELETE_SKILL);
 
-  const { removeFromSectionsOrder } = useUpdateSettings();
+    const { removeFromSectionsOrder } = useUpdateSettings();
 
-  const deleteFunctions = [
-    {
-      sectionName: Sections.PERSONAL_DETAILS,
-      fn: deletePersonalDetails,
-      fnName: 'deletePersonalDetails',
-    },
-    {
-      sectionName: Sections.EDUCATION,
-      fn: deleteEducation,
-      fnName: 'deleteEducation',
-    },
-    {
-      sectionName: Sections.LANGUAGE,
-      fn: deleteLanguage,
-      fnName: 'deleteLanguage',
-    },
-    {
-      sectionName: Sections.PROFESSIONAL_EXPERIENCE,
-      fn: deleteProfessionalExperience,
-      fnName: 'deleteProfessionalExperience',
-    },
-    {
-      sectionName: Sections.PROFILE,
-      fn: deleteProfile,
-      fnName: 'deleteProfile',
-    },
-    {
-      sectionName: Sections.PROJECT,
-      fn: deleteProject,
-      fnName: 'deleteProject',
-    },
-    { sectionName: Sections.SKILLS, fn: deleteSkill, fnName: 'deleteSkill' },
-  ];
-  const deleteContent = (itemId: string) => {
-    const { fn, fnName, sectionName } = deleteFunctions.find(
-      (item) => section === item.sectionName
-    )!;
-
-    if (fn)
-      return fn({
-        variables: { id: itemId },
-        update(cache, { data }) {
-          const deletedData = data[fnName];
-          const { resume } = cache.readQuery({
-            query: GET_RESUME,
-            variables: { id: resumeId },
-          })!;
-
-          //  ---update sections order---
-          removeFromSectionsOrder(sectionName);
-          // ---update sections order---
-
-          cache.writeQuery({
-            query: GET_RESUME,
-            data: {
-              resume: {
-                ...resume,
-                content: {
-                  ...resume.content,
-                  [sectionName]: resume.content[sectionName].filter(
-                    (item: ArraySectionsType) => item.id !== deletedData.id
-                  ),
-                },
-              },
-            },
-          });
+    const deleteFunctions = [
+        {
+            sectionName: Sections.PERSONAL_DETAILS,
+            fn: deletePersonalDetails,
+            fnName: 'deletePersonalDetails',
         },
-      });
-    return null;
-  };
-  return deleteContent;
+        {
+            sectionName: Sections.EDUCATION,
+            fn: deleteEducation,
+            fnName: 'deleteEducation',
+        },
+        {
+            sectionName: Sections.LANGUAGE,
+            fn: deleteLanguage,
+            fnName: 'deleteLanguage',
+        },
+        {
+            sectionName: Sections.PROFESSIONAL_EXPERIENCE,
+            fn: deleteProfessionalExperience,
+            fnName: 'deleteProfessionalExperience',
+        },
+        {
+            sectionName: Sections.PROFILE,
+            fn: deleteProfile,
+            fnName: 'deleteProfile',
+        },
+        {
+            sectionName: Sections.PROJECT,
+            fn: deleteProject,
+            fnName: 'deleteProject',
+        },
+        { sectionName: Sections.SKILLS, fn: deleteSkill, fnName: 'deleteSkill' },
+    ];
+    const deleteContent = (itemId: string) => {
+        const { fn, fnName, sectionName } = deleteFunctions.find(
+            (item) => section === item.sectionName
+        )!;
+
+        if (fn)
+            return fn({
+                variables: { id: itemId },
+                update(cache, { data }) {
+                    const deletedData = data[fnName];
+                    const { resume } = cache.readQuery({
+                        query: GET_RESUME,
+                        variables: { id: resumeId },
+                    })!;
+
+                    //  ---update sections order---
+                    removeFromSectionsOrder(sectionName);
+                    // ---update sections order---
+
+                    cache.writeQuery({
+                        query: GET_RESUME,
+                        data: {
+                            resume: {
+                                ...resume,
+                                content: {
+                                    ...resume.content,
+                                    [sectionName]: {
+                                        ...resume.content[sectionName],
+                                        items: resume.content[sectionName].items.filter(
+                                            (item: AdditionalContentItem) => item.id !== deletedData.id
+                                        )},
+                                },
+                            },
+                        },
+                    });
+                },
+            });
+        return null;
+    };
+    return deleteContent;
 }
 
 export default useDeleteMutations;

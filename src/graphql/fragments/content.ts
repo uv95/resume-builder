@@ -15,7 +15,7 @@ export const PERSONAL_DETAILS_FIELDS = gql`
   }
 `;
 export const EDUCATION_FIELDS = gql`
-  fragment EducationFields on Education {
+  fragment EducationItemFields on EducationItem {
     degree
     school
     city
@@ -28,7 +28,7 @@ export const EDUCATION_FIELDS = gql`
   }
 `;
 export const LANGUAGE_FIELDS = gql`
-  fragment LanguageFields on Language {
+  fragment LanguageItemFields on LanguageItem {
     language
     info
     languageLevel
@@ -37,7 +37,7 @@ export const LANGUAGE_FIELDS = gql`
   }
 `;
 export const PROFESSIONAL_EXPERIENCE_FIELDS = gql`
-  fragment ProfessionalExperienceFields on ProfessionalExperience {
+  fragment ProfessionalExperienceItemFields on ProfessionalExperienceItem {
     jobTitle
     employer
     city
@@ -50,7 +50,7 @@ export const PROFESSIONAL_EXPERIENCE_FIELDS = gql`
   }
 `;
 export const PROJECT_FIELDS = gql`
-  fragment ProjectFields on Project {
+  fragment ProjectItemFields on ProjectItem {
     title
     startDate
     endDate
@@ -59,8 +59,15 @@ export const PROJECT_FIELDS = gql`
     id
   }
 `;
+export const PROFILE_FIELDS = gql`
+  fragment ProfileItemFields on ProfileItem {
+    text
+    index
+    id
+  }
+`;
 export const SKILLS_FIELDS = gql`
-  fragment SkillsFields on Skills {
+  fragment SkillsItemFields on SkillsItem {
     skill
     info
     skillLevel
@@ -71,35 +78,59 @@ export const SKILLS_FIELDS = gql`
 
 export const CONTENT_FIELDS = gql`
   ${PERSONAL_DETAILS_FIELDS}
-  ${EDUCATION_FIELDS}
+  ${PROFILE_FIELDS}
+  ${SKILLS_FIELDS}
   ${LANGUAGE_FIELDS}
+  ${EDUCATION_FIELDS}
   ${PROFESSIONAL_EXPERIENCE_FIELDS}
   ${PROJECT_FIELDS}
-  ${SKILLS_FIELDS}
   fragment ContentFields on Content {
     id
     personalDetails {
       ...PersonalDetailsFields
     }
     skills {
-      ...SkillsFields
+      id
+      sectionName
+      items{
+      ...SkillsItemFields
+    }
     }
     language {
-      ...LanguageFields
+      id
+      sectionName
+      items {
+        ...LanguageItemFields
+      }
+
     }
     professionalExperience {
-      ...ProfessionalExperienceFields
+      id
+      sectionName
+      items{
+       ...ProfessionalExperienceItemFields
+      }
     }
     profile {
       id
-      text
-      index
+      sectionName
+      items {
+       ...ProfileItemFields
+      }
     }
     education {
-      ...EducationFields
+      id
+      sectionName
+      items {
+      ...EducationItemFields
+      }
     }
     project {
-      ...ProjectFields
+      id
+      sectionName
+      items {
+      ...ProjectItemFields
+      }
     }
   }
 `;

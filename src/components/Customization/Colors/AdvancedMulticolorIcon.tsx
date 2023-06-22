@@ -11,46 +11,46 @@ type Props = {
 };
 
 const AdvancedMulticolorIcon = ({ color, optionSelected, isOption }: Props) => {
-  const { updateMulticolor } = useUpdateSettings();
+    const { updateMulticolor } = useUpdateSettings();
 
-  return (
-    <div
-      className={style.multicolorIcon}
-      onClick={() => !isOption && updateMulticolor(color, Mode.ADVANCED)}
-    >
-      <div
-        className={`${style.option_multicolor} ${
-          optionSelected
-            ? style.option__selected
-            : isOption
-            ? style.option__notSelected
-            : ''
-        }`}
-      >
+    return (
         <div
-          className={style.option_multicolor__left}
-          style={{ background: color?.primary.background }}
+            className={style.multicolorIcon}
+            onClick={() => !isOption && updateMulticolor(color, Mode.ADVANCED)}
         >
-          <p style={{ color: color?.primary.font }}>T</p>
-          <div
-            className={style.line}
-            style={{ background: color?.primary.accent }}
-          ></div>
+            <div
+                className={`${style.option_multicolor} ${
+                    optionSelected
+                        ? style.option__selected
+                        : isOption
+                            ? style.option__notSelected
+                            : ''
+                }`}
+            >
+                <div
+                    className={style.option_multicolor__left}
+                    style={{ background: color?.primary.background }}
+                >
+                    <p style={{ color: color?.primary.font }}>T</p>
+                    <div
+                        className={style.line}
+                        style={{ background: color?.primary.accent }}
+                    ></div>
+                </div>
+                <div
+                    className={style.option_multicolor__right}
+                    style={{ background: color?.secondary.background }}
+                >
+                    <p style={{ color: color?.secondary.font }}>T</p>
+                    <div
+                        className={style.line}
+                        style={{ background: color?.secondary.accent }}
+                    ></div>
+                </div>
+            </div>
+            {optionSelected && !isOption && <div className={style.underline}></div>}
         </div>
-        <div
-          className={style.option_multicolor__right}
-          style={{ background: color?.secondary.background }}
-        >
-          <p style={{ color: color?.secondary.font }}>T</p>
-          <div
-            className={style.line}
-            style={{ background: color?.secondary.accent }}
-          ></div>
-        </div>
-      </div>
-      {optionSelected && !isOption && <div className={style.underline}></div>}
-    </div>
-  );
+    );
 };
 
 export default AdvancedMulticolorIcon;

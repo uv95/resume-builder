@@ -8,41 +8,40 @@ import { useEffect, useState } from 'react';
 import style from '../styles/Home.module.scss';
 
 export default function Home() {
-  const [addResume, { data }] = useMutation(ADD_RESUME);
-  const [resumeId, setResumeId] = useState<string | null>(null);
-  const [resumeName, setResumeName] = useState<string | null>(null);
+    const [addResume, { data }] = useMutation(ADD_RESUME);
+    const [resumeId, setResumeId] = useState<string | null>(null);
+    const [resumeName, setResumeName] = useState<string | null>(null);
 
-  // const { loading, error, data } = useQuery(GET_RESUMES);
-  const router = useRouter();
+    // const { loading, error, data } = useQuery(GET_RESUMES);
+    const router = useRouter();
 
-  useEffect(() => {
-    if (data) {
-      localStorage.setItem('resumeId', data.addResume.id);
-      localStorage.setItem('resumeName', data.addResume.name);
-      router.push(`resume/${data.addResume.id}`);
-    }
-  }, [data, router]);
+    useEffect(() => {
+        if (data) {
+            localStorage.setItem('resumeId', data.addResume.id);
+            localStorage.setItem('resumeName', data.addResume.name);
+            router.push(`resume/${data.addResume.id}`);
+        }
+    }, [data, router]);
+    useEffect(() => {
+        setResumeId(localStorage.getItem('resumeId') || null);
+        setResumeName(localStorage.getItem('resumeName') || null);
+    }, []);
 
-  useEffect(() => {
-    setResumeId(localStorage.getItem('resumeId') || null);
-    setResumeName(localStorage.getItem('resumeName') || null);
-  }, []);
-
-  return (
-    <main className={style.home}>
-      <div className="flex">
-        <Button onClick={() => addResume()} btnType="pink">
-          Create Resume
-        </Button>
-        {resumeId && (
-          <Button
-            onClick={() => router.push(`resume/${resumeId}`)}
-            btnType="pink"
-          >{`Continue editing ${resumeName}`}</Button>
-        )}
-      </div>
-    </main>
-  );
+    return (
+        <main className={style.home}>
+            <div className="flex">
+                <Button onClick={() => addResume()} btnType="pink">
+                    Create Resume
+                </Button>
+                {resumeId && (
+                    <Button
+                        onClick={() => router.push(`resume/${resumeId}`)}
+                        btnType="pink"
+                    >{`Continue editing ${resumeName}`}</Button>
+                )}
+            </div>
+        </main>
+    );
 }
 
 // export async function getStaticProps() {

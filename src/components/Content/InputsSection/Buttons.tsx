@@ -24,53 +24,53 @@ type Props = {
 };
 
 const Buttons = ({
-  inputData,
-  setContentToEdit,
-  deleteContent,
-  itemId,
+    inputData,
+    setContentToEdit,
+    deleteContent,
+    itemId,
 }: Props) => {
-  return (
-    <div className={style.buttons}>
-      {inputData.name !== Sections.PERSONAL_DETAILS && (
-        <Button
-          btnType="white"
-          isBold
-          onClick={() => {
-            deleteContent(itemId);
-            setContentToEdit({ section: '', itemId: '' });
-          }}
-        >
-          <div className="flex gap-1 aligned">
-            <Image src={trash} width="18" height="18" alt="trash" />
-            <p>Delete</p>
-          </div>
-        </Button>
-      )}
-      <div className="flex rightPositioned">
-        <Button
-          btnType="white"
-          isBold
-          onClick={() => {
-            setContentToEdit({ section: '', itemId: '' });
-          }}
-        >
-          Cancel
-        </Button>
-        <Button isSubmit btnType="pink" isBold>
-          <div className="flex gap-1 aligned">
-            <Image
-              src={save}
-              width="20"
-              height="20"
-              alt="save"
-              style={{ filter: 'invert()' }}
-            />
-            <p>Save</p>
-          </div>
-        </Button>
-      </div>
-    </div>
-  );
+    return (
+        <div className={style.buttons}>
+            {inputData.name !== Sections.PERSONAL_DETAILS && (
+                <Button
+                    btnType="white"
+                    isBold
+                    onClick={() => {
+                        deleteContent(itemId);
+                        setContentToEdit({ section: '', itemId: '' });
+                    }}
+                >
+                    <div className="flex gap-1 aligned">
+                        <Image src={trash} width="18" height="18" alt="trash" />
+                        <p>Delete</p>
+                    </div>
+                </Button>
+            )}
+            <div className="flex rightPositioned">
+                <Button
+                    btnType="white"
+                    isBold
+                    onClick={() => {
+                        setContentToEdit({ section: '', itemId: '' });
+                    }}
+                >
+                    Cancel
+                </Button>
+                <Button isSubmit btnType="pink" isBold>
+                    <div className="flex gap-1 aligned">
+                        <Image
+                            src={save}
+                            width="20"
+                            height="20"
+                            alt="save"
+                            style={{ filter: 'invert()' }}
+                        />
+                        <p>Save</p>
+                    </div>
+                </Button>
+            </div>
+        </div>
+    );
 };
 
 export default Buttons;

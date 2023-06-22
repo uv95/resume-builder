@@ -7,8 +7,8 @@ interface IResumeContext {
 }
 
 export const ResumeContext = createContext<IResumeContext>({
-  resume: null,
-  setResume: () => {},
+    resume: null,
+    setResume: () => {},
 });
 
 interface Props {
@@ -16,11 +16,11 @@ interface Props {
 }
 
 export const ResumeProvider = ({ children }: Props) => {
-  const [resume, setResume] = useState<IResume | null>(null);
+    const [resume, setResume] = useState<IResume | null>(null);
 
-  return (
-    <ResumeContext.Provider value={{ resume, setResume }}>
-      {children}
-    </ResumeContext.Provider>
-  );
+    return (
+        <ResumeContext.Provider value={{ resume, setResume }}>
+            {children}
+        </ResumeContext.Provider>
+    );
 };

@@ -11,36 +11,36 @@ import SettingsCard from '../UI/SettingsCard';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 
 const Colors = () => {
-  const { resume } = useContext(ResumeContext);
-  const mode = resume?.settings.colors.mode;
-  const selectedOptionBasic = resume?.settings.colors.basic.selected;
-  const selectedOptionAdvanced = resume?.settings.colors.advanced.selected;
+    const { resume } = useContext(ResumeContext);
+    const mode = resume?.settings.colors.mode;
+    const selectedOptionBasic = resume?.settings.colors.basic.selected;
+    const selectedOptionAdvanced = resume?.settings.colors.advanced.selected;
 
-  return (
-    <SettingsCard title="Colors">
-      <ModeComponent />
-      {mode === Mode.BASIC ? (
-        <>
-          <BasicOptions />
-          {selectedOptionBasic === ColorOption.ACCENT ? (
-            <AccentColors />
-          ) : (
-            <BasicMulticolor />
-          )}
-        </>
-      ) : (
-        <>
-          <AdvancedOptions />
-          {selectedOptionAdvanced === ColorOption.ACCENT ? (
-            <AccentColors />
-          ) : (
-            <AdvancedMulticolor />
-          )}
-        </>
-      )}
-      <ApplyAccentColor />
-    </SettingsCard>
-  );
+    return (
+        <SettingsCard title="Colors">
+            <ModeComponent />
+            {mode === Mode.BASIC ? (
+                <>
+                    <BasicOptions />
+                    {selectedOptionBasic === ColorOption.ACCENT ? (
+                        <AccentColors />
+                    ) : (
+                        <BasicMulticolor />
+                    )}
+                </>
+            ) : (
+                <>
+                    <AdvancedOptions />
+                    {selectedOptionAdvanced === ColorOption.ACCENT ? (
+                        <AccentColors />
+                    ) : (
+                        <AdvancedMulticolor />
+                    )}
+                </>
+            )}
+            <ApplyAccentColor />
+        </SettingsCard>
+    );
 };
 
 export default Colors;

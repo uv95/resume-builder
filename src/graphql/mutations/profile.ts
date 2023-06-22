@@ -20,12 +20,22 @@ export const UPDATE_PROFILE = gql`
   }
 `;
 
-export const UPDATE_ALL_PROFILES = gql`
-  mutation updateAllProfiles($items: [ProfileTypeAll]) {
-    updateAllProfile(items: $items) {
+export const UPDATE_PROFILES_ORDER = gql`
+  mutation updateProfileOrder($items: [ProfileOrder]) {
+    updateProfileOrder(items: $items) {
       text
       index
       id
+    }
+  }
+`;
+
+export const UPDATE_SECTION_NAME_PROFILES = gql`
+  mutation updateSectionNameProfile($id: ID! $sectionName: String!) {
+    updateSectionNameProfile( id: $id sectionName: $sectionName) {
+      id
+      sectionName
+      items
     }
   }
 `;
