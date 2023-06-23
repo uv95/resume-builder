@@ -16,19 +16,24 @@ const Resume = () => {
 
     const { id } = router.query;
     const { error, data } = useQuery(GET_RESUME, { variables: { id } });
-    const { resume, setResume } = useContext(ResumeContext);
+    const { setResume, setContent, setSettings } = useContext(ResumeContext);
     const componentRef = useRef<HTMLDivElement>(null);
 
     const [active, setActive] = useState('Content');
 
     useEffect(() => {
-        data && setResume(data.resume);
-    }, [data, setResume]);
+        if(data) {
+            setResume(data.resume);
+            setContent(data.resume.content)
+            setSettings(data.resume.settings)
+        };
+    }, [data, setResume,setContent,setSettings]);
+
     if (error) return <p>Something Went Wrong</p>;
 
     return (
         <main>
-            <div className={style.layout}>
+            {data.resume &&  <div className={style.layout}>
                 <div className="flex">
                     <Navigation active={active} setActive={setActive} />
                     <div className={style.mainPanel}>
@@ -43,8 +48,8 @@ const Resume = () => {
                         {active === 'Customize' && <Customization />}
                     </div>
                 </div>
-                <Page ref={componentRef} />
-            </div>
+                <Page ref={componentRef} /> 
+            </div>}
         </main>
     );
 };

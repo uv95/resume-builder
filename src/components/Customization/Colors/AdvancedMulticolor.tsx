@@ -7,9 +7,9 @@ import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 type Props = {};
 
 const AdvancedMulticolor = (props: Props) => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const selectedColor: IAdvancedMulticolor =
-    resume?.settings.colors.advanced.multicolor!;
+   settings?.colors.advanced.multicolor!;
 
     const areColorsEqual = (
         colors1: IAdvancedMulticolor,

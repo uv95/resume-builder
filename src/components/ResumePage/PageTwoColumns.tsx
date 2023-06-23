@@ -1,5 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import { ColorOf, Position } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
@@ -8,16 +9,16 @@ import PageSection from './PageSection';
 import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
 
 type Props = {
-  resumeArraySections: IResumeArraySections;
   columnWidth: { left: number; right: number };
 };
 
-const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
-    const { resume } = useContext(ResumeContext);
-    const { position } = resume?.settings.layout!;
-    const { left: leftSections, right: rightSections } = resume?.settings
-        .sectionsOrder! as { left: Sections[]; right: Sections[] };
-    const { leftRightMargin, topBottomMargin } = resume?.settings.spacing!;
+const PageTwoColumns = ({ columnWidth }: Props) => {
+    const { settings,content } = useContext(ResumeContext);
+    const position = settings?.layout.position;
+    const  leftSections= settings?.sectionsOrder.left as Sections[];
+    const rightSections = settings?.sectionsOrder.right as Sections[];
+    const leftRightMargin = settings?.spacing.leftRightMargin!;
+    const topBottomMargin = settings?.spacing.topBottomMargin!;
 
     const { setColor } = useSetColor();
 
@@ -54,23 +55,23 @@ const PageTwoColumns = ({ columnWidth, resumeArraySections }: Props) => {
         >
             <div style={leftSectionsStyle}>
                 {position === Position.LEFT && <PersonalDetailsBlock />}
-                {leftSections.map((section) => (
+                {leftSections&&leftSections.map((section) => (
                     <PageSection
                         key={section}
                         sectionPosition={Position.LEFT}
                         section={section}
-                        resumeArraySections={resumeArraySections}
+                        contentSection={content![section as keyof typeof content] as AdditionalContentSection}
                     />
                 ))}
             </div>
             <div style={rightSectionsStyle}>
                 {position === Position.RIGHT && <PersonalDetailsBlock />}
-                {rightSections.map((section) => (
+                {rightSections&&rightSections.map((section) => (
                     <PageSection
                         key={section}
                         sectionPosition={Position.RIGHT}
                         section={section}
-                        resumeArraySections={resumeArraySections}
+                        contentSection={content![section as keyof typeof content] as AdditionalContentSection}
                     />
                 ))}
             </div>

@@ -7,10 +7,10 @@ import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
 
 const Name = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
 
     const { updateName } = useUpdateSettings();
-    const [values, setValues] = useState(removeTypename(resume?.settings.name!));
+    const [values, setValues] = useState(removeTypename(settings?.name!));
     const update = (updatedField: 'size' | 'style', newVal: string) =>
         updateName({
             ...values,

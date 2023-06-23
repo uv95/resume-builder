@@ -1,22 +1,17 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
-import Image from 'next/image';
 import React, { useContext } from 'react';
 import Button from '../../Button/Button';
 import Card from '../../Card/Card';
-import InputsSection from '../InputsSection/InputsSection';
 import List from '../List/List';
-import arrow from '../../../icons/arrowDown.svg';
 import style from './ContentCard.module.scss';
 import { Sections } from '@/utils/types/resumeTypes';
-import { AdditionalContentItem } from '@/utils/types/contentTypes';
+import { AdditionalContentItem, AdditionalContentSection } from '@/utils/types/contentTypes';
+import ContentCardHeader from './ContentCardHeader';
 
 type Props = {
-  inputData: any;
+  contentSection: AdditionalContentSection;
+  sectionName: Sections;
   items: AdditionalContentItem[];
-  contentToEdit: {
-    section: Sections | '';
-    itemId: string;
-  };
   icon: string;
   setContentToEdit: React.Dispatch<
     React.SetStateAction<{
@@ -27,9 +22,9 @@ type Props = {
 };
 
 const ContentCard = ({
-    inputData,
+    contentSection,
     items,
-    contentToEdit,
+    sectionName,
     icon,
     setContentToEdit,
 }: Props) => {
@@ -38,75 +33,42 @@ const ContentCard = ({
     );
     return (
         <Card>
-            {contentToEdit.section && contentToEdit.section === currentSection ? (
-                <InputsSection
-                    itemId={contentToEdit.itemId}
-                    inputData={inputData}
-                    setContentToEdit={setContentToEdit}
-                />
-            ) : (
+            {
                 <>
-                    <div
-                        className="flex spaceBetween p-2 pointer"
-                        onClick={() =>
-                            setCurrentSection(
-                                currentSection === inputData.name ? '' : inputData.name
-                            )
-                        }
-                    >
-                        <div className="flex gap-1 aligned">
-                            <Image src={icon} width="24" height="24" alt="icon" />
-                            <h3>{inputData.title}</h3>
-                        </div>
-
-                        <p className="pointer">
-                            <Image
-                                className={style.icon}
-                                src={arrow}
-                                width="20"
-                                height="20"
-                                alt="arrow"
-                                style={{
-                                    transform: `rotate(${
-                                        inputData.name === currentSection ? 180 : 0
-                                    }deg)`,
-                                }}
-                            />
-                        </p>
-                    </div>
+                    <ContentCardHeader icon={icon} contentSection={contentSection} setCurrentSection={setCurrentSection} currentSectionName={currentSection} sectionName={sectionName}/>
 
                     <div
                         className={style.content}
                         style={{
                             maxHeight:
-                inputData.name === currentSection
-                    ? 140 + items.length * 68 + 'px'
-                    : '0',
+                            sectionName === currentSection
+                                ? 140 + items.length * 68 + 'px'
+                                : '0',
                         }}
                     >
                         <List
                             setContentToEdit={setContentToEdit}
                             items={items}
-                            section={inputData.name}
+                            section={sectionName}
                             currentSection={currentSection}
-                            listId={`${inputData.name}-list`}
+                            listId={`${sectionName}-list`}
                         />
                         <div className="p-2 centered">
                             <Button
                                 onClick={() =>
                                     setContentToEdit((prev) => ({
                                         ...prev,
-                                        section: inputData.name,
+                                        section: sectionName,
                                     }))
                                 }
                                 btnType="thickBorder"
                             >
-                                {'+ ' + inputData.title}
+                                {'+ ' + contentSection.sectionName}
                             </Button>
                         </div>
                     </div>
                 </>
-            )}
+            }
         </Card>
     );
 };

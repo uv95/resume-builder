@@ -1,17 +1,17 @@
 import { ResumeContext } from '@/context/ResumeContext';
+import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
 import React, { useContext } from 'react';
 import PageSection from './PageSection';
 
 type Props = {
   sections: Sections[];
-  resumeArraySections: IResumeArraySections;
 };
 
-const PageOneColumn = ({ sections, resumeArraySections }: Props) => {
-    const { resume } = useContext(ResumeContext);
-    const leftRightMargin = resume?.settings.spacing.leftRightMargin!;
-    const topBottomMargin = resume?.settings.spacing.topBottomMargin!;
+const PageOneColumn = ({ sections }: Props) => {
+    const { settings,content } = useContext(ResumeContext);
+    const leftRightMargin = settings?.spacing.leftRightMargin!;
+    const topBottomMargin = settings?.spacing.topBottomMargin!;
 
     return (
         <div
@@ -26,7 +26,7 @@ const PageOneColumn = ({ sections, resumeArraySections }: Props) => {
                 <PageSection
                     key={section}
                     section={section}
-                    resumeArraySections={resumeArraySections}
+                    contentSection={content![section as keyof typeof content] as AdditionalContentSection}
                 />
             ))}
         </div>

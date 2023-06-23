@@ -71,11 +71,14 @@ export const UPDATE_PROFESSIONAL_EXPERIENCE_ORDER = gql`
 `;
 
 export const UPDATE_SECTION_NAME_PROFESSIONAL_EXPERIENCE = gql`
+  ${PROFESSIONAL_EXPERIENCE_FIELDS}
   mutation updateSectionNameProfessionalExperience($id: ID! $sectionName: String!) {
     updateSectionNameProfessionalExperience( id: $id sectionName: $sectionName) {
       id
       sectionName
-      items
+      items {
+      ...ProfessionalExperienceItemFields
+      }
     }
   }
 `;

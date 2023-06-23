@@ -6,22 +6,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
 
 const ColumnWidth = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const [updateSettings] = useMutation(UPDATE_SETTINGS);
 
     const [left, setLeft] = useState(
-        resume?.settings.layout.columnWidth.left || 50
+        settings?.layout.columnWidth.left || 50
     );
     const [right, setRight] = useState(
-        resume?.settings.layout.columnWidth.right || 50
+        settings?.layout.columnWidth.right || 50
     );
 
     useEffect(() => {
         const updateColumnWidth = (left: number, right: number) => {
-            const { position, columns } = resume?.settings.layout!;
+            const { position, columns } = settings?.layout!;
             return updateSettings({
                 variables: {
-                    id: resume?.settings.id,
+                    id: settings?.id,
                     layout: {
                         position,
                         columns,
@@ -35,8 +35,8 @@ const ColumnWidth = () => {
     }, [
         left,
         right,
-        resume?.settings.id,
-        resume?.settings.layout,
+        settings?.id,
+        settings?.layout,
         updateSettings,
     ]);
 

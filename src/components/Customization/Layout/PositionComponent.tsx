@@ -6,8 +6,8 @@ import Button from '@/components/Button/Button';
 import { Position } from '@/utils/types/settingsTypes';
 
 const PositionComponent = () => {
-    const { resume } = useContext(ResumeContext);
-    const { position } = resume?.settings.layout!;
+    const { settings } = useContext(ResumeContext);
+    const { position } = settings?.layout!;
     const { updatePosition } = useUpdateSettings();
 
     return (

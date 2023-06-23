@@ -5,8 +5,8 @@ import Button from '../Button/Button';
 import SettingsCard from './UI/SettingsCard';
 
 const EducationSettings = () => {
-    const { resume } = useContext(ResumeContext);
-    const { degreeFirst } = resume?.settings.education!;
+    const { settings } = useContext(ResumeContext);
+    const { degreeFirst } = settings?.education!;
 
     const { updateEducationSettings } = useUpdateSettings();
 

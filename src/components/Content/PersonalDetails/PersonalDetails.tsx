@@ -25,8 +25,8 @@ type Props = {
 };
 
 const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
-    const { resume } = useContext(ResumeContext);
-    const { address, email, phone, fullName } = resume?.content.personalDetails!;
+    const { content } = useContext(ResumeContext);
+    const { address, email, phone, fullName } = content?.personalDetails! || '';
 
     return (
         <Card>

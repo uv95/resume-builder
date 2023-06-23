@@ -12,18 +12,18 @@ import React, { useContext } from 'react';
 import style from '../Page.module.scss';
 
 const AdditionalInfoBlock = () => {
-    const { resume } = useContext(ResumeContext);
-    const { position } = resume?.settings.layout!;
-    const content = resume?.content.personalDetails;
-    const { fontSize } = resume?.settings.spacing!;
+    const { settings,content } = useContext(ResumeContext);
+    const { position } = settings?.layout!;
+    const personalDetails = content?.personalDetails;
+    const { fontSize } = settings?.spacing!;
     const {
         additionalInfoOrder,
         additionalInfoStyle,
         position: headerPosition,
-    } = resume?.settings.header!;
+    } = settings?.header!;
 
-    const additionalInfo = content
-        ? Object.values(content)[Object.values(content).length - 1]
+    const additionalInfo = personalDetails
+        ? Object.values(personalDetails)[Object.values(personalDetails).length - 1]
         : [];
 
     const { setColor } = useSetColor();
@@ -54,10 +54,10 @@ const AdditionalInfoBlock = () => {
           headerPosition === HeaderPosition.CENTER ? 'center' : 'flex-start',
             }}
         >
-            {content &&
+            {personalDetails &&
         ['email', 'phone', 'address'].map(
             (item) =>
-                content[item as keyof typeof content] && (
+                personalDetails[item as keyof typeof personalDetails] && (
                     <div key={item} className={style.info}>
                         {additionalInfoStyle === HeaderAdditionalInfoStyle.ICON && (
                             <DetailsIcons
@@ -73,7 +73,7 @@ const AdditionalInfoBlock = () => {
                             />
                         )}
                         <p>
-                            {content[item as keyof typeof content]} {addBar(additionalInfo.length !== 0)}
+                            {personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)}
                         </p>
                     </div>
                 )

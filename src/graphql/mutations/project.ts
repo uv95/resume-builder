@@ -57,11 +57,14 @@ export const UPDATE_PROJECTS_ORDER = gql`
 `;
 
 export const UPDATE_SECTION_NAME_PROJECTS = gql`
+  ${PROJECT_FIELDS}
   mutation updateSectionNameProject($id: ID! $sectionName: String!) {
     updateSectionNameProject( id: $id sectionName: $sectionName) {
       id
       sectionName
-      items
+      items {
+      ...ProjectItemFields
+      }
     }
   }
 `;

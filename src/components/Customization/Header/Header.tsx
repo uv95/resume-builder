@@ -14,13 +14,13 @@ import {
 } from '@/utils/types/settingsTypes';
 
 const Header = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const { additionalInfoOrder, additionalInfoStyle, position } =
-    resume?.settings.header!;
+    settings?.header!;
 
     const { updateHeader } = useUpdateSettings();
     const [values, setValues] = useState(
-        removeTypename(resume?.settings.header!)
+        removeTypename(settings?.header!)
     );
     const update = (
         updatedField: 'additionalInfoStyle' | 'position',

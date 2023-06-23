@@ -6,7 +6,6 @@ import style from './Button.module.scss';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isSubmit?: boolean;
   className?: string;
-  onClick?: (arg?: React.FormEvent<HTMLFormElement> | any) => void;
   btnType?: string;
   isActive?: boolean;
   isBold?: boolean;
@@ -16,7 +15,6 @@ const Button: FC<ButtonProps> = (props) => {
     const {
         isSubmit,
         className,
-        onClick,
         btnType,
         children,
         isActive,
@@ -36,7 +34,6 @@ const Button: FC<ButtonProps> = (props) => {
                 [className || '']
             )}
             {...otherProps}
-            onClick={onClick}
             style={{
                 fontWeight: isBold ? 'bold' : 'normal',
             }}

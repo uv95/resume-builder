@@ -5,8 +5,8 @@ import SettingsCard from '../UI/SettingsCard';
 import Bar from './Bar';
 
 const Spacing = () => {
-    const { resume } = useContext(ResumeContext);
-    const spacing = resume?.settings.spacing!;
+    const { settings } = useContext(ResumeContext);
+    const spacing = settings?.spacing!;
     return (
         <SettingsCard title="Spacing">
             {spacingData.map((item) => (

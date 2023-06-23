@@ -6,10 +6,10 @@ import React, { useContext } from 'react';
 import style from './Colors.module.scss';
 
 const AccentColors = () => {
-    const { resume } = useContext(ResumeContext);
-    const mode = resume?.settings.colors.mode!;
-    const accentBasic = resume?.settings.colors.basic.accent!;
-    const accentAdvanced = resume?.settings.colors.advanced.accent!;
+    const { settings } = useContext(ResumeContext);
+    const mode = settings?.colors.mode!;
+    const accentBasic = settings?.colors.basic.accent!;
+    const accentAdvanced = settings?.colors.advanced.accent!;
     const { updateAccentColor } = useUpdateSettings();
     return (
         <div className={style.accentColors}>

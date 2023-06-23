@@ -25,8 +25,8 @@ const RearrangeSections = ({
     initialCard,
     sectionsOrder,
 }: Props) => {
-    const { resume } = useContext(ResumeContext);
-    const { columns, position } = resume?.settings.layout!;
+    const { settings } = useContext(ResumeContext);
+    const { columns, position } =settings?.layout!;
     return (
         <div>
             <h5 className="mb-1">Rearrange sections</h5>

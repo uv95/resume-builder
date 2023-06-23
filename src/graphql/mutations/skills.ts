@@ -53,11 +53,14 @@ export const UPDATE_SKILLS_ORDER = gql`
 `;
 
 export const UPDATE_SECTION_NAME_SKILLS = gql`
+  ${SKILLS_FIELDS}
   mutation updateSectionNameSkills($id: ID! $sectionName: String!) {
     updateSectionNameSkills( id: $id sectionName: $sectionName) {
       id
       sectionName
-      items
+      items {
+      ...SkillsItemFields
+    }
     }
   }
 `;

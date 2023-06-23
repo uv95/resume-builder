@@ -6,12 +6,12 @@ import { DragEvent, useContext, useState } from 'react';
 import useUpdateSettings from './useUpdateSettings';
 
 function useLayoutDnD() {
-    const { resume } = useContext(ResumeContext);
-    const { position } = resume?.settings.layout!;
+    const { settings } = useContext(ResumeContext);
+    const { position } = settings?.layout!;
     const { updateSectionsOrderDragAndDrop } = useUpdateSettings();
 
     const [sectionsOrder, setSectionsOrder] = useState(
-        removeTypename(resume?.settings.sectionsOrder!)
+        removeTypename(settings?.sectionsOrder!)
     );
 
     const [isWithinDropArea, setIsWithinDropArea] = useState(false);

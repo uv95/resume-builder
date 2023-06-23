@@ -4,8 +4,8 @@ import React, { useContext } from 'react';
 import SettingsCard from './UI/SettingsCard';
 
 const ProfileSettings = () => {
-    const { resume } = useContext(ResumeContext);
-    const { showHeading } = resume?.settings.profile!;
+    const { settings } = useContext(ResumeContext);
+    const { showHeading } = settings?.profile!;
     const { updateProfileSettings } = useUpdateSettings();
 
     return (

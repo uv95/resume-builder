@@ -5,9 +5,9 @@ import React, { useContext } from 'react';
 import BasicMulticolorIcon from './BasicMulticolorIcon';
 
 const BasicMulticolor = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const selectedColor: IBasicMulticolor =
-    resume?.settings.colors.basic.multicolor!;
+    settings?.colors.basic.multicolor!;
 
     const areColorsEqual = (
         colors1: IBasicMulticolor,

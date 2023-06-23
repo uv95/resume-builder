@@ -6,10 +6,10 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 
 const BasicOptions = () => {
-    const { resume } = useContext(ResumeContext);
-    const selected = resume?.settings.colors.basic.selected;
+    const { settings } = useContext(ResumeContext);
+    const selected = settings?.colors.basic.selected;
     const { accent, multicolor: selectedMulticolor } =
-    resume?.settings.colors.basic!;
+    settings?.colors.basic!;
     const { selectOption } = useUpdateSettings();
 
     return (

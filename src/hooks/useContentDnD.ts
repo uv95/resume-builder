@@ -110,7 +110,6 @@ function useContentDnD(section: Sections, items: AdditionalContentItem[]) {
             modifiedItem.index = index;
             return modifiedItem;
         });
-        console.log('🦂',newItemsOrder)
         dnd.removeTransitionFromAllCardsFrom(listElement);
         setItemsOrder(newItemsOrderToRender);
         updateContent({ items: newItemsOrder });

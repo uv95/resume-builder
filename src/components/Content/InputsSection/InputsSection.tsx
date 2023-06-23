@@ -26,9 +26,9 @@ type Props = {
 };
 
 const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
-    const { resume } = useContext(ResumeContext);
+    const { resume,content } = useContext(ResumeContext);
     const { additionalInfo } = useContext(AdditionalInfoContext);
-    const initialValues = getInitialValues(inputData, resume?.content!, itemId);
+    const initialValues = getInitialValues(inputData, content!, itemId);
 
     const updateContent = useUpdateMutations({
         section: inputData.name,
@@ -54,8 +54,8 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                             ? {
                                 ...values,
                                 index:
-                    (resume?.content[
-                      inputData.name as keyof typeof resume.content
+                    (content![
+                      inputData.name as keyof typeof content
                     ] as AdditionalContentSection).items.length,
                             }
                             : values;

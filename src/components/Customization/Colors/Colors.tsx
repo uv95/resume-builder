@@ -11,10 +11,10 @@ import SettingsCard from '../UI/SettingsCard';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 
 const Colors = () => {
-    const { resume } = useContext(ResumeContext);
-    const mode = resume?.settings.colors.mode;
-    const selectedOptionBasic = resume?.settings.colors.basic.selected;
-    const selectedOptionAdvanced = resume?.settings.colors.advanced.selected;
+    const { settings } = useContext(ResumeContext);
+    const mode = settings?.colors.mode;
+    const selectedOptionBasic = settings?.colors.basic.selected;
+    const selectedOptionAdvanced = settings?.colors.advanced.selected;
 
     return (
         <SettingsCard title="Colors">

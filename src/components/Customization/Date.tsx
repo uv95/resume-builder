@@ -7,15 +7,15 @@ import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
 
 const Date = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
 
     const { updateDate } = useUpdateSettings();
-    const [values, setValues] = useState(removeTypename(resume?.settings.date!));
+    const [values, setValues] = useState(removeTypename(settings?.date!));
     const update = (updatedField: 'month' | 'delimiter', newVal: string) => {
         let delimiter: any;
 
         switch (
-            updatedField === 'month' ? resume?.settings.date.delimiter : newVal
+            updatedField === 'month' ? settings?.date.delimiter : newVal
         ) {
         case Delimiter.SLASH:
             updatedField === 'month' ? (delimiter = 'slash') : (newVal = 'slash');

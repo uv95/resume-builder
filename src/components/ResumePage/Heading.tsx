@@ -11,14 +11,14 @@ import style from './Page.module.scss';
 
 type Props = {
   sectionPosition: Position.LEFT | Position.RIGHT | undefined;
-  title: string;
+  sectionName: string;
 };
 
-const Heading = ({ sectionPosition, title }: Props) => {
+const Heading = ({ sectionPosition, sectionName }: Props) => {
     const { setColor } = useSetColor();
-    const { resume } = useContext(ResumeContext);
-    const { style: headingStyle, size, uppercase } = resume?.settings.heading!;
-    const { fontSize } = resume?.settings.spacing!;
+    const { settings } = useContext(ResumeContext);
+    const { style: headingStyle, size, uppercase } = settings?.heading!;
+    const { fontSize } = settings?.spacing!;
     const [headingSize] = useState({
         s: fontSize + 1.5,
         m: fontSize + 3,
@@ -49,7 +49,7 @@ const Heading = ({ sectionPosition, title }: Props) => {
                     marginBottom: headingStyle !== HeadingStyle.LINE ? '1rem' : 0,
                 }}
             >
-                {uppercase ? title.toUpperCase() : title}
+                {uppercase ? sectionName.toUpperCase() : sectionName}
                 {headingStyle === HeadingStyle.BOX && (
                     <div
                         className={style.headingBackground}

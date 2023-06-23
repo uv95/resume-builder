@@ -6,11 +6,11 @@ import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 import style from './Colors.module.scss';
 
 const AdvancedOptions = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const { selectOption } = useUpdateSettings();
-    const selected = resume?.settings.colors.advanced.selected;
+    const selected = settings?.colors.advanced.selected;
     const { accent, multicolor: selectedMulticolor } =
-    resume?.settings.colors.advanced!;
+    settings?.colors.advanced!;
 
     return (
         <div className="flex">

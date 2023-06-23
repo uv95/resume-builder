@@ -12,11 +12,12 @@ import GridColsComponent from './GridColsComponent';
 type Props = { section: 'skills' | 'language' };
 
 const SkillsLanguageSettings = ({ section }: Props) => {
-    const { resume } = useContext(ResumeContext);
-    const { infoItalic } = resume?.settings[section]!;
+    const { settings } = useContext(ResumeContext);
+    const settingsSection = settings![section];
+    const infoItalic = settingsSection?.infoItalic;
     const { updateLanguageSettings, updateSkillsSettings } = useUpdateSettings();
     const [values, setValues] = useState(
-        removeTypename(resume?.settings[section]!)
+        removeTypename(settingsSection)
     );
     const update = (
         updatedField: 'format' | 'gridCols' | 'textFormat' | 'infoItalic',

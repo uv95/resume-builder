@@ -10,12 +10,12 @@ import SettingsButtons from '../UI/SettingsButtons';
 import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
 
 const Heading = () => {
-    const { resume } = useContext(ResumeContext);
-    const { style: headingStyle, size, uppercase } = resume?.settings.heading!;
+    const { settings } = useContext(ResumeContext);
+    const { style: headingStyle, size, uppercase } = settings?.heading!;
 
     const { updateHeading } = useUpdateSettings();
     const [values, setValues] = useState(
-        removeTypename(resume?.settings.heading!)
+        removeTypename(settings?.heading!)
     );
     const update = (updatedField: 'size' | 'style', newVal: string) =>
         updateHeading({

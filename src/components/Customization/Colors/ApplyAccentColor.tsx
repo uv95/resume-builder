@@ -9,9 +9,9 @@ import Section from '../UI/Section';
 import style from './Colors.module.scss';
 
 const ApplyAccentColor = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const [applyAccentColorFields, setApplyAccentColorFields] = useState(
-    resume?.settings.colors.applyAccentColor!
+    settings?.colors.applyAccentColor!
     );
     const [updateSettings] = useMutation(UPDATE_SETTINGS);
 
@@ -19,9 +19,9 @@ const ApplyAccentColor = () => {
         const updateApplyAccentColor = (applyAccentColor: IApplyAccentColor) => {
             return updateSettings({
                 variables: {
-                    id: resume?.settings.id,
+                    id: settings?.id,
                     colors: {
-                        ...removeTypename(resume?.settings.colors!),
+                        ...removeTypename(settings?.colors!),
                         applyAccentColor: removeTypename(applyAccentColor),
                     },
                 },
@@ -30,8 +30,8 @@ const ApplyAccentColor = () => {
         updateApplyAccentColor(applyAccentColorFields);
     }, [
         applyAccentColorFields,
-        resume?.settings.id,
-        resume?.settings.colors,
+        settings?.id,
+        settings?.colors,
         updateSettings,
     ]);
     return (

@@ -7,8 +7,8 @@ import SettingsCard from '../UI/SettingsCard';
 import style from './Font.module.scss';
 
 const Font = () => {
-    const { resume } = useContext(ResumeContext);
-    const { type: currentType, font: currentFont } = resume?.settings.font!;
+    const { settings } = useContext(ResumeContext);
+    const { type: currentType, font: currentFont } = settings?.font!;
     const { updateFont } = useUpdateSettings();
 
     return (

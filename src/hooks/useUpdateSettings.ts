@@ -1,6 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
+import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { Sections } from '@/utils/types/resumeTypes';
 import {
     ColorOption,
@@ -57,10 +58,9 @@ function useUpdateSettings() {
     };
 
     const removeFromSectionsOrder = (sectionName: Sections) => {
-        const content = resume?.content!;
+        const contentSection = resume?.content[sectionName as keyof typeof resume.content] as AdditionalContentSection;
         const sectionLength =
-      //@ts-ignore
-      content[sectionName as keyof typeof content]!.length;
+        contentSection.items.length;
 
         let newSectionsOrderTop = resume?.settings.sectionsOrder.top! as Sections[];
         let newSectionsOrderLeft = resume?.settings.sectionsOrder

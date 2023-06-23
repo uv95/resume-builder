@@ -15,13 +15,13 @@ function createApolloClient() {
         uri: 'http://localhost:8000/graphql',
         cache: new InMemoryCache({
             typePolicies: {
-                Content: {
+                PersonalDetails: {
                     fields: {
-                        // personalDetails: {
-                        //     merge(existing, incoming) {
-                        //         return incoming;
-                        //     },
-                        // },
+                        additionalInfo: {
+                            merge(existing, incoming) {
+                                return incoming;
+                            },
+                        },
                    
                     },
                 },

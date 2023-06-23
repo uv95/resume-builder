@@ -5,8 +5,8 @@ import React, { useContext } from 'react';
 import style from './Layout.module.scss';
 
 const Columns = () => {
-    const { resume } = useContext(ResumeContext);
-    const { columns, position } = resume?.settings.layout!;
+    const { settings } = useContext(ResumeContext);
+    const { columns, position } = settings?.layout!;
     const { updateColumns } = useUpdateSettings();
 
     return (

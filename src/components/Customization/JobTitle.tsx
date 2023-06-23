@@ -7,11 +7,11 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { FontStyle, Size } from '@/utils/types/settingsTypes';
 
 const JobTitle = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const { updateJobTitle } = useUpdateSettings();
 
     const [values, setValues] = useState(
-        removeTypename(resume?.settings.jobTitle!)
+        removeTypename(settings?.jobTitle!)
     );
     const update = (updatedField: 'size' | 'style', newVal: string) =>
         updateJobTitle({

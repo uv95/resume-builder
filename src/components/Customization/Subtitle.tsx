@@ -7,10 +7,10 @@ import SettingsButtons from './UI/SettingsButtons';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 
 const Subtitle = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const { updateSubtitle } = useUpdateSettings();
     const [values, setValues] = useState(
-        removeTypename(resume?.settings.subtitle!)
+        removeTypename(settings?.subtitle!)
     );
     const update = (updatedField: 'position' | 'style', newVal: string) =>
         updateSubtitle({

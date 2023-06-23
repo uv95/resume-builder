@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
-import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
+import {  Sections } from '@/utils/types/resumeTypes';
 import React, {
     forwardRef,
     useContext,
@@ -16,28 +16,14 @@ import { ColorOf, Position } from '@/utils/types/settingsTypes';
 
 const Page = forwardRef(function Page(props, ref) {
     const pageRef = useRef<HTMLDivElement>(null);
-    const { resume } = useContext(ResumeContext);
-    const font = resume?.settings.font.font!;
+    const { settings } = useContext(ResumeContext);
     const { setColor } = useSetColor();
-    const [resumeArraySections, setResumeArraySections] =
-    useState<IResumeArraySections>({
-        language: [],
-        skills: [],
-        professionalExperience: [],
-        project: [],
-        education: [],
-        profile: [],
-    });
 
-    const [columnWidth, setColumnWidth] = useState({ left: 0, right: 0 });
-    const [fontSize, setFontSize] = useState(0);
-    const [lineHeight, setLineHeight] = useState(0);
-    const [columns, setColumns] = useState(0);
     const [resumePageWidth, setResumePageWidth] = useState(0);
 
     useEffect(() => {
         window.addEventListener('resize', () =>
-            setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth : 0)
+            setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
         );
     });
 
@@ -45,30 +31,10 @@ const Page = forwardRef(function Page(props, ref) {
         pageRef.current && setResumePageWidth(pageRef.current.offsetWidth);
     }, []);
 
-    useEffect(() => {
-        if (resume) {
-            setResumeArraySections({
-                language: resume.content.language.items,
-                skills: resume.content.skills.items,
-                professionalExperience: resume.content.professionalExperience.items,
-                project: resume.content.project.items,
-                education: resume.content.education.items,
-                profile: resume.content.profile.items,
-            });
-
-            setColumnWidth({
-                left: resume?.settings.layout.columnWidth.left,
-                right: resume?.settings.layout.columnWidth.right,
-            });
-            setColumns(resume?.settings.layout.columns);
-            setFontSize(resume.settings.spacing.fontSize);
-            setLineHeight(resume.settings.spacing.lineHeight);
-        }
-    }, [resume]);
 
     return (
         <div id="resumePage" ref={pageRef} className={style.resume}>
-            <div
+            {settings&& <div
                 ref={ref as React.RefObject<HTMLDivElement>}
                 className={style.page}
                 style={{
@@ -76,37 +42,33 @@ const Page = forwardRef(function Page(props, ref) {
                     background: setColor({
                         colorOf: ColorOf.BG,
                     }),
-                    fontSize,
-                    lineHeight,
+                    fontSize:settings.spacing.fontSize,
+                    lineHeight:settings.spacing.lineHeight,
                     display:
-            resume?.settings.layout.position === Position.TOP
+            settings.layout.position === Position.TOP
                 ? 'flex'
                 : 'block',
                     flexDirection:
-            resume?.settings.layout.position === Position.TOP
+            settings.layout.position === Position.TOP
                 ? 'column'
                 : 'initial',
-                    fontFamily: font,
+                    fontFamily: settings.font.font,
                 }}
             >
-                {resume?.settings.layout.position === Position.TOP && (
+                {settings.layout.position === Position.TOP && (
                     <PersonalDetailsBlock />
                 )}
 
-                {resume && columns === 1 && (
+                {settings.layout.columns === 1 ? (
                     <PageOneColumn
-                        sections={resume.settings.sectionsOrder.top as Sections[]}
-                        resumeArraySections={resumeArraySections}
+                        sections={settings.sectionsOrder.top as Sections[]}
                     />
-                )}
-
-                {columns === 2 && (
+                ):
                     <PageTwoColumns
-                        resumeArraySections={resumeArraySections}
-                        columnWidth={columnWidth}
+                        columnWidth={settings.layout.columnWidth}
                     />
-                )}
-            </div>
+                }
+            </div>}
         </div>
     );
 });

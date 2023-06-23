@@ -53,11 +53,14 @@ export const UPDATE_LANGUAGES_ORDER = gql`
 `;
 
 export const UPDATE_SECTION_NAME_LANGUAGE = gql`
+  ${LANGUAGE_FIELDS}
   mutation updateSectionNameLanguage($id: ID! $sectionName: String!) {
     updateSectionNameLanguage( id: $id sectionName: $sectionName) {
       id
       sectionName
-      items
+      items{
+      ...LanguageItemFields
+      }
     }
   }
 `;

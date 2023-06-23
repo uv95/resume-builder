@@ -7,15 +7,15 @@ import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';
 
 const PersonalDetailsAdditionalInfo = () => {
     const { setAdditionalInfo } = useContext(AdditionalInfoContext);
-    const { resume } = useContext(ResumeContext);
+    const { content } = useContext(ResumeContext);
 
     useEffect(() => {
         const additionalInfoTypenameRemoved =
-      resume?.content.personalDetails?.additionalInfo.map((item) =>
+      content?.personalDetails?.additionalInfo.map((item) =>
           removeTypename(item)
       );
         setAdditionalInfo(additionalInfoTypenameRemoved || []);
-    }, [resume?.content.personalDetails?.additionalInfo, setAdditionalInfo]);
+    }, [content?.personalDetails?.additionalInfo, setAdditionalInfo]);
 
     return (
         <div>

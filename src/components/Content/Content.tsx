@@ -23,8 +23,8 @@ const Content = () => {
       section: '',
       itemId: '',
   });
-    const { resume } = useContext(ResumeContext);
-    const additionalContentSections = resume?.settings.sectionsOrder.top.filter(section=>section!=='personalDetails')!
+    const { content, settings } = useContext(ResumeContext);
+    const additionalContentSections = settings?.sectionsOrder.top.filter(section=>section!=='personalDetails')! || []
 
     const showPersonalDetailsIfNotEditingAnything =
     !contentToEdit.section ||
@@ -36,7 +36,7 @@ const Content = () => {
     return (
         <AdditionalInfoProvider>
             <CurrentSectionProvider>
-                {resume && (
+                {(
                     <>
                         {showPersonalDetailsIfNotEditingAnything && (
                             <PersonalDetails
@@ -47,17 +47,18 @@ const Content = () => {
                         {!contentToEdit.section &&
               additionalContentSections.map(
                   (section) =>
-                      ( resume.content[
-                      section as keyof typeof resume.content] as AdditionalContentSection).items
+                      ( content![
+                      section as keyof typeof content] as AdditionalContentSection).items
                           .length !== 0 && (
                           <ContentCard
                               key={section}
                               icon={getSectionIcon(section)}
-                              contentToEdit={contentToEdit}
                               setContentToEdit={setContentToEdit}
-                              inputData={inputData[section as keyof typeof inputData]}
+                              contentSection={content![section as keyof typeof content] as AdditionalContentSection}
+                              sectionName={section as Sections}
+                              //   inputData={inputData[section as keyof typeof inputData]}
                               items={
-                                  (resume.content[section as keyof typeof resume.content] as AdditionalContentSection).items
+                                  (content![section as keyof typeof content] as AdditionalContentSection).items
                               }
                           />
                       )

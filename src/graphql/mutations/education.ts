@@ -69,11 +69,14 @@ export const UPDATE_EDUCATION_ORDER = gql`
 `;
 
 export const UPDATE_SECTION_NAME_EDUCATION = gql`
+  ${EDUCATION_FIELDS}
   mutation updateSectionNameEducation($id: ID! $sectionName: String!) {
     updateSectionNameEducation( id: $id sectionName: $sectionName) {
       id
       sectionName
-      items
+      items {
+      ...EducationItemFields
+      }
     }
   }
 `;

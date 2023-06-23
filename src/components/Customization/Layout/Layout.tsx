@@ -8,7 +8,7 @@ import PositionComponent from './PositionComponent';
 import RearrangeSections from './RearrangeSections';
 
 const Layout = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
     const {
         dragEndHandler,
         dragEnterHandler,
@@ -41,7 +41,7 @@ const Layout = () => {
                     sectionsOrder={sectionsOrder}
                 />
 
-                {resume?.settings.layout.columns === 2 && <ColumnWidth />}
+                {settings?.layout.columns === 2 && <ColumnWidth />}
             </SettingsCard>
         </div>
     );

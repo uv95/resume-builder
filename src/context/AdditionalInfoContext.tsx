@@ -1,5 +1,5 @@
 import { IAdditionalInfo } from '@/utils/types/contentTypes';
-import React, { createContext, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
 
 interface IAdditionalInfoContext {
   additionalInfo: IAdditionalInfo[];
@@ -11,15 +11,20 @@ export const AdditionalInfoContext = createContext<IAdditionalInfoContext>({
     setAdditionalInfo: () => {},
 });
 
-interface Props {
-  children: React.ReactNode;
-}
-
-export const AdditionalInfoProvider = ({ children }: Props) => {
+export const AdditionalInfoProvider:FC<PropsWithChildren> = ({ children }) => {
     const [additionalInfo, setAdditionalInfo] = useState<IAdditionalInfo[]>([]);
+
+    const values = useMemo(
+        ()=>({
+            additionalInfo,
+            setAdditionalInfo
+        }),
+        [additionalInfo]
+    )
+
     return (
         <AdditionalInfoContext.Provider
-            value={{ additionalInfo, setAdditionalInfo }}
+            value={values}
         >
             {children}
         </AdditionalInfoContext.Provider>

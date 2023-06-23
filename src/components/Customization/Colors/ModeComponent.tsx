@@ -6,8 +6,8 @@ import React, { useContext } from 'react';
 import style from './Colors.module.scss';
 
 const ModeComponent = () => {
-    const { resume } = useContext(ResumeContext);
-    const mode = resume?.settings.colors.mode;
+    const { settings } = useContext(ResumeContext);
+    const mode = settings?.colors.mode;
     const { updateMode } = useUpdateSettings();
     return (
         <div className="flex">

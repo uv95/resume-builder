@@ -5,8 +5,8 @@ import Button from '../Button/Button';
 import SettingsCard from './UI/SettingsCard';
 
 const ProfessionalExperienceSettings = () => {
-    const { resume } = useContext(ResumeContext);
-    const { jobTitleFirst } = resume?.settings.professionalExperience!;
+    const { settings } = useContext(ResumeContext);
+    const { jobTitleFirst } =settings?.professionalExperience!;
 
     const { updateProfExperienceSettings } = useUpdateSettings();
 

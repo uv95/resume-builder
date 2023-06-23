@@ -1,5 +1,5 @@
 import { Sections } from '@/utils/types/resumeTypes';
-import React, { createContext, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
 
 interface ICurrentSectionContext {
   currentSection: Sections | '';
@@ -11,15 +11,21 @@ export const CurrentSectionContext = createContext<ICurrentSectionContext>({
     setCurrentSection: () => {},
 });
 
-interface Props {
-  children: React.ReactNode;
-}
 
-export const CurrentSectionProvider = ({ children }: Props) => {
+export const CurrentSectionProvider: FC<PropsWithChildren> = ({ children }) => {
     const [currentSection, setCurrentSection] = useState<Sections | ''>('');
+
+    const values = useMemo(
+        ()=>({
+            currentSection,
+            setCurrentSection
+        }),
+        [currentSection]
+    )
+
     return (
         <CurrentSectionContext.Provider
-            value={{ currentSection, setCurrentSection }}
+            value={values}
         >
             {children}
         </CurrentSectionContext.Provider>

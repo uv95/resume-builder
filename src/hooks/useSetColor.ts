@@ -1,43 +1,24 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import {
-    IApplyAccentColor,
-    IAdvancedMulticolor,
-    IBasicMulticolor,
     Mode,
     Position,
     ColorOption,
     AccentColorSections,
     ColorOf,
 } from '@/utils/types/settingsTypes';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 function useSetColor() {
-    const { resume } = useContext(ResumeContext);
-    const [settings, setSettings] = useState<{
-    position: Position;
-    mode: Mode;
-    basicSelected: ColorOption;
-    advancedSelected: ColorOption;
-    applyAccentColor: IApplyAccentColor;
-    accentBasic: string;
-    multicolorBasic: IBasicMulticolor;
-    accentAdvanced: string;
-    multicolorAdvanced: IAdvancedMulticolor;
-  } | null>(null);
-
-    useEffect(() => {
-        setSettings({
-            position: resume?.settings.layout.position!,
-            mode: resume?.settings?.colors.mode!,
-            basicSelected: resume?.settings?.colors.basic.selected!,
-            advancedSelected: resume?.settings?.colors.advanced.selected!,
-            applyAccentColor: resume?.settings?.colors.applyAccentColor!,
-            accentBasic: resume?.settings?.colors.basic.accent!,
-            multicolorBasic: resume?.settings?.colors.basic.multicolor!,
-            accentAdvanced: resume?.settings?.colors.advanced.accent!,
-            multicolorAdvanced: resume?.settings?.colors.advanced.multicolor!,
-        });
-    }, [resume?.settings]);
+    const { settings } = useContext(ResumeContext);
+    const position = settings?.layout.position;
+    const mode = settings?.colors.mode!;
+    const applyAccentColor = settings?.colors.applyAccentColor!;
+    const basicSelected = settings?.colors.basic.selected!;
+    const  accentBasic = settings?.colors.basic.accent!;
+    const multicolorBasic = settings?.colors.basic.multicolor!;
+    const advancedSelected = settings?.colors.advanced.selected!
+    const accentAdvanced = settings?.colors.advanced.accent!
+    const  multicolorAdvanced = settings?.colors.advanced.multicolor!
 
   type SetColorType = {
     section?: AccentColorSections;
@@ -47,81 +28,81 @@ function useSetColor() {
 
   const setColor = ({ section, colorOf, sectionPosition }: SetColorType) => {
       // basic
-      if (settings?.mode === Mode.BASIC) {
+      if (mode === Mode.BASIC) {
       // basic accent
-          if (settings?.basicSelected === ColorOption.ACCENT) {
+          if (basicSelected === ColorOption.ACCENT) {
               if (colorOf === ColorOf.FONT)
-                  return settings?.applyAccentColor[
-            section as keyof typeof settings.applyAccentColor
+                  return applyAccentColor[
+            section as keyof typeof applyAccentColor
                   ]
-                      ? settings?.accentBasic
+                      ? accentBasic
                       : '#000000';
               if (colorOf === ColorOf.BG) return '#ffffff';
           }
           // basic multicolor
-          if (settings?.basicSelected === ColorOption.MULTICOLOR) {
+          if (basicSelected === ColorOption.MULTICOLOR) {
               if (colorOf === ColorOf.FONT)
-                  return settings?.applyAccentColor[
-            section as keyof typeof settings.applyAccentColor
+                  return applyAccentColor[
+            section as keyof typeof applyAccentColor
                   ]
-                      ? settings?.multicolorBasic.accent
-                      : settings?.multicolorBasic[colorOf];
+                      ? multicolorBasic.accent
+                      : multicolorBasic[colorOf];
               if (colorOf === ColorOf.BG) return '#ffffff';
           }
       }
 
       //advanced
-      if (settings?.mode === Mode.ADVANCED) {
+      if (mode === Mode.ADVANCED) {
       // advanced accent
-          if (settings?.advancedSelected === ColorOption.ACCENT) {
+          if (advancedSelected === ColorOption.ACCENT) {
               if (
                   (sectionPosition === Position.TOP &&
-            settings?.position === Position.TOP) ||
+            position === Position.TOP) ||
           (sectionPosition === Position.LEFT &&
-            settings?.position === Position.LEFT) ||
+            position === Position.LEFT) ||
           (sectionPosition === Position.RIGHT &&
-            settings?.position === Position.RIGHT)
+            position === Position.RIGHT)
               ) {
                   if (colorOf === ColorOf.FONT) return '#ffffff';
-                  if (colorOf === ColorOf.BG) return settings?.accentAdvanced;
+                  if (colorOf === ColorOf.BG) return accentAdvanced;
               }
 
               if (colorOf === ColorOf.FONT)
-                  return settings?.applyAccentColor[
-            section as keyof typeof settings.applyAccentColor
+                  return applyAccentColor[
+            section as keyof typeof applyAccentColor
                   ]
-                      ? settings?.accentAdvanced
+                      ? accentAdvanced
                       : '#000000';
               if (colorOf === ColorOf.BG) return '#ffffff';
           }
           // advanced multicolor
-          if (settings?.advancedSelected === ColorOption.MULTICOLOR) {
+          if (advancedSelected === ColorOption.MULTICOLOR) {
               if (
                   (sectionPosition === Position.TOP &&
-            settings?.position === Position.TOP) ||
+            position === Position.TOP) ||
           (sectionPosition === Position.LEFT &&
-            settings?.position === Position.LEFT) ||
+            position === Position.LEFT) ||
           (sectionPosition === Position.RIGHT &&
-            settings?.position === Position.RIGHT)
+            position === Position.RIGHT)
               ) {
                   if (colorOf === ColorOf.FONT)
-                      return settings?.applyAccentColor[
-              section as keyof typeof settings.applyAccentColor
+                      return applyAccentColor[
+              section as keyof typeof applyAccentColor
                       ]
-                          ? settings?.multicolorAdvanced.primary.accent
-                          : settings?.multicolorAdvanced.primary.font;
+                          ? multicolorAdvanced.primary.accent
+                          : multicolorAdvanced.primary.font;
                   if (colorOf === ColorOf.BG)
-                      return settings?.multicolorAdvanced.primary.background;
+                      return multicolorAdvanced.primary.background;
               }
 
               if (colorOf === ColorOf.FONT)
-                  return settings?.applyAccentColor[
-            section as keyof typeof settings.applyAccentColor
+                  return applyAccentColor[
+            section as keyof typeof applyAccentColor
                   ]
-                      ? settings?.multicolorAdvanced.secondary.accent
-                      : settings?.multicolorAdvanced.secondary.font;
+                      ? multicolorAdvanced.secondary.accent
+                      : multicolorAdvanced.secondary.font;
               if (colorOf === ColorOf.BG)
-                  return settings?.multicolorAdvanced.secondary.background;
+                  return multicolorAdvanced.secondary.background;
           }
       }
   };

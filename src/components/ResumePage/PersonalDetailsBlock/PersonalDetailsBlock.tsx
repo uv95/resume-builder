@@ -10,16 +10,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import AdditionalInfoBlock from './AdditionalInfoBlock';
 
 const PersonalDetailsBlock = () => {
-    const { resume } = useContext(ResumeContext);
+    const { settings,content } = useContext(ResumeContext);
 
-    const { position } = resume?.settings.layout!;
-    const content = resume?.content.personalDetails;
+    const { position } = settings?.layout!;
+    const personalDetails = content?.personalDetails;
     const { leftRightMargin, topBottomMargin, fontSize } =
-    resume?.settings.spacing!;
-    const { position: headerPosition } = resume?.settings.header!;
+    settings?.spacing!;
+    const { position: headerPosition } = settings?.header!;
     const { size: jobTitleSize, style: jobTitleStyle } =
-    resume?.settings.jobTitle!;
-    const { style: nameStyle, size: nameSize } = resume?.settings.name!;
+    settings?.jobTitle!;
+    const { style: nameStyle, size: nameSize } = settings?.name!;
 
     const [jobTitleFontSize, setJobTitleFontSize] = useState({
         s: fontSize + 3,
@@ -68,7 +68,7 @@ const PersonalDetailsBlock = () => {
                     fontWeight: nameStyle === FontStyle.BOLD ? 'bold' : 'normal',
                 }}
             >
-                {content?.fullName}
+                {personalDetails?.fullName}
             </p>
             <p
                 style={{
@@ -77,7 +77,7 @@ const PersonalDetailsBlock = () => {
                     fontStyle: jobTitleStyle === FontStyle.ITALIC ? 'italic' : 'normal',
                 }}
             >
-                {content?.jobTitle}
+                {personalDetails?.jobTitle}
             </p>
 
             <AdditionalInfoBlock />

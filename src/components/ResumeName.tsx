@@ -34,8 +34,6 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     // },
     });
 
-    const printHandler = () => {};
-
     return isEdit ? (
         <Card>
             <Formik
