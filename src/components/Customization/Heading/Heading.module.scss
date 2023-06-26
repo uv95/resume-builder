@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+
 @import '../../../styles/mixins.scss';
 
 .style {
@@ -22,12 +22,12 @@
     top: -0.7rem;
     width: 7rem;
     height: 2rem;
-    border: 0.2rem solid $color-gray;
+    border: 0.2rem solid var(--color-gray);
   }
   &.active {
-    background-color: $color-ui-blue;
+    background-color: var(--color-ui-blue);
     &:after {
-      border: 0.2rem solid $color-ui-blue;
+      border: 0.2rem solid var(--color-ui-blue);
     }
   }
 }
@@ -35,7 +35,7 @@
   @include headingStyle;
   margin-right: auto;
   &.active {
-    background-color: $color-ui-blue;
+    background-color: var(--color-ui-blue);
   }
 }
 .topBottomLine {
@@ -49,14 +49,14 @@
     top: -0.7rem;
     width: 7rem;
     height: 2rem;
-    border-top: 0.2rem solid $color-gray;
-    border-bottom: 0.2rem solid $color-gray;
+    border-top: 0.2rem solid var(--color-gray);
+    border-bottom: 0.2rem solid var(--color-gray);
   }
   &.active {
-    background-color: $color-ui-blue;
+    background-color: var(--color-ui-blue);
     &:after {
-      border-top: 0.2rem solid $color-ui-blue;
-      border-bottom: 0.2rem solid $color-ui-blue;
+      border-top: 0.2rem solid var(--color-ui-blue);
+      border-bottom: 0.2rem solid var(--color-ui-blue);
     }
   }
 }
@@ -72,12 +72,12 @@
     top: -0.7rem;
     width: 7rem;
     height: 2rem;
-    border-bottom: 0.2rem solid $color-gray;
+    border-bottom: 0.2rem solid var( --color-gray);
   }
   &.active {
-    background-color: $color-ui-blue;
+    background-color: var(--color-ui-blue);
     &:after {
-      border-bottom: 0.2rem solid $color-ui-blue;
+      border-bottom: 0.2rem solid var(--color-ui-blue);
     }
   }
 }

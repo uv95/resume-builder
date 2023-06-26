@@ -1,6 +1,6 @@
 import { addApolloState, initializeApollo } from '@/apollo';
 import Customization from '@/components/Customization/Customization';
-import Content from '@/components/Content/Content';
+import Content from '@/components/Content/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
 import Page from '@/components/ResumePage/Page';
 import { ResumeContext } from '@/context/ResumeContext';

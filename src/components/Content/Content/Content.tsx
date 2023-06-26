@@ -4,15 +4,16 @@ import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import React, { useContext, useState } from 'react';
-import AddContent from './AddContent/AddContent';
-import Button from '../Button/Button';
-import Card from '../Card/Card';
-import ContentCard from './ContentCard/ContentCard';
-import InputsSection from './InputsSection/InputsSection';
-import Modal from '../Modal/Modal';
-import PersonalDetails from './PersonalDetails/PersonalDetails';
+import AddContent from '../AddContent/AddContent';
+import Button from '../../Button/Button';
+import Card from '../../Card/Card';
+import ContentCard from '../ContentCard/ContentCard';
+import InputsSection from '../InputsSection/InputsSection';
+import Modal from '../../Modal/Modal';
+import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
+import style from './Content.module.scss';
 
 const Content = () => {
     const [showAddContent, setShowAddContent] = useState(false);
@@ -75,8 +76,8 @@ const Content = () => {
                             </Card>
                         )}
                         {!contentToEdit.section && <div className="centered">
-                            <Button  onClick={() => setShowAddContent(true)} btnType="pink">
-                                + Add Content
+                            <Button className={style.addContentBtn}  onClick={() => setShowAddContent(true)} btnType="pink">
+                                <span>+</span> Add Content
                             </Button>
                         </div>}
                     </>

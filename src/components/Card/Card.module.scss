@@ -1,9 +1,8 @@
-@import '../../styles/variables.scss';
 
 .card {
   height: fit-content;
   background: white;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   box-shadow: 0.2rem 0.2rem 2rem rgba(0, 0, 0, 0.05);
   font-size: 1.5rem;
   & h3 {
@@ -18,7 +17,7 @@
 }
 
 .gray {
-  background-color: $color-bg;
+  background-color: var(--color-bg);
   box-shadow: none;
   transition: all 0.2s;
 }

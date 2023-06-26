@@ -6,7 +6,7 @@
 
 @mixin borderedBox {
   border-radius: 1rem;
-  border: 1px solid $color-gray;
+  border: 1px solid var(--color-gray);
   cursor: pointer;
   transition: transform 0.1s;
 
@@ -18,7 +18,7 @@
 
 @mixin borderedCircle {
   border-radius: 50%;
-  border: 1px solid $color-gray;
+  border: 1px solid var(--color-gray);
   cursor: pointer;
   transition: transform 0.1s;
 
@@ -31,5 +31,5 @@
 @mixin headingStyle {
   width: 4rem;
   height: 1rem;
-  background-color: $color-gray;
+  background-color: var(--color-gray);
 }

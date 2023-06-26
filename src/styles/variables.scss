@@ -1,22 +1,28 @@
-//Color
-$color-bg: rgb(239, 239, 239);
-$color-bg--light: rgba(239, 239, 239, 0.731);
-$color-gray: rgb(168, 168, 168);
-$color-gray--dark: rgb(75, 75, 75);
-$color-gray--light: rgb(219, 219, 219);
-$color-ui-blue: rgb(33, 72, 200);
-$color-ui-blue--light: rgba(33, 72, 200, 0.161);
-$color-ui-pink: rgb(236, 108, 157);
-$color-ui-pink--light: rgba(236, 108, 157, 0.757);
-$color-font: rgb(27, 29, 47);
-$color-font--medium: rgb(0, 18, 80);
-$color-font--light: rgb(55, 59, 94);
+:root {
+    //Color
+    --color-bg: rgba(243, 243, 243, 0.795);
+    --color-bg--light: rgba(239, 239, 239, 0.731);
+    --color-gray: rgb(168, 168, 168);
+    --color-gray--dark: rgb(75, 75, 75);
+    --color-gray--light: rgb(219, 219, 219);
+    --color-ui-blue: rgb(48, 126, 215);
+    --color-ui-blue--light: rgba(77, 147, 228, 0.12);
+    --color-ui-pink: rgb(236, 108, 157);
+    --color-ui-pink--light: rgba(236, 108, 157, 0.757);
+    --color-font: rgb(27, 29, 47);
+    --color-font--medium: rgb(0, 18, 80);
+    --color-font--light: rgb(55, 59, 94);
 
-//Radius
-$border-radius: 2rem;
-$radius-btn--l: 3rem;
-$radius-btn--m: 1rem;
+    --gradient-pink: linear-gradient(120deg, rgb(242, 65, 142) 0%, rgb(117, 77, 228) 100%);
+    --gradient-pink-hover: linear-gradient(120deg, rgb(242, 65, 142,0.8) 0%, rgb(117, 77, 228,0.8) 100%);
+    
+    //Radius
+    --border-radius: 2rem;
+    --radius-btn--l: 3rem;
+    --radius-btn--m: 1rem;
+    
+    //Page
+    --page-width: 59.5rem;
+    --page-height: 84.2rem;
 
-//Page
-$page-width: 59.5rem;
-$page-height: 84.2rem;
+}

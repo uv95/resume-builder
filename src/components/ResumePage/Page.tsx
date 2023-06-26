@@ -33,9 +33,10 @@ const Page = forwardRef(function Page(props, ref) {
 
 
     return (
-        <div id="resumePage" ref={pageRef} className={style.resume}>
+        <div ref={pageRef} className={style.resume}>
             {settings&& <div
                 ref={ref as React.RefObject<HTMLDivElement>}
+                id="resumePage"
                 className={style.page}
                 style={{
                     transform: `scale(${resumePageWidth * 0.00126})`,

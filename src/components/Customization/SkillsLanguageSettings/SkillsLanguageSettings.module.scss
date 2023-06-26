@@ -1,4 +1,3 @@
-@import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
 .button {
@@ -7,7 +6,7 @@
 
   &_active {
     & .item {
-      background: $color-ui-blue;
+      background: var(--color-ui-blue);
     }
   }
 }
@@ -20,6 +19,6 @@
 .item {
   width: 100%;
   height: 1.5rem;
-  background: $color-gray;
+  background: var(--color-gray);
   border-radius: 1px;
 }

@@ -1,4 +1,4 @@
-@import '../../../styles/variables.scss';
+
 @import '../../../styles/mixins.scss';
 
 .list {
@@ -21,11 +21,11 @@
 .devider {
   width: 100%;
   height: 0.5rem;
-  background-color: $color-bg;
+  background-color: var(--color-bg);
 }
 
 .primary {
-  color: $color-font--medium;
+  color: var(--color-font--medium);
   font-size: 1.7rem;
 }
 .secondary {

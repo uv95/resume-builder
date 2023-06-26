@@ -18,6 +18,11 @@ type Props = {
 const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     const handlePrint = useReactToPrint({
         content: reactToPrintContent,
+        documentTitle: resumeName,
+        onBeforeGetContent: ()=>{
+            const page = document.querySelector('#resumePage') as HTMLDivElement;
+            page.style.transform = 'scale(1)'
+        }
     });
     const [isEdit, setIsEdit] = useState(false);
     const [updateResume] = useMutation(UPDATE_RESUME, {
