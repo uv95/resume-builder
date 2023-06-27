@@ -5,8 +5,11 @@ import { Delimiter, Month } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
+import { useTranslation } from 'next-i18next';
 
 const Date = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
 
     const { updateDate } = useUpdateSettings();
@@ -42,7 +45,7 @@ const Date = () => {
     };
 
     return (
-        <SettingsCard title="Date">
+        <SettingsCard title={t('date')}>
             <SettingsButtons
                 options={Object.values(Month)}
                 updatedField="month"

@@ -4,8 +4,11 @@ import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const ColumnWidth = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const [updateSettings] = useMutation(UPDATE_SETTINGS);
 
@@ -42,10 +45,10 @@ const ColumnWidth = () => {
 
     return (
         <div>
-            <h5>Column width</h5>
+            <h5>{t('column-width')}</h5>
             <div className={style.columnWidth}>
                 <div className={style.columnWidth_options}>
-                    <p>Left {left}%</p>
+                    <p>{t('left')} {left}%</p>
                     <Button
                         btnType="thinBorder"
                         onClick={() => {
@@ -57,7 +60,7 @@ const ColumnWidth = () => {
                     </Button>
                 </div>
                 <div className={style.columnWidth_options}>
-                    <p>Right {right}%</p>
+                    <p>{t('right')} {right}%</p>
                     <Button
                         btnType="thinBorder"
                         onClick={() => {

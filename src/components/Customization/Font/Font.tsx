@@ -5,14 +5,17 @@ import { fonts } from '@/utils/fonts';
 import React, { useContext } from 'react';
 import SettingsCard from '../UI/SettingsCard';
 import style from './Font.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const Font = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { type: currentType, font: currentFont } = settings?.font!;
     const { updateFont } = useUpdateSettings();
 
     return (
-        <SettingsCard title="Font">
+        <SettingsCard title={t('font')}>
             <div className={style.fonts}>
                 {fonts.map((fontType) => (
                     <Button

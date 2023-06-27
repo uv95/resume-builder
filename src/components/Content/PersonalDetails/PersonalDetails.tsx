@@ -10,6 +10,7 @@ import location from '../../../icons/location_regular.svg';
 import edit from '../../../icons/edit.svg';
 import Image from 'next/image';
 import { Sections } from '@/utils/types/resumeTypes';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   setContentToEdit: React.Dispatch<
@@ -25,6 +26,8 @@ type Props = {
 };
 
 const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
+    const {t} = useTranslation(['content'])
+   
     const { content } = useContext(ResumeContext);
     const { address, email, phone, fullName } = content?.personalDetails! || '';
 
@@ -48,7 +51,7 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
                 >
                     <div className="flex spaceBetween p-2">
                         <p className={`${style.name} ${!fullName ? style.empty : ''}`}>
-                            {fullName || 'Your name'}
+                            {fullName || t('your-name')}
                         </p>
                         <Image
                             src={edit}
@@ -85,7 +88,7 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
                                 style={{ filter: `contrast(${phone ? 1 : 0})` }}
                             />
                             <p className={`${style.input} ${!phone ? style.empty : ''}`}>
-                                {phone || 'Phone'}
+                                {phone || t('phone')}
                             </p>
                         </div>
                         <div className="flex gap-1">
@@ -97,7 +100,7 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
                                 style={{ filter: `contrast(${address ? 1 : 0})` }}
                             />
                             <p className={`${style.input} ${!address ? style.empty : ''}`}>
-                                {address || 'Address'}
+                                {address || t('address')}
                             </p>
                         </div>
                     </div>

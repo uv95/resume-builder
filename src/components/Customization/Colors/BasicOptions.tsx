@@ -4,8 +4,11 @@ import style from './Colors.module.scss';
 import BasicMulticolorIcon from './BasicMulticolorIcon';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const BasicOptions = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const selected = settings?.colors.basic.selected;
     const { accent, multicolor: selectedMulticolor } =
@@ -24,7 +27,7 @@ const BasicOptions = () => {
                     }`}
                     style={{ background: accent }}
                 ></div>
-                <p>Accent</p>
+                <p>{t('accent')}</p>
             </div>
             <div
                 className={style.option}
@@ -35,7 +38,7 @@ const BasicOptions = () => {
                     color={selectedMulticolor}
                     isOption
                 />
-                <p>Multicolor</p>
+                <p>{t('multicolor')}</p>
             </div>
         </div>
     );

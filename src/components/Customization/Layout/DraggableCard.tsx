@@ -1,7 +1,7 @@
 import React, { DragEvent } from 'react';
 import { camelCaseToString } from '@/utils/camelCaseToString';
 import Image from 'next/image';
-
+import { useTranslation } from 'next-i18next';
 import style from './Layout.module.scss';
 import { addTransitionToAllCardsFrom } from '@/utils/dragAndDropUtilityFunctions';
 import { Position } from '@/utils/types/settingsTypes';
@@ -27,6 +27,8 @@ const DraggableCard = ({
     setInitialCard,
     initialCard,
 }: Props) => {
+    const {t} = useTranslation(['customization'])
+
     const columns = {
         left: document.querySelector('#left') as HTMLDivElement,
         right: document.querySelector('#right') as HTMLDivElement,
@@ -79,7 +81,7 @@ const DraggableCard = ({
                         alt="icon"
                         draggable={false}
                     />
-                    <strong> {camelCaseToString(section)}</strong>
+                    <strong> {(t('content-cards', {ns:'content', returnObjects:true})as any)[section]}</strong>
                 </div>
             </div>
         </div>

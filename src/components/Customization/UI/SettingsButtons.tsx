@@ -1,6 +1,6 @@
 import { camelCaseToString } from '@/utils/camelCaseToString';
-import React from 'react';
 import Button from '../../Button/Button';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   options: string[];
@@ -21,11 +21,13 @@ const SettingsButtons = ({
     title,
     setValues,
 }: Props) => {
+    const {t} = useTranslation(['customization'])
+    
     return (
         <div>
             {!hasNoTitle && (
                 <h5 style={{ marginBottom: '1rem' }}>
-                    {title || updatedField[0].toUpperCase() + updatedField.slice(1)}
+                    {title || t(updatedField)}
                 </h5>
             )}
             <div className="flex">
@@ -46,7 +48,7 @@ const SettingsButtons = ({
                                 minWidth: updatedField !== 'size' ? '6rem' : 0,
                             }}
                         >
-                            {camelCaseToString(item)}
+                            {t(item)}
                         </p>
                     </Button>
                 ))}

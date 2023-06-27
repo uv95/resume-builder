@@ -5,8 +5,11 @@ import { ResumeContext } from '@/context/ResumeContext';
 import { removeTypename } from '@/utils/removeTypename';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { FontStyle, Size } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const JobTitle = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { updateJobTitle } = useUpdateSettings();
 
@@ -20,7 +23,7 @@ const JobTitle = () => {
         });
 
     return (
-        <SettingsCard title="Job Title">
+        <SettingsCard title={t('job-title')}>
             <SettingsButtons
                 options={Object.values(Size)}
                 updatedField="size"

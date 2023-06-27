@@ -1,13 +1,17 @@
-import React from 'react';
 import style from './Tag.module.scss';
+import { useTranslation } from 'next-i18next';
 
-type Props = { text: string; onClick: () => void };
+type Props = { text: string; onClick: () => void;
+    tagsGroup: string;
+};
 
-const Tag = ({ text, onClick }: Props) => {
+const Tag = ({ text, onClick,tagsGroup }: Props) => {
+    const {t} = useTranslation(['content'])
+
     return (
         <div className={style.tag} onClick={onClick}>
             <b>+</b>
-            <p>{text}</p>
+            <p>{tagsGroup==='Links' ? text : (t('additionalInfo',{returnObjects:true}) as any)[text]}</p>
         </div>
     );
 };

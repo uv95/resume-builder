@@ -73,8 +73,8 @@ export interface ISkillsItem extends ContentItem {
 }
 
 export enum SkillLevel {
-  novice = 'Novice',
   beginner = 'Beginner',
+  novice = 'Novice',
   skillful = 'Skillful',
   experienced = 'Experienced',
   expert = 'Expert',

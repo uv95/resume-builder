@@ -4,11 +4,13 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Button from '@/components/Button/Button';
 import { Position } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const PositionComponent = () => {
     const { settings } = useContext(ResumeContext);
     const { position } = settings?.layout!;
     const { updatePosition } = useUpdateSettings();
+    const {t} = useTranslation(['customization'])
 
     return (
         <div className="flex">
@@ -29,7 +31,7 @@ const PositionComponent = () => {
                                 : style[positionItem]
                         }`}
                     />
-                    <p>{positionItem[0].toUpperCase() + positionItem.slice(1)}</p>
+                    <p>{t(positionItem)}</p>
                 </div>
             ))}
         </div>

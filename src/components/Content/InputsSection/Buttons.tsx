@@ -6,6 +6,7 @@ import save from '../../../icons/check.svg';
 import trash from '../../../icons/trash.svg';
 import { FetchResult } from '@apollo/client';
 import { Sections } from '@/utils/types/resumeTypes';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   inputData: any;
@@ -29,6 +30,8 @@ const Buttons = ({
     deleteContent,
     itemId,
 }: Props) => {
+    const {t} = useTranslation(['content'])
+
     return (
         <div className={style.buttons}>
             {inputData.name !== Sections.PERSONAL_DETAILS && (
@@ -42,7 +45,7 @@ const Buttons = ({
                 >
                     <div className="flex gap-1 aligned">
                         <Image src={trash} width="18" height="18" alt="trash" />
-                        <p>Delete</p>
+                        <p>{t('delete')}</p>
                     </div>
                 </Button>
             )}
@@ -54,7 +57,7 @@ const Buttons = ({
                         setContentToEdit({ section: '', itemId: '' });
                     }}
                 >
-                    Cancel
+                    {t('cancel')}
                 </Button>
                 <Button isSubmit btnType="pink" isBold>
                     <div className="flex gap-1 aligned">
@@ -65,7 +68,7 @@ const Buttons = ({
                             alt="save"
                             style={{ filter: 'invert()' }}
                         />
-                        <p>Save</p>
+                        <p>{t('save')}</p>
                     </div>
                 </Button>
             </div>

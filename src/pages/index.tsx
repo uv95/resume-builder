@@ -6,6 +6,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import style from '../styles/Home.module.scss';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function Home() {
     const [addResume, { data }] = useMutation(ADD_RESUME);
@@ -44,12 +45,17 @@ export default function Home() {
     );
 }
 
-// export async function getStaticProps() {
-//   const client = initializeApollo();
-//   await client.query({
-//     query: GET_RESUMES,
-//   });
-//   return addApolloState(client, {
-//     props: {},
-//   });
-// }
+export async function getStaticProps({locale}:{locale:string}) {
+    const client = initializeApollo();
+    await client.query({
+        query: GET_RESUMES,
+    });
+    return addApolloState(client, {
+        props: {
+            ...(await serverSideTranslations(locale ?? 'en', [
+                'common',
+                'customization', 'content'
+            ]))
+        },
+    });
+}

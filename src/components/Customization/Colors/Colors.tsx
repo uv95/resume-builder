@@ -9,15 +9,18 @@ import ModeComponent from './ModeComponent';
 import AdvancedMulticolor from './AdvancedMulticolor';
 import SettingsCard from '../UI/SettingsCard';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const Colors = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const mode = settings?.colors.mode;
     const selectedOptionBasic = settings?.colors.basic.selected;
     const selectedOptionAdvanced = settings?.colors.advanced.selected;
 
     return (
-        <SettingsCard title="Colors">
+        <SettingsCard title={t('colors')}>
             <ModeComponent />
             {mode === Mode.BASIC ? (
                 <>

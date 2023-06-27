@@ -7,6 +7,7 @@ import DraggableCard from './DraggableCard';
 import style from './Layout.module.scss';
 import user from '../../../icons/user.svg';
 import { Position } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   setInitialColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
@@ -25,11 +26,13 @@ const RearrangeSections = ({
     initialCard,
     sectionsOrder,
 }: Props) => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { columns, position } =settings?.layout!;
     return (
         <div>
-            <h5 className="mb-1">Rearrange sections</h5>
+            <h5 className="mb-1">{t('rearrange')}</h5>
 
             {/* TOP / 1 column */}
             {position === Position.TOP && (

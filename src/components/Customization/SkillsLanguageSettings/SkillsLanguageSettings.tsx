@@ -8,10 +8,13 @@ import Section from '../UI/Section';
 import SettingsButtons from '../UI/SettingsButtons';
 import SettingsCard from '../UI/SettingsCard';
 import GridColsComponent from './GridColsComponent';
+import { useTranslation } from 'next-i18next';
 
 type Props = { section: 'skills' | 'language' };
 
 const SkillsLanguageSettings = ({ section }: Props) => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const settingsSection = settings![section];
     const infoItalic = settingsSection?.infoItalic;
@@ -34,7 +37,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
             });
 
     return (
-        <SettingsCard title={camelCaseToString(section)}>
+        <SettingsCard title={t(section)}>
             <SettingsButtons
                 options={Object.values(Format)}
                 updatedField="format"
@@ -60,7 +63,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
                     hasNoTitle
                 />
             )}
-            <Section title="Info Style">
+            <Section title={t('info-style')}>
                 <div className="checkboxGroup">
                     <input
                         type="checkbox"
@@ -74,7 +77,7 @@ const SkillsLanguageSettings = ({ section }: Props) => {
                         }}
                         className="checkboxInput"
                     />
-                    <label htmlFor="infoItalic">Italic</label>
+                    <label htmlFor="infoItalic">{t('italic')}</label>
                 </div>
             </Section>
         </SettingsCard>

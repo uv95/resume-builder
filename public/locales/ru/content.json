@@ -1,0 +1,100 @@
+{
+  "add": "Добавить",
+  "edit": "Редактировать",
+  "delete": "Удалить",
+  "add-content": "Добавить раздел",
+  "save": "Сохранить",
+  "address": "Адрес",
+  "cancel": "Отмена",
+  "phone": "Телефон",
+  "your-name": "Ваше имя",
+  "select-level":"Выберите уровень",
+  "Personal information": "Дополнительная информация",
+  "Links": "Ссылки",
+  "profile-placeholder":"Представьтесь, укажите ваши ключевые навыки и чем вы будете полезны компании",
+  "additionalInfo":{
+  "Nationality": "Национальность",
+  "Date of Birth": "Дата Рождения",
+  "Gender or Pronoun": "Местоимения"
+  },
+  "personalDetails": {
+    "fullName": "Имя",
+"jobTitle": "Должность",
+"email": "Email",
+"phone": "Телефон",
+"address": "Адрес",
+"sectionName": "личные данные"
+  },
+  "skills":{
+    "skill": "Навык",
+    "info": "Дополнительная Информация",
+    "skillLevel": "Выберите уровень",
+    "sectionName": "навык"
+  },
+  "language":{
+    "language": "Язык",
+    "info": "Дополнительная Информация",
+    "languageLevel": "Выберите уровень",
+    "sectionName": "язык"
+  },
+  "professionalExperience":{
+    "jobTitle": "Должность",
+    "employer": "Работодатель",
+    "city": "Город",
+    "country": "Страна",
+    "startDate": "Начало",
+    "endDate": "Окончание",
+    "description": "Описание",
+    "sectionName": "профессиональный опыт"
+  },
+  "education":{
+    "degree": "Специальность",
+    "school": "Учебное Заведение",
+    "city": "Город",
+    "country": "Страна",
+    "startDate": "Начало",
+    "endDate": "Окончание",
+    "description": "Описание",
+    "sectionName": "образование"
+  },
+  "project":{
+    "title": "Название",
+    "description": "Описание",
+    "startDate": "Начало",
+    "endDate": "Окончание",
+    "sectionName": "проект"
+  },
+  "profile":{
+    "text": "Текст",
+    "sectionName": "профиль"
+  },
+  "skillLevel":{
+    "beginner":"Без опыта",
+    "novice":"Новичок",
+"skillful":"Уверенный",
+"experienced":"Опытный",
+"expert":"Эксперт"
+  },
+  "languageLevel":{
+    "beginner":"А1",
+"elementary":"А2",
+"limited":"В1",
+"highlyProficient":"В2-С1",
+"fullProficiency":"С2"
+  },
+  "content-cards":{
+    "profile":"Профиль",
+    "profile_description":"Опишите себя и свои достоинства в двух предложениях.",
+    "skills":"Навыки",
+    "skills_description":"Перечислите ваши навыки.",
+    "education":"Образование",
+    "education_description":"Укажите ваше образование: университетские дипломы, учеба по обмену и т.д.",
+    "language":"Языки",
+    "language_description":"Говорите на двух языках и более? Перечислите их.",
+    "project":"Проект",
+    "project_description":"Работали над сложным проектом? Расскажите о нем.",
+    "professionalExperience":"Профессиональный опыт",
+    "professionalExperience_description":"Место для описания вашего профессионального опыта, включая стажировки."
+  }
+ 
+}

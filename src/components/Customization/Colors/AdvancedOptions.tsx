@@ -4,8 +4,11 @@ import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 import style from './Colors.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const AdvancedOptions = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { selectOption } = useUpdateSettings();
     const selected = settings?.colors.advanced.selected;
@@ -24,7 +27,7 @@ const AdvancedOptions = () => {
                     }`}
                     style={{ background: accent }}
                 ></div>
-                <p>Accent</p>
+                <p>{t('accent')}</p>
             </div>
             <div
                 className={style.option}
@@ -35,7 +38,7 @@ const AdvancedOptions = () => {
                     color={selectedMulticolor}
                     isOption
                 />
-                <p>Multicolor</p>
+                <p>{t('multicolor')}</p>
             </div>
         </div>
     );

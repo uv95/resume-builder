@@ -3,17 +3,21 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
 import style from './Layout.module.scss';
+import { useTranslation } from 'next-i18next';
+import { Position } from '@/utils/types/settingsTypes';
 
 const Columns = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { columns, position } = settings?.layout!;
     const { updateColumns } = useUpdateSettings();
 
     return (
         <div>
-            <h5 className="mb-1">Columns</h5>
+            <h5 className="mb-1">{t('columns')}</h5>
             <div className="flex">
-                {position === 'top' && (
+                {position === Position.TOP && (
                     <Button
                         btnType="customization"
                         isActive={columns === 1}

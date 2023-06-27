@@ -1,19 +1,20 @@
 import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
 import { Field } from 'formik';
-import React from 'react';
+import { useTranslation } from 'next-i18next';
 
 type Props = { input: 'languageLevel' | 'skillLevel' };
 
 const Select = ({ input }: Props) => {
+    const {t, i18n} = useTranslation(['content'])
     const options = input === 'languageLevel' ? LanguageLevel : SkillLevel;
     return (
         <Field name={input} id={input} as="select">
-            <option value="default"> --- Select level ---</option>
+            <option value="default"> --- {t('select-level')} ---</option>
             {Object.keys(options)
                 .filter((key) => key !== 'default')
                 .map((objKey) => (
                     <option key={objKey} value={objKey}>
-                        {options[objKey as keyof typeof options]}
+                        {i18n.language==='en' ? options[objKey as keyof typeof options] : (t(input, {returnObjects:true}) as any)[objKey]}
                     </option>
                 ))}
         </Field>

@@ -12,8 +12,11 @@ import {
     HeaderAdditionalInfoStyle,
     HeaderPosition,
 } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const Header = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { additionalInfoOrder, additionalInfoStyle, position } =
     settings?.header!;
@@ -32,7 +35,7 @@ const Header = () => {
         });
 
     return (
-        <SettingsCard title="Header">
+        <SettingsCard title={t('header')}>
             <SettingsButtons
                 options={Object.values(HeaderPosition)}
                 updatedField="position"
@@ -41,7 +44,7 @@ const Header = () => {
                 update={update}
             />
 
-            <Section title="Details Style">
+            <Section title={t('details-style')}>
                 <div className="flex">
                     {Object.values(HeaderAdditionalInfoStyle).map((detailsStyle) => (
                         <Button
@@ -73,7 +76,7 @@ const Header = () => {
                                 ) : (
                                     <p style={{ marginBottom: '0.2rem' }}>|</p>
                                 )}
-                                <p>{detailsStyle[0].toUpperCase() + detailsStyle.slice(1)}</p>
+                                <p>{t(detailsStyle)}</p>
                             </div>
                         </Button>
                     ))}
@@ -81,7 +84,7 @@ const Header = () => {
             </Section>
 
             {additionalInfoOrder.length !== 0 && (
-                <Section title="Change Order">
+                <Section title={t('change-order')}>
                     <div className="flex">
                         {additionalInfoOrder.map((info) => (
                             <Button key={info} btnType="gray" onClick={() => {}}>

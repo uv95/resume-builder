@@ -1,0 +1,84 @@
+{
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "add-content": "Add Content",
+  "save": "Save",
+  "cancel": "Cancel",
+  "your-name": "Your name",
+  "phone": "Phone",
+  "address": "Address",
+  "select-level":"Select level",
+  "Personal information": "Personal information",
+  "Links": "Links",
+  "additionalInfo":{
+    "Nationality": "Nationality",
+    "Date of Birth": "Date of Birth",
+    "Gender or Pronoun": "Gender or Pronoun"
+  },
+  "personalDetails": {
+    "fullName": "Full Name",
+"jobTitle": "Job Title",
+"email": "Email",
+"phone": "Phone",
+"address": "Address",
+    "sectionName": "personal details"
+  },
+  "skills":{
+    "skill": "Skill",
+    "info": "Information / Sub-skills",
+    "skillLevel": "Select skill level",
+    "sectionName": "skill"
+  },
+  "language":{
+    "language": "Language",
+    "info": "Additional Information",
+    "languageLevel": "Select language level",
+    "sectionName": "language"
+  },
+  "professionalExperience":{
+    "jobTitle": "Job Title",
+    "employer": "Employer",
+    "city": "City",
+    "country": "Country",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "description": "Description",
+    "sectionName": "professional experience"
+  },
+  "education":{
+    "degree": "Degree",
+    "school": "School",
+    "city": "City",
+    "country": "Country",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "description": "Description",
+    "sectionName": "education"
+  },
+  "project":{
+    "title": "Title",
+    "description": "Description",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "sectionName": "project"
+  },
+  "profile":{
+    "text": "Text",
+    "sectionName": "profile"
+  },
+  "content-cards":{
+    "profile":"Profile",
+    "profile_description":"Make a great first impression by presenting yourself in a few sentences.",
+    "skills":"Skills",
+    "skills_description":"List your technical, managerial or soft skills in this section.",
+    "education":"Education",
+    "education_description":"Show off your primary education, college degrees & exchange semesters",
+    "language":"Language",
+    "language_description":"You speak more than one language? Make sure to list them here.",
+    "project":"Project",
+    "project_description":"Worked on a particular challenging project in the past? Mention it here.",
+    "professionalExperience":"Professional Experience",
+    "professionalExperience_description":"A place to highlight your professional experience - including internships."
+  }
+}

@@ -14,6 +14,7 @@ type Props = {
 }
 
 const ContentCardHeader = ({ setCurrentSection,currentSectionName,contentSection,icon,sectionName}: Props) => {
+   
 
     return (<div
         className="flex spaceBetween p-2 pointer"

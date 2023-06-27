@@ -4,8 +4,11 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { Mode } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from './Colors.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const ModeComponent = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const mode = settings?.colors.mode;
     const { updateMode } = useUpdateSettings();
@@ -17,7 +20,7 @@ const ModeComponent = () => {
                     className={`${style.mode} circle`}
                     isActive={mode === 'basic'}
                 />
-                <p>Basic</p>
+                <p>{t('basic')}</p>
             </div>
             <div className={style.option} onClick={() => updateMode(Mode.ADVANCED)}>
                 <Button
@@ -29,7 +32,7 @@ const ModeComponent = () => {
                     } circle`}
                     isActive={mode === Mode.ADVANCED}
                 />
-                <p>Advanced</p>
+                <p>{t('advanced')}</p>
             </div>
         </div>
     );

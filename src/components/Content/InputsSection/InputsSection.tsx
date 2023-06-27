@@ -10,8 +10,10 @@ import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSectio
 import Select from '../../Select/Select';
 import dynamic from 'next/dynamic';
 import Buttons from './Buttons';
-import { Sections } from '@/utils/types/resumeTypes';
+import {  Sections } from '@/utils/types/resumeTypes';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
+import { useTranslation } from 'next-i18next';
+
 const Textarea = dynamic(() => import('../Textarea'), { ssr: false });
 
 type Props = {
@@ -26,6 +28,8 @@ type Props = {
 };
 
 const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
+    const {t, i18n} = useTranslation(['content'])
+
     const { resume,content } = useContext(ResumeContext);
     const { additionalInfo } = useContext(AdditionalInfoContext);
     const initialValues = getInitialValues(inputData, content!, itemId);
@@ -40,9 +44,11 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
     const [textareaText, setTextareaText] = useState(
         initialValues.text || initialValues.description
     );
+    console.log(itemId, 'ID', inputData.name)
+
     return (
         <div>
-            <h3 className="p-2">{inputData.editTitle}</h3>
+            {inputData.name==='personalDetails' ?  <h3 className="p-2">{t('edit')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3> : <h3 className="p-2">{itemId ? t('edit'):t('add')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3>}
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {
@@ -75,7 +81,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                 <Form className="p-2 flex-column">
                     {inputData.inputs.map((input: any) => (
                         <div className="inputGroup" key={input.name}>
-                            <label htmlFor={input.name}>{input.label}</label>
+                            <label htmlFor={input.name}>{(t(inputData.name, {returnObjects:true}) as any)[input.name]}</label>
 
                             {input.type === 'select' ? (
                                 <Select input={input.name} />
@@ -83,7 +89,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                                 <Textarea
                                     setTextareaText={setTextareaText}
                                     textareaText={textareaText}
-                                    placeholder={input.placeholder}
+                                    placeholder={i18n.language==='en' ? input.placeholder : t('profile-placeholder')}
                                 />
                             ) : (
                                 <Field
@@ -91,7 +97,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                                     name={input.name}
                                     id={input.name}
                                     type={input.type || 'text'}
-                                    placeholder={input.placeholder}
+                                    placeholder={i18n.language==='en' ? input.placeholder: (t(inputData.name, {returnObjects:true}) as any)[input.name]}
                                 />
                             )}
                         </div>

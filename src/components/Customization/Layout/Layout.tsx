@@ -6,6 +6,7 @@ import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
 import PositionComponent from './PositionComponent';
 import RearrangeSections from './RearrangeSections';
+import { useTranslation } from 'next-i18next';
 
 const Layout = () => {
     const { settings } = useContext(ResumeContext);
@@ -21,6 +22,7 @@ const Layout = () => {
         initialCard,
         sectionsOrder,
     } = useLayoutDnD();
+    const {t} = useTranslation(['customization'])
 
     return (
         <div
@@ -29,7 +31,7 @@ const Layout = () => {
             onDragOver={(e) => dragOverHandler(e)}
             onDragEnd={dragEndHandler}
         >
-            <SettingsCard title="Layout">
+            <SettingsCard title={t('layout')}>
                 <PositionComponent />
                 <Columns />
                 <RearrangeSections

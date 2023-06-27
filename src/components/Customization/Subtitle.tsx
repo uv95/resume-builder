@@ -5,8 +5,11 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from './UI/SettingsButtons';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const Subtitle = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { updateSubtitle } = useUpdateSettings();
     const [values, setValues] = useState(
@@ -19,7 +22,7 @@ const Subtitle = () => {
         });
 
     return (
-        <SettingsCard title="Subtitle">
+        <SettingsCard title={t('subtitle')}>
             <SettingsButtons
                 options={Object.values(FontStyle)}
                 updatedField="style"

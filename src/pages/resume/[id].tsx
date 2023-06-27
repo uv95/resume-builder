@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
 import ResumeName from '@/components/ResumeName';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Resume = () => {
     const router = useRouter();
@@ -56,14 +57,17 @@ const Resume = () => {
 
 export default Resume;
 
-export async function getServerSideProps({ params }: { params: any }) {
+export async function getServerSideProps({ params, locale }: { params: any, locale: string }) {
     const client = initializeApollo();
     await client.query({
         query: GET_RESUME,
         variables: { id: params.id },
     });
-    
     return addApolloState(client, {
-        props: {},
+        props: {
+            ...(await serverSideTranslations(locale,[
+                'content', 'common', 'customization'
+            ]))
+        },
     });
 }

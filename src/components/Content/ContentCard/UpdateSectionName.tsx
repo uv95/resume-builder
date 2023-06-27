@@ -7,10 +7,13 @@ import { Sections } from '@/utils/types/resumeTypes';
 import { Field, Form, Formik } from 'formik'
 import { useContext, useState } from 'react';
 import style from './ContentCard.module.scss';
+import { useTranslation } from 'next-i18next';
 
 type Props = {sectionName:string,section: Sections}
 
 const UpdateSectionName = ({sectionName,section}: Props) => {
+    const {t} = useTranslation(['content'])
+
     const {resume,content} = useContext(ResumeContext)
     const updateName = useUpdateSectionName({section,resumeId:resume?.id!});
     const [isNameChanged, setIsNameChanged]=useState(false)
@@ -35,7 +38,7 @@ const UpdateSectionName = ({sectionName,section}: Props) => {
                         type='text'
                    
                     />
-                    { isNameChanged && <Button id='sectionNameBtn' isSubmit btnType='pink'>Save</Button>}
+                    { isNameChanged && <Button id='sectionNameBtn' isSubmit btnType='pink'>{t('save')}</Button>}
                 </div>
             </Form>
         </Formik>

@@ -7,6 +7,7 @@ import Button from './Button/Button';
 import Card from './Card/Card';
 import edit from '../icons/edit.svg';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
 import { useReactToPrint } from 'react-to-print';
 
 type Props = {
@@ -16,6 +17,8 @@ type Props = {
 };
 
 const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
+    const {t} = useTranslation();
+
     const handlePrint = useReactToPrint({
         content: reactToPrintContent,
         documentTitle: resumeName,
@@ -56,7 +59,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                     <div className="flex p-2">
                         <Field name="name" id="name" type="text" />
                         <Button isSubmit btnType="pink">
-                            Save
+                            {t('save', {ns: 'content'})}
                         </Button>
                     </div>
                 </Form>
@@ -74,7 +77,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                     <Image src={edit} width="20" height="20" alt="edit" />
                 </div>
                 <Button btnType="pink" onClick={handlePrint}>
-                    Print
+                    {t('print')}
                 </Button>
             </div>
         </Card>

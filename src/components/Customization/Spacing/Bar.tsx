@@ -1,7 +1,7 @@
 import Button from '@/components/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { SpacingSections } from '@/utils/types/settingsTypes';
-import React from 'react';
+import { useTranslation } from 'next-i18next';
 import style from './Spacing.module.scss';
 import Track from './Track';
 
@@ -14,11 +14,12 @@ type Props = {
 
 const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
     const { updateSpacing } = useUpdateSettings();
+    const {t} = useTranslation(['customization'])
 
     return (
         <div>
             <div className="flex spaceBetween">
-                <h5>{sectionTitle}</h5>
+                <h5>{t(sectionName)}</h5>
                 <p>
                     {currentValue}
                     {(sectionName === SpacingSections.LEFT_RIGHT_MARGIN ||

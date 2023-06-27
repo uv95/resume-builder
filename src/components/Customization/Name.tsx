@@ -5,8 +5,11 @@ import { FontStyle, Size } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './UI/SettingsButtons';
 import SettingsCard from './UI/SettingsCard';
+import { useTranslation } from 'next-i18next';
 
 const Name = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
 
     const { updateName } = useUpdateSettings();
@@ -17,7 +20,7 @@ const Name = () => {
             [updatedField]: newVal,
         });
     return (
-        <SettingsCard title="Name">
+        <SettingsCard title={t('name')}>
             <SettingsButtons
                 options={Object.values(Size)}
                 updatedField="size"

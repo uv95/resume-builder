@@ -8,8 +8,11 @@ import Section from '../UI/Section';
 import { removeTypename } from '@/utils/removeTypename';
 import SettingsButtons from '../UI/SettingsButtons';
 import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
 
 const Heading = () => {
+    const {t} = useTranslation(['customization'])
+
     const { settings } = useContext(ResumeContext);
     const { style: headingStyle, size, uppercase } = settings?.heading!;
 
@@ -29,7 +32,7 @@ const Heading = () => {
     };
 
     return (
-        <SettingsCard title="Heading">
+        <SettingsCard title={t('heading')}>
             <Section title="Style">
                 <div className={style.style}>
                     {Object.values(HeadingStyle).map((headingStyleItem) => (
@@ -68,7 +71,7 @@ const Heading = () => {
                     }}
                     className="checkboxInput"
                 />
-                <label htmlFor="uppercase">Uppercase</label>
+                <label htmlFor="uppercase">{t('uppercase')}</label>
             </div>
         </SettingsCard>
     );

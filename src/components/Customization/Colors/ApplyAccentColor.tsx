@@ -7,8 +7,11 @@ import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
 import Section from '../UI/Section';
 import style from './Colors.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const ApplyAccentColor = () => {
+    const {t} = useTranslation(['customization'])
+    
     const { settings } = useContext(ResumeContext);
     const [applyAccentColorFields, setApplyAccentColorFields] = useState(
     settings?.colors.applyAccentColor!
@@ -35,7 +38,7 @@ const ApplyAccentColor = () => {
         updateSettings,
     ]);
     return (
-        <Section title="Apply accent color">
+        <Section title={t('apply-accent')}>
             <div className={style.inputs}>
                 {applyAccentColor.map((option) => (
                     <div key={option.name} className={style.checkboxGroup}>
@@ -59,7 +62,7 @@ const ApplyAccentColor = () => {
                             }
                             className={style.input}
                         />
-                        <label htmlFor={option.name}>{option.label}</label>
+                        <label htmlFor={option.name}>{t(option.name)}</label>
                     </div>
                 ))}
             </div>

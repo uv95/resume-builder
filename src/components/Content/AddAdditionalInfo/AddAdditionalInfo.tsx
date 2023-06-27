@@ -4,12 +4,16 @@ import Button from '../../Button/Button';
 import Tag from '../Tag/Tag';
 import style from './AddAdditionalInfo.module.scss';
 import { IAdditionalInfo } from '../../../utils/types/contentTypes';
+import { useTranslation } from 'next-i18next';
 
 type Props = {
   tags: string[];
+  tagsGroup: string;
 };
 
-const AddAdditionalInfo = ({ tags }: Props) => {
+const AddAdditionalInfo = ({ tags,tagsGroup }: Props) => {
+    const {t, i18n} = useTranslation(['content'])
+
     const { additionalInfo, setAdditionalInfo } = useContext(
         AdditionalInfoContext
     );
@@ -38,14 +42,14 @@ const AddAdditionalInfo = ({ tags }: Props) => {
             {currentAdditionalInfo.length !== 0 &&
         currentAdditionalInfo.map((item) => (
             <div className="inputGroup mt-1" key={item.name}>
-                <label htmlFor={item.name}>{item.name}</label>
+                <label htmlFor={item.name}>{tagsGroup==='Links' ? item.name : (t('additionalInfo',{returnObjects:true}) as any)[item.name]}</label>
                 <div className="flex spaceBetween">
                     <input
                         type="text"
                         name={item.name}
                         id={item.name}
                         value={item.input}
-                        placeholder={item.input || `Enter ${item.name}`}
+                        placeholder={i18n.language==='en'?`Enter ${item.name}` : (t('additionalInfo',{returnObjects:true}) as any)[item.name]}
                         onChange={(e) =>
                             setAdditionalInfo((prev) =>
                                 prev.map((info) =>
@@ -66,7 +70,7 @@ const AddAdditionalInfo = ({ tags }: Props) => {
                             setCurrentTag('');
                         }}
                     >
-                        Delete
+                        {t('delete')}
                     </Button>
                 </div>
             </div>
@@ -76,6 +80,7 @@ const AddAdditionalInfo = ({ tags }: Props) => {
                 {remainedTags.map((tag) => (
                     <Tag
                         text={tag}
+                        tagsGroup={tagsGroup}
                         key={tag}
                         onClick={() => {
                             setCurrentTag(tag);

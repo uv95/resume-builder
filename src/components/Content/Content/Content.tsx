@@ -12,10 +12,13 @@ import InputsSection from '../InputsSection/InputsSection';
 import Modal from '../../Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
-import { AdditionalContentSection } from '@/utils/types/contentTypes';
+import { AdditionalContentItem, AdditionalContentSection, IPersonalDetails } from '@/utils/types/contentTypes';
 import style from './Content.module.scss';
+import { useTranslation } from 'next-i18next';
 
 const Content = () => {
+    const {t} = useTranslation(['content'])
+
     const [showAddContent, setShowAddContent] = useState(false);
     const [contentToEdit, setContentToEdit] = useState<{
     section: Sections | '';
@@ -57,7 +60,6 @@ const Content = () => {
                               setContentToEdit={setContentToEdit}
                               contentSection={content![section as keyof typeof content] as AdditionalContentSection}
                               sectionName={section as Sections}
-                              //   inputData={inputData[section as keyof typeof inputData]}
                               items={
                                   (content![section as keyof typeof content] as AdditionalContentSection).items
                               }
@@ -77,13 +79,13 @@ const Content = () => {
                         )}
                         {!contentToEdit.section && <div className="centered">
                             <Button className={style.addContentBtn}  onClick={() => setShowAddContent(true)} btnType="pink">
-                                <span>+</span> Add Content
+                                <span>+</span> {t('add-content')}
                             </Button>
                         </div>}
                     </>
                 )}
                 {showAddContent && (
-                    <Modal setOpen={setShowAddContent} heading="Add Content">
+                    <Modal setOpen={setShowAddContent} heading={t('add-content')}>
                         <AddContent
                             setContentToEdit={setContentToEdit}
                             setOpen={setShowAddContent}
