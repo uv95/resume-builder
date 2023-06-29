@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import Image from 'next/image';
 import React from 'react';
 import style from './InputsSection.module.scss';

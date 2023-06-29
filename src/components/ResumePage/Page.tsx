@@ -1,6 +1,4 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import useSetColor from '@/hooks/useSetColor';
-import {  Sections } from '@/utils/types/resumeTypes';
 import React, {
     forwardRef,
     useContext,
@@ -8,16 +6,15 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
 import style from './Page.module.scss';
-import PageOneColumn from './PageOneColumn';
-import PageTwoColumns from './PageTwoColumns';
-import { ColorOf, Position } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
+import PageContent from './PageContent';
 
 const Page = forwardRef(function Page(props, ref) {
+    const {t} = useTranslation()
+
     const pageRef = useRef<HTMLDivElement>(null);
-    const { settings } = useContext(ResumeContext);
-    const { setColor } = useSetColor();
+    const { settings,content } = useContext(ResumeContext);
 
     const [resumePageWidth, setResumePageWidth] = useState(0);
 
@@ -31,46 +28,21 @@ const Page = forwardRef(function Page(props, ref) {
         pageRef.current && setResumePageWidth(pageRef.current.offsetWidth);
     }, []);
 
+    const additionalPageContentStyle = {transform: `scale(${resumePageWidth * 0.00126})`} as React.CSSProperties
 
     return (
         <div ref={pageRef} className={style.resume}>
-            {settings&& <div
+            {settings&&content&& <div
                 ref={ref as React.RefObject<HTMLDivElement>}
                 id="resumePage"
-                className={style.page}
-                style={{
-                    transform: `scale(${resumePageWidth * 0.00126})`,
-                    background: setColor({
-                        colorOf: ColorOf.BG,
-                    }),
-                    fontSize:settings.spacing.fontSize,
-                    lineHeight:settings.spacing.lineHeight,
-                    display:
-            settings.layout.position === Position.TOP
-                ? 'flex'
-                : 'block',
-                    flexDirection:
-            settings.layout.position === Position.TOP
-                ? 'column'
-                : 'initial',
-                    fontFamily: settings.font.font,
-                }}
+                
             >
-                {settings.layout.position === Position.TOP && (
-                    <PersonalDetailsBlock />
-                )}
-
-                {settings.layout.columns === 1 ? (
-                    <PageOneColumn
-                        sections={settings.sectionsOrder.top as Sections[]}
-                    />
-                ):
-                    <PageTwoColumns
-                        columnWidth={settings.layout.columnWidth}
-                    />
-                }
+                <PageContent additionalStyle={additionalPageContentStyle} className={style.page} settings={settings} content={content}/>
             </div>}
+            {/* temporary */}
+            <p style={{marginTop: '1rem', opacity: 0.4}}>{t('resume-size')}</p>
         </div>
+        
     );
 });
 

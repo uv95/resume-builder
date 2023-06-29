@@ -1,7 +1,7 @@
 import { contentCards } from '@/utils/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import { useTranslation } from 'next-i18next';
-import Card from '../../Card/Card';
+import Card from '../../UI/Card/Card';
 import style from './AddContent.module.scss';
 
 type Props = {

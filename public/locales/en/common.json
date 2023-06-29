@@ -1,6 +1,12 @@
 {
-    "lang": "English",
-    "content": "Content",
-    "customize": "Customize",
-    "print":"Print"
-  }
+  "lang": "English",
+  "content": "Content",
+  "customize": "Customize",
+  "print": "Print",
+  "resume-size": "The resume size is currently 1 page only.",
+  "delete-resume": "Delete resume",
+  "confirm-delete": "Are you sure you want to delete the resume?",
+  "my-resumes": "My Resumes",
+  "new-resume": "New Resume",
+  "view-resume": "view resume"
+}

@@ -1,4 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
+import { ISettings } from '@/utils/types/resumeTypes';
 import {
     Mode,
     Position,
@@ -8,8 +9,8 @@ import {
 } from '@/utils/types/settingsTypes';
 import { useContext } from 'react';
 
-function useSetColor() {
-    const { settings } = useContext(ResumeContext);
+function useSetColor(settings:ISettings) {
+    // const { settings } = useContext(ResumeContext);
     const position = settings?.layout.position;
     const mode = settings?.colors.mode!;
     const applyAccentColor = settings?.colors.applyAccentColor!;

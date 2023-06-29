@@ -5,14 +5,16 @@ import parse from 'html-react-parser';
 import style from '../Page.module.scss';
 import { Position } from '@/utils/types/settingsTypes';
 import {  IProjectItem } from '@/utils/types/contentTypes';
+import { ISettings } from '@/utils/types/resumeTypes';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
-  items:IProjectItem[]
+  items:IProjectItem[];
+  settings: ISettings
 };
 
-const ProjectBlock = ({ sectionPosition,items }: Props) => {
-    const { settings } = useContext(ResumeContext);
+const ProjectBlock = ({ sectionPosition,items, settings }: Props) => {
+    // const { settings } = useContext(ResumeContext);
     const { columns } = settings?.layout!;
     const { date } = settings!;
 
@@ -25,6 +27,7 @@ const ProjectBlock = ({ sectionPosition,items }: Props) => {
                     <div className={style.content} style={contentStyle}>
                         {item.startDate && columns === 1 && (
                             <Dates
+                                settings={settings}
                                 format={date}
                                 startDate={item.startDate}
                                 endDate={item.endDate}
@@ -35,6 +38,7 @@ const ProjectBlock = ({ sectionPosition,items }: Props) => {
                             <b>{item.title}</b>
                             {item.startDate && columns === 2 && (
                                 <Dates
+                                    settings={settings}
                                     format={date}
                                     startDate={item.startDate}
                                     endDate={item.endDate}

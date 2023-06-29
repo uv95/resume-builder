@@ -3,8 +3,8 @@ import { GET_RESUME } from '@/graphql/queries/resume';
 import { useMutation } from '@apollo/client';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
-import Button from './Button/Button';
-import Card from './Card/Card';
+import Button from './UI/Button/Button';
+import Card from './UI/Card/Card';
 import edit from '../icons/edit.svg';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
@@ -42,46 +42,38 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     // },
     });
 
-    return isEdit ? (
-        <Card>
-            <Formik
-                initialValues={{ name: resumeName }}
-                onSubmit={({ name }) => {
-                    updateResume({
-                        variables: { id, name },
-                    });
-                    localStorage.setItem('resumeName', name);
+    return <Card >
+        {isEdit ? <Formik
+            initialValues={{ name: resumeName }}
+            onSubmit={({ name }) => {
+                updateResume({
+                    variables: { id, name },
+                });
+                localStorage.setItem('resumeName', name);
 
-                    setIsEdit(false);
-                }}
-            >
-                <Form>
-                    <div className="flex p-2">
-                        <Field name="name" id="name" type="text" />
-                        <Button isSubmit btnType="pink">
-                            {t('save', {ns: 'content'})}
-                        </Button>
-                    </div>
-                </Form>
-            </Formik>
-        </Card>
-    ) : (
-        <Card>
-            <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
-                <div
-                    style={{ alignItems: 'center' }}
-                    className="flex pointer"
-                    onClick={() => setIsEdit(true)}
-                >
-                    <h3>{resumeName}</h3>
-                    <Image src={edit} width="20" height="20" alt="edit" />
+                setIsEdit(false);
+            }}
+        >
+            <Form>
+                <div className="flex p-2">
+                    <Field name="name" id="name" type="text" />
+                    <Button isSubmit btnType="pink">
+                        {t('save', {ns: 'content'})}
+                    </Button>
                 </div>
-                <Button btnType="pink" onClick={handlePrint}>
-                    {t('print')}
-                </Button>
+            </Form>
+        </Formik> :  <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
+            <div style={{ alignItems: 'center' }} className="flex pointer"
+                onClick={() => setIsEdit(true)} >
+                <h3>{resumeName}</h3>
+                <Image src={edit} width="20" height="20" alt="edit" />
             </div>
-        </Card>
-    );
+            <Button btnType="pink" onClick={handlePrint}>
+                {t('print')}
+            </Button>
+        </div>
+        }
+    </Card>
 };
 
 export default ResumeName;

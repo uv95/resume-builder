@@ -1,4 +1,4 @@
-import {  Sections } from '@/utils/types/resumeTypes';
+import {  IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
 import React, { useContext } from 'react';
 import EducationBlock from './EducationBlock/EducationBlock';
 import ProfessionalExperienceBlock from './ProfessionalExperienceBlock/ProfessionalExperienceBlock';
@@ -16,15 +16,18 @@ type Props = {
   section: Sections;
   contentSection: AdditionalContentSection;
   sectionPosition?: Position.LEFT | Position.RIGHT;
+  settings: ISettings,content:IContent
 };
 
 const PageSection = ({
     section,
     contentSection,
     sectionPosition,
+    settings,
+    content
 }: Props) => {
-    const { setColor } = useSetColor();
-    const { settings } = useContext(ResumeContext);
+    const { setColor } = useSetColor(settings);
+    // const { settings } = useContext(ResumeContext);
     const { showHeading } = settings?.profile!;
     const { spaceBetweenSections } = settings?.spacing!;
 
@@ -38,7 +41,7 @@ const PageSection = ({
         (section !== Sections.PROFILE ||
           (section === Sections.PROFILE && showHeading)) && (
                 // eslint-disable-next-line react/jsx-indent
-                <Heading sectionPosition={sectionPosition} 
+                <Heading sectionPosition={sectionPosition} settings={settings}
                     sectionName={contentSection.sectionName}/>
             )}
             <div
@@ -55,23 +58,24 @@ const PageSection = ({
             >
                 {section === Sections.SKILLS && (
                     <SkillsLanguageBlock
+                        settings={settings}
                         section={Sections.SKILLS}
                         sectionPosition={sectionPosition}
                         items={contentSection.items as ISkillsItem[]}
                     />
                 )}
                 {section === Sections.EDUCATION && (
-                    <EducationBlock sectionPosition={sectionPosition} items={contentSection.items as IEducationItem[]}/>
+                    <EducationBlock settings={settings} sectionPosition={sectionPosition} items={contentSection.items as IEducationItem[]}/>
                 )}
                 {section === Sections.PROFILE && <ProfileBlock items={contentSection.items as IProfileItem[]}/>}
                 {section === Sections.PROJECT && (
-                    <ProjectBlock sectionPosition={sectionPosition} items={contentSection.items as IProjectItem[]}/>
+                    <ProjectBlock settings={settings} sectionPosition={sectionPosition} items={contentSection.items as IProjectItem[]}/>
                 )}
                 {section === Sections.PROFESSIONAL_EXPERIENCE && (
-                    <ProfessionalExperienceBlock sectionPosition={sectionPosition} items={contentSection.items as IProfessionalExperienceItem[]}/>
+                    <ProfessionalExperienceBlock settings={settings} sectionPosition={sectionPosition} items={contentSection.items as IProfessionalExperienceItem[]}/>
                 )}
                 {section === Sections.LANGUAGE && (
-                    <SkillsLanguageBlock
+                    <SkillsLanguageBlock settings={settings}
                         section={Sections.LANGUAGE}
                         sectionPosition={sectionPosition}
                         items={contentSection.items as ILanguageItem[]}

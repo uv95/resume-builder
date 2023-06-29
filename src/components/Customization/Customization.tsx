@@ -13,6 +13,8 @@ import SkillsLanguageSettings from './SkillsLanguageSettings/SkillsLanguageSetti
 import ProfileSettings from './ProfileSettings';
 import EducationSettings from './EducationSettings';
 import ProfessionalExperienceSettings from './ProfessionalExperienceSettings';
+import DeleteResume from './DeleteResume/DeleteResume';
+
 
 const Customization = () => {
     return (
@@ -32,6 +34,7 @@ const Customization = () => {
             <ProfileSettings />
             <EducationSettings />
             <ProfessionalExperienceSettings />
+            <DeleteResume/>
         </>
     );
 };

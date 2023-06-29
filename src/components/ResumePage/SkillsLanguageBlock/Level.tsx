@@ -1,22 +1,23 @@
 import useSetColor from '@/hooks/useSetColor';
 import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
-import { Sections } from '@/utils/types/resumeTypes';
+import { ISettings, Sections } from '@/utils/types/resumeTypes';
 import {
     AccentColorSections,
     ColorOf,
     Position,
 } from '@/utils/types/settingsTypes';
 import React from 'react';
-import style from '../Page.module.scss';
+import style from './SkillsLanguageBlock.module.scss';
 
 type Props = {
   section: Sections.LANGUAGE | Sections.SKILLS;
   level: LanguageLevel | SkillLevel;
   sectionPosition?: Position.LEFT | Position.RIGHT;
+  settings:ISettings
 };
 
-const Level = ({ section, level, sectionPosition }: Props) => {
-    const { setColor } = useSetColor();
+const Level = ({ section, level, sectionPosition,settings }: Props) => {
+    const { setColor } = useSetColor(settings);
 
     const levels =
     section === Sections.LANGUAGE

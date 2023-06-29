@@ -1,6 +1,7 @@
 import DetailsIcons from '@/components/DetailsIcons';
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
     AccentColorSections,
     ColorOf,
@@ -11,8 +12,10 @@ import {
 import React, { useContext } from 'react';
 import style from '../Page.module.scss';
 
-const AdditionalInfoBlock = () => {
-    const { settings,content } = useContext(ResumeContext);
+type Props = {settings: ISettings ,content:IContent}
+
+const AdditionalInfoBlock = ({settings,content}:Props) => {
+    // const { settings,content } = useContext(ResumeContext);
     const { position } = settings?.layout!;
     const personalDetails = content?.personalDetails;
     const { fontSize } = settings?.spacing!;
@@ -26,7 +29,7 @@ const AdditionalInfoBlock = () => {
         ? Object.values(personalDetails)[Object.values(personalDetails).length - 1]
         : [];
 
-    const { setColor } = useSetColor();
+    const { setColor } = useSetColor(settings);
 
     const addBar = (condition: boolean) => {
         const shouldAddBar = additionalInfoStyle === HeaderAdditionalInfoStyle.BAR &&

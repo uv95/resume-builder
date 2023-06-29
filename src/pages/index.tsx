@@ -1,5 +1,4 @@
 import { addApolloState, initializeApollo } from '@/apollo';
-import Button from '@/components/Button/Button';
 import { ADD_RESUME } from '@/graphql/mutations/resume';
 import { GET_RESUMES } from '@/graphql/queries/resume';
 import { useMutation, useQuery } from '@apollo/client';
@@ -7,42 +6,51 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import style from '../styles/Home.module.scss';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import NewResume from '@/components/IndexPage/NewResume/NewResume';
+import MyResumes from '@/components/IndexPage/MyResumes/MyResumes';
+import { IResume } from '@/utils/types/resumeTypes';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Footer from '@/components/IndexPage/Footer/Footer';
 
 export default function Home() {
     const [addResume, { data }] = useMutation(ADD_RESUME);
-    const [resumeId, setResumeId] = useState<string | null>(null);
-    const [resumeName, setResumeName] = useState<string | null>(null);
+    const [myResumes, setMyResumes] = useState<IResume[]>([]);
+    const [myResumesLS, setMyResumesLS] = useState<{id:string,name:string}[]>([]);
 
-    // const { loading, error, data } = useQuery(GET_RESUMES);
+    const {  data: allResumes } = useQuery(GET_RESUMES);
     const router = useRouter();
 
     useEffect(() => {
         if (data) {
-            localStorage.setItem('resumeId', data.addResume.id);
-            localStorage.setItem('resumeName', data.addResume.name);
+            const newResumeList = [...myResumesLS, {id: data.addResume.id, name: data.addResume.name}]
+            localStorage.setItem('myResumes', JSON.stringify(newResumeList));
             router.push(`resume/${data.addResume.id}`);
         }
-    }, [data, router]);
+    }, [data, router,myResumes,myResumesLS]);
+
     useEffect(() => {
-        setResumeId(localStorage.getItem('resumeId') || null);
-        setResumeName(localStorage.getItem('resumeName') || null);
-    }, []);
+        const myExistingResumesLS = localStorage.getItem("myResumes");
+        const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as {id:string,name:string}[] : null;
+
+        if(myExistingResumes&&myExistingResumes.length!==0) {
+            const allMyResumes = allResumes.resumes.filter((item:IResume)=>myExistingResumes.some((resume:{id:string,name:string})=>resume.id===item.id))
+            setMyResumesLS(myExistingResumes)
+            setMyResumes(allMyResumes)
+        }
+    }, [allResumes.resumes]);
 
     return (
-        <main className={style.home}>
-            <div className="flex">
-                <Button onClick={() => addResume()} btnType="pink">
-                    Create Resume
-                </Button>
-                {resumeId && (
-                    <Button
-                        onClick={() => router.push(`resume/${resumeId}`)}
-                        btnType="pink"
-                    >{`Continue editing ${resumeName}`}</Button>
-                )}
-            </div>
-        </main>
-    );
+        <>
+            <main >
+                <LanguageSwitcher className={style.langSwitcher}/>
+                <div className={style.content}>
+                    <NewResume addResume={addResume}/>
+                    <MyResumes myResumes={myResumes}/>
+                </div>
+            </main>
+            <Footer/>
+        </>
+    )
 }
 
 export async function getStaticProps({locale}:{locale:string}) {

@@ -5,14 +5,14 @@ import { inputData } from '@/utils/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import React, { useContext, useState } from 'react';
 import AddContent from '../AddContent/AddContent';
-import Button from '../../Button/Button';
-import Card from '../../Card/Card';
+import Button from '../../UI/Button/Button';
+import Card from '../../UI/Card/Card';
 import ContentCard from '../ContentCard/ContentCard';
 import InputsSection from '../InputsSection/InputsSection';
-import Modal from '../../Modal/Modal';
+import Modal from '../../UI/Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
-import { AdditionalContentItem, AdditionalContentSection, IPersonalDetails } from '@/utils/types/contentTypes';
+import {  AdditionalContentSection } from '@/utils/types/contentTypes';
 import style from './Content.module.scss';
 import { useTranslation } from 'next-i18next';
 
@@ -85,7 +85,7 @@ const Content = () => {
                     </>
                 )}
                 {showAddContent && (
-                    <Modal setOpen={setShowAddContent} heading={t('add-content')}>
+                    <Modal close={()=>setShowAddContent(false)} heading={t('add-content')}>
                         <AddContent
                             setContentToEdit={setContentToEdit}
                             setOpen={setShowAddContent}

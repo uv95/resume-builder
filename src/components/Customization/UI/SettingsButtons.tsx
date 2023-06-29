@@ -1,5 +1,4 @@
-import { camelCaseToString } from '@/utils/camelCaseToString';
-import Button from '../../Button/Button';
+import Button from '../../UI/Button/Button';
 import { useTranslation } from 'next-i18next';
 
 type Props = {

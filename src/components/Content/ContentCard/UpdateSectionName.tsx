@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSectionName from '@/hooks/useUpdateSectionName';
 import { removeTypename } from '@/utils/removeTypename';

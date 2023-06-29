@@ -2,25 +2,26 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { getDivider } from '@/utils/getDivider';
 import { ILanguageItem, ISkillsItem } from '@/utils/types/contentTypes';
-import { Sections } from '@/utils/types/resumeTypes'
+import { ISettings, Sections } from '@/utils/types/resumeTypes'
 import { AccentColorSections, ColorOf, Format, Position } from '@/utils/types/settingsTypes'
 import { useContext } from 'react';
-import style from '../Page.module.scss';
+import style from './SkillsLanguageBlock.module.scss';
 
 type Props = {item:ISkillsItem|ILanguageItem;
     section: Sections.LANGUAGE | Sections.SKILLS;
   sectionPosition?: Position.LEFT | Position.RIGHT;
   itemsLength: number;
   index:number
+  settings: ISettings
 }
 
-const Text = ({item,section,sectionPosition,itemsLength,index}: Props) => {
-    const { settings } = useContext(ResumeContext);
+const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,settings}: Props) => {
+    // const { settings } = useContext(ResumeContext);
     const { format, textFormat, infoItalic } =
     settings![section]!;
     const { applyAccentColor } = settings?.colors!;
     const { position } = settings?.layout!;
-    const { setColor } = useSetColor();
+    const { setColor } = useSetColor(settings);
 
     const itemStyle = {
         display:
@@ -71,19 +72,15 @@ format === Format.TEXT || format === Format.BUBBLE
                     : item['skill' as keyof typeof item]}
             </b>
             {item.info && (
-                <p
-                    style={itemInfoStyle}
-                >
+                <p style={itemInfoStyle}>
                     {format === Format.GRID || format === Format.LEVEL
                         ? item.info
                         : `(${item.info})`}
                 </p>
             )}
-            {format === Format.TEXT &&
-itemsLength - 1 !== index &&
-getDivider(textFormat)}
+            {format === Format.TEXT && itemsLength - 1 !== index && getDivider(textFormat)}
         </div>
     )
 }
 
-export default Text
+export default SkillsLanguageItem

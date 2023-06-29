@@ -2,7 +2,7 @@ import style from './Layout.module.scss';
 import React, { useContext } from 'react';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import { Position } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 

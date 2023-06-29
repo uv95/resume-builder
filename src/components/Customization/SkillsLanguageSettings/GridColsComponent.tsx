@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { GridCols, ISkillsLanguageSettings } from '@/utils/types/settingsTypes';
 import React from 'react';
@@ -14,7 +14,7 @@ const GridColsComponent = ({ setValues, values, section }: Props) => {
     const { updateSkillsSettings, updateLanguageSettings } = useUpdateSettings();
 
     return (
-        <div className="flex">
+        <div className={style.gridCols}>
             {Object.values(GridCols).map((col, i) => (
                 <Button
                     key={col}
@@ -39,7 +39,7 @@ const GridColsComponent = ({ setValues, values, section }: Props) => {
                             });
                     }}
                 >
-                    <div className={style.itemContainer}>
+                    <div className={style.gridColsContent}>
                         {[...Array(i + 1)].map((_, index) => (
                             <div key={index} className={style.item}></div>
                         ))}

@@ -9,14 +9,16 @@ import {
     SubtitlePosition,
 } from '@/utils/types/settingsTypes';
 import { IEducationItem } from '@/utils/types/contentTypes';
+import { ISettings } from '@/utils/types/resumeTypes';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
   items:IEducationItem[]
+  settings: ISettings
 };
 
-const EducationBlock = ({ sectionPosition ,items}: Props) => {
-    const { settings } = useContext(ResumeContext);
+const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
+    // const { settings } = useContext(ResumeContext);
     const { degreeFirst } = settings?.education!;
     const { columns } = settings?.layout!;
     const { style: subtitleStyle, position } = settings?.subtitle!;
@@ -36,6 +38,7 @@ const EducationBlock = ({ sectionPosition ,items}: Props) => {
                             <div>
                                 {item.startDate && (
                                     <Dates
+                                        settings={settings}
                                         format={date}
                                         startDate={item.startDate}
                                         endDate={item.endDate}
@@ -74,6 +77,7 @@ const EducationBlock = ({ sectionPosition ,items}: Props) => {
                         <div>
                             {item.startDate && (
                                 <Dates
+                                    settings={settings}
                                     format={date}
                                     startDate={item.startDate}
                                     endDate={item.endDate}

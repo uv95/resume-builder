@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { personalDetailInputData } from '@/utils/data';
 import React, { useContext } from 'react';
-import Card from '../../Card/Card';
+import Card from '../../UI/Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import style from './PersonalDetails.module.scss';
 import emailIcon from '../../../icons/email_regular.svg';

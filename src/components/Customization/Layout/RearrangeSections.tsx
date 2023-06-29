@@ -1,4 +1,4 @@
-import Card from '@/components/Card/Card';
+import Card from '@/components/UI/Card/Card';
 import { ResumeContext } from '@/context/ResumeContext';
 import { getSectionIcon } from '@/utils/getSectionIcon';
 import Image from 'next/image';

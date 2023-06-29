@@ -1,6 +1,5 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { camelCaseToString } from '@/utils/camelCaseToString';
 import { removeTypename } from '@/utils/removeTypename';
 import { Format, TextFormat } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';

@@ -1,5 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
     AccentColorSections,
     ColorOf,
@@ -9,8 +10,10 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import AdditionalInfoBlock from './AdditionalInfoBlock';
 
-const PersonalDetailsBlock = () => {
-    const { settings,content } = useContext(ResumeContext);
+type Props = {settings: ISettings,content:IContent}
+
+const PersonalDetailsBlock = ({settings,content}:Props) => {
+    // const { settings,content } = useContext(ResumeContext);
 
     const { position } = settings?.layout!;
     const personalDetails = content?.personalDetails;
@@ -41,7 +44,7 @@ const PersonalDetailsBlock = () => {
         });
     }, [fontSize]);
 
-    const { setColor } = useSetColor();
+    const { setColor } = useSetColor(settings);
 
     const personalDetailsStyle = {
         background: setColor({
@@ -80,7 +83,7 @@ const PersonalDetailsBlock = () => {
                 {personalDetails?.jobTitle}
             </p>
 
-            <AdditionalInfoBlock />
+            <AdditionalInfoBlock settings={settings} content={content}/>
         </div>
     );
 };

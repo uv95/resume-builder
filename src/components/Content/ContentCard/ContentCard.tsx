@@ -1,7 +1,7 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
 import React, { useContext } from 'react';
-import Button from '../../Button/Button';
-import Card from '../../Card/Card';
+import Button from '../../UI/Button/Button';
+import Card from '../../UI/Card/Card';
 import List from '../List/List';
 import style from './ContentCard.module.scss';
 import { Sections } from '@/utils/types/resumeTypes';

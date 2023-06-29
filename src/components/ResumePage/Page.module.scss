@@ -6,7 +6,8 @@
   width: 100%;
   padding-top: 141.5%;
   height: 0;
-  position: relative;
+  position: sticky;
+    top: 2rem;
 }
 
 .page {
@@ -78,38 +79,3 @@
   gap: 2rem;
 }
 
-//skills & language settings
-.gridFormat,
-.levelFormat {
-  display: grid;
-  column-gap: 2rem;
-  row-gap: 1rem;
-}
-.levelFormat {
-  grid-template-columns: 1fr 1fr;
-}
-.textFormat,
-.bubbleFormat {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.bubbleFormat {
-  gap: 1rem;
-}
-
-.bubble {
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-}
-
-//level bar
-.level {
-  display: flex;
-  gap: 0.5rem;
-}
-.levelBubble {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-}

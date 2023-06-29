@@ -1,5 +1,4 @@
 import React, { DragEvent } from 'react';
-import { camelCaseToString } from '@/utils/camelCaseToString';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import style from './Layout.module.scss';

@@ -1,5 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
+import { ISettings } from '@/utils/types/resumeTypes';
 import {
     AccentColorSections,
     ColorOf,
@@ -12,11 +13,12 @@ import style from './Page.module.scss';
 type Props = {
   sectionPosition: Position.LEFT | Position.RIGHT | undefined;
   sectionName: string;
+  settings:ISettings
 };
 
-const Heading = ({ sectionPosition, sectionName }: Props) => {
-    const { setColor } = useSetColor();
-    const { settings } = useContext(ResumeContext);
+const Heading = ({ sectionPosition, sectionName, settings }: Props) => {
+    const { setColor } = useSetColor(settings);
+    // const { settings } = useContext(ResumeContext);
     const { style: headingStyle, size, uppercase } = settings?.heading!;
     const { fontSize } = settings?.spacing!;
     const [headingSize] = useState({

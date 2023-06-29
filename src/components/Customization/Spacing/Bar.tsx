@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { SpacingSections } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';

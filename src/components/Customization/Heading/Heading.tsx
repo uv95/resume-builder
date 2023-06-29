@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import React, { useContext, useState } from 'react';
 import style from './Heading.module.scss';
 import SettingsCard from '../UI/SettingsCard';
@@ -33,7 +33,7 @@ const Heading = () => {
 
     return (
         <SettingsCard title={t('heading')}>
-            <Section title="Style">
+            <Section title={t('style')}>
                 <div className={style.style}>
                     {Object.values(HeadingStyle).map((headingStyleItem) => (
                         <Button

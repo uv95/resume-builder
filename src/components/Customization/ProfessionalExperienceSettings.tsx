@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
-import Button from '../Button/Button';
+import Button from '../UI/Button/Button';
 import SettingsCard from './UI/SettingsCard';
 import { useTranslation } from 'next-i18next';
 

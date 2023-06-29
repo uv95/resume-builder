@@ -12,7 +12,7 @@ function App({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
             <ResumeProvider>
-                <Component {...pageProps} />;
+                <Component {...pageProps} />
             </ResumeProvider>
         </ApolloProvider>
     );

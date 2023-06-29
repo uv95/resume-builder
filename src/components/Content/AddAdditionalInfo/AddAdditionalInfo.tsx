@@ -1,6 +1,6 @@
 import { AdditionalInfoContext } from '@/context/AdditionalInfoContext';
 import React, { useContext, useEffect, useState } from 'react';
-import Button from '../../Button/Button';
+import Button from '../../UI/Button/Button';
 import Tag from '../Tag/Tag';
 import style from './AddAdditionalInfo.module.scss';
 import { IAdditionalInfo } from '../../../utils/types/contentTypes';

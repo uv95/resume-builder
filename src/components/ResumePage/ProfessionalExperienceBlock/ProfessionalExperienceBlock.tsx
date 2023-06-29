@@ -9,14 +9,16 @@ import {
     SubtitlePosition,
 } from '@/utils/types/settingsTypes';
 import { IProfessionalExperienceItem } from '@/utils/types/contentTypes';
+import { ISettings } from '@/utils/types/resumeTypes';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
   items:IProfessionalExperienceItem[]
+  settings: ISettings
 };
 
-const ProfessionalExperienceBlock = ({ sectionPosition,items }: Props) => {
-    const { settings } = useContext(ResumeContext);
+const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) => {
+    // const { settings } = useContext(ResumeContext);
     const { style: subtitleStyle, position } = settings?.subtitle!;
     const { columns } = settings?.layout!;
     const { date } = settings!;
@@ -36,6 +38,7 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items }: Props) => {
                             <div>
                                 {item.startDate && (
                                     <Dates
+                                        settings={settings}
                                         format={date}
                                         startDate={item.startDate}
                                         endDate={item.endDate}
@@ -71,6 +74,7 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items }: Props) => {
                                 <div>
                                     {item.startDate && (
                                         <Dates
+                                            settings={settings}
                                             format={date}
                                             startDate={item.startDate}
                                             endDate={item.endDate}

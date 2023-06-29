@@ -1,4 +1,4 @@
-import Button from '@/components/Button/Button';
+import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext, useState } from 'react';
 import SettingsCard from '../UI/SettingsCard';

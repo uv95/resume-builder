@@ -1,0 +1,17 @@
+.navigation{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+    width: 25rem;
+}
+
+.backBtn{
+    height: 2rem;
+
+    &:hover{
+        opacity: 0.75;
+    }
+}

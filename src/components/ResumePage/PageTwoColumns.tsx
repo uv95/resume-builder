@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
-import { IResumeArraySections, Sections } from '@/utils/types/resumeTypes';
+import { IContent, IResumeArraySections, ISettings, Sections } from '@/utils/types/resumeTypes';
 import { ColorOf, Position } from '@/utils/types/settingsTypes';
 import React, { useContext } from 'react';
 import style from './Page.module.scss';
@@ -10,18 +10,19 @@ import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock';
 
 type Props = {
   columnWidth: { left: number; right: number };
+  settings: ISettings,content:IContent
 };
 
-const PageTwoColumns = ({ columnWidth }: Props) => {
-    const { settings,content } = useContext(ResumeContext);
+const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
+    // const { settings,content } = useContext(ResumeContext);
     const position = settings?.layout.position;
     const  leftSections= settings?.sectionsOrder.left as Sections[];
     const rightSections = settings?.sectionsOrder.right as Sections[];
     const leftRightMargin = settings?.spacing.leftRightMargin!;
     const topBottomMargin = settings?.spacing.topBottomMargin!;
 
-    const { setColor } = useSetColor();
-
+    const { setColor } = useSetColor(settings);
+   
     const leftSectionsStyle = {
         width: `${columnWidth.left}%`,
         background: setColor({
@@ -54,21 +55,23 @@ const PageTwoColumns = ({ columnWidth }: Props) => {
             style={{ gap: position === Position.TOP ? '3rem' : '0' }}
         >
             <div style={leftSectionsStyle}>
-                {position === Position.LEFT && <PersonalDetailsBlock />}
+                {position === Position.LEFT && <PersonalDetailsBlock content={content} settings={settings}/>}
                 {leftSections&&leftSections.map((section) => (
                     <PageSection
                         key={section}
+                        content={content} settings={settings}
                         sectionPosition={Position.LEFT}
                         section={section}
-                        contentSection={content![section as keyof typeof content] as AdditionalContentSection}
+                        contentSection={content[section as keyof typeof content] as AdditionalContentSection}
                     />
                 ))}
             </div>
             <div style={rightSectionsStyle}>
-                {position === Position.RIGHT && <PersonalDetailsBlock />}
+                {position === Position.RIGHT && <PersonalDetailsBlock content={content} settings={settings}/>}
                 {rightSections&&rightSections.map((section) => (
                     <PageSection
                         key={section}
+                        content={content} settings={settings}
                         sectionPosition={Position.RIGHT}
                         section={section}
                         contentSection={content![section as keyof typeof content] as AdditionalContentSection}

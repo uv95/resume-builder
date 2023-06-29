@@ -11,14 +11,24 @@
   }
 }
 
-.itemContainer {
-  width: 100%;
-  display: flex;
-  gap: 2px;
-}
 .item {
   width: 100%;
   height: 1.5rem;
   background: var(--color-gray);
   border-radius: 1px;
+}
+
+.gridCols{
+  display: flex;
+  gap: 2rem;
+
+  & button{
+    padding: 1.5rem;
+  }
+}
+
+.gridColsContent {
+  width: 100%;
+  display: flex;
+  gap: 2px;
 }
