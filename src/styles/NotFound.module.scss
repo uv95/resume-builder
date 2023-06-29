@@ -1,0 +1,22 @@
+@import './mixins.scss';
+
+.notFound{
+    height: 100vh;
+    display: flex;
+}
+
+.content{
+    margin: auto;
+    @include center;
+    flex-direction: column;
+    gap: 3rem;
+    & h1{
+        font-size: 6rem ;
+        font-weight: normal;
+    }
+}
+.backButton{
+    height: 6rem;
+    font-size: 2.5rem;
+    padding: 0 4rem;
+}
