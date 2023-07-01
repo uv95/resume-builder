@@ -75,7 +75,7 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
                                 dataName={item}
                             />
                         )}
-                        <p> {personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)} </p>
+                        <p>{personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)}</p>
                     </div>
                 )
         )}

@@ -6,9 +6,13 @@
   "resume-size": "The resume size is currently 1 page only.",
   "delete-resume": "Delete resume",
   "confirm-delete": "Are you sure you want to delete the resume?",
+  "yes": "Yes",
+  "no": "No",
   "my-resumes": "My resumes",
   "new-resume": "NEW RESUME",
   "view-resume": "view resume",
   "page-not-found": "Page not found!",
-  "back-to-main": "Back to main page"
+  "back-to-main": "Back to main page",
+  "page-error": "Oops! Something went wrong.",
+  "reload": "Reload page"
 }

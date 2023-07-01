@@ -1,4 +1,3 @@
-import React from 'react';
 import Colors from './Colors/Colors';
 import Date from './Date';
 import Font from './Font/Font';

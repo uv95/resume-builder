@@ -35,8 +35,8 @@ const DeleteResume = () => {
                 <div className={style.content}>
                     <p>{t('confirm-delete')}</p>
                     <div className={style.buttons}>
-                        <Button btnType='gray' onClick={handleDeleteResume}>Yes</Button>
-                        <Button btnType='gray' onClick={()=>setConfirmDelete(false)}>No</Button>
+                        <Button btnType='gray' onClick={handleDeleteResume}>{t('yes')}</Button>
+                        <Button btnType='gray' onClick={()=>setConfirmDelete(false)}>{t('no')}</Button>
                     </div>
                 </div>
             </Modal>}

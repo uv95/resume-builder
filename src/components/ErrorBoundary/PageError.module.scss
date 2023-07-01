@@ -1,0 +1,25 @@
+@import '../../styles/mixins';
+
+.pageError{
+  height: 100vh;
+  display: flex;
+}
+
+.content{
+  margin: auto;
+
+  @include center;
+
+  flex-direction: column;
+  gap: 3rem;
+
+  & h1{
+    font-size: 4rem ;
+    font-weight: normal;
+  }
+}
+
+.reloadButton{
+  height: 5rem;
+  padding: 0 4rem;
+}
