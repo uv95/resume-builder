@@ -1,4 +1,4 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/mixins';
 
 .resume {
   background-color: white;
@@ -32,7 +32,9 @@
 
 .personalDetailsBlock {
   text-align: center;
+
   @include center;
+
   flex-direction: column;
 }
 
@@ -56,6 +58,7 @@
   border-top: 1px solid;
   border-bottom: 1px solid;
 }
+
 .headingBox {
   text-align: center;
   padding: 0.3rem;

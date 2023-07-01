@@ -1,28 +1,28 @@
-@import '../../styles/mixins.scss';
+@import '../../styles/mixins';
 
 .navigation{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    position: sticky;
-    top: 2rem;
-    height: fit-content;
-    max-width: 21rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+  max-width: 21rem;
 
   
 }
 
 .main{
-display: flex;
-flex-direction: column;
-gap: 1rem;
-padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1rem;
 }
 
 .backBtn{
-    height: 2rem;
+  height: 2rem;
 
-    &:hover{
-        opacity: 0.75;
-    }
+  &:hover{
+    opacity: 0.75;
+  }
 }

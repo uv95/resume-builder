@@ -1,5 +1,5 @@
 
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
 
 .list {
   font-size: 1.5rem;
@@ -28,6 +28,7 @@
   color: var(--color-font--medium);
   font-size: 1.7rem;
 }
+
 .secondary {
   color: black;
   font-size: 1.3rem;

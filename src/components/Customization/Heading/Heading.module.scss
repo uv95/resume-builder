@@ -1,21 +1,25 @@
 
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
 
 .style {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+
   & button {
     width: 11rem;
     height: 5rem;
+
     @include center;
   }
 }
+
 .box {
-  @include headingStyle;
+  @include heading-style;
+
   position: relative;
 
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     left: -1.7rem;
@@ -24,25 +28,32 @@
     height: 2rem;
     border: 0.2rem solid var(--color-gray);
   }
+
   &.active {
     background-color: var(--color-ui-blue);
-    &:after {
+
+    &::after {
       border: 0.2rem solid var(--color-ui-blue);
     }
   }
 }
+
 .simple {
-  @include headingStyle;
+  @include heading-style;
+
   margin-right: auto;
+
   &.active {
     background-color: var(--color-ui-blue);
   }
 }
+
 .topBottomLine {
-  @include headingStyle;
+  @include heading-style;
+
   position: relative;
 
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     left: -1.5rem;
@@ -52,20 +63,24 @@
     border-top: 0.2rem solid var(--color-gray);
     border-bottom: 0.2rem solid var(--color-gray);
   }
+
   &.active {
     background-color: var(--color-ui-blue);
-    &:after {
+
+    &::after {
       border-top: 0.2rem solid var(--color-ui-blue);
       border-bottom: 0.2rem solid var(--color-ui-blue);
     }
   }
 }
+
 .line {
-  @include headingStyle;
+  @include heading-style;
+
   margin-right: auto;
   position: relative;
 
-  &:after {
+  &::after {
     content: '';
     position: absolute;
     left: 0;
@@ -74,9 +89,11 @@
     height: 2rem;
     border-bottom: 0.2rem solid var( --color-gray);
   }
+
   &.active {
     background-color: var(--color-ui-blue);
-    &:after {
+
+    &::after {
       border-bottom: 0.2rem solid var(--color-ui-blue);
     }
   }

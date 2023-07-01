@@ -1,4 +1,4 @@
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
 
 .position {
   text-align: center;
@@ -14,18 +14,22 @@
   height: 6rem;
   margin-bottom: 1rem;
 }
+
 .top {
   background: linear-gradient(180deg, var(--color-gray )50%, white 50%);
+
   &_active {
     background: linear-gradient(
       180deg,
-     var( --color-ui-blue) 50%,
+      var( --color-ui-blue) 50%,
       var(--color-ui-blue--light) 50%
     );
   }
 }
+
 .left {
   background: linear-gradient(90deg, var(--color-gray) 50%, white 50%);
+
   &_active {
     background: linear-gradient(
       90deg,
@@ -34,8 +38,10 @@
     );
   }
 }
+
 .right {
   background: linear-gradient(270deg, var(--color-gray) 50%, white 50%);
+
   &_active {
     background: linear-gradient(
       270deg,
@@ -46,7 +52,7 @@
   }
 }
 
-//columns
+// columns
 
 .columns {
   width: 8rem;
@@ -55,10 +61,13 @@
   &_container {
     &__one {
       width: 4rem;
+
       @include center;
+
       flex-direction: column;
       gap: 0.2rem;
     }
+
     &__two {
       width: 4rem;
       display: grid;
@@ -108,8 +117,10 @@
 .columnWidth {
   display: flex;
   gap: 2rem;
+
   &_options {
     width: 100%;
+
     & button {
       width: 100%;
       margin-top: 0.5rem;

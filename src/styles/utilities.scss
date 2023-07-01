@@ -1,4 +1,4 @@
-@import './mixins.scss';
+@import './mixins';
 
 .flex {
   display: flex;
@@ -10,6 +10,7 @@
     gap: 2rem;
   }
 }
+
 .flexWrap {
   flex-wrap: wrap;
 }
@@ -25,6 +26,7 @@
 .gap-1 {
   gap: 1rem;
 }
+
 .gap-05 {
   gap: 0.5rem;
 }
@@ -39,6 +41,7 @@
 .p-2 {
   padding: 2rem;
 }
+
 .py-1 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -47,6 +50,7 @@
 .mt-1 {
   margin-top: 1rem;
 }
+
 .mt-2 {
   margin-top: 2rem;
 }
@@ -58,6 +62,7 @@
 .rightPositioned {
   margin-left: auto;
 }
+
 .centered {
   @include center;
 }
@@ -91,6 +96,7 @@
   align-items: center;
   font-size: 1.8rem;
 }
+
 .checkboxInput {
   width: 2rem;
   height: 2rem;
@@ -98,5 +104,6 @@
 
 .sticky{
   position: sticky;
+
   // top: 0;
 }

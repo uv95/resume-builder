@@ -1,22 +1,24 @@
-@import './mixins.scss';
+@import './mixins';
 
 .langSwitcher {
- width: fit-content;
- margin-left: auto;
- background-color: var(--color-bg);
- box-shadow: none;
- padding: 0 2rem;
+  width: fit-content;
+  margin-left: auto;
+  background-color: var(--color-bg);
+  box-shadow: none;
+  padding: 0 2rem;
 
- & button {
- background-color: var(--color-bg);
- }
+  & button {
+    background-color: var(--color-bg);
+  }
 }
 
 .content{
   width: 100%;
   height: 100%;
   margin-top: 10rem;
+
   @include center;
+
   display: flex;
   flex-direction: column;
   gap: 6rem;

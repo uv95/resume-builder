@@ -1,4 +1,11 @@
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
+
+.item {
+  width: 100%;
+  height: 1.5rem;
+  background: var(--color-gray);
+  border-radius: 1px;
+}
 
 .button {
   width: 6rem;
@@ -11,12 +18,6 @@
   }
 }
 
-.item {
-  width: 100%;
-  height: 1.5rem;
-  background: var(--color-gray);
-  border-radius: 1px;
-}
 
 .gridCols{
   display: flex;

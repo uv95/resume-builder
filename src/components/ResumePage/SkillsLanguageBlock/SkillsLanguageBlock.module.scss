@@ -4,15 +4,18 @@
   column-gap: 2rem;
   row-gap: 1rem;
 }
+
 .levelFormat {
   grid-template-columns: 1fr 1fr;
 }
+
 .textFormat,
 .bubbleFormat {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+
 .bubbleFormat {
   gap: 1rem;
 }
@@ -22,11 +25,12 @@
   padding: 0.5rem;
 }
 
-//level bar
+// level bar
 .level {
   display: flex;
   gap: 0.5rem;
 }
+
 .levelBubble {
   width: 0.7rem;
   height: 0.7rem;

@@ -7,7 +7,7 @@ type Props = {myResumes:IResume[]}
 
 const MyResumes = ({myResumes}: Props) => {
     const {t} = useTranslation()
-    const resumesGrid = Array.apply(null,Array(4)).map((el,i)=>myResumes[i])
+    const resumesGrid = Array.apply(null,Array(4*Math.ceil(myResumes.length / 4))).map((el,i)=>myResumes[i])
 
     return (
         <div className={style.myResumes}>

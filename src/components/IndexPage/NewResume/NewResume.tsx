@@ -8,7 +8,7 @@ const NewResume = ({addResume}: Props) => {
     const {t} = useTranslation()
    
     return (
-        <Button className={style.newResume} onClick={addResume} btnType="pink">
+        <Button className={style.newResume} onClick={addResume} btnType="pink" isBold>
             {t('new-resume')}
         </Button>
     )

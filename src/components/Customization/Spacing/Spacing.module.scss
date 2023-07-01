@@ -1,8 +1,9 @@
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
 
 .container {
   display: flex;
 }
+
 .bar {
   width: 80%;
   height: 4rem;
@@ -16,6 +17,7 @@
   position: relative;
   border-radius: 3px;
 }
+
 .divider {
   width: 1px;
   height: 2rem;
@@ -35,6 +37,7 @@
     background-color: #b8d4f4;
   }
 }
+
 .thumb {
   width: calc(100% / 9 + 2px);
   height: 100%;
@@ -43,6 +46,7 @@
   position: absolute;
   transition: all 0.1s;
 }
+
 .buttons {
   display: flex;
   gap: 0.5rem;

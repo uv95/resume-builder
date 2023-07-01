@@ -1,5 +1,5 @@
 
-@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins';
 
 .tag {
   background-color: var(--color-bg);
@@ -9,7 +9,9 @@
   padding: 0.5rem 1.5rem;
   border-radius: var(--radius-btn--l);
   transition: all 0.1s;
+
   @include center;
+
   gap: 1rem;
 
   &:hover {
