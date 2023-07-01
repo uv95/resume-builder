@@ -12,7 +12,7 @@ const Card = ({ children, gray, hoverScale,className,id }: Props) => {
     return (
         <div
             id={id}
-            className={`${className} ${style.card} ${gray ? style.gray : ''} ${
+            className={`${className||''} ${style.card} ${gray ? style.gray : ''} ${
                 hoverScale ? style.hoverScale : ''
             }`}
         >

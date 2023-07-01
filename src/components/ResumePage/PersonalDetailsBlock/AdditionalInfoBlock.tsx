@@ -75,9 +75,7 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
                                 dataName={item}
                             />
                         )}
-                        <p>
-                            {personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)}
-                        </p>
+                        <p> {personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)} </p>
                     </div>
                 )
         )}
@@ -97,9 +95,10 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
                       dataName={item.name}
                   />
               )}
-              <p>
-                  {item.input} {addBar(i !== additionalInfo.length - 1)}
-              </p>
+              <div>
+                  {item.isLink ? <a href={item.input}>{item.input}</a> : item.input}
+                  {addBar(i !== additionalInfo.length - 1)}
+              </div>
           </div>
       ))}
         </div>

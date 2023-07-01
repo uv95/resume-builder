@@ -17,6 +17,7 @@ export interface IEducationItem extends ContentItem {
 export interface IAdditionalInfo {
   name: string;
   input: string;
+  isLink: boolean
 }
 
 export interface IPersonalDetails {

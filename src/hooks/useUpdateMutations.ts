@@ -39,7 +39,7 @@ function useUpdateMutations({
     const [updatePersonalDetails] = useMutation(UPDATE_PERSONAL_DETAILS);
 
     const [updateEducation] = useMutation(UPDATE_EDUCATION);
-    const [updateEducationsOrder] = useMutation(UPDATE_EDUCATION_ORDER);
+    const [updateEducationOrder] = useMutation(UPDATE_EDUCATION_ORDER);
 
     const [updateLanguage] = useMutation(UPDATE_LANGUAGE);
     const [updateLanguagesOrder] = useMutation(UPDATE_LANGUAGES_ORDER);
@@ -67,8 +67,8 @@ function useUpdateMutations({
         },
         {
             sectionName: Sections.EDUCATION,
-            fn: updateOrder ? updateEducationsOrder : updateEducation,
-            fnName: updateOrder ? 'updateEducationsOrder' : 'updateEducation',
+            fn: updateOrder ? updateEducationOrder : updateEducation,
+            fnName: updateOrder ? 'updateEducationOrder' : 'updateEducation',
         },
         {
             sectionName: Sections.LANGUAGE,
@@ -120,7 +120,6 @@ function useUpdateMutations({
                         query: GET_RESUME,
                         variables: { id: resumeId },
                     })!;
-
                     if (!updateOrder) {
                         const itemId = (variables as AdditionalContentItem).id;
 
@@ -146,6 +145,7 @@ function useUpdateMutations({
                         });
                     }
                     if (updateOrder) {
+                      
                         cache.writeQuery({
                             query: GET_RESUME,
                             data: {

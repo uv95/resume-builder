@@ -44,7 +44,6 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
     const [textareaText, setTextareaText] = useState(
         initialValues.text || initialValues.description
     );
-    console.log(itemId, 'ID', inputData.name)
 
     return (
         <div>

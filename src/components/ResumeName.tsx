@@ -23,6 +23,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
         content: reactToPrintContent,
         documentTitle: resumeName,
         onBeforeGetContent: ()=>{
+            // const page = document.querySelector('#resumePage') as HTMLDivElement;
             const page = document.querySelector('#resumePage') as HTMLDivElement;
             page.style.transform = 'scale(1)'
         }
@@ -42,7 +43,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     // },
     });
 
-    return <Card >
+    return <Card>
         {isEdit ? <Formik
             initialValues={{ name: resumeName }}
             onSubmit={({ name }) => {
@@ -65,7 +66,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
         </Formik> :  <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
             <div style={{ alignItems: 'center' }} className="flex pointer"
                 onClick={() => setIsEdit(true)} >
-                <h3>{resumeName}</h3>
+                <p style={{fontSize:'1.8rem',fontWeight:'bold'}}>{resumeName}</p>
                 <Image src={edit} width="20" height="20" alt="edit" />
             </div>
             <Button btnType="pink" onClick={handlePrint}>

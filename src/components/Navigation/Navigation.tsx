@@ -18,7 +18,7 @@ const Navigation = ({ active, setActive }: Props) => {
 
     return (
         <div className={style.navigation}>
-            <Card className='flex-column p-2'>
+            <Card className={style.main}>
                 <Button
                     className={style.backBtn}
                     btnType="nav"

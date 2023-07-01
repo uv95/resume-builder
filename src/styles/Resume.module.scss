@@ -1,11 +1,13 @@
+@import './mixins.scss';
+
 .layout {
   display: grid;
-  grid-template-columns: 5fr 4fr;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
 }
 
 .mainPanel {
-  min-width: 47rem;
+  min-width: 44rem;
   width: 100%;
   display: flex;
   flex-direction: column;

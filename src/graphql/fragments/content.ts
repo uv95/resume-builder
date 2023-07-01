@@ -11,6 +11,7 @@ export const PERSONAL_DETAILS_FIELDS = gql`
     additionalInfo {
       input
       name
+      isLink
     }
   }
 `;
@@ -92,7 +93,7 @@ export const CONTENT_FIELDS = gql`
     skills {
       id
       sectionName
-      items{
+      items {
       ...SkillsItemFields
     }
     }
@@ -107,7 +108,7 @@ export const CONTENT_FIELDS = gql`
     professionalExperience {
       id
       sectionName
-      items{
+      items {
        ...ProfessionalExperienceItemFields
       }
     }

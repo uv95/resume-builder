@@ -6,9 +6,9 @@ import PageOneColumn from './PageOneColumn'
 import PageTwoColumns from './PageTwoColumns'
 import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock'
 
-type Props = {className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties }
+type Props = {id?: string,className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties }
 
-const PageContent = ({className,additionalStyle,settings,content}: Props) => {
+const PageContent = ({id,className,additionalStyle,settings,content}: Props) => {
     const { setColor } = useSetColor(settings);
 
     const pageContentStyle = {
@@ -30,8 +30,8 @@ settings.layout.position === Position.TOP
 
     return (
         <div
-           
-            className={className}
+            id={id || ''}
+            className={className || ''}
             style={{...pageContentStyle, ...additionalStyle}}
         >
             {settings.layout.position === Position.TOP && (

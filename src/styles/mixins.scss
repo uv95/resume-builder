@@ -33,3 +33,9 @@
   height: 1rem;
   background-color: var(--color-gray);
 }
+
+@mixin media($maxWidth) {
+  @media (max-width: $maxWidth) {
+    @content;
+  }
+}

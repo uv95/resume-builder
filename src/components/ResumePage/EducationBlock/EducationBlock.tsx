@@ -45,9 +45,9 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                                         sectionPosition={sectionPosition}
                                     />
                                 )}
-                                <p>
+                                { (item.city||item.country)&&<p>
                                     {item.city}, {item.country}
-                                </p>
+                                </p>}
                             </div>
                         )}
                         <div>
@@ -85,9 +85,9 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                                 />
                             )}
 
-                            <p>
+                            { (item.city||item.country)&&<p>
                                 {item.city}, {item.country}
-                            </p>
+                            </p>}
                         </div>
                     )}
                     <div>{parse(item.description)}</div>

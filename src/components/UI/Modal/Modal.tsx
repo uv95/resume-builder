@@ -21,13 +21,14 @@ type ModalProps = {
   children: React.ReactNode;
   close?: () => void;
   heading?: string;
+  className?: string;
 };
 
-export default function Modal({ children, close, heading }: ModalProps) {
+export default function Modal({ children, close, heading, className }: ModalProps) {
     return (
         <ClientOnlyPortal selector="#modal">
             <div className={style.backdrop} onClick={close}></div>
-            <Card id="modal" className={style.modal}>
+            <Card id="modal" className={`${style.modal} ${className||''}`}>
                 {heading&&<div className={style.heading}>
                     <h1>{heading}</h1>
                     <button type="button" onClick={close}>

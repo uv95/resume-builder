@@ -29,7 +29,7 @@ const SettingsButtons = ({
                     {title || t(updatedField)}
                 </h5>
             )}
-            <div className="flex">
+            <div className={`flex ${options.length>3 ? 'gap-1': 'gap-2'}`}>
                 {options.map((item: any) => (
                     <Button
                         key={item}

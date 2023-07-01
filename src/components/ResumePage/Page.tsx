@@ -26,22 +26,23 @@ const Page = forwardRef(function Page(props, ref) {
 
     useEffect(() => {
         pageRef.current && setResumePageWidth(pageRef.current.offsetWidth);
-    }, []);
+    }, [content]);
 
     const additionalPageContentStyle = {transform: `scale(${resumePageWidth * 0.00126})`} as React.CSSProperties
 
     return (
-        <div ref={pageRef} className={style.resume}>
-            {settings&&content&& <div
-                ref={ref as React.RefObject<HTMLDivElement>}
-                id="resumePage"
-                
-            >
-                <PageContent additionalStyle={additionalPageContentStyle} className={style.page} settings={settings} content={content}/>
+        <>
+            {settings&&content&& <div ref={pageRef} className={style.resume}>
+                <div
+                    ref={ref as React.RefObject<HTMLDivElement>}
+                >
+                    <PageContent additionalStyle={additionalPageContentStyle} className={style.page} settings={settings} content={content} id="resumePage"/>
+                </div>
+                {/* temporary */}
+                <p style={{marginTop: '1rem', opacity: 0.4}}>{t('resume-size')}</p>
             </div>}
-            {/* temporary */}
-            <p style={{marginTop: '1rem', opacity: 0.4}}>{t('resume-size')}</p>
-        </div>
+            
+        </>
         
     );
 });

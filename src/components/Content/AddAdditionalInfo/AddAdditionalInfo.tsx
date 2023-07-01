@@ -84,7 +84,7 @@ const AddAdditionalInfo = ({ tags,tagsGroup }: Props) => {
                         key={tag}
                         onClick={() => {
                             setCurrentTag(tag);
-                            setAdditionalInfo((prev) => [...prev, { name: tag, input: '' }]);
+                            setAdditionalInfo((prev) => [...prev, { name: tag, input: '', isLink: tagsGroup==='Links' }]);
                         }}
                     />
                 ))}

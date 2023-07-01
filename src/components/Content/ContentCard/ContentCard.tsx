@@ -31,6 +31,9 @@ const ContentCard = ({
     const { currentSection, setCurrentSection } = useContext(
         CurrentSectionContext
     );
+
+    const listHeight = document.querySelector(`#${sectionName}-list`)?.clientHeight!
+
     return (
         <Card>
             {
@@ -42,7 +45,7 @@ const ContentCard = ({
                         style={{
                             maxHeight:
                             sectionName === currentSection
-                                ? 140 + items.length * 68 + 'px'
+                                ? 140 + listHeight + 'px'
                                 : '0',
                         }}
                     >
