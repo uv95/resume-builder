@@ -1,16 +1,14 @@
-import { ResumeContext } from '@/context/ResumeContext';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
-import { IContent, IResumeArraySections, ISettings, Sections } from '@/utils/types/resumeTypes';
-import React, { useContext } from 'react';
-import PageSection from './PageSection';
+import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
+import PageSection from '../PageSection/PageSection';
 
 type Props = {
   sections: Sections[];
-  settings: ISettings,content:IContent
+  settings: ISettings,
+  content:IContent
 };
 
 const PageOneColumn = ({ sections,settings,content }: Props) => {
-    // const { settings,content } = useContext(ResumeContext);
     const leftRightMargin = settings?.spacing.leftRightMargin!;
     const topBottomMargin = settings?.spacing.topBottomMargin!;
 
@@ -23,13 +21,13 @@ const PageOneColumn = ({ sections,settings,content }: Props) => {
                 paddingBottom: topBottomMargin + 'mm',
             }}
         >
-            {sections.map((section) => (
+            {sections.map((section, index) => (
                 <PageSection
                     key={section}
+                    sectionIndex={index}
                     settings={settings}
-                    content={content}
                     section={section}
-                    contentSection={content[section as keyof typeof content] as AdditionalContentSection}
+                    sectionContent={content[section as keyof typeof content] as AdditionalContentSection}
                 />
             ))}
         </div>

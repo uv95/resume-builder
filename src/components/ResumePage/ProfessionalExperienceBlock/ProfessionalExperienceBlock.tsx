@@ -1,8 +1,5 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext } from 'react';
-import Dates from '../Dates';
+import Dates from '../shared/Dates';
 import parse from 'html-react-parser';
-import style from '../Page.module.scss';
 import {
     FontStyle,
     Position,
@@ -10,6 +7,7 @@ import {
 } from '@/utils/types/settingsTypes';
 import { IProfessionalExperienceItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
+import Block from '../shared/Block';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -18,7 +16,6 @@ type Props = {
 };
 
 const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) => {
-    // const { settings } = useContext(ResumeContext);
     const { style: subtitleStyle, position } = settings?.subtitle!;
     const { columns } = settings?.layout!;
     const { date } = settings!;
@@ -27,12 +24,11 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) 
     const subtitlePositionStyle = {
         display: position === SubtitlePosition.SAME_LINE ? 'inline' : 'block',
     };
-    const contentStyle = { display: columns === 1 ? 'grid' : 'block' };
     return (
         <>
             {items.map((item) => (
-                <div key={item.id} className={style.item}>
-                    <div className={style.content} style={contentStyle}>
+                <div key={item.id} style={{marginBottom:"1rem"}}>
+                    <Block columns={columns}>
                         {columns === 1 && (
                             <div>
                                 {item.startDate && (
@@ -69,6 +65,7 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) 
                     !jobTitleFirst &&
                     ', '}
                             </p>
+                            
                             {columns === 2 && (
                                 <div>
                                     {item.startDate && (
@@ -88,7 +85,7 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) 
                             )}
                             <div>{parse(item.description)}</div>
                         </div>
-                    </div>
+                    </Block>
                 </div>
             ))}
         </>

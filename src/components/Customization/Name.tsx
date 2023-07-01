@@ -3,8 +3,8 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
 import { FontStyle, Size } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
-import SettingsButtons from './UI/SettingsButtons';
-import SettingsCard from './UI/SettingsCard';
+import SettingsButtons from './shared/SettingsButtons';
+import SettingsCard from './shared/SettingsCard';
 import { useTranslation } from 'next-i18next';
 
 const Name = () => {

@@ -6,9 +6,9 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import style from './Page.module.scss';
 import { useTranslation } from 'next-i18next';
 import PageContent from './PageContent';
+import style from './Page.module.scss';
 
 const Page = forwardRef(function Page(props, ref) {
     const {t} = useTranslation()
@@ -32,11 +32,11 @@ const Page = forwardRef(function Page(props, ref) {
 
     return (
         <>
-            {settings&&content&& <div ref={pageRef} className={style.resume}>
+            {settings&&content&& <div ref={pageRef} className={style.resumeContainer}>
                 <div
                     ref={ref as React.RefObject<HTMLDivElement>}
                 >
-                    <PageContent additionalStyle={additionalPageContentStyle} className={style.page} settings={settings} content={content} id="resumePage"/>
+                    <PageContent additionalStyle={additionalPageContentStyle} className={style.pageContent} settings={settings} content={content} id="resumePage"/>
                 </div>
                 {/* temporary */}
                 <p style={{marginTop: '1rem', opacity: 0.4}}>{t('resume-size')}</p>

@@ -1,10 +1,9 @@
 import useSetColor from '@/hooks/useSetColor'
 import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes'
 import { ColorOf, Position } from '@/utils/types/settingsTypes'
-import React from 'react'
 import PageOneColumn from './PageOneColumn'
 import PageTwoColumns from './PageTwoColumns'
-import PersonalDetailsBlock from './PersonalDetailsBlock/PersonalDetailsBlock'
+import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock'
 
 type Props = {id?: string,className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties }
 

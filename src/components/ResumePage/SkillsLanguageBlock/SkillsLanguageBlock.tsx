@@ -1,4 +1,3 @@
-import { ResumeContext } from '@/context/ResumeContext';
 import {
     ILanguageItem,
     ISkillsItem,
@@ -10,7 +9,6 @@ import {
     Format,
     Position
 } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
 import style from './SkillsLanguageBlock.module.scss';
 import Level from './Level';
 import SkillsLanguageItem from './SkillsLanguageItem';
@@ -23,7 +21,6 @@ type Props = {
 };
 
 const SkillsLanguageBlock = ({ section, sectionPosition,items,settings }: Props) => {
-    // const { settings } = useContext(ResumeContext);
     const { format, gridCols } =
     settings![section]!;
     const {  columns } = settings?.layout!;

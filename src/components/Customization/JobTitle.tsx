@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import SettingsCard from './UI/SettingsCard';
-import SettingsButtons from './UI/SettingsButtons';
+import SettingsCard from './shared/SettingsCard';
+import SettingsButtons from './shared/SettingsButtons';
 import { ResumeContext } from '@/context/ResumeContext';
 import { removeTypename } from '@/utils/removeTypename';
 import useUpdateSettings from '@/hooks/useUpdateSettings';

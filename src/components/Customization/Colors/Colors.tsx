@@ -7,7 +7,7 @@ import BasicMulticolor from './BasicMulticolor';
 import BasicOptions from './BasicOptions';
 import ModeComponent from './ModeComponent';
 import AdvancedMulticolor from './AdvancedMulticolor';
-import SettingsCard from '../UI/SettingsCard';
+import SettingsCard from '../shared/SettingsCard';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 

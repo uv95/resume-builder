@@ -1,11 +1,9 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext } from 'react';
-import Dates from '../Dates';
+import Dates from '../shared/Dates';
 import parse from 'html-react-parser';
-import style from '../Page.module.scss';
 import { Position } from '@/utils/types/settingsTypes';
 import {  IProjectItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
+import Block from '../shared/Block';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -14,17 +12,14 @@ type Props = {
 };
 
 const ProjectBlock = ({ sectionPosition,items, settings }: Props) => {
-    // const { settings } = useContext(ResumeContext);
     const { columns } = settings?.layout!;
     const { date } = settings!;
-
-    const contentStyle = { display: columns === 1 ? 'grid' : 'block' };
 
     return (
         <>
             {items.map((item) => (
-                <div key={item.id} className={style.item}>
-                    <div className={style.content} style={contentStyle}>
+                <div key={item.id} style={{marginBottom:"1rem"}}>
+                    <Block columns={columns}>
                         {item.startDate && columns === 1 && (
                             <Dates
                                 settings={settings}
@@ -47,7 +42,7 @@ const ProjectBlock = ({ sectionPosition,items, settings }: Props) => {
                             )}
                             <div>{parse(item.description)}</div>
                         </div>
-                    </div>
+                    </Block>
                 </div>
             ))}
         </>

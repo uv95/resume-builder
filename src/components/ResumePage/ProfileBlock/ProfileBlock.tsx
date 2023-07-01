@@ -1,4 +1,3 @@
-
 import parse from 'html-react-parser';
 import {  IProfileItem } from '@/utils/types/contentTypes';
 

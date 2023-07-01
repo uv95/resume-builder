@@ -1,0 +1,29 @@
+@import '../../../styles/mixins';
+
+.resumeContainer {
+  background-color: white;
+  border-radius: 0.2rem;
+  width: 100%;
+  padding-top: 141.5%;
+  height: 0;
+  position: sticky;
+  top: 2rem;
+}
+
+.pageContent {
+  transform-origin: top left;
+  width: 210mm;
+  height: 297mm;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
+.twoColumns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+

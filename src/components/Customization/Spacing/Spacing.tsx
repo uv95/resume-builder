@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { spacingData } from '@/utils/spacing';
 import React, { useContext } from 'react';
-import SettingsCard from '../UI/SettingsCard';
+import SettingsCard from '../shared/SettingsCard';
 import Bar from './Bar';
 import { useTranslation } from 'next-i18next';
 

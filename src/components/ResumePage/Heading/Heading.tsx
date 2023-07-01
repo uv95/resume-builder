@@ -1,4 +1,3 @@
-import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -7,20 +6,20 @@ import {
     HeadingStyle,
     Position,
 } from '@/utils/types/settingsTypes';
-import React, { useContext, useState } from 'react';
-import style from './Page.module.scss';
+import React, {  useState } from 'react';
+import style from './Heading.module.scss';
 
 type Props = {
   sectionPosition: Position.LEFT | Position.RIGHT | undefined;
   sectionName: string;
-  settings:ISettings
+  settings:ISettings;
+  sectionIndex:number
 };
 
-const Heading = ({ sectionPosition, sectionName, settings }: Props) => {
+const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props) => {
     const { setColor } = useSetColor(settings);
-    // const { settings } = useContext(ResumeContext);
     const { style: headingStyle, size, uppercase } = settings?.heading!;
-    const { fontSize } = settings?.spacing!;
+    const { fontSize,spaceBetweenSections } = settings?.spacing!;
     const [headingSize] = useState({
         s: fontSize + 1.5,
         m: fontSize + 3,
@@ -49,6 +48,7 @@ const Heading = ({ sectionPosition, sectionName, settings }: Props) => {
                         sectionPosition,
                     }),
                     marginBottom: headingStyle !== HeadingStyle.LINE ? '1rem' : 0,
+                    marginTop: sectionIndex===0?0:spaceBetweenSections + 'px'
                 }}
             >
                 {uppercase ? sectionName.toUpperCase() : sectionName}

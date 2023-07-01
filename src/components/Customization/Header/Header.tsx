@@ -1,13 +1,13 @@
 import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import React, { useContext, useState } from 'react';
-import SettingsCard from '../UI/SettingsCard';
+import SettingsCard from '../shared/SettingsCard';
 import SmileIcon from './SmileIcon';
 import DetailsIcons from '@/components/DetailsIcons';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import Section from '../UI/Section';
+import Section from '../shared/Section';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from '../UI/SettingsButtons';
+import SettingsButtons from '../shared/SettingsButtons';
 import {
     HeaderAdditionalInfoStyle,
     HeaderPosition,

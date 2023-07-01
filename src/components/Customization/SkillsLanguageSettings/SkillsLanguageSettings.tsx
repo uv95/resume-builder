@@ -3,9 +3,9 @@ import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
 import { Format, TextFormat } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
-import Section from '../UI/Section';
-import SettingsButtons from '../UI/SettingsButtons';
-import SettingsCard from '../UI/SettingsCard';
+import Section from '../shared/Section';
+import SettingsButtons from '../shared/SettingsButtons';
+import SettingsCard from '../shared/SettingsCard';
 import GridColsComponent from './GridColsComponent';
 import { useTranslation } from 'next-i18next';
 

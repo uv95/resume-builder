@@ -2,15 +2,15 @@ import { addApolloState, initializeApollo } from '@/apollo';
 import Customization from '@/components/Customization/Customization';
 import Content from '@/components/Content/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
-import Page from '@/components/ResumePage/Page';
 import { ResumeContext } from '@/context/ResumeContext';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
 import ResumeName from '@/components/ResumeName';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Page from '@/components/ResumePage/Page/Page';
 
 const Resume = () => {
     const router = useRouter();

@@ -5,7 +5,7 @@ import { removeTypename } from '@/utils/removeTypename';
 import { IApplyAccentColor } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import React, { useContext, useEffect, useState } from 'react';
-import Section from '../UI/Section';
+import Section from '../shared/Section';
 import style from './Colors.module.scss';
 import { useTranslation } from 'next-i18next';
 

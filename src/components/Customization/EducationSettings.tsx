@@ -2,7 +2,7 @@ import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import React, { useContext } from 'react';
 import Button from '../UI/Button/Button';
-import SettingsCard from './UI/SettingsCard';
+import SettingsCard from './shared/SettingsCard';
 import { useTranslation } from 'next-i18next';
 
 const EducationSettings = () => {

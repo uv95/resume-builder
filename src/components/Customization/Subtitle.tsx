@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import SettingsCard from './UI/SettingsCard';
+import SettingsCard from './shared/SettingsCard';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from './UI/SettingsButtons';
+import SettingsButtons from './shared/SettingsButtons';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 

@@ -1,12 +1,12 @@
 import Button from '@/components/UI/Button/Button';
 import React, { useContext, useState } from 'react';
 import style from './Heading.module.scss';
-import SettingsCard from '../UI/SettingsCard';
+import SettingsCard from '../shared/SettingsCard';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ResumeContext } from '@/context/ResumeContext';
-import Section from '../UI/Section';
+import Section from '../shared/Section';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from '../UI/SettingsButtons';
+import SettingsButtons from '../shared/SettingsButtons';
 import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 

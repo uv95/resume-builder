@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useLayoutDnD from '@/hooks/useLayoutDnD';
 import { useContext } from 'react';
-import SettingsCard from '../UI/SettingsCard';
+import SettingsCard from '../shared/SettingsCard';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
 import PositionComponent from './PositionComponent';

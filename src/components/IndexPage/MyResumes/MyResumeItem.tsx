@@ -1,4 +1,4 @@
-import PageContent from '@/components/ResumePage/PageContent';
+import PageContent from '@/components/ResumePage/Page/PageContent';
 import { IResume } from '@/utils/types/resumeTypes'
 import { useRouter } from 'next/router';
 import { useState } from 'react';

@@ -1,5 +1,4 @@
 import DetailsIcons from '@/components/DetailsIcons';
-import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -9,13 +8,11 @@ import {
     HeaderPosition,
     Position,
 } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
-import style from '../Page.module.scss';
+import style from './PersonalDetailsBlock.module.scss';
 
 type Props = {settings: ISettings ,content:IContent}
 
 const AdditionalInfoBlock = ({settings,content}:Props) => {
-    // const { settings,content } = useContext(ResumeContext);
     const { position } = settings?.layout!;
     const personalDetails = content?.personalDetails;
     const { fontSize } = settings?.spacing!;

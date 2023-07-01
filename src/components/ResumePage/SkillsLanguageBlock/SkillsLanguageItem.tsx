@@ -1,10 +1,8 @@
-import { ResumeContext } from '@/context/ResumeContext';
 import useSetColor from '@/hooks/useSetColor';
 import { getDivider } from '@/utils/getDivider';
 import { ILanguageItem, ISkillsItem } from '@/utils/types/contentTypes';
 import { ISettings, Sections } from '@/utils/types/resumeTypes'
 import { AccentColorSections, ColorOf, Format, Position } from '@/utils/types/settingsTypes'
-import { useContext } from 'react';
 import style from './SkillsLanguageBlock.module.scss';
 
 type Props = {item:ISkillsItem|ILanguageItem;
@@ -16,7 +14,6 @@ type Props = {item:ISkillsItem|ILanguageItem;
 }
 
 const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,settings}: Props) => {
-    // const { settings } = useContext(ResumeContext);
     const { format, textFormat, infoItalic } =
     settings![section]!;
     const { applyAccentColor } = settings?.colors!;
