@@ -6,10 +6,10 @@ import { DELETE_PROFILE } from '@/graphql/mutations/profile';
 import { DELETE_PROJECT } from '@/graphql/mutations/project';
 import { DELETE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import {  Sections } from '@/utils/types/resumeTypes';
+import {  IResume, Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
-import { AdditionalContentItem } from '@/utils/types/contentTypes';
+import { AdditionalContentItem, AdditionalContentSection } from '@/utils/types/contentTypes';
 
 function useDeleteMutations(section: Sections, resumeId: string) {
     const [deletePersonalDetails] = useMutation(DELETE_PERSONAL_DETAILS);
@@ -67,7 +67,7 @@ function useDeleteMutations(section: Sections, resumeId: string) {
                 variables: { id: itemId },
                 update(cache, { data }) {
                     const deletedData = data[fnName];
-                    const { resume } = cache.readQuery({
+                    const { resume } = cache.readQuery<{resume:IResume}>({
                         query: GET_RESUME,
                         variables: { id: resumeId },
                     })!;
@@ -85,7 +85,7 @@ function useDeleteMutations(section: Sections, resumeId: string) {
                                     ...resume.content,
                                     [sectionName]: {
                                         ...resume.content[sectionName],
-                                        items: resume.content[sectionName].items.filter(
+                                        items: (resume.content[sectionName] as AdditionalContentSection).items.filter(
                                             (item: AdditionalContentItem) => item.id !== deletedData.id
                                         )},
                                 },

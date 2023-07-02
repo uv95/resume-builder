@@ -6,7 +6,7 @@ import { ADD_PROFILE } from '@/graphql/mutations/profile';
 import { ADD_PROJECT } from '@/graphql/mutations/project';
 import { ADD_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import { Sections } from '@/utils/types/resumeTypes';
+import { IResume, Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 import { AdditionalContentItem } from '@/utils/types/contentTypes';
@@ -53,7 +53,7 @@ function useAddMutations(section: Sections, resumeId: string) {
                 variables: { resumeId, ...variables },
                 update(cache, { data }) {
                     const newData = data[fnName];
-                    const { resume } = cache.readQuery({
+                    const { resume } = cache.readQuery<{resume:IResume}>({
                         query: GET_RESUME,
                         variables: { id: resumeId },
                     })!;

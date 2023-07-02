@@ -61,18 +61,21 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
                     <div key={item} className={style.info}>
                         {additionalInfoStyle === HeaderAdditionalInfoStyle.ICON && (
                             <DetailsIcons
-                                fill={
-                      setColor({
-                          section: AccentColorSections.HEADER_ICONS,
-                          colorOf: ColorOf.FONT,
-                          sectionPosition: position,
-                      })!
+                                fill={setColor({
+                                    section: AccentColorSections.HEADER_ICONS,
+                                    colorOf: ColorOf.FONT,
+                                    sectionPosition: position,
+                                })!
                                 }
                                 size={fontSize}
                                 dataName={item}
                             />
                         )}
-                        <p>{personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)}</p>
+                        <p>
+                            <>
+                                {personalDetails[item as keyof typeof personalDetails]} {addBar(additionalInfo.length !== 0)}
+                            </>
+                        </p>
                     </div>
                 )
         )}
@@ -81,12 +84,11 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
           <div className={style.info} key={item.name}>
               {additionalInfoStyle === HeaderAdditionalInfoStyle.ICON && (
                   <DetailsIcons
-                      fill={
-                setColor({
-                    section: AccentColorSections.HEADER_ICONS,
-                    colorOf: ColorOf.FONT,
-                    sectionPosition: position,
-                })!
+                      fill={setColor({
+                          section: AccentColorSections.HEADER_ICONS,
+                          colorOf: ColorOf.FONT,
+                          sectionPosition: position,
+                      })!
                       }
                       size={fontSize}
                       dataName={item.name}

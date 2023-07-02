@@ -16,10 +16,12 @@ import {
 import { UPDATE_SECTION_NAME_SKILLS } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
 import {
+    IContent,
+    IResume,
     Sections,
 } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
-import { AdditionalContentItem } from '@/utils/types/contentTypes';
+import { AdditionalContentItem, AdditionalContentSection } from '@/utils/types/contentTypes';
   
 function useUpdateSectionName({
     section,
@@ -79,9 +81,8 @@ function useUpdateSectionName({
             return fn({
                 variables,
                 update(cache, { data }) {
-                    console.log('data',data)
                     const newData = data[fnName];
-                    const { resume } = cache.readQuery({
+                    const { resume } = cache.readQuery<{resume:IResume}>({
                         query: GET_RESUME,
                         variables: { id: resumeId },
                     })!;
@@ -94,7 +95,7 @@ function useUpdateSectionName({
                                 content: {
                                     ...resume.content,
                                     [section]: {
-                                        ...resume.content[section],
+                                        ...resume.content[section as keyof typeof resume.content] as AdditionalContentSection,
                                         sectionName: newData.sectionName
                                     },
                                 },

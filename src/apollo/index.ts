@@ -12,7 +12,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: 'http://localhost:8000/graphql',
+        uri: process.env.NODE_ENV==='development'? 'http://localhost:8000/graphql': 'https://resume-builder-ciw6.onrender.com/',
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {

@@ -1,5 +1,4 @@
 import { addApolloState, initializeApollo } from '@/apollo';
-import Customization from '@/components/Customization/Customization';
 import Content from '@/components/Content/Content/Content';
 import Navigation from '@/components/Navigation/Navigation';
 import { ResumeContext } from '@/context/ResumeContext';
@@ -11,6 +10,9 @@ import style from '../../styles/Resume.module.scss';
 import ResumeName from '@/components/ResumeName';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '@/components/ResumePage/Page/Page';
+import dynamic from 'next/dynamic';
+
+const Customization = dynamic(()=>import('@/components/Customization/Customization'))
 
 const Resume = () => {
     const router = useRouter();
