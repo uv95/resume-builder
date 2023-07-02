@@ -9,10 +9,13 @@ import isEqual from 'lodash-es/isEqual';
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 
+const uriDev='http://localhost:8000/graphql'
+const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
+
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: process.env.NODE_ENV==='development'? 'http://localhost:8000/graphql': 'https://resume-builder-ciw6.onrender.com/',
+        uri: process.env.NODE_ENV==='development'?uriDev:uriProd,
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {
