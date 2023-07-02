@@ -50,9 +50,9 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                 updateResume({
                     variables: { id, name },
                 });
-                localStorage.setItem('resumeName', name);
-
-                setIsEdit(false);
+                const myExistingResumes = localStorage.getItem("myResumes") ? JSON.parse(localStorage.getItem("myResumes")!):null;
+                const myUpdatedResumes = [...myExistingResumes, {id, name}]
+                localStorage.setItem('myResumes', JSON.stringify(myUpdatedResumes));
             }}
         >
             <Form>

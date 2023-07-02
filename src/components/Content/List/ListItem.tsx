@@ -13,8 +13,7 @@ const ListItem = ({section, item}: Props) => {
                 </div>
                 <p className={style.secondary}>
                     {item.startDate.replaceAll('-', '/')} -{' '}
-                    {item.endDate.replaceAll('-', '/')} | {item.city},{' '}
-                    {item.country}
+                    {item.endDate.replaceAll('-', '/')}{item.city && ` | ${item.city}`}{item.country&&item.city ? `, ${item.country}` : item.country&& ` | ${item.country}`}
                 </p>
             </>}
         {section===Sections.PROFESSIONAL_EXPERIENCE && (<>
@@ -23,8 +22,7 @@ const ListItem = ({section, item}: Props) => {
             </div>
             <p className={style.secondary}>
                 {item.startDate.replaceAll('-', '/')} -{' '}
-                {item.endDate.replaceAll('-', '/')} | {item.city},{' '}
-                {item.country}
+                {item.endDate.replaceAll('-', '/')}{item.city && ` | ${item.city}`}{item.country&&item.city ? `, ${item.country}` : item.country&& ` | ${item.country}`}
             </p>
         </>)
         }
