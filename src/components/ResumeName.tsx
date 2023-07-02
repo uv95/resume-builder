@@ -9,6 +9,7 @@ import edit from '../icons/edit.svg';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useReactToPrint } from 'react-to-print';
+import { IResume } from '@/utils/types/resumeTypes';
 
 type Props = {
   resumeName: string;
@@ -32,7 +33,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     const [updateResume] = useMutation(UPDATE_RESUME, {
         update(cache, { data }) {
             const { name } = data.updateResume;
-            const { resume } = cache.readQuery({
+            const { resume } = cache.readQuery<{resume:IResume}>({
                 query: GET_RESUME,
                 variables: { id },
             })!;
