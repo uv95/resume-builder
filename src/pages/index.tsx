@@ -11,6 +11,7 @@ import MyResumes from '@/components/IndexPage/MyResumes/MyResumes';
 import { IResume } from '@/utils/types/resumeTypes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Footer from '@/components/IndexPage/Footer/Footer';
+import Layout from '@/components/Layout';
 
 export default function Home() {
     const [addResume, { data }] = useMutation(ADD_RESUME);
@@ -41,13 +42,13 @@ export default function Home() {
 
     return (
         <>
-            <main >
+            <Layout title='Resume Builder' content='Build your resume'>
                 <LanguageSwitcher className={style.langSwitcher}/>
                 <div className={style.content}>
                     <NewResume addResume={addResume}/>
                     <MyResumes myResumes={myResumes}/>
                 </div>
-            </main>
+            </Layout>
             <Footer/>
         </>
     )

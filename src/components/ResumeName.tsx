@@ -23,24 +23,24 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
         content: reactToPrintContent,
         documentTitle: resumeName,
         onBeforeGetContent: ()=>{
-            // const page = document.querySelector('#resumePage') as HTMLDivElement;
             const page = document.querySelector('#resumePage') as HTMLDivElement;
             page.style.transform = 'scale(1)'
         }
     });
+
     const [isEdit, setIsEdit] = useState(false);
     const [updateResume] = useMutation(UPDATE_RESUME, {
-    // update(cache, { data }) {
-    //   const { name } = data.updateResume;
-    //   const { resume } = cache.readQuery({
-    //     query: GET_RESUME,
-    //     variables: { id },
-    //   })!;
-    //   cache.writeQuery({
-    //     query: GET_RESUME,
-    //     data: { resume: { ...resume, name } },
-    //   });
-    // },
+        update(cache, { data }) {
+            const { name } = data.updateResume;
+            const { resume } = cache.readQuery({
+                query: GET_RESUME,
+                variables: { id },
+            })!;
+            cache.writeQuery({
+                query: GET_RESUME,
+                data: { resume: { ...resume, name } },
+            });
+        },
     });
 
     return <Card>
@@ -53,6 +53,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                 const myExistingResumes = localStorage.getItem("myResumes") ? JSON.parse(localStorage.getItem("myResumes")!):null;
                 const myUpdatedResumes = [...myExistingResumes, {id, name}]
                 localStorage.setItem('myResumes', JSON.stringify(myUpdatedResumes));
+                setIsEdit(false)
             }}
         >
             <Form>

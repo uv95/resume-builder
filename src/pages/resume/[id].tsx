@@ -11,6 +11,7 @@ import ResumeName from '@/components/ResumeName';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '@/components/ResumePage/Page/Page';
 import dynamic from 'next/dynamic';
+import Layout from '@/components/Layout';
 
 const Customization = dynamic(()=>import('@/components/Customization/Customization'))
 
@@ -35,7 +36,7 @@ const Resume = () => {
     if (error) return <p>Something Went Wrong</p>;
 
     return (
-        <main>
+        <Layout title={data.resume.name} content='Resume editing and customization'>
             {data.resume &&  <div className={style.layout}>
                 <div className="flex">
                     <Navigation active={active} setActive={setActive} />
@@ -53,7 +54,7 @@ const Resume = () => {
                 </div>
                 <Page ref={componentRef} /> 
             </div>}
-        </main>
+        </Layout>
     );
 };
 

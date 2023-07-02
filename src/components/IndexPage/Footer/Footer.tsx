@@ -7,7 +7,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
     return (
-        <div className={style.footer}>
+        <footer className={style.footer}>
             <div className={style.content}>
                 <Link href='https://github.com/uv95'>
                     <div className="flex gap-1 aligned">
@@ -21,7 +21,7 @@ const Footer = (props: Props) => {
                     </div>
                 </Link>
             </div>
-        </div>
+        </footer>
     )
 }
 
