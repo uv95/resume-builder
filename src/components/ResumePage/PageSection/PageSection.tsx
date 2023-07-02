@@ -22,6 +22,7 @@ const PageSection = ({
 }: Props) => {
     const { setColor } = useSetColor(settings);
     const { showHeading } = settings?.profile!;
+    const { spaceBetweenSections } = settings?.spacing!;
 
     return (
         <div>
@@ -40,6 +41,7 @@ const PageSection = ({
                         colorOf: ColorOf.FONT,
                         sectionPosition,
                     }),
+                    marginTop: sectionIndex===0?0:spaceBetweenSections + 'px'
                 }}
             >
                 <SectionContent section={section} settings={settings} sectionContent={sectionContent} sectionPosition={sectionPosition}/>

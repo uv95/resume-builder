@@ -31,14 +31,19 @@ const Navigation = ({ active, setActive }: Props) => {
                     isActive={active === 'Content'}
                     onClick={() => setActive('Content')}
                 >
-                    {t('content')}
+                    <span>
+                        {t('content')}
+                    </span>
                 </Button>
                 <Button
                     btnType="nav"
                     isActive={active === 'Customize'}
                     onClick={() => setActive('Customize')}
                 >
-                    {t('customize')}
+                    <span>
+
+                        {t('customize')}
+                    </span>
                 </Button>
             </Card>
             <LanguageSwitcher/>

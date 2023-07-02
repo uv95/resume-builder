@@ -8,8 +8,7 @@ type Props = {
 const ProfileBlock = ({items}:Props) => {
     return (
         <>
-            {
-                items.map((item) => <div key={item.id}>{parse(item.text)}</div>)}
+            {items.map((item) => <div key={item.id}>{parse(item.text)}</div>)}
         </>
     );
 };

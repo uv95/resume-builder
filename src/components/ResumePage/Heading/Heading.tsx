@@ -48,7 +48,7 @@ const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props)
                         sectionPosition,
                     }),
                     marginBottom: headingStyle !== HeadingStyle.LINE ? '1rem' : 0,
-                    marginTop: sectionIndex===0?0:spaceBetweenSections + 'px'
+                    marginTop: sectionIndex===0 ? 0 : spaceBetweenSections + 'px'
                 }}
             >
                 {uppercase ? sectionName.toUpperCase() : sectionName}

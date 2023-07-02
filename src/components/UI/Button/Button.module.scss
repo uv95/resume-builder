@@ -10,6 +10,10 @@
   transition: all 0.1s;
 
   @include center;
+
+  &:active{
+    color: inherit;
+  }
 }
 
 .button-white{
@@ -31,11 +35,14 @@
 
 
 .button-nav--active {
-  background-image: var(--gradient-pink);
-  background-size: 100%;
-  background-clip: text;
-  color:transparent;
+  & span {
+    background-image: var(--gradient-pink);
+    background-size: 100%;
+    background-clip: text;
+    color: rgb(0 0 0 / 0%);
+  }
 }
+
 
 .button-gray {
   background-color: var(--color-bg);
@@ -81,6 +88,10 @@
 
   &:hover {
     opacity: 0.85;
+  }
+
+  &:active{
+    color: white;
   }
 }
 
