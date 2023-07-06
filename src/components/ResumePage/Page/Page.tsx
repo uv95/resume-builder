@@ -17,10 +17,12 @@ const Page = forwardRef(function Page(props, ref) {
     const { settings,content } = useContext(ResumeContext);
 
     const [resumePageWidth, setResumePageWidth] = useState(0);
+    const [resumePageHeight, setResumePageHeight] = useState(0);
 
     useEffect(() => {
         window.addEventListener('resize', () =>
-            setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
+        { setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
+            setResumePageHeight(pageRef?.current ? (pageRef.current?.firstChild?.firstChild as HTMLDivElement).offsetHeight :  0)}
         );
     });
 
@@ -33,13 +35,8 @@ const Page = forwardRef(function Page(props, ref) {
     return (
         <>
             {settings&&content&& <div ref={pageRef} className={style.resumeContainer}>
-                <div
-                    ref={ref as React.RefObject<HTMLDivElement>}
-                >
-                    <PageContent additionalStyle={additionalPageContentStyle} className={style.pageContent} settings={settings} content={content} id="resumePage"/>
-                </div>
-                {/* temporary */}
-                <p style={{marginTop: '1rem', opacity: 0.4}}>{t('resume-size')}</p>
+                <PageContent ref={ref} additionalStyle={additionalPageContentStyle} className={style.pageContent} settings={settings} content={content} id="resumePage"/>
+
             </div>}
             
         </>

@@ -138,4 +138,11 @@
   box-shadow: none;
   transition: all 0.2s;
   cursor: grab;
+
+  & strong{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
 }

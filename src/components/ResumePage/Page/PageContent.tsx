@@ -4,10 +4,12 @@ import { ColorOf, Position } from '@/utils/types/settingsTypes'
 import PageOneColumn from './PageOneColumn'
 import PageTwoColumns from './PageTwoColumns'
 import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock'
+import { forwardRef } from 'react'
 
-type Props = {id?: string,className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties }
+type Props = {id?: string,className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties; ref: React.ForwardedRef<HTMLDivElement> }
 
-const PageContent = ({id,className,additionalStyle,settings,content}: Props) => {
+const PageContent = forwardRef(function PageContent(props:Props,ref) {
+    const {id,className,additionalStyle,settings,content}=props;
     const { setColor } = useSetColor(settings);
 
     const pageContentStyle = {
@@ -28,7 +30,7 @@ settings.layout.position === Position.TOP
     } as React.CSSProperties;
 
     return (
-        <div
+        <div ref={ref as  React.ForwardedRef<HTMLDivElement>}
             id={id || ''}
             className={className || ''}
             style={{...pageContentStyle, ...additionalStyle}}
@@ -50,6 +52,6 @@ settings.layout.position === Position.TOP
             }
         </div>
     )
-}
+})
 
 export default PageContent

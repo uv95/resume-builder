@@ -15,7 +15,7 @@ const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: process.env.NODE_ENV==='development'?uriDev:uriProd,
+        uri: uriDev,
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {
