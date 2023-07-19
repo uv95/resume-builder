@@ -12,9 +12,10 @@ import { IResume } from '@/utils/types/resumeTypes';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Footer from '@/components/IndexPage/Footer/Footer';
 import Layout from '@/components/Layout';
+import { Loader } from '@/components/UI/Loader/Loader';
 
 export default function Home() {
-    const [addResume, { data }] = useMutation(ADD_RESUME);
+    const [addResume, { data}] = useMutation(ADD_RESUME);
     const [myResumes, setMyResumes] = useState<IResume[]>([]);
     const [myResumesLS, setMyResumesLS] = useState<{id:string,name:string}[]>([]);
 
@@ -29,6 +30,7 @@ export default function Home() {
         }
     }, [data, router,myResumes,myResumesLS]);
 
+
     useEffect(() => {
         const myExistingResumesLS = localStorage.getItem("myResumes");
         const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as {id:string,name:string}[] : null;
@@ -42,6 +44,7 @@ export default function Home() {
 
     return (
         <>
+            <Loader/>
             <Layout title='Resume Builder' content='Build your resume'>
                 <LanguageSwitcher className={style.langSwitcher}/>
                 <div className={style.content}>

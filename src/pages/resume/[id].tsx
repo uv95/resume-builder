@@ -12,6 +12,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '@/components/ResumePage/Page/Page';
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
+import { Loader } from '@/components/UI/Loader/Loader';
 
 const Customization = dynamic(()=>import('@/components/Customization/Customization'))
 
@@ -37,6 +38,7 @@ const Resume = () => {
 
     return (
         <Layout title={data.resume.name} content='Resume editing and customization'>
+            <Loader/>
             {data.resume &&  <div className={style.layout}>
                 <div className="flex">
                     <Navigation active={active} setActive={setActive} />

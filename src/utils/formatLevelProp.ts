@@ -13,6 +13,7 @@ export const formatLevelProp = ({
   section: Sections.SKILLS | Sections.LANGUAGE;
   item: ILanguage | ISkills;
 }) => {
+    /// ключи - ObjectKey<smth>
     if (section === Sections.SKILLS) {
         const enumValue = item['skillLevel' as keyof typeof item];
         const enumKey = Object.values(SkillLevel).includes(enumValue as SkillLevel)
