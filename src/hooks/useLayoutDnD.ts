@@ -1,3 +1,4 @@
+import { useLayoutContext } from '@/context/LayoutContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import * as dnd from '@/utils/dragAndDropUtilityFunctions';
 import { removeTypename } from '@/utils/removeTypename';
@@ -6,8 +7,9 @@ import { DragEvent, useContext, useState } from 'react';
 import useUpdateSettings from './useUpdateSettings';
 
 function useLayoutDnD() {
+    const { layout } = useLayoutContext();
     const { settings } = useContext(ResumeContext);
-    const { position } = settings?.layout!;
+    const position =layout?.position!;
     const { updateSectionsOrderDragAndDrop } = useUpdateSettings();
 
     const [sectionsOrder, setSectionsOrder] = useState(

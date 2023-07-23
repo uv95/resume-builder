@@ -1,18 +1,15 @@
 import { useColorsContext } from '@/context/ColorsContext';
-import { ResumeContext } from '@/context/ResumeContext';
-import { ISettings } from '@/utils/types/resumeTypes';
+import { useLayoutContext } from '@/context/LayoutContext';
 import {
-    Mode,
-    Position,
-    ColorOption,
     AccentColorSections,
-    ColorOf,
+    ColorOf, ColorOption, Mode,
+    Position
 } from '@/utils/types/settingsTypes';
-import { useContext } from 'react';
 
-function useSetColor(settings:ISettings) {
+function useSetColor() {
     const { colors } = useColorsContext();
-    const position = settings?.layout.position;
+    const {layout} = useLayoutContext();
+    const position = layout?.position;
     const mode = colors?.mode!;
     const applyAccentColor = colors?.applyAccentColor!;
     const basicSelected = colors?.basic.selected!;

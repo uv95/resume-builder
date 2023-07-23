@@ -1,47 +1,22 @@
 import Button from '@/components/UI/Button/Button';
-import { ResumeContext } from '@/context/ResumeContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
-import { useMutation } from '@apollo/client';
-import React, { memo, useContext, useEffect, useState } from 'react';
-import style from './Layout.module.scss';
+import { useLayoutContext } from '@/context/LayoutContext';
+import useUpdateLayout from '@/hooks/settings/useUpdateLayout';
 import { useTranslation } from 'next-i18next';
+import React, { memo, useState } from 'react';
+import style from './Layout.module.scss';
 
 const ColumnWidth = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const [updateSettings] = useMutation(UPDATE_SETTINGS);
+    const { layout } = useLayoutContext();
+    const {updateColumnWidth}=useUpdateLayout()
 
     const [left, setLeft] = useState(
-        settings?.layout.columnWidth.left || 50
+        layout?.columnWidth.left || 50
     );
     const [right, setRight] = useState(
-        settings?.layout.columnWidth.right || 50
+        layout?.columnWidth.right || 50
     );
-
-    useEffect(() => {
-        const updateColumnWidth = (left: number, right: number) => {
-            const { position, columns } = settings?.layout!;
-            return updateSettings({
-                variables: {
-                    id: settings?.id,
-                    layout: {
-                        position,
-                        columns,
-                        columnWidth: { left, right },
-                    },
-                },
-            });
-        };
-
-        updateColumnWidth(left, right);
-    }, [
-        left,
-        right,
-        settings?.id,
-        settings?.layout,
-        updateSettings,
-    ]);
 
     return (
         <div>
@@ -54,6 +29,8 @@ const ColumnWidth = () => {
                         onClick={() => {
                             setLeft((prev) => prev + 1);
                             setRight((prev) => prev - 1);
+                            updateColumnWidth(left, right);
+
                         }}
                     >
                         +
@@ -66,6 +43,8 @@ const ColumnWidth = () => {
                         onClick={() => {
                             setRight((prev) => prev + 1);
                             setLeft((prev) => prev - 1);
+                            updateColumnWidth(left, right);
+
                         }}
                     >
                         +

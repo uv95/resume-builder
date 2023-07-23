@@ -6,7 +6,6 @@ export const UPDATE_SETTINGS = gql`
   mutation updateSettings(
     $id: ID!
     $sectionsOrder: SectionsOrderInput
-    $layout: LayoutInput
     $font: FontInput
     $heading: HeadingInput
     $subtitle: SubtitleInput
@@ -23,7 +22,6 @@ export const UPDATE_SETTINGS = gql`
     updateSettings(
       id: $id
       sectionsOrder: $sectionsOrder
-      layout: $layout
       font: $font
       heading: $heading
       subtitle: $subtitle

@@ -18,7 +18,7 @@ type Props = {
 };
 
 const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props) => {
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
     const { style: headingStyle, size, uppercase } = settings?.heading!;
     const { spacing } =useSpacingContext();
     const { fontSize,spaceBetweenSections } = spacing!;

@@ -9,6 +9,7 @@ import { IProfessionalExperienceItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
 import { memo } from 'react';
+import { useLayoutContext } from '@/context/LayoutContext';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -18,7 +19,8 @@ type Props = {
 
 const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) => {
     const { style: subtitleStyle, position } = settings?.subtitle!;
-    const { columns } = settings?.layout!;
+    const {layout} = useLayoutContext();
+    const  columns  = layout?.columns!;
     const { date } = settings!;
     const { jobTitleFirst } = settings?.professionalExperience!;
 
@@ -34,7 +36,6 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) 
                             <div>
                                 {item.startDate && (
                                     <Dates
-                                        settings={settings}
                                         format={date}
                                         startDate={item.startDate}
                                         endDate={item.endDate}
@@ -71,7 +72,6 @@ const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) 
                                 <div>
                                     {item.startDate && (
                                         <Dates
-                                            settings={settings}
                                             format={date}
                                             startDate={item.startDate}
                                             endDate={item.endDate}

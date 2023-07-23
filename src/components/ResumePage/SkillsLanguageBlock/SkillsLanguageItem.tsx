@@ -1,4 +1,5 @@
 import { useColorsContext } from '@/context/ColorsContext';
+import { useLayoutContext } from '@/context/LayoutContext';
 import useSetColor from '@/hooks/useSetColor';
 import { getDivider } from '@/utils/getDivider';
 import { ILanguageItem, ISkillsItem } from '@/utils/types/contentTypes';
@@ -20,8 +21,9 @@ const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,sett
     settings![section]!;
     const { colors } = useColorsContext();
     const { applyAccentColor } = colors!;
-    const { position } = settings?.layout!;
-    const { setColor } = useSetColor(settings);
+    const {layout} = useLayoutContext();
+    const position = layout?.position;
+    const { setColor } = useSetColor();
 
     const itemStyle = {
         display:

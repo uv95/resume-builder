@@ -1,15 +1,15 @@
-import style from './Layout.module.scss';
-import React, { memo, useContext } from 'react';
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Button from '@/components/UI/Button/Button';
+import { useLayoutContext } from '@/context/LayoutContext';
+import useUpdateLayout from '@/hooks/settings/useUpdateLayout';
 import { Position } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import React, { memo } from 'react';
+import style from './Layout.module.scss';
 
 const PositionComponent = () => {
-    const { settings } = useContext(ResumeContext);
-    const { position } = settings?.layout!;
-    const { updatePosition } = useUpdateSettings();
+    const { layout } = useLayoutContext();
+    const position = layout?.position;
+    const { updatePosition } = useUpdateLayout();
     const {t} = useTranslation(['customization'])
 
     return (

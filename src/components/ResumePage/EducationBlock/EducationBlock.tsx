@@ -9,6 +9,7 @@ import { IEducationItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
 import { memo } from 'react';
+import { useLayoutContext } from '@/context/LayoutContext';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -18,7 +19,8 @@ type Props = {
 
 const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
     const { degreeFirst } = settings?.education!;
-    const { columns } = settings?.layout!;
+    const {layout} = useLayoutContext();
+    const  columns  = layout?.columns!;
     const { style: subtitleStyle, position } = settings?.subtitle!;
     const { date } = settings!;
 
@@ -35,7 +37,6 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                             <div>
                                 {item.startDate && (
                                     <Dates
-                                        settings={settings}
                                         format={date}
                                         startDate={item.startDate}
                                         endDate={item.endDate}
@@ -73,7 +74,6 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                                 <div>
                                     {item.startDate && (
                                         <Dates
-                                            settings={settings}
                                             format={date}
                                             startDate={item.startDate}
                                             endDate={item.endDate}

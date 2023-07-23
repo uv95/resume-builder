@@ -7,8 +7,10 @@ const SECTIONS_ORDER_FIELDS = gql`
     right
   }
 `;
-const LAYOUT_FIELDS = gql`
+
+export const LAYOUT_FIELDS = gql`
   fragment LayoutFields on Layout {
+    id
     columns
     position
     columnWidth {

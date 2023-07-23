@@ -6,6 +6,7 @@ import PageTwoColumns from './PageTwoColumns'
 import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock'
 import { forwardRef, memo } from 'react'
 import { useSpacingContext } from '@/context/SpacingContext'
+import { useLayoutContext } from '@/context/LayoutContext'
 
 type Props = {
     id?: string,
@@ -17,7 +18,8 @@ type Props = {
 
 const PageContent = forwardRef(function PageContent(props:Props,ref) {
     const {id,className,additionalStyle,settings,content}=props;
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
+    const {layout} = useLayoutContext();
     const {spacing} = useSpacingContext()
     const pageContentStyle = {
         background: setColor({
@@ -26,13 +28,13 @@ const PageContent = forwardRef(function PageContent(props:Props,ref) {
         fontSize:spacing?.fontSize,
         lineHeight:spacing?.lineHeight,
         display:
-settings.layout.position === Position.TOP
-    ? 'flex'
-    : 'block',
+    layout?.position === Position.TOP
+        ? 'flex'
+        : 'block',
         flexDirection:
-settings.layout.position === Position.TOP
-    ? 'column'
-    : 'initial',
+    layout?.position === Position.TOP
+        ? 'column'
+        : 'initial',
         fontFamily: settings.font.font,
     } as React.CSSProperties;
 
@@ -42,11 +44,11 @@ settings.layout.position === Position.TOP
             className={className || ''}
             style={{...pageContentStyle, ...additionalStyle}}
         >
-            {settings.layout.position === Position.TOP && (
+            {layout?.position === Position.TOP && (
                 <PersonalDetailsBlock content={content} settings={settings}/>
             )}
 
-            {settings.layout.columns === 1 ? (
+            {layout?.columns === 1 ? (
                 <PageOneColumn
                     content={content} settings={settings}
                     sections={settings.sectionsOrder.top as Sections[]}
@@ -54,7 +56,7 @@ settings.layout.position === Position.TOP
             ):
                 <PageTwoColumns
                     content={content} settings={settings}
-                    columnWidth={settings.layout.columnWidth}
+                    columnWidth={layout?.columnWidth!}
                 />
             }
         </div>

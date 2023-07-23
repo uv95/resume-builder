@@ -190,6 +190,7 @@ export enum ColorOption {
 }
 
 export interface ILayout {
+    id:string;
     columns: number;
     position: Position;
     columnWidth: {

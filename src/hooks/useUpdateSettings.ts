@@ -1,8 +1,6 @@
 import { useContentContext } from '@/context/ContentContext';
 import { ResumeContext } from '@/context/ResumeContext';
-import { useSpacingContext } from '@/context/SpacingContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
-import { removeTypename } from '@/utils/removeTypename';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { Sections } from '@/utils/types/resumeTypes';
 import {
@@ -16,8 +14,7 @@ import {
     IProfessionalExperienceSettings,
     IProfileSettings,
     ISkillsLanguageSettings,
-    ISubtitle, Position,
-    SpacingSections
+    ISubtitle
 } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
@@ -26,7 +23,6 @@ function useUpdateSettings() {
     const [updateSettings] = useMutation(UPDATE_SETTINGS);
     const { settings } = useContext(ResumeContext);
     const { content } =useContentContext();
-    const { spacing } =useSpacingContext();
 
     //sectionsOrder
     const addToSectionsOrder = (sectionName: Sections) => {
@@ -110,30 +106,6 @@ function useUpdateSettings() {
                 },
             },
         });
-
-    //position
-    const updatePosition = (position: Position, columns: number) => {
-        return updateSettings({
-            variables: {
-                id: settings?.id,
-                layout: {
-                    ...removeTypename(settings?.layout!),
-                    position,
-                    columns,
-                },
-            },
-        });
-    };
-
-    //columns
-    const updateColumns = (columns: 1 | 2) => {
-        return updateSettings({
-            variables: {
-                id: settings?.id,
-                layout: { ...removeTypename(settings?.layout!), columns },
-            },
-        });
-    };
 
     const updateFont = (font: IFont) =>
         updateSettings({
@@ -235,8 +207,6 @@ function useUpdateSettings() {
 
     return {
         updateSectionsOrderDragAndDrop,
-        updateColumns,
-        updatePosition,
         addToSectionsOrder,
         removeFromSectionsOrder,
         updateFont,

@@ -1,4 +1,5 @@
 import DetailsIcons from '@/components/DetailsIcons';
+import { useLayoutContext } from '@/context/LayoutContext';
 import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
@@ -16,7 +17,8 @@ type Props = {settings: ISettings ,content:IContent}
 
 const AdditionalInfoBlock = ({settings,content}:Props) => {
     const {spacing} = useSpacingContext()
-    const { position } = settings?.layout!;
+    const {layout} = useLayoutContext();
+    const  position  = layout?.position;
     const personalDetails = content?.personalDetails;
     const { fontSize } = spacing!;
     const {
@@ -29,7 +31,7 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
         ? Object.values(personalDetails)[Object.values(personalDetails).length - 1]
         : [];
 
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
 
     const addBar = (condition: boolean) => {
         const shouldAddBar = additionalInfoStyle === HeaderAdditionalInfoStyle.BAR &&

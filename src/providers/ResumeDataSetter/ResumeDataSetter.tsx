@@ -1,5 +1,6 @@
 import { useColorsContext } from '@/context/ColorsContext';
 import { useContentContext } from '@/context/ContentContext';
+import { useLayoutContext } from '@/context/LayoutContext';
 import { useResumeContext } from '@/context/ResumeContext';
 import { useSpacingContext } from '@/context/SpacingContext';
 import { IResume } from '@/utils/types/resumeTypes';
@@ -14,7 +15,8 @@ export const ResumeDataSetter = ({ resumeData,children }: ResumeDataSetterProps)
     const { setResume,setSettings } = useResumeContext();
     const { setContent } = useContentContext();
     const { setColors } = useColorsContext();
-    const { setSpacing } =useSpacingContext();
+    const { setSpacing } = useSpacingContext();
+    const { setLayout } =useLayoutContext();
 
     useEffect(() => {
         if(resumeData.name && resumeData.id) {
@@ -27,6 +29,12 @@ export const ResumeDataSetter = ({ resumeData,children }: ResumeDataSetterProps)
             setSpacing(resumeData.settings.spacing)
         };
     }, [resumeData.settings.spacing, setSpacing]);
+
+    useEffect(() => {
+        if(resumeData.settings.layout) {
+            setLayout(resumeData.settings.layout)
+        };
+    }, [resumeData.settings.layout, setLayout]);
     
     useEffect(() => {
         if(resumeData.settings) {

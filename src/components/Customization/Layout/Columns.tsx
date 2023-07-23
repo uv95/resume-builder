@@ -1,17 +1,18 @@
 import Button from '@/components/UI/Button/Button';
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
-import React, { memo, useContext } from 'react';
-import style from './Layout.module.scss';
-import { useTranslation } from 'next-i18next';
+import { useLayoutContext } from '@/context/LayoutContext';
+import useUpdateLayout from '@/hooks/settings/useUpdateLayout';
 import { Position } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
+import React, { memo } from 'react';
+import style from './Layout.module.scss';
 
 const Columns = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { columns, position } = settings?.layout!;
-    const { updateColumns } = useUpdateSettings();
+    const { layout } = useLayoutContext();
+    const columns = layout?.columns;
+    const  position = layout?.position;
+    const { updateColumns } = useUpdateLayout();
 
     return (
         <div>

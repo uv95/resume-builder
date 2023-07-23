@@ -8,6 +8,7 @@ import style from './Layout.module.scss';
 import user from '../../../icons/user.svg';
 import { Position } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import { useLayoutContext } from '@/context/LayoutContext';
 
 type Props = {
   setInitialColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;
@@ -28,8 +29,10 @@ const RearrangeSections = ({
 }: Props) => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { columns, position } =settings?.layout!;
+    const { layout } = useLayoutContext();
+    const columns = layout?.columns;
+    const  position = layout?.position;
+    
     return (
         <div>
             <h5 className="mb-1">{t('rearrange')}</h5>

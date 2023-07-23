@@ -1,7 +1,7 @@
 
 type Props = {children:React.ReactNode, columns: number}
 
-const Block = ({children,columns}:Props) => {
+const Block = ({children, columns}:Props) => {
     const contentStyle = { 
         display: columns === 1 ? 'grid' : 'block',
         gridTemplateColumns: "1fr 3fr",

@@ -1,3 +1,4 @@
+import { useLayoutContext } from '@/context/LayoutContext';
 import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
@@ -15,13 +16,14 @@ type Props = {
 
 const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
     const {spacing} = useSpacingContext()
-    const position = settings?.layout.position;
+    const {layout} = useLayoutContext();
+    const position = layout?.position;
     const  leftSections= settings?.sectionsOrder.left as Sections[];
     const rightSections = settings?.sectionsOrder.right as Sections[];
     const leftRightMargin = spacing?.leftRightMargin!;
     const topBottomMargin = spacing?.topBottomMargin!;
 
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
    
     const leftSectionsStyle = {
         width: `${columnWidth.left}%`,

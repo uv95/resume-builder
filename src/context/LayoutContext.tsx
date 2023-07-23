@@ -1,5 +1,5 @@
 import { ILayout } from '@/utils/types/settingsTypes';
-import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 interface ILayoutContext {
   layout: ILayout | null;
@@ -28,3 +28,6 @@ export const LayoutProvider:FC<PropsWithChildren> = ({ children }) => {
         </LayoutContext.Provider>
     );
 };
+
+export const useLayoutContext = () => useContext(LayoutContext)
+

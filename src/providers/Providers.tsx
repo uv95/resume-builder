@@ -1,5 +1,6 @@
 import { ColorsProvider } from '@/context/ColorsContext';
 import { ContentProvider } from '@/context/ContentContext';
+import { LayoutProvider } from '@/context/LayoutContext';
 import { ResumeProvider } from '@/context/ResumeContext';
 import { SpacingProvider } from '@/context/SpacingContext';
 import { ReactNode } from 'react';
@@ -14,7 +15,9 @@ export const Providers = ({ children }: ProvidersProps) => {
             <SpacingProvider>
                 <ContentProvider>
                     <ColorsProvider>
-                        {children}
+                        <LayoutProvider>
+                            {children}
+                        </LayoutProvider>
                     </ColorsProvider>
                 </ContentProvider>
             </SpacingProvider>

@@ -22,7 +22,7 @@ const PageSection = ({
     settings,
     sectionIndex
 }: Props) => {
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
     const { showHeading } = settings?.profile!;
     const { spacing } =useSpacingContext();
     const { spaceBetweenSections } = spacing!;

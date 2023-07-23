@@ -13,6 +13,7 @@ import style from './SkillsLanguageBlock.module.scss';
 import Level from './Level';
 import SkillsLanguageItem from './SkillsLanguageItem';
 import { memo } from 'react';
+import { useLayoutContext } from '@/context/LayoutContext';
 
 type Props = {
   section: Sections.LANGUAGE | Sections.SKILLS;
@@ -24,7 +25,8 @@ type Props = {
 const SkillsLanguageBlock = ({ section, sectionPosition,items,settings }: Props) => {
     const { format, gridCols } =
     settings![section]!;
-    const {  columns } = settings?.layout!;
+    const {layout} = useLayoutContext();
+    const  columns  = layout?.columns!;
 
     const itemsStyle = {
         gridTemplateColumns: `repeat(${

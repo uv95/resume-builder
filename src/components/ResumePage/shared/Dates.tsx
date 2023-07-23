@@ -15,13 +15,12 @@ type Props = {
   endDate: string;
   sectionPosition?: Position.LEFT | Position.RIGHT;
   format: IDate;
-  settings:ISettings
 };
 
-const Dates = ({ startDate, endDate, sectionPosition, format,settings }: Props) => {
+const Dates = ({ startDate, endDate, sectionPosition, format }: Props) => {
     const {i18n} = useTranslation()
 
-    const { setColor } = useSetColor(settings);
+    const { setColor } = useSetColor();
     const formatDate = (date: string) => {
         const newDate = new Date(date).toLocaleString(i18n.language==='en'? 'en-US':'ru-RU', {
             month: format.month === 'digits' ? '2-digit' : format.month,
