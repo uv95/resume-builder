@@ -43,6 +43,7 @@ export enum SpacingSections {
 }
 
 export interface ISpacing {
+  id:string;
   fontSize: number;
   lineHeight: number;
   leftRightMargin: number;

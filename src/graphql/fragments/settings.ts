@@ -57,8 +57,9 @@ export const COLORS_FIELDS = gql`
     }
   }
 `;
-const SPACING_FIELDS = gql`
+export const SPACING_FIELDS = gql`
   fragment SpacingFields on Spacing {
+    id
     fontSize
     lineHeight
     leftRightMargin

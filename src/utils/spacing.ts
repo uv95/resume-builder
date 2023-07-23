@@ -1,6 +1,6 @@
 import { SpacingSections } from './types/settingsTypes';
 
-export const spacingData = [
+export const spacingData: {name:SpacingSections, values: number[]}[] = [
     {
         name: SpacingSections.FONT_SIZE,
         values: [13, 14, 14.5, 15, 16, 17, 18, 18.5, 19],

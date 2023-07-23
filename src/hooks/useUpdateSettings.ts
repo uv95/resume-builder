@@ -135,19 +135,6 @@ function useUpdateSettings() {
         });
     };
 
-
-    const updateSpacing = (section: SpacingSections, value: number) => {
-        return updateSettings({
-            variables: {
-                id: settings?.id,
-                spacing: {
-                    ...removeTypename(spacing!),
-                    [section]: value,
-                },
-            },
-        });
-    };
-
     const updateFont = (font: IFont) =>
         updateSettings({
             variables: {
@@ -252,7 +239,6 @@ function useUpdateSettings() {
         updatePosition,
         addToSectionsOrder,
         removeFromSectionsOrder,
-        updateSpacing,
         updateFont,
         updateHeading,
         updateSubtitle,

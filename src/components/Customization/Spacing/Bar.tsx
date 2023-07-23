@@ -1,13 +1,8 @@
 import Button from '@/components/UI/Button/Button';
-import { ResumeContext } from '@/context/ResumeContext';
-import { useSpacingContext } from '@/context/SpacingContext';
-import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { removeTypename } from '@/utils/removeTypename';
+import useUpdateSpacing from '@/hooks/settings/useUpdateSpacing';
 import { SpacingSections } from '@/utils/types/settingsTypes';
-import { useMutation } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import style from './Spacing.module.scss';
 import Track from './Track';
 
@@ -18,22 +13,8 @@ type Props = {
 };
 
 const Bar = ({ sectionName, currentValue, values }: Props) => {
-    // const { updateSpacing } = useUpdateSettings();
-    const { settings } = useContext(ResumeContext);
+    const {updateSpacingSettings}=useUpdateSpacing()
     const {t} = useTranslation(['customization'])
-    const [updateSettings] = useMutation(UPDATE_SETTINGS);
-    const { spacing } =useSpacingContext();
-    const updateSpacing = (section: SpacingSections, value: number) => {
-        return updateSettings({
-            variables: {
-                id: settings?.id,
-                spacing: {
-                    ...removeTypename(spacing!),
-                    [section]: value,
-                },
-            },
-        });
-    };
 
     return (
         <div>
@@ -53,7 +34,7 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         sectionName={sectionName}
                         values={values}
                         currentValue={currentValue}
-                        updateSpacing={updateSpacing}
+                        updateSpacing={updateSpacingSettings}
                     />
                 </div>
                 <div className={style.buttons}>
@@ -61,10 +42,10 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         btnType="thickBorder"
                         onClick={() =>
                             values.indexOf(currentValue) !== 0 &&
-              updateSpacing(
-                  sectionName,
-                  values[values.indexOf(currentValue) - 1]
-              )
+                            updateSpacingSettings(
+                                sectionName,
+                                values[values.indexOf(currentValue) - 1]
+                            )
                         }
                     >
                         -
@@ -73,10 +54,10 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         btnType="thickBorder"
                         onClick={() =>
                             values.indexOf(currentValue) !== 8 &&
-              updateSpacing(
-                  sectionName,
-                  values[values.indexOf(currentValue) + 1]
-              )
+                            updateSpacingSettings(
+                                sectionName,
+                                values[values.indexOf(currentValue) + 1]
+                            )
                         }
                     >
                         +
