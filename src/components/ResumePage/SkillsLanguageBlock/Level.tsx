@@ -13,11 +13,10 @@ type Props = {
   section: Sections.LANGUAGE | Sections.SKILLS;
   level: LanguageLevel | SkillLevel;
   sectionPosition?: Position.LEFT | Position.RIGHT;
-  settings:ISettings
 };
 
-const Level = ({ section, level, sectionPosition,settings }: Props) => {
-    const { setColor } = useSetColor(settings);
+const Level = ({ section, level, sectionPosition }: Props) => {
+    const { setColor } = useSetColor();
 
     const levels =
     section === Sections.LANGUAGE

@@ -65,7 +65,7 @@ columns === 2
                                 {format === Format.LEVEL && (section === Sections.LANGUAGE ?
                                     item['languageLevel' as keyof typeof item] : 
                                     item['skillLevel' as keyof typeof item]) && 
-                                    ( <Level settings={settings} level={section === Sections.LANGUAGE ? 
+                                    ( <Level level={section === Sections.LANGUAGE ? 
                                         (item['languageLevel' as keyof typeof item] as LanguageLevel)
                                         : (item['skillLevel' as keyof typeof item] as SkillLevel)} 
                                     // eslint-disable-next-line react/jsx-indent-props
