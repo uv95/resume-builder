@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import style from './Card.module.scss';
 
 type Props = {
@@ -21,4 +22,4 @@ const Card = ({ children, gray, hoverScale,className,id }: Props) => {
     );
 };
 
-export default Card;
+export default memo(Card);

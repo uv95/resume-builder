@@ -1,15 +1,17 @@
+import { useColorsContext } from '@/context/ColorsContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { colors } from '@/utils/colors';
 import { IAdvancedMulticolor } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 
 type Props = {};
 
 const AdvancedMulticolor = (props: Props) => {
-    const { settings } = useContext(ResumeContext);
+    // const { settings } = useContext(ResumeContext);
+    const { colors:colorsSettings } = useColorsContext();
     const selectedColor: IAdvancedMulticolor =
-   settings?.colors.advanced.multicolor!;
+  colorsSettings?.advanced.multicolor!;
 
     const areColorsEqual = (
         colors1: IAdvancedMulticolor,
@@ -37,4 +39,4 @@ const AdvancedMulticolor = (props: Props) => {
     );
 };
 
-export default AdvancedMulticolor;
+export default memo(AdvancedMulticolor);

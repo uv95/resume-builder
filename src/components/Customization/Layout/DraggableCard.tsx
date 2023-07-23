@@ -1,4 +1,4 @@
-import React, { DragEvent } from 'react';
+import React, { DragEvent, memo } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import style from './Layout.module.scss';
@@ -87,4 +87,4 @@ const DraggableCard = ({
     );
 };
 
-export default DraggableCard;
+export default memo(DraggableCard);

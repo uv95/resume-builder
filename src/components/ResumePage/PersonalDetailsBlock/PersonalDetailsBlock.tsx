@@ -1,3 +1,4 @@
+import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -6,16 +7,18 @@ import {
     FontStyle,
     Position,
 } from '@/utils/types/settingsTypes';
-import React, {  useEffect, useState } from 'react';
+import React, {  memo, useEffect, useState } from 'react';
 import AdditionalInfoBlock from './AdditionalInfoBlock';
 
 type Props = {settings: ISettings,content:IContent}
 
 const PersonalDetailsBlock = ({settings,content}:Props) => {
+    const { spacing } =useSpacingContext();
+
     const { position } = settings?.layout!;
     const personalDetails = content?.personalDetails;
     const { leftRightMargin, topBottomMargin, fontSize } =
-    settings?.spacing!;
+    spacing!;
     const { position: headerPosition } = settings?.header!;
     const { size: jobTitleSize, style: jobTitleStyle } =
     settings?.jobTitle!;
@@ -85,4 +88,4 @@ const PersonalDetailsBlock = ({settings,content}:Props) => {
     );
 };
 
-export default PersonalDetailsBlock;
+export default memo(PersonalDetailsBlock);

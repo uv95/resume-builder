@@ -1,13 +1,14 @@
-import { ResumeContext } from '@/context/ResumeContext';
+import { useColorsContext } from '@/context/ColorsContext';
 import { colors } from '@/utils/colors';
 import { IBasicMulticolor } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
+import React, { memo } from 'react';
 import BasicMulticolorIcon from './BasicMulticolorIcon';
 
 const BasicMulticolor = () => {
-    const { settings } = useContext(ResumeContext);
+    // const { settings } = useContext(ResumeContext);
+    const { colors:colorsSettings } = useColorsContext();
     const selectedColor: IBasicMulticolor =
-    settings?.colors.basic.multicolor!;
+    colorsSettings?.basic.multicolor!;
 
     const areColorsEqual = (
         colors1: IBasicMulticolor,
@@ -33,4 +34,4 @@ const BasicMulticolor = () => {
     );
 };
 
-export default BasicMulticolor;
+export default memo(BasicMulticolor);

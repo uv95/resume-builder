@@ -4,20 +4,27 @@ import { ColorOf, Position } from '@/utils/types/settingsTypes'
 import PageOneColumn from './PageOneColumn'
 import PageTwoColumns from './PageTwoColumns'
 import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock'
-import { forwardRef } from 'react'
+import { forwardRef, memo } from 'react'
+import { useSpacingContext } from '@/context/SpacingContext'
 
-type Props = {id?: string,className?: string, settings: ISettings,content:IContent;additionalStyle?: React.CSSProperties; ref: React.ForwardedRef<HTMLDivElement> }
+type Props = {
+    id?: string,
+    className?: string, 
+    settings: ISettings,
+    content:IContent;
+    additionalStyle?: React.CSSProperties; 
+    ref: React.ForwardedRef<HTMLDivElement> }
 
 const PageContent = forwardRef(function PageContent(props:Props,ref) {
     const {id,className,additionalStyle,settings,content}=props;
     const { setColor } = useSetColor(settings);
-
+    const {spacing} = useSpacingContext()
     const pageContentStyle = {
         background: setColor({
             colorOf: ColorOf.BG,
         }),
-        fontSize:settings.spacing.fontSize,
-        lineHeight:settings.spacing.lineHeight,
+        fontSize:spacing?.fontSize,
+        lineHeight:spacing?.lineHeight,
         display:
 settings.layout.position === Position.TOP
     ? 'flex'
@@ -54,4 +61,4 @@ settings.layout.position === Position.TOP
     )
 })
 
-export default PageContent
+export default memo(PageContent)

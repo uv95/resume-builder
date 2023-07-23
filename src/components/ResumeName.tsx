@@ -2,7 +2,7 @@ import { UPDATE_RESUME } from '@/graphql/mutations/resume';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import { useMutation } from '@apollo/client';
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import Button from './UI/Button/Button';
 import Card from './UI/Card/Card';
 import edit from '../icons/edit.svg';
@@ -10,6 +10,8 @@ import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useReactToPrint } from 'react-to-print';
 import { IResume } from '@/utils/types/resumeTypes';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { ILocalStorageResume } from '@/utils/types/common';
 
 type Props = {
   resumeName: string;
@@ -51,9 +53,9 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                 updateResume({
                     variables: { id, name },
                 });
-                const myExistingResumes = localStorage.getItem("myResumes") ? JSON.parse(localStorage.getItem("myResumes")!):null;
-                const myUpdatedResumes = [...myExistingResumes, {id, name}]
-                localStorage.setItem('myResumes', JSON.stringify(myUpdatedResumes));
+                const myExistingResumes = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY) ? JSON.parse(localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY)!) : null;
+                const myUpdatedResumes = [...myExistingResumes.filter((resume:ILocalStorageResume)=>resume.id!==id), {id, name}]
+                localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(myUpdatedResumes));
                 setIsEdit(false)
             }}
         >
@@ -79,4 +81,4 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     </Card>
 };
 
-export default ResumeName;
+export default memo(ResumeName);

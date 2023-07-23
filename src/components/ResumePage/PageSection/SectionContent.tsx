@@ -1,6 +1,7 @@
 import { AdditionalContentSection, IEducationItem, ILanguageItem, IProfessionalExperienceItem, IProfileItem, IProjectItem, ISkillsItem } from '@/utils/types/contentTypes'
 import { ISettings, Sections } from '@/utils/types/resumeTypes'
 import { Position } from '@/utils/types/settingsTypes'
+import { memo } from 'react'
 import EducationBlock from '../EducationBlock/EducationBlock'
 import ProfessionalExperienceBlock from '../ProfessionalExperienceBlock/ProfessionalExperienceBlock'
 import ProfileBlock from '../ProfileBlock/ProfileBlock'
@@ -46,4 +47,4 @@ const SectionContent = ({sectionContent,section,settings,sectionPosition}: Props
     )
 }
 
-export default SectionContent
+export default memo(SectionContent)

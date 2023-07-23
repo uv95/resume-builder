@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -37,4 +37,4 @@ const Textarea = ({ setTextareaText, textareaText, placeholder }: Props) => {
     );
 };
 
-export default Textarea;
+export default memo(Textarea);

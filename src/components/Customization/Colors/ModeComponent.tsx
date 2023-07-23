@@ -1,17 +1,18 @@
 import Button from '@/components/UI/Button/Button';
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { useColorsContext } from '@/context/ColorsContext';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { Mode } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
-import style from './Colors.module.scss';
 import { useTranslation } from 'next-i18next';
+import React, { memo } from 'react';
+import style from './Colors.module.scss';
 
 const ModeComponent = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const mode = settings?.colors.mode;
-    const { updateMode } = useUpdateSettings();
+    const { colors } = useColorsContext();
+
+    const mode = colors?.mode;
+    const { updateMode } = useUpdateColors();
     return (
         <div className="flex">
             <div className={style.option} onClick={() => updateMode(Mode.BASIC)}>
@@ -38,4 +39,4 @@ const ModeComponent = () => {
     );
 };
 
-export default ModeComponent;
+export default memo(ModeComponent);

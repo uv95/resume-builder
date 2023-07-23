@@ -1,5 +1,5 @@
 import { CurrentSectionContext } from '@/context/CurrentSectionContext';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import Button from '../../UI/Button/Button';
 import Card from '../../UI/Card/Card';
 import List from '../List/List';
@@ -21,13 +21,13 @@ type Props = {
   >;
 };
 
-const ContentCard = ({
+const ContentCard = memo(function ContentCard({
     contentSection,
     items,
     sectionName,
     icon,
     setContentToEdit,
-}: Props) => {
+}: Props) {
     const { currentSection, setCurrentSection } = useContext(
         CurrentSectionContext
     );
@@ -74,6 +74,6 @@ const ContentCard = ({
             }
         </Card>
     );
-};
+});
 
 export default ContentCard;

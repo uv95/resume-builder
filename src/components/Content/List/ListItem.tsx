@@ -1,6 +1,7 @@
 import { Sections } from '@/utils/types/resumeTypes'
 import style from './List.module.scss';
 import parse from 'html-react-parser';
+import { memo } from 'react';
 
 type Props = {section:Sections, item: any}
 
@@ -66,4 +67,4 @@ const ListItem = ({section, item}: Props) => {
 
 }
 
-export default ListItem
+export default memo(ListItem)

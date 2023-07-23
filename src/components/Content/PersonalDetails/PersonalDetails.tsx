@@ -1,16 +1,16 @@
-import { ResumeContext } from '@/context/ResumeContext';
+import { useContentContext } from '@/context/ContentContext';
 import { personalDetailInputData } from '@/utils/data';
-import React, { useContext } from 'react';
+import { Sections } from '@/utils/types/resumeTypes';
+import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
+import React, { memo } from 'react';
+import edit from '../../../icons/edit.svg';
+import emailIcon from '../../../icons/email_regular.svg';
+import location from '../../../icons/location_regular.svg';
+import phoneIcon from '../../../icons/phone_regular.svg';
 import Card from '../../UI/Card/Card';
 import InputsSection from '../InputsSection/InputsSection';
 import style from './PersonalDetails.module.scss';
-import emailIcon from '../../../icons/email_regular.svg';
-import phoneIcon from '../../../icons/phone_regular.svg';
-import location from '../../../icons/location_regular.svg';
-import edit from '../../../icons/edit.svg';
-import Image from 'next/image';
-import { Sections } from '@/utils/types/resumeTypes';
-import { useTranslation } from 'next-i18next';
 
 type Props = {
   setContentToEdit: React.Dispatch<
@@ -28,7 +28,7 @@ type Props = {
 const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
     const {t} = useTranslation(['content'])
    
-    const { content } = useContext(ResumeContext);
+    const { content } =useContentContext();
     const { address, email, phone, fullName } = content?.personalDetails! || '';
 
     return (
@@ -110,4 +110,4 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
     );
 };
 
-export default PersonalDetails;
+export default memo(PersonalDetails);

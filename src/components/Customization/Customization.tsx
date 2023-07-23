@@ -13,6 +13,7 @@ import ProfileSettings from './ProfileSettings';
 import EducationSettings from './EducationSettings';
 import ProfessionalExperienceSettings from './ProfessionalExperienceSettings';
 import DeleteResume from './DeleteResume/DeleteResume';
+import { memo } from 'react';
 
 
 const Customization = () => {
@@ -38,4 +39,4 @@ const Customization = () => {
     );
 };
 
-export default Customization;
+export default memo(Customization);

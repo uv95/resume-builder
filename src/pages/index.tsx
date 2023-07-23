@@ -13,11 +13,13 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 import Footer from '@/components/IndexPage/Footer/Footer';
 import Layout from '@/components/Layout';
 import { Loader } from '@/components/UI/Loader/Loader';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { ILocalStorageResume } from '@/utils/types/common';
 
 export default function Home() {
     const [addResume, { data}] = useMutation(ADD_RESUME);
     const [myResumes, setMyResumes] = useState<IResume[]>([]);
-    const [myResumesLS, setMyResumesLS] = useState<{id:string,name:string}[]>([]);
+    const [myResumesLS, setMyResumesLS] = useState<ILocalStorageResume[]>([]);
 
     const {  data: allResumes } = useQuery(GET_RESUMES);
     const router = useRouter();
@@ -25,18 +27,18 @@ export default function Home() {
     useEffect(() => {
         if (data) {
             const newResumeList = [...myResumesLS, {id: data.addResume.id, name: data.addResume.name}]
-            localStorage.setItem('myResumes', JSON.stringify(newResumeList));
+            localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(newResumeList));
             router.push(`resume/${data.addResume.id}`);
         }
     }, [data, router,myResumes,myResumesLS]);
 
 
     useEffect(() => {
-        const myExistingResumesLS = localStorage.getItem("myResumes");
-        const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as {id:string,name:string}[] : null;
+        const myExistingResumesLS = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY);
+        const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as ILocalStorageResume[] : null;
 
         if(myExistingResumes&&myExistingResumes.length!==0) {
-            const allMyResumes = allResumes.resumes.filter((item:IResume)=>myExistingResumes.some((resume:{id:string,name:string})=>resume.id===item.id))
+            const allMyResumes = allResumes.resumes.filter((item:IResume)=>myExistingResumes.some((resume:ILocalStorageResume)=>resume.id===item.id))
             setMyResumesLS(myExistingResumes)
             setMyResumes(allMyResumes)
         }

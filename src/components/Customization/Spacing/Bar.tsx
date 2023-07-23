@@ -1,20 +1,39 @@
 import Button from '@/components/UI/Button/Button';
+import { ResumeContext } from '@/context/ResumeContext';
+import { useSpacingContext } from '@/context/SpacingContext';
+import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { removeTypename } from '@/utils/removeTypename';
 import { SpacingSections } from '@/utils/types/settingsTypes';
+import { useMutation } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
+import { memo, useContext } from 'react';
 import style from './Spacing.module.scss';
 import Track from './Track';
 
 type Props = {
-  sectionTitle: string;
   sectionName: SpacingSections;
   currentValue: number;
   values: number[];
 };
 
-const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
-    const { updateSpacing } = useUpdateSettings();
+const Bar = ({ sectionName, currentValue, values }: Props) => {
+    // const { updateSpacing } = useUpdateSettings();
+    const { settings } = useContext(ResumeContext);
     const {t} = useTranslation(['customization'])
+    const [updateSettings] = useMutation(UPDATE_SETTINGS);
+    const { spacing } =useSpacingContext();
+    const updateSpacing = (section: SpacingSections, value: number) => {
+        return updateSettings({
+            variables: {
+                id: settings?.id,
+                spacing: {
+                    ...removeTypename(spacing!),
+                    [section]: value,
+                },
+            },
+        });
+    };
 
     return (
         <div>
@@ -68,4 +87,4 @@ const Bar = ({ sectionTitle, sectionName, currentValue, values }: Props) => {
     );
 };
 
-export default Bar;
+export default memo(Bar);

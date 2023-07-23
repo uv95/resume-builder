@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 type Props = { fill: string; size: number; dataName: string };
 
@@ -187,4 +187,4 @@ const DetailsIcons = ({ fill, size, dataName }: Props) => {
     return null;
 };
 
-export default DetailsIcons;
+export default memo(DetailsIcons);

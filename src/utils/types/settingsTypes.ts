@@ -187,3 +187,27 @@ export enum ColorOption {
   ACCENT = 'accent',
   MULTICOLOR = 'multicolor',
 }
+
+export interface ILayout {
+    columns: number;
+    position: Position;
+    columnWidth: {
+      left: number;
+      right: number;
+    }
+}
+export interface IColors {
+    id: String,
+    mode: Mode;
+    basic: {
+      selected: ColorOption;
+      accent: string;
+      multicolor: IBasicMulticolor;
+    };
+    advanced: {
+      selected: ColorOption;
+      accent: string;
+      multicolor: IAdvancedMulticolor;
+    };
+    applyAccentColor: IApplyAccentColor;
+}

@@ -1,21 +1,37 @@
 import {
     ApolloClient,
+    from,
+    HttpLink,
     InMemoryCache,
     NormalizedCacheObject,
 } from '@apollo/client';
 import merge from 'deepmerge';
 import isEqual from 'lodash-es/isEqual';
+import { onError } from "@apollo/client/link/error";
+
+const errorLink = onError(({ graphQLErrors, networkError}) => {
+    if (graphQLErrors)
+        graphQLErrors.forEach(({ message, locations, path }) =>
+            console.log(
+                `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+            )
+        );
+    if (networkError) console.log(`[Network error 💋]: ${networkError}`)
+})
+
+const uriDev='http://localhost:8000/graphql'
+const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
+const httpLink = new HttpLink({ uri: uriDev })
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 
-const uriDev='http://localhost:8000/graphql'
-const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
 
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: uriProd,
+        link: from([httpLink,errorLink]),
+        uri: uriDev,
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {

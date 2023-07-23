@@ -2,7 +2,7 @@ import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { useMutation } from '@apollo/client';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import style from './Layout.module.scss';
 import { useTranslation } from 'next-i18next';
 
@@ -76,4 +76,4 @@ const ColumnWidth = () => {
     );
 };
 
-export default ColumnWidth;
+export default memo(ColumnWidth);

@@ -1,4 +1,5 @@
 import DetailsIcons from '@/components/DetailsIcons';
+import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -8,14 +9,16 @@ import {
     HeaderPosition,
     Position,
 } from '@/utils/types/settingsTypes';
+import { memo } from 'react';
 import style from './PersonalDetailsBlock.module.scss';
 
 type Props = {settings: ISettings ,content:IContent}
 
 const AdditionalInfoBlock = ({settings,content}:Props) => {
+    const {spacing} = useSpacingContext()
     const { position } = settings?.layout!;
     const personalDetails = content?.personalDetails;
-    const { fontSize } = settings?.spacing!;
+    const { fontSize } = spacing!;
     const {
         additionalInfoOrder,
         additionalInfoStyle,
@@ -104,4 +107,4 @@ const AdditionalInfoBlock = ({settings,content}:Props) => {
     );
 };
 
-export default AdditionalInfoBlock;
+export default memo(AdditionalInfoBlock);

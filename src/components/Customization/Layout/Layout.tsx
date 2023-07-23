@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useLayoutDnD from '@/hooks/useLayoutDnD';
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import SettingsCard from '../shared/SettingsCard';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
@@ -49,4 +49,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default memo(Layout);

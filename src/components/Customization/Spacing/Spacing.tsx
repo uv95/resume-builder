@@ -1,21 +1,21 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import { spacingData } from '@/utils/spacing';
-import React, { useContext } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import SettingsCard from '../shared/SettingsCard';
 import Bar from './Bar';
 import { useTranslation } from 'next-i18next';
+import { ISpacing } from '@/utils/types/settingsTypes';
+import { SpacingContext } from '@/context/SpacingContext';
 
 const Spacing = () => {
     const {t} = useTranslation(['customization'])
+    const { spacing } = useContext(SpacingContext);   
 
-    const { settings } = useContext(ResumeContext);
-    const spacing = settings?.spacing!;
     return (
         <SettingsCard title={t('spacing')}>
-            {spacingData.map((item) => (
+            {spacing&&spacingData.map((item) => (
                 <Bar
                     key={item.name}
-                    sectionTitle={item.title}
                     sectionName={item.name}
                     currentValue={spacing[item.name as keyof typeof spacing]}
                     values={item.values}
@@ -25,4 +25,4 @@ const Spacing = () => {
     );
 };
 
-export default Spacing;
+export default memo(Spacing);

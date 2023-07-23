@@ -1,45 +1,47 @@
-import { IContent, IResume, ISettings } from '@/utils/types/resumeTypes';
-import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
+import { IContent, ISettings } from '@/utils/types/resumeTypes';
+import React, { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 interface IResumeContext {
-  resume: IResume | null;
-  setResume: React.Dispatch<React.SetStateAction<IResume | null>>;
-  content: IContent | null;
-  setContent: React.Dispatch<React.SetStateAction<IContent | null>>;
+  resume: {id:string,name:string};
+  setResume: React.Dispatch<React.SetStateAction<{id:string,name:string}>>;
   settings: ISettings | null;
   setSettings: React.Dispatch<React.SetStateAction<ISettings | null>>;
 }
 
 export const ResumeContext = createContext<IResumeContext>({
-    resume: null,
+    resume: {id:'',name:''},
     setResume: () => {},
-    content: null,
-    setContent: () => {},
     settings: null,
     setSettings: () => {},
 });
 
 
 export const ResumeProvider:FC<PropsWithChildren> = ({ children }) => {
-    const [resume, setResume] = useState<IResume | null>(null);
-    const [content, setContent] = useState<IContent | null>(null);
+    const [resume, setResume] = useState({id:'',name:''});
     const [settings, setSettings] = useState<ISettings | null>(null);
 
-    const values = useMemo(
+    const resumeValues = useMemo(
         ()=>({
             resume,
             setResume,
-            content,
-            setContent,
-            settings,
-            setSettings
         }),
-        [resume,content,settings]
+        [resume]
+    )
+    const settingsValues = useMemo(
+        ()=>({
+            settings,
+            setSettings,
+        }),
+        [settings]
     )
 
+
     return (
-        <ResumeContext.Provider value={values}>
+        <ResumeContext.Provider value={{...resumeValues, ...settingsValues }}>
             {children}
         </ResumeContext.Provider>
     );
 };
+
+export const useResumeContext = () => useContext(ResumeContext)
+

@@ -1,6 +1,6 @@
 import Button from '@/components/UI/Button/Button';
 import Image from 'next/image';
-import React from 'react';
+import React, { memo } from 'react';
 import style from './InputsSection.module.scss';
 import save from '../../../icons/check.svg';
 import trash from '../../../icons/trash.svg';
@@ -76,4 +76,4 @@ const Buttons = ({
     );
 };
 
-export default Buttons;
+export default memo(Buttons);

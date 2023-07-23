@@ -7,6 +7,9 @@ import { ResumeProvider } from '@/context/ResumeContext';
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config.js'
 import ErrorBoundary from '@/providers/ErrorBoundary/ErrorBoundary';
+import { SpacingProvider } from '@/context/SpacingContext';
+import { ContentProvider } from '@/context/ContentContext';
+import { ColorsProvider } from '@/context/ColorsContext';
 
 function App({ Component, pageProps }: AppProps) {
     const client = useApollo(pageProps);
@@ -14,7 +17,13 @@ function App({ Component, pageProps }: AppProps) {
         <ApolloProvider client={client}>
             <ErrorBoundary>
                 <ResumeProvider>
-                    <Component {...pageProps} />
+                    <ContentProvider>
+                        <SpacingProvider>
+                            <ColorsProvider>
+                                <Component {...pageProps} />
+                            </ColorsProvider>
+                        </SpacingProvider>
+                    </ContentProvider>
                 </ResumeProvider>
             </ErrorBoundary>
         </ApolloProvider>

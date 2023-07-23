@@ -8,6 +8,7 @@ import {
 import { IEducationItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
+import { memo } from 'react';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -94,4 +95,4 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
     );
 };
 
-export default EducationBlock;
+export default memo(EducationBlock);

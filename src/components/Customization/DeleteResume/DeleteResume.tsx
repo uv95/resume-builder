@@ -7,6 +7,8 @@ import Button from '../../UI/Button/Button'
 import Modal from '../../UI/Modal/Modal';
 import style from './DeleteResume.module.scss';
 import { useRouter } from 'next/router';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { ILocalStorageResume } from '@/utils/types/common';
 
 const DeleteResume = () => {
     const router = useRouter();
@@ -16,10 +18,14 @@ const DeleteResume = () => {
     const {t} = useTranslation()
 
     const handleDeleteResume = () =>{
-        const myExistingResumesLS = localStorage.getItem("myResumes");
-        const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as {id:string,name:string}[] : null;
-        const myResumesUpdated = myExistingResumes?.filter((resumeItem:{id:string,name:string})=>resume?.id!==resumeItem.id);
-        localStorage.setItem('myResumes', JSON.stringify(myResumesUpdated));
+        const myExistingResumesLS = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY);
+
+        const myExistingResumesParsed = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as ILocalStorageResume[] : null;
+
+        const myResumesUpdated = myExistingResumesParsed?.filter((resumeItem:ILocalStorageResume)=>resume?.id!==resumeItem.id);
+
+        localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(myResumesUpdated));
+
         deleteResume({variables:{id: resume?.id}})
         router.push('/')
     }
@@ -36,7 +42,7 @@ const DeleteResume = () => {
                     <p>{t('confirm-delete')}</p>
                     <div className={style.buttons}>
                         <Button btnType='gray' onClick={handleDeleteResume}>{t('yes')}</Button>
-                        <Button btnType='gray' onClick={()=>setConfirmDelete(false)}>{t('no')}</Button>
+                        <Button btnType='pink' onClick={()=>setConfirmDelete(false)}>{t('no')}</Button>
                     </div>
                 </div>
             </Modal>}

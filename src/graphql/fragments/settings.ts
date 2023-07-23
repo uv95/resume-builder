@@ -17,8 +17,9 @@ const LAYOUT_FIELDS = gql`
     }
   }
 `;
-const COLORS_FIELDS = gql`
+export const COLORS_FIELDS = gql`
   fragment ColorsFields on Colors {
+    id
     mode
     basic {
       selected

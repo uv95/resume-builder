@@ -1,7 +1,7 @@
 import {
     Sections,
 } from '@/utils/types/resumeTypes';
-import React, { DragEvent } from 'react';
+import React, { DragEvent, memo } from 'react';
 import style from './List.module.scss';
 import useContentDnD from '@/hooks/useContentDnD';
 import { AdditionalContentItem } from '@/utils/types/contentTypes';
@@ -73,4 +73,4 @@ const List = ({
     );
 };
 
-export default List;
+export default memo(List);

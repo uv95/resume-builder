@@ -1,7 +1,9 @@
+import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
 import { ColorOf, Position } from '@/utils/types/settingsTypes';
+import { memo } from 'react';
 import PageSection from '../PageSection/PageSection';
 import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock';
 import style from './Page.module.scss';
@@ -12,11 +14,12 @@ type Props = {
 };
 
 const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
+    const {spacing} = useSpacingContext()
     const position = settings?.layout.position;
     const  leftSections= settings?.sectionsOrder.left as Sections[];
     const rightSections = settings?.sectionsOrder.right as Sections[];
-    const leftRightMargin = settings?.spacing.leftRightMargin!;
-    const topBottomMargin = settings?.spacing.topBottomMargin!;
+    const leftRightMargin = spacing?.leftRightMargin!;
+    const topBottomMargin = spacing?.topBottomMargin!;
 
     const { setColor } = useSetColor(settings);
    
@@ -81,4 +84,4 @@ const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
     );
 };
 
-export default PageTwoColumns;
+export default memo(PageTwoColumns);

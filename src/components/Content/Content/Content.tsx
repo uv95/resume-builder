@@ -3,7 +3,7 @@ import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { inputData } from '@/utils/data';
 import { Sections } from '@/utils/types/resumeTypes';
-import React, { useContext, useState } from 'react';
+import React, { memo, useContext, useState } from 'react';
 import AddContent from '../AddContent/AddContent';
 import Button from '../../UI/Button/Button';
 import Card from '../../UI/Card/Card';
@@ -15,6 +15,7 @@ import { getSectionIcon } from '@/utils/getSectionIcon';
 import {  AdditionalContentSection } from '@/utils/types/contentTypes';
 import style from './Content.module.scss';
 import { useTranslation } from 'next-i18next';
+import { useContentContext } from '@/context/ContentContext';
 
 const Content = () => {
     const {t} = useTranslation(['content'])
@@ -27,7 +28,8 @@ const Content = () => {
       section: '',
       itemId: '',
   });
-    const { content, settings } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
+    const { content } =useContentContext();
     const additionalContentSections = settings?.sectionsOrder.top.filter(section=>section!=='personalDetails')! || []
 
     const showPersonalDetailsIfNotEditingAnything =
@@ -97,4 +99,4 @@ const Content = () => {
     );
 };
 
-export default Content;
+export default memo(Content);

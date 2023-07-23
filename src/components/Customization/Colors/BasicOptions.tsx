@@ -1,19 +1,22 @@
 import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import style from './Colors.module.scss';
 import BasicMulticolorIcon from './BasicMulticolorIcon';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import { useColorsContext } from '@/context/ColorsContext';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 
 const BasicOptions = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const selected = settings?.colors.basic.selected;
+    // const { settings } = useContext(ResumeContext);
+    const { colors } = useColorsContext();
+    const selected = colors?.basic.selected;
     const { accent, multicolor: selectedMulticolor } =
-    settings?.colors.basic!;
-    const { selectOption } = useUpdateSettings();
+    colors?.basic!;
+    const { selectOption } = useUpdateColors();
 
     return (
         <div className="flex">
@@ -44,4 +47,4 @@ const BasicOptions = () => {
     );
 };
 
-export default BasicOptions;
+export default memo(BasicOptions);

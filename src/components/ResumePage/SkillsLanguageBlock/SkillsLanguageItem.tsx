@@ -1,8 +1,10 @@
+import { useColorsContext } from '@/context/ColorsContext';
 import useSetColor from '@/hooks/useSetColor';
 import { getDivider } from '@/utils/getDivider';
 import { ILanguageItem, ISkillsItem } from '@/utils/types/contentTypes';
 import { ISettings, Sections } from '@/utils/types/resumeTypes'
 import { AccentColorSections, ColorOf, Format, Position } from '@/utils/types/settingsTypes'
+import { memo } from 'react';
 import style from './SkillsLanguageBlock.module.scss';
 
 type Props = {item:ISkillsItem|ILanguageItem;
@@ -16,7 +18,8 @@ type Props = {item:ISkillsItem|ILanguageItem;
 const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,settings}: Props) => {
     const { format, textFormat, infoItalic } =
     settings![section]!;
-    const { applyAccentColor } = settings?.colors!;
+    const { colors } = useColorsContext();
+    const { applyAccentColor } = colors!;
     const { position } = settings?.layout!;
     const { setColor } = useSetColor(settings);
 
@@ -80,4 +83,4 @@ format === Format.TEXT || format === Format.BUBBLE
     )
 }
 
-export default SkillsLanguageItem
+export default memo(SkillsLanguageItem)

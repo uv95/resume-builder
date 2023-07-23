@@ -1,12 +1,11 @@
+import { useContentContext } from '@/context/ContentContext';
 import { ResumeContext } from '@/context/ResumeContext';
+import { useSpacingContext } from '@/context/SpacingContext';
 import { UPDATE_SETTINGS } from '@/graphql/mutations/settings';
 import { removeTypename } from '@/utils/removeTypename';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { Sections } from '@/utils/types/resumeTypes';
 import {
-    ColorOption,
-    IAdvancedMulticolor,
-    IBasicMulticolor,
     IDate,
     IEducationSettings,
     IFont,
@@ -17,21 +16,21 @@ import {
     IProfessionalExperienceSettings,
     IProfileSettings,
     ISkillsLanguageSettings,
-    ISubtitle,
-    Mode,
-    Position,
-    SpacingSections,
+    ISubtitle, Position,
+    SpacingSections
 } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
 
 function useUpdateSettings() {
     const [updateSettings] = useMutation(UPDATE_SETTINGS);
-    const { resume } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
+    const { content } =useContentContext();
+    const { spacing } =useSpacingContext();
 
     //sectionsOrder
     const addToSectionsOrder = (sectionName: Sections) => {
-        const { left, right, top } = resume?.settings.sectionsOrder!;
+        const { left, right, top } = settings?.sectionsOrder!;
         const newSectionsOrderTop = top.includes(sectionName)
             ? top
             : [...top, sectionName];
@@ -47,7 +46,7 @@ function useUpdateSettings() {
 
         return updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 sectionsOrder: {
                     top: newSectionsOrderTop,
                     left: newSectionsOrderLeft,
@@ -58,14 +57,14 @@ function useUpdateSettings() {
     };
 
     const removeFromSectionsOrder = (sectionName: Sections) => {
-        const contentSection = resume?.content[sectionName as keyof typeof resume.content] as AdditionalContentSection;
+        const contentSection = content![sectionName as keyof typeof content] as AdditionalContentSection;
         const sectionLength =
         contentSection.items.length;
 
-        let newSectionsOrderTop = resume?.settings.sectionsOrder.top! as Sections[];
-        let newSectionsOrderLeft = resume?.settings.sectionsOrder
+        let newSectionsOrderTop = settings?.sectionsOrder.top! as Sections[];
+        let newSectionsOrderLeft = settings?.sectionsOrder
             .left! as Sections[];
-        let newSectionsOrderRight = resume?.settings.sectionsOrder
+        let newSectionsOrderRight = settings?.sectionsOrder
             .right! as Sections[];
 
         if (sectionLength === 1) {
@@ -82,7 +81,7 @@ function useUpdateSettings() {
 
         return updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 sectionsOrder: {
                     top: newSectionsOrderTop,
                     left: newSectionsOrderLeft,
@@ -103,7 +102,7 @@ function useUpdateSettings() {
   }) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 sectionsOrder: {
                     top,
                     left,
@@ -116,9 +115,9 @@ function useUpdateSettings() {
     const updatePosition = (position: Position, columns: number) => {
         return updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 layout: {
-                    ...removeTypename(resume?.settings.layout!),
+                    ...removeTypename(settings?.layout!),
                     position,
                     columns,
                 },
@@ -130,77 +129,19 @@ function useUpdateSettings() {
     const updateColumns = (columns: 1 | 2) => {
         return updateSettings({
             variables: {
-                id: resume?.settings.id,
-                layout: { ...removeTypename(resume?.settings.layout!), columns },
+                id: settings?.id,
+                layout: { ...removeTypename(settings?.layout!), columns },
             },
         });
     };
 
-    //Colors
-    //mode
-    const updateMode = (mode: Mode) => {
-        return updateSettings({
-            variables: {
-                id: resume?.settings.id,
-                colors: { ...removeTypename(resume?.settings.colors!), mode },
-            },
-        });
-    };
-
-    //option: basic/advanced
-    const selectOption = (option: ColorOption, mode: Mode) => {
-        return updateSettings({
-            variables: {
-                id: resume?.settings.id,
-                colors: {
-                    ...removeTypename(resume?.settings.colors!),
-                    [mode]: {
-                        ...removeTypename(resume?.settings.colors[mode]!),
-                        selected: option,
-                    },
-                },
-            },
-        });
-    };
-
-    //update accent color
-    const updateAccentColor = (accent: string, mode: Mode) => {
-        return updateSettings({
-            variables: {
-                id: resume?.settings.id,
-                colors: {
-                    ...removeTypename(resume?.settings.colors!),
-                    [mode]: { ...removeTypename(resume?.settings.colors[mode]!), accent },
-                },
-            },
-        });
-    };
-
-    //update multicolor
-    const updateMulticolor = (
-        multicolor: IAdvancedMulticolor | IBasicMulticolor,
-        mode: Mode
-    ) => {
-        return updateSettings({
-            variables: {
-                id: resume?.settings.id,
-                colors: {
-                    ...removeTypename(resume?.settings.colors!),
-                    [mode]: {
-                        ...removeTypename(resume?.settings.colors[mode]!),
-                        multicolor,
-                    },
-                },
-            },
-        });
-    };
 
     const updateSpacing = (section: SpacingSections, value: number) => {
         return updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 spacing: {
-                    ...removeTypename(resume?.settings.spacing!),
+                    ...removeTypename(spacing!),
                     [section]: value,
                 },
             },
@@ -210,7 +151,7 @@ function useUpdateSettings() {
     const updateFont = (font: IFont) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 font,
             },
         });
@@ -218,7 +159,7 @@ function useUpdateSettings() {
     const updateHeading = (heading: IHeading) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 heading,
             },
         });
@@ -226,7 +167,7 @@ function useUpdateSettings() {
     const updateSubtitle = (subtitle: ISubtitle) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 subtitle,
             },
         });
@@ -234,7 +175,7 @@ function useUpdateSettings() {
     const updateHeader = (header: IHeader) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 header,
             },
         });
@@ -242,7 +183,7 @@ function useUpdateSettings() {
     const updateName = (name: IName) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 name,
             },
         });
@@ -250,7 +191,7 @@ function useUpdateSettings() {
     const updateJobTitle = (jobTitle: IJobTitle) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 jobTitle,
             },
         });
@@ -258,7 +199,7 @@ function useUpdateSettings() {
     const updateDate = (date: IDate) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 date,
             },
         });
@@ -266,7 +207,7 @@ function useUpdateSettings() {
     const updateSkillsSettings = (skills: ISkillsLanguageSettings) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 skills,
             },
         });
@@ -274,7 +215,7 @@ function useUpdateSettings() {
     const updateLanguageSettings = (language: ISkillsLanguageSettings) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 language,
             },
         });
@@ -282,7 +223,7 @@ function useUpdateSettings() {
     const updateProfileSettings = (profile: IProfileSettings) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 profile,
             },
         });
@@ -290,7 +231,7 @@ function useUpdateSettings() {
     const updateEducationSettings = (education: IEducationSettings) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 education,
             },
         });
@@ -300,7 +241,7 @@ function useUpdateSettings() {
     ) =>
         updateSettings({
             variables: {
-                id: resume?.settings.id,
+                id: settings?.id,
                 professionalExperience,
             },
         });
@@ -311,10 +252,6 @@ function useUpdateSettings() {
         updatePosition,
         addToSectionsOrder,
         removeFromSectionsOrder,
-        updateMode,
-        selectOption,
-        updateAccentColor,
-        updateMulticolor,
         updateSpacing,
         updateFont,
         updateHeading,

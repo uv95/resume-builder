@@ -6,7 +6,7 @@ import {
     ColorOf,
     Position,
 } from '@/utils/types/settingsTypes';
-import React from 'react';
+import React, { memo } from 'react';
 import style from './SkillsLanguageBlock.module.scss';
 
 type Props = {
@@ -47,4 +47,4 @@ const Level = ({ section, level, sectionPosition,settings }: Props) => {
     );
 };
 
-export default Level;
+export default memo(Level);

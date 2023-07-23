@@ -1,5 +1,5 @@
 import style from './Layout.module.scss';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import Button from '@/components/UI/Button/Button';
@@ -38,4 +38,4 @@ const PositionComponent = () => {
     );
 };
 
-export default PositionComponent;
+export default memo(PositionComponent);

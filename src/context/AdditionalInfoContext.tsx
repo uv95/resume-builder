@@ -1,5 +1,5 @@
 import { IAdditionalInfo } from '@/utils/types/contentTypes';
-import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 interface IAdditionalInfoContext {
   additionalInfo: IAdditionalInfo[];
@@ -30,3 +30,5 @@ export const AdditionalInfoProvider:FC<PropsWithChildren> = ({ children }) => {
         </AdditionalInfoContext.Provider>
     );
 };
+
+export const useAdditionalInfoContext = () => useContext(AdditionalInfoContext)

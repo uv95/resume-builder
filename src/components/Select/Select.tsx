@@ -1,6 +1,7 @@
 import { LanguageLevel, SkillLevel } from '@/utils/types/contentTypes';
 import { Field } from 'formik';
 import { useTranslation } from 'next-i18next';
+import { memo } from 'react';
 
 type Props = { input: 'languageLevel' | 'skillLevel' };
 
@@ -21,4 +22,4 @@ const Select = ({ input }: Props) => {
     );
 };
 
-export default Select;
+export default memo(Select);

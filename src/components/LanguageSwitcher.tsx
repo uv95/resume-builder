@@ -4,6 +4,7 @@ import Button from './UI/Button/Button';
 import englishFlag from '../icons/gb.svg';
 import russianFlag from '../icons/ru.svg';
 import { useRouter } from 'next/router'
+import { memo } from 'react';
 
 type Props = {className?:string}
 
@@ -32,4 +33,4 @@ const LanguageSwitcher = ({className}:Props) => {
     )
 }
 
-export default LanguageSwitcher
+export default memo(LanguageSwitcher)

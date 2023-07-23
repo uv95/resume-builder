@@ -1,23 +1,23 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext } from 'react';
+import { useColorsContext } from '@/context/ColorsContext';
+import { ColorOption, Mode } from '@/utils/types/settingsTypes';
+import { useTranslation } from 'next-i18next';
+import React, { memo } from 'react';
+import SettingsCard from '../shared/SettingsCard';
+import AccentColors from './AccentColors';
+import AdvancedMulticolor from './AdvancedMulticolor';
 import AdvancedOptions from './AdvancedOptions';
 import ApplyAccentColor from './ApplyAccentColor';
-import AccentColors from './AccentColors';
 import BasicMulticolor from './BasicMulticolor';
 import BasicOptions from './BasicOptions';
 import ModeComponent from './ModeComponent';
-import AdvancedMulticolor from './AdvancedMulticolor';
-import SettingsCard from '../shared/SettingsCard';
-import { ColorOption, Mode } from '@/utils/types/settingsTypes';
-import { useTranslation } from 'next-i18next';
 
 const Colors = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const mode = settings?.colors.mode;
-    const selectedOptionBasic = settings?.colors.basic.selected;
-    const selectedOptionAdvanced = settings?.colors.advanced.selected;
+    const { colors } = useColorsContext();
+    const mode = colors?.mode;
+    const selectedOptionBasic = colors?.basic.selected;
+    const selectedOptionAdvanced = colors?.advanced.selected;
 
     return (
         <SettingsCard title={t('colors')}>
@@ -46,4 +46,4 @@ const Colors = () => {
     );
 };
 
-export default Colors;
+export default memo(Colors);

@@ -1,5 +1,7 @@
+import { useSpacingContext } from '@/context/SpacingContext';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
+import { memo } from 'react';
 import PageSection from '../PageSection/PageSection';
 
 type Props = {
@@ -9,8 +11,9 @@ type Props = {
 };
 
 const PageOneColumn = ({ sections,settings,content }: Props) => {
-    const leftRightMargin = settings?.spacing.leftRightMargin!;
-    const topBottomMargin = settings?.spacing.topBottomMargin!;
+    const { spacing } =useSpacingContext();
+    const leftRightMargin = spacing?.leftRightMargin!;
+    const topBottomMargin = spacing?.topBottomMargin!;
 
     return (
         <div
@@ -34,4 +37,4 @@ const PageOneColumn = ({ sections,settings,content }: Props) => {
     );
 };
 
-export default PageOneColumn;
+export default memo(PageOneColumn);

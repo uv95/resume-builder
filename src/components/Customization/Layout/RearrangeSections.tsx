@@ -2,7 +2,7 @@ import Card from '@/components/UI/Card/Card';
 import { ResumeContext } from '@/context/ResumeContext';
 import { getSectionIcon } from '@/utils/getSectionIcon';
 import Image from 'next/image';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import DraggableCard from './DraggableCard';
 import style from './Layout.module.scss';
 import user from '../../../icons/user.svg';
@@ -117,4 +117,4 @@ const RearrangeSections = ({
     );
 };
 
-export default RearrangeSections;
+export default memo(RearrangeSections);

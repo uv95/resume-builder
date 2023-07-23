@@ -7,7 +7,6 @@ export const UPDATE_SETTINGS = gql`
     $id: ID!
     $sectionsOrder: SectionsOrderInput
     $layout: LayoutInput
-    $colors: ColorsInput
     $spacing: SpacingInput
     $font: FontInput
     $heading: HeadingInput
@@ -26,7 +25,6 @@ export const UPDATE_SETTINGS = gql`
       id: $id
       sectionsOrder: $sectionsOrder
       layout: $layout
-      colors: $colors
       spacing: $spacing
       font: $font
       heading: $heading

@@ -1,5 +1,5 @@
 import { AdditionalInfoContext } from '@/context/AdditionalInfoContext';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { memo, useContext, useEffect, useState } from 'react';
 import Button from '../../UI/Button/Button';
 import Tag from '../Tag/Tag';
 import style from './AddAdditionalInfo.module.scss';
@@ -93,4 +93,4 @@ const AddAdditionalInfo = ({ tags,tagsGroup }: Props) => {
     );
 };
 
-export default AddAdditionalInfo;
+export default memo(AddAdditionalInfo);

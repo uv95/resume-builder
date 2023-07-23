@@ -31,10 +31,12 @@
     "react-to-print": "^2.14.13"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^13.4.10",
     "@types/lodash-es": "^4.17.7",
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "cross-env": "^7.0.3",
     "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.7",
     "sass": "^1.63.6",

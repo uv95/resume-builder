@@ -1,5 +1,6 @@
 import parse from 'html-react-parser';
 import {  IProfileItem } from '@/utils/types/contentTypes';
+import { memo } from 'react';
 
 type Props = {
   items:IProfileItem[]
@@ -13,4 +14,4 @@ const ProfileBlock = ({items}:Props) => {
     );
 };
 
-export default ProfileBlock;
+export default memo(ProfileBlock);

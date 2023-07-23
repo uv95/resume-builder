@@ -1,6 +1,7 @@
 import { contentCards } from '@/utils/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import { useTranslation } from 'next-i18next';
+import { memo } from 'react';
 import Card from '../../UI/Card/Card';
 import style from './AddContent.module.scss';
 
@@ -39,4 +40,4 @@ const AddContent = ({ setContentToEdit, setOpen }: Props) => {
     );
 };
 
-export default AddContent;
+export default memo(AddContent);

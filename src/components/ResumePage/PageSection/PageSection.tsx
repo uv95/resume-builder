@@ -4,6 +4,8 @@ import Heading from '../Heading/Heading';
 import { ColorOf, Position } from '@/utils/types/settingsTypes';
 import { AdditionalContentSection} from '@/utils/types/contentTypes';
 import SectionContent from './SectionContent';
+import { memo } from 'react';
+import { useSpacingContext } from '@/context/SpacingContext';
 
 type Props = {
   section: Sections;
@@ -22,7 +24,8 @@ const PageSection = ({
 }: Props) => {
     const { setColor } = useSetColor(settings);
     const { showHeading } = settings?.profile!;
-    const { spaceBetweenSections } = settings?.spacing!;
+    const { spacing } =useSpacingContext();
+    const { spaceBetweenSections } = spacing!;
 
     return (
         <div>
@@ -50,4 +53,4 @@ const PageSection = ({
     );
 };
 
-export default PageSection;
+export default memo(PageSection);

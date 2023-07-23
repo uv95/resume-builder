@@ -1,3 +1,4 @@
+import { useColorsContext } from '@/context/ColorsContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import { ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -10,16 +11,16 @@ import {
 import { useContext } from 'react';
 
 function useSetColor(settings:ISettings) {
-    // const { settings } = useContext(ResumeContext);
+    const { colors } = useColorsContext();
     const position = settings?.layout.position;
-    const mode = settings?.colors.mode!;
-    const applyAccentColor = settings?.colors.applyAccentColor!;
-    const basicSelected = settings?.colors.basic.selected!;
-    const  accentBasic = settings?.colors.basic.accent!;
-    const multicolorBasic = settings?.colors.basic.multicolor!;
-    const advancedSelected = settings?.colors.advanced.selected!
-    const accentAdvanced = settings?.colors.advanced.accent!
-    const  multicolorAdvanced = settings?.colors.advanced.multicolor!
+    const mode = colors?.mode!;
+    const applyAccentColor = colors?.applyAccentColor!;
+    const basicSelected = colors?.basic.selected!;
+    const  accentBasic = colors?.basic.accent!;
+    const multicolorBasic = colors?.basic.multicolor!;
+    const advancedSelected = colors?.advanced.selected!
+    const accentAdvanced = colors?.advanced.accent!
+    const  multicolorAdvanced = colors?.advanced.multicolor!
 
   type SetColorType = {
     section?: AccentColorSections;

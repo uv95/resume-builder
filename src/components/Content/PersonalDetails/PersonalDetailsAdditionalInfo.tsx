@@ -1,14 +1,14 @@
 import { AdditionalInfoContext } from '@/context/AdditionalInfoContext';
-import { ResumeContext } from '@/context/ResumeContext';
+import { useContentContext } from '@/context/ContentContext';
 import { personalDetailInputData } from '@/utils/data';
 import { removeTypename } from '@/utils/removeTypename';
-import React, { useContext, useEffect } from 'react';
-import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';
 import { useTranslation } from 'next-i18next';
+import React, { memo, useContext, useEffect } from 'react';
+import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';
 
 const PersonalDetailsAdditionalInfo = () => {
     const { setAdditionalInfo } = useContext(AdditionalInfoContext);
-    const { content } = useContext(ResumeContext);
+    const { content } =useContentContext();
     const {t} = useTranslation(['content'])
 
     useEffect(() => {
@@ -31,4 +31,4 @@ const PersonalDetailsAdditionalInfo = () => {
     );
 };
 
-export default PersonalDetailsAdditionalInfo;
+export default memo(PersonalDetailsAdditionalInfo);

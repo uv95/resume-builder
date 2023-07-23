@@ -1,6 +1,7 @@
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { Sections } from '@/utils/types/resumeTypes';
 import Image from 'next/image';
+import { memo } from 'react';
 import arrow from '../../../icons/arrowDown.svg';
 import style from './ContentCard.module.scss';
 import UpdateSectionName from './UpdateSectionName';
@@ -50,4 +51,4 @@ const ContentCardHeader = ({ setCurrentSection,currentSectionName,contentSection
     )
 }
 
-export default ContentCardHeader
+export default memo(ContentCardHeader)

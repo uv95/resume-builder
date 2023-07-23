@@ -32,6 +32,8 @@ import {
     IProfileSettings,
     IEducationSettings,
     IProfessionalExperienceSettings,
+    IColors,
+    ILayout,
 } from './settingsTypes';
 
 export interface IResume {
@@ -69,28 +71,8 @@ export interface ISettings {
     left: string[];
     right: string[];
   };
-  layout: {
-    columns: number;
-    position: Position;
-    columnWidth: {
-      left: number;
-      right: number;
-    };
-  };
-  colors: {
-    mode: Mode;
-    basic: {
-      selected: ColorOption;
-      accent: string;
-      multicolor: IBasicMulticolor;
-    };
-    advanced: {
-      selected: ColorOption;
-      accent: string;
-      multicolor: IAdvancedMulticolor;
-    };
-    applyAccentColor: IApplyAccentColor;
-  };
+  layout: ILayout;
+  colors:  IColors;
   spacing: ISpacing;
   font: IFont;
   heading: IHeading;

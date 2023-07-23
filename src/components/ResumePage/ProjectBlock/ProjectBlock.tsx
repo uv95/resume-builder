@@ -4,6 +4,7 @@ import { Position } from '@/utils/types/settingsTypes';
 import {  IProjectItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
+import { memo } from 'react';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -49,4 +50,4 @@ const ProjectBlock = ({ sectionPosition,items, settings }: Props) => {
     );
 };
 
-export default ProjectBlock;
+export default memo(ProjectBlock);

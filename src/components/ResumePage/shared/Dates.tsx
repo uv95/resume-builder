@@ -8,6 +8,7 @@ import {
     Position,
 } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import { memo } from 'react';
 
 type Props = {
   startDate: string;
@@ -51,4 +52,4 @@ const Dates = ({ startDate, endDate, sectionPosition, format,settings }: Props) 
     );
 };
 
-export default Dates;
+export default memo(Dates);

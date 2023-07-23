@@ -1,19 +1,20 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { useColorsContext } from '@/context/ColorsContext';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
+import { useTranslation } from 'next-i18next';
+import React, { memo } from 'react';
 import AdvancedMulticolorIcon from './AdvancedMulticolorIcon';
 import style from './Colors.module.scss';
-import { useTranslation } from 'next-i18next';
 
 const AdvancedOptions = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { selectOption } = useUpdateSettings();
-    const selected = settings?.colors.advanced.selected;
+    const { selectOption } = useUpdateColors();
+    const { colors } = useColorsContext();
+
+    const selected =colors?.advanced.selected;
     const { accent, multicolor: selectedMulticolor } =
-    settings?.colors.advanced!;
+  colors?.advanced!;
 
     return (
         <div className="flex">
@@ -44,4 +45,4 @@ const AdvancedOptions = () => {
     );
 };
 
-export default AdvancedOptions;
+export default memo(AdvancedOptions);

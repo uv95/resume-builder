@@ -1,16 +1,17 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { useColorsContext } from '@/context/ColorsContext';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { colors } from '@/utils/colors';
 import { Mode } from '@/utils/types/settingsTypes';
-import React, { useContext } from 'react';
+import React, { memo } from 'react';
 import style from './Colors.module.scss';
 
 const AccentColors = () => {
-    const { settings } = useContext(ResumeContext);
-    const mode = settings?.colors.mode!;
-    const accentBasic = settings?.colors.basic.accent!;
-    const accentAdvanced = settings?.colors.advanced.accent!;
-    const { updateAccentColor } = useUpdateSettings();
+    // const { settings } = useContext(ResumeContext);
+    const { colors:colorsSettings } = useColorsContext();
+    const mode = colorsSettings?.mode!;
+    const accentBasic = colorsSettings?.basic.accent!;
+    const accentAdvanced = colorsSettings?.advanced.accent!;
+    const { updateAccentColor } = useUpdateColors();
     return (
         <div className={style.accentColors}>
             {colors.accent.map((color) => (
@@ -30,4 +31,4 @@ const AccentColors = () => {
     );
 };
 
-export default AccentColors;
+export default memo(AccentColors);

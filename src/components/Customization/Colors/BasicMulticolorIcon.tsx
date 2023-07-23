@@ -1,6 +1,6 @@
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { IBasicMulticolor, Mode } from '@/utils/types/settingsTypes';
-import React from 'react';
+import React, { memo } from 'react';
 import style from './Colors.module.scss';
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const BasicMulticolorIcon = ({ color, optionSelected, isOption }: Props) => {
-    const { updateMulticolor } = useUpdateSettings();
+    const { updateMulticolor } = useUpdateColors();
 
     return (
         <div
@@ -46,4 +46,4 @@ const BasicMulticolorIcon = ({ color, optionSelected, isOption }: Props) => {
     );
 };
 
-export default BasicMulticolorIcon;
+export default memo(BasicMulticolorIcon);

@@ -1,6 +1,6 @@
 import { SpacingSections } from '@/utils/types/settingsTypes';
 import { FetchResult } from '@apollo/client';
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import style from './Spacing.module.scss';
 
 type Props = {
@@ -14,12 +14,13 @@ type Props = {
 };
 
 const Track = ({ values, sectionName, currentValue, updateSpacing }: Props) => {
-    const getCellPosition = (i: number) => {
+    const getCellPosition = useCallback((i: number) => {
         if (i === 0) return i * (100 / 9);
         if (i === 8) return i * (100 / 9) + 0.3;
 
         return i * (100 / 9) + 0.3;
-    };
+    },[]);
+    
     return (
         <div className={style.track}>
             {[...Array(8)].map((_, i) => (
@@ -48,4 +49,4 @@ const Track = ({ values, sectionName, currentValue, updateSpacing }: Props) => {
     );
 };
 
-export default Track;
+export default memo(Track);

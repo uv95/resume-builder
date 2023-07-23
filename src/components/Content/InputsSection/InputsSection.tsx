@@ -5,14 +5,15 @@ import useDeleteMutations from '@/hooks/useDeleteMutations';
 import useUpdateMutations from '@/hooks/useUpdateMutations';
 import { getInitialValues, isInputsEmpty } from '@/utils/getInitialValues';
 import { Field, Form, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
-import AdditionalInfoSection from '../AdditionalInfoSection/AdditionalInfoSection';
+import React, { memo, useContext, useState } from 'react';
+import PersonalDetailsAdditionalInfo from '../PersonalDetails/PersonalDetailsAdditionalInfo';
 import Select from '../../Select/Select';
 import dynamic from 'next/dynamic';
 import Buttons from './Buttons';
 import {  Sections } from '@/utils/types/resumeTypes';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { useTranslation } from 'next-i18next';
+import { useContentContext } from '@/context/ContentContext';
 
 const Textarea = dynamic(() => import('../Textarea'), { ssr: false });
 
@@ -30,7 +31,8 @@ type Props = {
 const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
     const {t, i18n} = useTranslation(['content'])
 
-    const { resume,content } = useContext(ResumeContext);
+    const { resume } = useContext(ResumeContext);
+    const { content } =useContentContext();
     const { additionalInfo } = useContext(AdditionalInfoContext);
     const initialValues = getInitialValues(inputData, content!, itemId);
 
@@ -103,7 +105,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                     ))}
 
                     {inputData.name === Sections.PERSONAL_DETAILS && (
-                        <AdditionalInfoSection />
+                        <PersonalDetailsAdditionalInfo />
                     )}
 
                     <Buttons
@@ -118,4 +120,4 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
     );
 };
 
-export default InputsSection;
+export default memo(InputsSection);

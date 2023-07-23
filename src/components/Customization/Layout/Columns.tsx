@@ -1,7 +1,7 @@
 import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import React, { useContext } from 'react';
+import React, { memo, useContext } from 'react';
 import style from './Layout.module.scss';
 import { useTranslation } from 'next-i18next';
 import { Position } from '@/utils/types/settingsTypes';
@@ -50,4 +50,4 @@ const Columns = () => {
     );
 };
 
-export default Columns;
+export default memo(Columns);

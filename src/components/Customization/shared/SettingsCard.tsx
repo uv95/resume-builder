@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Card from '../../UI/Card/Card';
 
 type Props = { title: string; children: React.ReactNode };
@@ -11,4 +12,4 @@ const SettingsCard = ({ title, children }: Props) => {
     );
 };
 
-export default SettingsCard;
+export default memo(SettingsCard);

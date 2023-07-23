@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 type Props = { title: string; children: React.ReactNode };
 
@@ -11,4 +11,4 @@ const Section = ({ title, children }: Props) => {
     );
 };
 
-export default Section;
+export default memo(Section);

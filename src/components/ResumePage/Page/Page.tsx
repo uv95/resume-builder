@@ -1,28 +1,26 @@
+import { useContentContext } from '@/context/ContentContext';
 import { ResumeContext } from '@/context/ResumeContext';
 import React, {
     forwardRef,
+    memo,
     useContext,
     useEffect,
     useRef,
-    useState,
+    useState
 } from 'react';
-import { useTranslation } from 'next-i18next';
-import PageContent from './PageContent';
 import style from './Page.module.scss';
+import PageContent from './PageContent';
 
 const Page = forwardRef(function Page(props, ref) {
-    const {t} = useTranslation()
-
     const pageRef = useRef<HTMLDivElement>(null);
-    const { settings,content } = useContext(ResumeContext);
+    const { settings } = useContext(ResumeContext);
+    const { content } =useContentContext();
 
     const [resumePageWidth, setResumePageWidth] = useState(0);
-    const [resumePageHeight, setResumePageHeight] = useState(0);
 
     useEffect(() => {
         window.addEventListener('resize', () =>
-        { setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
-            setResumePageHeight(pageRef?.current ? (pageRef.current?.firstChild?.firstChild as HTMLDivElement).offsetHeight :  0)}
+            setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
         );
     });
 
@@ -44,4 +42,4 @@ const Page = forwardRef(function Page(props, ref) {
     );
 });
 
-export default Page;
+export default memo(Page);

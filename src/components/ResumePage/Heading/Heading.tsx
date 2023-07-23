@@ -1,3 +1,4 @@
+import { useSpacingContext } from '@/context/SpacingContext';
 import useSetColor from '@/hooks/useSetColor';
 import { ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -6,7 +7,7 @@ import {
     HeadingStyle,
     Position,
 } from '@/utils/types/settingsTypes';
-import React, {  useState } from 'react';
+import React, {  memo, useState } from 'react';
 import style from './Heading.module.scss';
 
 type Props = {
@@ -19,7 +20,9 @@ type Props = {
 const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props) => {
     const { setColor } = useSetColor(settings);
     const { style: headingStyle, size, uppercase } = settings?.heading!;
-    const { fontSize,spaceBetweenSections } = settings?.spacing!;
+    const { spacing } =useSpacingContext();
+    const { fontSize,spaceBetweenSections } = spacing!;
+
     const [headingSize] = useState({
         s: fontSize + 1.5,
         m: fontSize + 3,
@@ -87,4 +90,4 @@ const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props)
     );
 };
 
-export default Heading;
+export default memo(Heading);

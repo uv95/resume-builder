@@ -1,5 +1,6 @@
 import Button from '../../UI/Button/Button';
 import { useTranslation } from 'next-i18next';
+import { memo } from 'react';
 
 type Props = {
   options: string[];
@@ -56,4 +57,4 @@ const SettingsButtons = ({
     );
 };
 
-export default SettingsButtons;
+export default memo(SettingsButtons);

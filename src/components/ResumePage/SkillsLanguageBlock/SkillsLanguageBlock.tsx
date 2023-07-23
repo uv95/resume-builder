@@ -12,6 +12,7 @@ import {
 import style from './SkillsLanguageBlock.module.scss';
 import Level from './Level';
 import SkillsLanguageItem from './SkillsLanguageItem';
+import { memo } from 'react';
 
 type Props = {
   section: Sections.LANGUAGE | Sections.SKILLS;
@@ -79,4 +80,4 @@ columns === 2
     );
 };
 
-export default SkillsLanguageBlock;
+export default memo(SkillsLanguageBlock);

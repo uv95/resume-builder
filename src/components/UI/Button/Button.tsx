@@ -1,5 +1,5 @@
 import { classNames } from '@/utils/classNames';
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, FC, memo } from 'react';
 
 import style from './Button.module.scss';
 
@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isBold?: boolean;
 }
 
-const Button: FC<ButtonProps> = (props) => {
+const Button: FC<ButtonProps> = memo( function Button (props) {
     const {
         isSubmit,
         className,
@@ -41,6 +41,6 @@ const Button: FC<ButtonProps> = (props) => {
             {children}
         </button>
     );
-};
+});
 
 export default Button;
