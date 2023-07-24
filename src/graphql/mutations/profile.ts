@@ -19,7 +19,7 @@ export const UPDATE_PROFILE = gql`
   }
 `;
 
-export const UPDATE_PROFILES_ORDER = gql`
+export const UPDATE_PROFILE_ORDER = gql`
   ${PROFILE_FIELDS}
   mutation updateProfileOrder($items: [ProfileOrder]) {
     updateProfileOrder(items: $items) {

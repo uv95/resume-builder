@@ -1,14 +1,13 @@
 import Card from '@/components/UI/Card/Card';
-import { ResumeContext } from '@/context/ResumeContext';
+import { useLayoutContext } from '@/context/settings';
 import { getSectionIcon } from '@/utils/getSectionIcon';
-import Image from 'next/image';
-import React, { memo, useContext } from 'react';
-import DraggableCard from './DraggableCard';
-import style from './Layout.module.scss';
-import user from '../../../icons/user.svg';
 import { Position } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
-import { useLayoutContext } from '@/context/LayoutContext';
+import Image from 'next/image';
+import React, { memo } from 'react';
+import user from '../../../icons/user.svg';
+import DraggableCard from './DraggableCard';
+import style from './Layout.module.scss';
 
 type Props = {
   setInitialColumn: React.Dispatch<React.SetStateAction<Position | undefined>>;

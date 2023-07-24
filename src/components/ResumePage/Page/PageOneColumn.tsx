@@ -1,4 +1,4 @@
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useSpacingContext } from '@/context/settings';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
 import { memo } from 'react';

@@ -76,23 +76,27 @@ const FONT_FIELDS = gql`
     font
   }
 `;
-const HEADING_FIELDS = gql`
+
+export const HEADING_FIELDS = gql`
   fragment HeadingFields on Heading {
+    id
     style
-    uppercase
+    isUppercase
     size
   }
 `;
 
-const SUBTITLE_FIELDS = gql`
+export const SUBTITLE_FIELDS = gql`
   fragment SubtitleFields on Subtitle {
+    id
     style
     position
   }
 `;
 
-const HEADER_FIELDS = gql`
+export const HEADER_FIELDS = gql`
   fragment HeaderFields on Header {
+    id
     position
     additionalInfoStyle
     additionalInfoOrder

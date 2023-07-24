@@ -1,5 +1,4 @@
-import { useLayoutContext } from '@/context/LayoutContext';
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useHeaderContext, useLayoutContext, useSpacingContext } from '@/context/settings';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -15,12 +14,13 @@ type Props = {settings: ISettings,content:IContent}
 
 const PersonalDetailsBlock = ({settings,content}:Props) => {
     const { spacing } =useSpacingContext();
-    const {layout} = useLayoutContext();
+    const { layout } = useLayoutContext();
+    const { header } = useHeaderContext();
     const  position  = layout?.position;
     const personalDetails = content?.personalDetails;
     const { leftRightMargin, topBottomMargin, fontSize } =
     spacing!;
-    const { position: headerPosition } = settings?.header!;
+    const headerPosition = header?.position;
     const { size: jobTitleSize, style: jobTitleStyle } =
     settings?.jobTitle!;
     const { style: nameStyle, size: nameSize } = settings?.name!;

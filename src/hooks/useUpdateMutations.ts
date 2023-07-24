@@ -12,7 +12,7 @@ import {
     UPDATE_PROFESSIONAL_EXPERIENCE,
 } from '@/graphql/mutations/professionalExperience';
 import {
-    UPDATE_PROFILES_ORDER,
+    UPDATE_PROFILE_ORDER,
     UPDATE_PROFILE,
 } from '@/graphql/mutations/profile';
 import {
@@ -52,7 +52,7 @@ function useUpdateMutations({
         UPDATE_PROFESSIONAL_EXPERIENCE_ORDER
     );
     const [updateProfile] = useMutation(UPDATE_PROFILE);
-    const [updateProfilesOrder] = useMutation(UPDATE_PROFILES_ORDER);
+    const [updateProfileOrder] = useMutation(UPDATE_PROFILE_ORDER);
 
     const [updateProject] = useMutation(UPDATE_PROJECT);
     const [updateProjectsOrder] = useMutation(UPDATE_PROJECTS_ORDER);
@@ -87,8 +87,8 @@ function useUpdateMutations({
         },
         {
             sectionName: Sections.PROFILE,
-            fn: updateOrder ? updateProfilesOrder : updateProfile,
-            fnName: updateOrder ? 'updateProfilesOrder' : 'updateProfile',
+            fn: updateOrder ? updateProfileOrder : updateProfile,
+            fnName: updateOrder ? 'updateProfileOrder' : 'updateProfile',
         },
         {
             sectionName: Sections.PROJECT,
@@ -146,7 +146,6 @@ function useUpdateMutations({
                         });
                     }
                     if (updateOrder) {
-                      
                         cache.writeQuery({
                             query: GET_RESUME,
                             data: {

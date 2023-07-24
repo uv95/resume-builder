@@ -6,15 +6,11 @@ import { Sections } from '@/utils/types/resumeTypes';
 import {
     IDate,
     IEducationSettings,
-    IFont,
-    IHeader,
-    IHeading,
-    IJobTitle,
+    IFont, IJobTitle,
     IName,
     IProfessionalExperienceSettings,
     IProfileSettings,
-    ISkillsLanguageSettings,
-    ISubtitle
+    ISkillsLanguageSettings
 } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 import { useContext } from 'react';
@@ -115,29 +111,6 @@ function useUpdateSettings() {
             },
         });
 
-    const updateHeading = (heading: IHeading) =>
-        updateSettings({
-            variables: {
-                id: settings?.id,
-                heading,
-            },
-        });
-
-    const updateSubtitle = (subtitle: ISubtitle) =>
-        updateSettings({
-            variables: {
-                id: settings?.id,
-                subtitle,
-            },
-        });
-
-    const updateHeader = (header: IHeader) =>
-        updateSettings({
-            variables: {
-                id: settings?.id,
-                header,
-            },
-        });
 
     const updateName = (name: IName) =>
         updateSettings({
@@ -210,9 +183,6 @@ function useUpdateSettings() {
         addToSectionsOrder,
         removeFromSectionsOrder,
         updateFont,
-        updateHeading,
-        updateSubtitle,
-        updateHeader,
         updateName,
         updateJobTitle,
         updateDate,

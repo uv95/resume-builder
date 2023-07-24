@@ -1,19 +1,19 @@
-import React, { useContext, useState } from 'react';
-import SettingsCard from './shared/SettingsCard';
-import { ResumeContext } from '@/context/ResumeContext';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { useSubtitleContext } from '@/context/settings';
+import useUpdateSubtitle from '@/hooks/settings/useUpdateSubtitle';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from './shared/SettingsButtons';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import React, { useState } from 'react';
+import SettingsButtons from './shared/SettingsButtons';
+import SettingsCard from './shared/SettingsCard';
 
 const Subtitle = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { updateSubtitle } = useUpdateSettings();
+    const {subtitle} = useSubtitleContext();
+    const updateSubtitle  = useUpdateSubtitle();
     const [values, setValues] = useState(
-        removeTypename(settings?.subtitle!)
+        removeTypename(subtitle!)
     );
     const update = (updatedField: 'position' | 'style', newVal: string) =>
         updateSubtitle({

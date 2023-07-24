@@ -1,5 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useColorsContext, useLayoutContext } from '@/context/settings';
 import useSetColor from '@/hooks/useSetColor';
 import { getDivider } from '@/utils/getDivider';
 import { ILanguageItem, ISkillsItem } from '@/utils/types/contentTypes';
@@ -20,16 +19,17 @@ const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,sett
     const { format, textFormat, infoItalic } =
     settings![section]!;
     const { colors } = useColorsContext();
-    const { applyAccentColor } = colors!;
     const {layout} = useLayoutContext();
-    const position = layout?.position;
     const { setColor } = useSetColor();
+
+    const applyAccentColor = colors?.applyAccentColor;
+    const position = layout?.position;
 
     const itemStyle = {
         display:
       format === Format.GRID || format === Format.LEVEL ? 'block' : 'flex',
         background:
-      format === Format.BUBBLE && applyAccentColor.dots
+      format === Format.BUBBLE && applyAccentColor?.dots
           ? setColor({
               section: AccentColorSections.DOTS,
               colorOf: ColorOf.FONT,
@@ -37,7 +37,7 @@ const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,sett
           })
           : 'inherit',
         color:
-      format === Format.BUBBLE && applyAccentColor.dots
+      format === Format.BUBBLE && applyAccentColor?.dots
           ? position !== Position.TOP && position === sectionPosition
               ? setColor({
                   colorOf: ColorOf.BG,

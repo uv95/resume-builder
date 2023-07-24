@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import { colors } from '@/utils/colors';
 import { IBasicMulticolor } from '@/utils/types/settingsTypes';
 import React, { memo } from 'react';

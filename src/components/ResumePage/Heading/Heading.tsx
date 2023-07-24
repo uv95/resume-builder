@@ -1,29 +1,33 @@
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useHeadingContext, useSpacingContext } from '@/context/settings';
 import useSetColor from '@/hooks/useSetColor';
-import { ISettings } from '@/utils/types/resumeTypes';
 import {
     AccentColorSections,
     ColorOf,
     HeadingStyle,
     Position,
+    Size
 } from '@/utils/types/settingsTypes';
-import React, {  memo, useState } from 'react';
+import React, { memo, useState } from 'react';
 import style from './Heading.module.scss';
 
 type Props = {
   sectionPosition: Position.LEFT | Position.RIGHT | undefined;
   sectionName: string;
-  settings:ISettings;
   sectionIndex:number
 };
 
-const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props) => {
+const Heading = ({ sectionPosition, sectionName, sectionIndex }: Props) => {
     const { setColor } = useSetColor();
-    const { style: headingStyle, size, uppercase } = settings?.heading!;
+    const { heading } = useHeadingContext();
     const { spacing } =useSpacingContext();
-    const { fontSize,spaceBetweenSections } = spacing!;
+    
+    const headingStyle =heading?.style;
+    const size = heading?.size!;
+    const isUppercase =heading?.isUppercase;
+    const fontSize = spacing?.fontSize!;
+    const spaceBetweenSections = spacing?.spaceBetweenSections;
 
-    const [headingSize] = useState({
+    const [headingSize] = useState<Record<Size, number>>({
         s: fontSize + 1.5,
         m: fontSize + 3,
         l: fontSize + 4.5,
@@ -54,7 +58,7 @@ const Heading = ({ sectionPosition, sectionName, settings,sectionIndex }: Props)
                     marginTop: sectionIndex===0 ? 0 : spaceBetweenSections + 'px'
                 }}
             >
-                {uppercase ? sectionName.toUpperCase() : sectionName}
+                {isUppercase ? sectionName.toUpperCase() : sectionName}
                 {headingStyle === HeadingStyle.BOX && (
                     <div
                         className={style.headingBackground}

@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';

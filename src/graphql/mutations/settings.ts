@@ -7,9 +7,6 @@ export const UPDATE_SETTINGS = gql`
     $id: ID!
     $sectionsOrder: SectionsOrderInput
     $font: FontInput
-    $heading: HeadingInput
-    $subtitle: SubtitleInput
-    $header: HeaderInput
     $name: NameInput
     $jobTitle: JobTitleInput
     $date: DateInput
@@ -23,9 +20,6 @@ export const UPDATE_SETTINGS = gql`
       id: $id
       sectionsOrder: $sectionsOrder
       font: $font
-      heading: $heading
-      subtitle: $subtitle
-      header: $header
       name: $name
       jobTitle: $jobTitle
       date: $date

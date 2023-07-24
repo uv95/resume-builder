@@ -1,4 +1,4 @@
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useSpacingContext } from '@/context/settings';
 import { UPDATE_SPACING } from '@/graphql/mutations/settings/spacing';
 import { removeTypename } from '@/utils/removeTypename';
 import { SpacingSections } from '@/utils/types/settingsTypes';
@@ -18,9 +18,8 @@ function useUpdateSpacing() {
         });
     };
 
-    return {
-        updateSpacingSettings
-    };
+    return updateSpacingSettings
+
 }
 
 export default useUpdateSpacing;

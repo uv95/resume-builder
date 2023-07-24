@@ -1,17 +1,14 @@
-import { ResumeContext } from '@/context/ResumeContext';
-import React, { memo, useContext } from 'react';
-import style from './Colors.module.scss';
-import BasicMulticolorIcon from './BasicMulticolorIcon';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
+import { useColorsContext } from '@/context/settings';
+import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { ColorOption, Mode } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
-import { useColorsContext } from '@/context/ColorsContext';
-import useUpdateColors from '@/hooks/settings/useUpdateColors';
+import React, { memo } from 'react';
+import BasicMulticolorIcon from './BasicMulticolorIcon';
+import style from './Colors.module.scss';
 
 const BasicOptions = () => {
     const {t} = useTranslation(['customization'])
 
-    // const { settings } = useContext(ResumeContext);
     const { colors } = useColorsContext();
     const selected = colors?.basic.selected;
     const { accent, multicolor: selectedMulticolor } =

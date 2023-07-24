@@ -1,5 +1,4 @@
-import { useLayoutContext } from '@/context/LayoutContext';
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useLayoutContext, useSpacingContext } from '@/context/settings';
 import useSetColor from '@/hooks/useSetColor';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { IContent, ISettings, Sections } from '@/utils/types/resumeTypes';
@@ -18,7 +17,7 @@ const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
     const {spacing} = useSpacingContext()
     const {layout} = useLayoutContext();
     const position = layout?.position;
-    const  leftSections= settings?.sectionsOrder.left as Sections[];
+    const leftSections= settings?.sectionsOrder.left as Sections[];
     const rightSections = settings?.sectionsOrder.right as Sections[];
     const leftRightMargin = spacing?.leftRightMargin!;
     const topBottomMargin = spacing?.topBottomMargin!;

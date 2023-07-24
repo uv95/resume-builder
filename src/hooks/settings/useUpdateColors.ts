@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import { UPDATE_COLORS } from '@/graphql/mutations/settings/colors';
 import { removeTypename } from '@/utils/removeTypename';
 import {
@@ -11,11 +11,12 @@ import { useMutation } from '@apollo/client';
 function useUpdateColors() {
     const [updateColors] = useMutation(UPDATE_COLORS);
     const { colors } = useColorsContext();
+    const colorsId = colors?.id
 
     const updateMode = (mode: Mode) => {
         return updateColors({
             variables: {
-                id: colors?.id,
+                id: colorsId,
                 ...removeTypename(colors!),
                 mode,
             },
@@ -25,7 +26,7 @@ function useUpdateColors() {
     const selectOption = (option: ColorOption, mode: Mode) => {
         return updateColors({
             variables: {
-                id: colors?.id,
+                id: colorsId,
                 ...removeTypename(colors!),
                 [mode]: {
                     ...removeTypename(colors![mode]),
@@ -38,7 +39,7 @@ function useUpdateColors() {
     const updateAccentColor = (accent: string, mode: Mode) => {
         return updateColors({
             variables: {
-                id: colors?.id,
+                id: colorsId,
                 ...removeTypename(colors!),
                 [mode]: { ...removeTypename(colors![mode]), accent },
             },
@@ -51,7 +52,7 @@ function useUpdateColors() {
     ) => {
         return updateColors({
             variables: {
-                id: colors?.id,
+                id: colorsId,
                 ...removeTypename(colors!),
                 [mode]: {
                     ...removeTypename(colors![mode]),

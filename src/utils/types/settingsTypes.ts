@@ -75,8 +75,9 @@ export enum Size {
 }
 
 export interface IHeading {
+  id:string;
   style: HeadingStyle;
-  uppercase: boolean;
+  isUppercase: boolean;
   size: Size;
 }
 
@@ -91,6 +92,7 @@ export enum SubtitlePosition {
 }
 
 export interface ISubtitle {
+  id:string;
   style: FontStyle;
   position: SubtitlePosition;
 }
@@ -105,6 +107,7 @@ export enum HeaderAdditionalInfoStyle {
 }
 
 export interface IHeader {
+  id:string;
   position: HeaderPosition;
   additionalInfoStyle: HeaderAdditionalInfoStyle;
   additionalInfoOrder: string[];

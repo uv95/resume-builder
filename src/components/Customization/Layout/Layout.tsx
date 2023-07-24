@@ -1,13 +1,12 @@
-import { ResumeContext } from '@/context/ResumeContext';
+import { useLayoutContext } from '@/context/settings';
 import useLayoutDnD from '@/hooks/useLayoutDnD';
-import { memo, useContext } from 'react';
+import { useTranslation } from 'next-i18next';
+import { memo } from 'react';
 import SettingsCard from '../shared/SettingsCard';
 import Columns from './Columns';
 import ColumnWidth from './ColumnWidth';
 import PositionComponent from './PositionComponent';
 import RearrangeSections from './RearrangeSections';
-import { useTranslation } from 'next-i18next';
-import { useLayoutContext } from '@/context/LayoutContext';
 
 const Layout = () => {
     const {

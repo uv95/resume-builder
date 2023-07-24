@@ -1,4 +1,4 @@
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useSpacingContext } from '@/context/settings';
 import { spacingData } from '@/utils/spacing';
 import { useTranslation } from 'next-i18next';
 import React, { memo } from 'react';

@@ -1,8 +1,6 @@
-import { ColorsProvider } from '@/context/ColorsContext';
 import { ContentProvider } from '@/context/ContentContext';
-import { LayoutProvider } from '@/context/LayoutContext';
 import { ResumeProvider } from '@/context/ResumeContext';
-import { SpacingProvider } from '@/context/SpacingContext';
+import { ColorsProvider, HeaderProvider, HeadingProvider, LayoutProvider, SpacingProvider, SubtitleProvider } from '@/context/settings';
 import { ReactNode } from 'react';
   
 interface ProvidersProps {
@@ -16,7 +14,13 @@ export const Providers = ({ children }: ProvidersProps) => {
                 <ContentProvider>
                     <ColorsProvider>
                         <LayoutProvider>
-                            {children}
+                            <SubtitleProvider>
+                                <HeaderProvider>
+                                    <HeadingProvider>
+                                        {children}
+                                    </HeadingProvider>
+                                </HeaderProvider>
+                            </SubtitleProvider>
                         </LayoutProvider>
                     </ColorsProvider>
                 </ContentProvider>

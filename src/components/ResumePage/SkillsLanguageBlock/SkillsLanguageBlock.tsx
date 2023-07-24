@@ -13,7 +13,7 @@ import style from './SkillsLanguageBlock.module.scss';
 import Level from './Level';
 import SkillsLanguageItem from './SkillsLanguageItem';
 import { memo } from 'react';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useLayoutContext } from '@/context/settings';
 
 type Props = {
   section: Sections.LANGUAGE | Sections.SKILLS;

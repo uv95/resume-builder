@@ -12,7 +12,7 @@ type Props = {
     section: Sections;
     sectionContent: AdditionalContentSection;
     settings: ISettings,
-  sectionPosition?: Position.LEFT | Position.RIGHT;
+    sectionPosition?: Position.LEFT | Position.RIGHT;
 }
 
 const SectionContent = ({sectionContent,section,settings,sectionPosition}: Props) => {

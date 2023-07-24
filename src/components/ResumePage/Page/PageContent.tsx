@@ -5,8 +5,7 @@ import PageOneColumn from './PageOneColumn'
 import PageTwoColumns from './PageTwoColumns'
 import PersonalDetailsBlock from '../PersonalDetailsBlock/PersonalDetailsBlock'
 import { forwardRef, memo } from 'react'
-import { useSpacingContext } from '@/context/SpacingContext'
-import { useLayoutContext } from '@/context/LayoutContext'
+import { useLayoutContext, useSpacingContext } from '@/context/settings'
 
 type Props = {
     id?: string,
@@ -18,23 +17,29 @@ type Props = {
 
 const PageContent = forwardRef(function PageContent(props:Props,ref) {
     const {id,className,additionalStyle,settings,content}=props;
+
     const { setColor } = useSetColor();
     const {layout} = useLayoutContext();
     const {spacing} = useSpacingContext()
+
+    const position = layout?.position;
+    const columns = layout?.columns;
+    const columnWidth = layout?.columnWidth;
+    const fontSize = spacing?.fontSize;
+    const lineHeight = spacing?.lineHeight;
+
     const pageContentStyle = {
         background: setColor({
             colorOf: ColorOf.BG,
         }),
-        fontSize:spacing?.fontSize,
-        lineHeight:spacing?.lineHeight,
-        display:
-    layout?.position === Position.TOP
-        ? 'flex'
-        : 'block',
-        flexDirection:
-    layout?.position === Position.TOP
-        ? 'column'
-        : 'initial',
+        fontSize,
+        lineHeight,
+        display: position === Position.TOP
+            ? 'flex'
+            : 'block',
+        flexDirection: position === Position.TOP ? 
+            'column'
+            : 'initial',
         fontFamily: settings.font.font,
     } as React.CSSProperties;
 
@@ -44,11 +49,11 @@ const PageContent = forwardRef(function PageContent(props:Props,ref) {
             className={className || ''}
             style={{...pageContentStyle, ...additionalStyle}}
         >
-            {layout?.position === Position.TOP && (
+            {position === Position.TOP && (
                 <PersonalDetailsBlock content={content} settings={settings}/>
             )}
 
-            {layout?.columns === 1 ? (
+            {columns === 1 ? (
                 <PageOneColumn
                     content={content} settings={settings}
                     sections={settings.sectionsOrder.top as Sections[]}
@@ -56,7 +61,7 @@ const PageContent = forwardRef(function PageContent(props:Props,ref) {
             ):
                 <PageTwoColumns
                     content={content} settings={settings}
-                    columnWidth={layout?.columnWidth!}
+                    columnWidth={columnWidth!}
                 />
             }
         </div>

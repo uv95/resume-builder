@@ -41,6 +41,7 @@ const List = ({
         setInitialCard(currentTarget.id);
         currentTarget.style.opacity = '0';
     };
+
     return (
         <ul
             id={listId}

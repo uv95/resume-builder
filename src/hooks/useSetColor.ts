@@ -1,5 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useColorsContext, useLayoutContext } from '@/context/settings';
 import {
     AccentColorSections,
     ColorOf, ColorOption, Mode,

@@ -1,24 +1,26 @@
 import Button from '@/components/UI/Button/Button';
-import React, { useContext, useState } from 'react';
-import style from './Heading.module.scss';
-import SettingsCard from '../shared/SettingsCard';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { ResumeContext } from '@/context/ResumeContext';
-import Section from '../shared/Section';
+import { useHeadingContext } from '@/context/settings';
+import useUpdateHeading from '@/hooks/settings/useUpdateHeading';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from '../shared/SettingsButtons';
 import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import React, { memo, useState } from 'react';
+import Section from '../shared/Section';
+import SettingsButtons from '../shared/SettingsButtons';
+import SettingsCard from '../shared/SettingsCard';
+import style from './Heading.module.scss';
 
 const Heading = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { style: headingStyle, size, uppercase } = settings?.heading!;
+    const { heading } = useHeadingContext()
+    const  headingStyle = heading?.style;
+    const size = heading?.size;
+    const isUppercase = heading?.isUppercase;
 
-    const { updateHeading } = useUpdateSettings();
+    const updateHeading = useUpdateHeading();
     const [values, setValues] = useState(
-        removeTypename(settings?.heading!)
+        removeTypename(heading!)
     );
     const update = (updatedField: 'size' | 'style', newVal: string) =>
         updateHeading({
@@ -27,8 +29,8 @@ const Heading = () => {
         });
 
     const updateHeadingSetValues = (style: HeadingStyle) => {
-        updateHeading({ size, uppercase, style });
-        setValues({ size, uppercase, style });
+        updateHeading({ size, isUppercase, style });
+        setValues({ size, isUppercase, style });
     };
 
     return (
@@ -63,18 +65,18 @@ const Heading = () => {
             <div className="checkboxGroup">
                 <input
                     type="checkbox"
-                    id="uppercase"
-                    checked={uppercase}
+                    id="isUppercase"
+                    checked={isUppercase}
                     onChange={() => {
-                        updateHeading({ size, uppercase: !uppercase, style: headingStyle });
-                        setValues({ size, uppercase: !uppercase, style: headingStyle });
+                        updateHeading({ size, isUppercase: !isUppercase, style: headingStyle });
+                        setValues({ size, isUppercase: !isUppercase, style: headingStyle });
                     }}
                     className="checkboxInput"
                 />
-                <label htmlFor="uppercase">{t('uppercase')}</label>
+                <label htmlFor="isUppercase">{t('uppercase')}</label>
             </div>
         </SettingsCard>
     );
 };
 
-export default Heading;
+export default memo(Heading);

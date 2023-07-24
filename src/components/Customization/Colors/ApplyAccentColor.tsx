@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import { UPDATE_COLORS } from '@/graphql/mutations/settings/colors';
 import { applyAccentColor } from '@/utils/colors';
 import { removeTypename } from '@/utils/removeTypename';

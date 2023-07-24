@@ -1,5 +1,5 @@
 import Button from '@/components/UI/Button/Button';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useLayoutContext } from '@/context/settings';
 import useUpdateLayout from '@/hooks/settings/useUpdateLayout';
 import { useTranslation } from 'next-i18next';
 import React, { memo, useState } from 'react';

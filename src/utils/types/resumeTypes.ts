@@ -14,12 +14,6 @@ import {
     ISkills
 } from './contentTypes';
 import {
-    Position,
-    Mode,
-    ColorOption,
-    IBasicMulticolor,
-    IAdvancedMulticolor,
-    IApplyAccentColor,
     ISpacing,
     IFont,
     IHeading,

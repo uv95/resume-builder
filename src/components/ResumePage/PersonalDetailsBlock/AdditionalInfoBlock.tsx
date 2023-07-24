@@ -1,6 +1,5 @@
 import DetailsIcons from '@/components/DetailsIcons';
-import { useLayoutContext } from '@/context/LayoutContext';
-import { useSpacingContext } from '@/context/SpacingContext';
+import { useLayoutContext, useSpacingContext } from '@/context/settings';
 import useSetColor from '@/hooks/useSetColor';
 import { IContent, ISettings } from '@/utils/types/resumeTypes';
 import {
@@ -18,7 +17,7 @@ type Props = {settings: ISettings ,content:IContent}
 const AdditionalInfoBlock = ({settings,content}:Props) => {
     const {spacing} = useSpacingContext()
     const {layout} = useLayoutContext();
-    const  position  = layout?.position;
+    const position  = layout?.position;
     const personalDetails = content?.personalDetails;
     const { fontSize } = spacing!;
     const {

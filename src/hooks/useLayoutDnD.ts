@@ -1,4 +1,4 @@
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useLayoutContext } from '@/context/settings';
 import { ResumeContext } from '@/context/ResumeContext';
 import * as dnd from '@/utils/dragAndDropUtilityFunctions';
 import { removeTypename } from '@/utils/removeTypename';

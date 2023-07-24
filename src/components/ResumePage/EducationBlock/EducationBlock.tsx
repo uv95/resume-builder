@@ -9,7 +9,7 @@ import { IEducationItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
 import { memo } from 'react';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useLayoutContext, useSubtitleContext } from '@/context/settings';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -20,8 +20,10 @@ type Props = {
 const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
     const { degreeFirst } = settings?.education!;
     const {layout} = useLayoutContext();
+    const {subtitle} = useSubtitleContext();
     const  columns  = layout?.columns!;
-    const { style: subtitleStyle, position } = settings?.subtitle!;
+    const subtitleStyle = subtitle?.style;
+    const  position = subtitle?.position;
     const { date } = settings!;
 
     const subtitlePositionStyle = {

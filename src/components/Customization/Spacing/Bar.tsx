@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Bar = ({ sectionName, currentValue, values }: Props) => {
-    const {updateSpacingSettings}=useUpdateSpacing()
+    const updateSpacing = useUpdateSpacing()
     const {t} = useTranslation(['customization'])
 
     return (
@@ -34,7 +34,7 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         sectionName={sectionName}
                         values={values}
                         currentValue={currentValue}
-                        updateSpacing={updateSpacingSettings}
+                        updateSpacing={updateSpacing}
                     />
                 </div>
                 <div className={style.buttons}>
@@ -42,7 +42,7 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         btnType="thickBorder"
                         onClick={() =>
                             values.indexOf(currentValue) !== 0 &&
-                            updateSpacingSettings(
+                            updateSpacing(
                                 sectionName,
                                 values[values.indexOf(currentValue) - 1]
                             )
@@ -54,7 +54,7 @@ const Bar = ({ sectionName, currentValue, values }: Props) => {
                         btnType="thickBorder"
                         onClick={() =>
                             values.indexOf(currentValue) !== 8 &&
-                            updateSpacingSettings(
+                            updateSpacing(
                                 sectionName,
                                 values[values.indexOf(currentValue) + 1]
                             )

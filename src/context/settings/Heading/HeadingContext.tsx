@@ -1,5 +1,5 @@
 import { IHeading } from '@/utils/types/settingsTypes';
-import React, { createContext, FC, PropsWithChildren, useMemo, useState } from 'react';
+import React, { createContext, FC, PropsWithChildren, useContext, useMemo, useState } from 'react';
 
 interface IHeadingContext {
   heading: IHeading | null;
@@ -29,3 +29,5 @@ export const HeadingProvider:FC<PropsWithChildren> = ({ children }) => {
         </HeadingContext.Provider>
     );
 };
+
+export const useHeadingContext = () => useContext(HeadingContext)

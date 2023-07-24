@@ -9,7 +9,7 @@ import { IProfessionalExperienceItem } from '@/utils/types/contentTypes';
 import { ISettings } from '@/utils/types/resumeTypes';
 import Block from '../shared/Block';
 import { memo } from 'react';
-import { useLayoutContext } from '@/context/LayoutContext';
+import { useLayoutContext, useSubtitleContext } from '@/context/settings';
 
 type Props = {
   sectionPosition?: Position.LEFT | Position.RIGHT;
@@ -18,8 +18,10 @@ type Props = {
 };
 
 const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) => {
-    const { style: subtitleStyle, position } = settings?.subtitle!;
+    const {subtitle} = useSubtitleContext();
     const {layout} = useLayoutContext();
+    const subtitleStyle = subtitle?.style;
+    const  position = subtitle?.position;
     const  columns  = layout?.columns!;
     const { date } = settings!;
     const { jobTitleFirst } = settings?.professionalExperience!;

@@ -1,29 +1,30 @@
-import Button from '@/components/UI/Button/Button';
-import { ResumeContext } from '@/context/ResumeContext';
-import React, { useContext, useState } from 'react';
-import SettingsCard from '../shared/SettingsCard';
-import SmileIcon from './SmileIcon';
 import DetailsIcons from '@/components/DetailsIcons';
-import useUpdateSettings from '@/hooks/useUpdateSettings';
-import Section from '../shared/Section';
+import Button from '@/components/UI/Button/Button';
+import { useHeaderContext } from '@/context/settings';
+import useUpdateHeader from '@/hooks/settings/useUpdateHeader';
 import { removeTypename } from '@/utils/removeTypename';
-import SettingsButtons from '../shared/SettingsButtons';
 import {
     HeaderAdditionalInfoStyle,
-    HeaderPosition,
+    HeaderPosition
 } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
+import React, { useState } from 'react';
+import Section from '../shared/Section';
+import SettingsButtons from '../shared/SettingsButtons';
+import SettingsCard from '../shared/SettingsCard';
+import SmileIcon from './SmileIcon';
 
 const Header = () => {
     const {t} = useTranslation(['customization'])
 
-    const { settings } = useContext(ResumeContext);
-    const { additionalInfoOrder, additionalInfoStyle, position } =
-    settings?.header!;
+    const { header } = useHeaderContext();
+    const  additionalInfoOrder = header?.additionalInfoOrder;
+    const additionalInfoStyle = header?.additionalInfoStyle;
+    const  position = header?.position;
 
-    const { updateHeader } = useUpdateSettings();
+    const updateHeader = useUpdateHeader();
     const [values, setValues] = useState(
-        removeTypename(settings?.header!)
+        removeTypename(header!)
     );
     const update = (
         updatedField: 'additionalInfoStyle' | 'position',
@@ -83,7 +84,7 @@ const Header = () => {
                 </div>
             </Section>
 
-            {additionalInfoOrder.length !== 0 && (
+            {additionalInfoOrder && additionalInfoOrder.length !== 0 && (
                 <Section title={t('change-order')}>
                     <div className="flex">
                         {additionalInfoOrder.map((info) => (

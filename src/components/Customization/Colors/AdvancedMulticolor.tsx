@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import { ResumeContext } from '@/context/ResumeContext';
 import { colors } from '@/utils/colors';
 import { IAdvancedMulticolor } from '@/utils/types/settingsTypes';

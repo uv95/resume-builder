@@ -1,4 +1,4 @@
-import { useColorsContext } from '@/context/ColorsContext';
+import { useColorsContext } from '@/context/settings';
 import useUpdateColors from '@/hooks/settings/useUpdateColors';
 import { colors } from '@/utils/colors';
 import { Mode } from '@/utils/types/settingsTypes';
