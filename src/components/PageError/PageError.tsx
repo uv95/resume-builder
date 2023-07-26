@@ -7,7 +7,7 @@ const PageError = () => {
     const {t} = useTranslation()
     const router = useRouter()
     
-    const reloadPage = ()=>router.reload()
+    const reloadPage = () => router.reload()
 
     return (
         <div className={style.pageError}>

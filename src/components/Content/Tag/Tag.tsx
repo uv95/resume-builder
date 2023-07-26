@@ -6,13 +6,13 @@ type Props = { text: string; onClick: () => void;
     tagsGroup: string;
 };
 
-const Tag = ({ text, onClick,tagsGroup }: Props) => {
+const Tag = ({ text, onClick, tagsGroup }: Props) => {
     const {t} = useTranslation(['content'])
 
     return (
         <div className={style.tag} onClick={onClick}>
             <b>+</b>
-            <p>{tagsGroup==='Links' ? text : (t('additionalInfo',{returnObjects:true}) as any)[text]}</p>
+            <p>{tagsGroup==='Links' ? text : (t('additionalInfo', {returnObjects:true}) as any)[text]}</p>
         </div>
     );
 };

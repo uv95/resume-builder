@@ -7,16 +7,16 @@ import {
     FontStyle,
     Position,
 } from '@/utils/types/settingsTypes';
-import React, {  memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import AdditionalInfoBlock from './AdditionalInfoBlock';
 
-type Props = {settings: ISettings,content:IContent}
+type Props = {settings: ISettings, content:IContent}
 
-const PersonalDetailsBlock = ({settings,content}:Props) => {
+const PersonalDetailsBlock = ({settings, content}:Props) => {
     const { spacing } =useSpacingContext();
     const { layout } = useLayoutContext();
     const { header } = useHeaderContext();
-    const  position  = layout?.position;
+    const position = layout?.position;
     const personalDetails = content?.personalDetails;
     const { leftRightMargin, topBottomMargin, fontSize } =
     spacing!;

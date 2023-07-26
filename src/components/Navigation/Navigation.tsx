@@ -13,7 +13,7 @@ type Props = {
   setActive: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Navigation = ({ active, setActive }: Props) =>{
+const Navigation = ({ active, setActive }: Props) => {
     const router = useRouter();
     const {t} = useTranslation()
 

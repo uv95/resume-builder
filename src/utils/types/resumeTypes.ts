@@ -66,7 +66,7 @@ export interface ISettings {
     right: string[];
   };
   layout: ILayout;
-  colors:  IColors;
+  colors: IColors;
   spacing: ISpacing;
   font: IFont;
   heading: IHeading;

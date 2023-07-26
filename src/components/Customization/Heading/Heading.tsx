@@ -14,7 +14,7 @@ const Heading = () => {
     const {t} = useTranslation(['customization'])
 
     const { heading } = useHeadingContext()
-    const  headingStyle = heading?.style;
+    const headingStyle = heading?.style;
     const size = heading?.size;
     const isUppercase = heading?.isUppercase;
 

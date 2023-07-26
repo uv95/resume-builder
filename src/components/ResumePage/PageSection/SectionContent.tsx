@@ -15,7 +15,7 @@ type Props = {
     sectionPosition?: Position.LEFT | Position.RIGHT;
 }
 
-const SectionContent = ({sectionContent,section,settings,sectionPosition}: Props) => {
+const SectionContent = ({sectionContent, section, settings, sectionPosition}: Props) => {
     return (
         <>    
             {section === Sections.SKILLS && (

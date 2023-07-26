@@ -22,11 +22,11 @@ type Props = {
   settings: ISettings
 };
 
-const SkillsLanguageBlock = ({ section, sectionPosition,items,settings }: Props) => {
+const SkillsLanguageBlock = ({ section, sectionPosition, items, settings }: Props) => {
     const { format, gridCols } =
     settings![section]!;
     const {layout} = useLayoutContext();
-    const  columns  = layout?.columns!;
+    const columns = layout?.columns!;
 
     const itemsStyle = {
         gridTemplateColumns: `repeat(${
@@ -65,7 +65,7 @@ columns === 2
                                 {format === Format.LEVEL && (section === Sections.LANGUAGE ?
                                     item['languageLevel' as keyof typeof item] : 
                                     item['skillLevel' as keyof typeof item]) && 
-                                    ( <Level level={section === Sections.LANGUAGE ? 
+                                    (<Level level={section === Sections.LANGUAGE ? 
                                         (item['languageLevel' as keyof typeof item] as LanguageLevel)
                                         : (item['skillLevel' as keyof typeof item] as SkillLevel)} 
                                     // eslint-disable-next-line react/jsx-indent-props

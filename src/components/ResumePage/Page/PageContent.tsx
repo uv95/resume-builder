@@ -15,8 +15,8 @@ type Props = {
     additionalStyle?: React.CSSProperties; 
     ref: React.ForwardedRef<HTMLDivElement> }
 
-const PageContent = forwardRef(function PageContent(props:Props,ref) {
-    const {id,className,additionalStyle,settings,content}=props;
+const PageContent = forwardRef(function PageContent(props:Props, ref) {
+    const {id, className, additionalStyle, settings, content}=props;
 
     const { setColor } = useSetColor();
     const {layout} = useLayoutContext();
@@ -44,7 +44,7 @@ const PageContent = forwardRef(function PageContent(props:Props,ref) {
     } as React.CSSProperties;
 
     return (
-        <div ref={ref as  React.ForwardedRef<HTMLDivElement>}
+        <div ref={ref as React.ForwardedRef<HTMLDivElement>}
             id={id || ''}
             className={className || ''}
             style={{...pageContentStyle, ...additionalStyle}}

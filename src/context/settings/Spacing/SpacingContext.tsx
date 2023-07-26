@@ -17,7 +17,7 @@ export const SpacingProvider:FC<PropsWithChildren> = ({ children }) => {
 
 
     const values = useMemo(
-        ()=>({
+        () => ({
             spacing,
             setSpacing
         }),

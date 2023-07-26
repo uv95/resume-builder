@@ -6,7 +6,7 @@ import { DELETE_PROFILE } from '@/graphql/mutations/profile';
 import { DELETE_PROJECT } from '@/graphql/mutations/project';
 import { DELETE_SKILL } from '@/graphql/mutations/skills';
 import { useMutation } from '@apollo/client';
-import {  IResume, Sections } from '@/utils/types/resumeTypes';
+import { IResume, Sections } from '@/utils/types/resumeTypes';
 import { GET_RESUME } from '@/graphql/queries/resume';
 import useUpdateSettings from './useUpdateSettings';
 import { AdditionalContentItem, AdditionalContentSection } from '@/utils/types/contentTypes';

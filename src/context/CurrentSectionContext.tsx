@@ -16,7 +16,7 @@ export const CurrentSectionProvider: FC<PropsWithChildren> = ({ children }) => {
     const [currentSection, setCurrentSection] = useState<Sections | ''>('');
 
     const values = useMemo(
-        ()=>({
+        () => ({
             currentSection,
             setCurrentSection
         }),

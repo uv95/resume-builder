@@ -71,7 +71,7 @@ function useUpdateSectionName({
         },
     ];
     const updateSectionName = (
-        variables:{id:string,sectionName:string, items: AdditionalContentItem[]}
+        variables:{id:string, sectionName:string, items: AdditionalContentItem[]}
     ) => {
         const { fn, fnName } = updateFunctions.find(
             (item) => section === item.section

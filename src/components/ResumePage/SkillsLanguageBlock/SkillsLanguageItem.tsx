@@ -15,7 +15,7 @@ type Props = {item:ISkillsItem|ILanguageItem;
   settings: ISettings
 }
 
-const SkillsLanguageItem = ({item,section,sectionPosition,itemsLength,index,settings}: Props) => {
+const SkillsLanguageItem = ({item, section, sectionPosition, itemsLength, index, settings}: Props) => {
     const { format, textFormat, infoItalic } =
     settings![section]!;
     const { colors } = useColorsContext();

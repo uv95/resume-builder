@@ -9,8 +9,8 @@ interface ResumeDataSetterProps {
   children:ReactNode
 }
     
-export const ResumeDataSetter = ({ resumeData,children }: ResumeDataSetterProps) => {
-    const { setResume,setSettings } = useResumeContext();
+export const ResumeDataSetter = ({ resumeData, children }: ResumeDataSetterProps) => {
+    const { setResume, setSettings } = useResumeContext();
     const { setContent } = useContentContext();
     const { setColors } = useColorsContext();
     const { setSpacing } = useSpacingContext();
@@ -20,7 +20,7 @@ export const ResumeDataSetter = ({ resumeData,children }: ResumeDataSetterProps)
     const { setHeader } = useHeaderContext();
 
     useEffect(() => {
-        if(resumeData.name && resumeData.id) setResume({name:resumeData.name,id:resumeData.id});
+        if(resumeData.name && resumeData.id) setResume({name:resumeData.name, id:resumeData.id});
     }, [resumeData.name, resumeData.id, setResume]);
 
     useEffect(() => {

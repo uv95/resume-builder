@@ -17,12 +17,12 @@ const DeleteResume = () => {
     const [deleteResume] = useMutation(DELETE_RESUME)
     const {t} = useTranslation()
 
-    const handleDeleteResume = () =>{
+    const handleDeleteResume = () => {
         const myExistingResumesLS = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY);
 
         const myExistingResumesParsed = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as ILocalStorageResume[] : null;
 
-        const myResumesUpdated = myExistingResumesParsed?.filter((resumeItem:ILocalStorageResume)=>resume?.id!==resumeItem.id);
+        const myResumesUpdated = myExistingResumesParsed?.filter((resumeItem:ILocalStorageResume) => resume?.id!==resumeItem.id);
 
         localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(myResumesUpdated));
 
@@ -33,16 +33,16 @@ const DeleteResume = () => {
     return (
         <>
             <div className='centered'>
-                <Button btnType='red' onClick={()=>setConfirmDelete(true)}>
+                <Button btnType='red' onClick={() => setConfirmDelete(true)}>
                     {t('delete-resume')}
                 </Button>
             </div>
-            {confirmDelete && <Modal close={()=>setConfirmDelete(false)}>
+            {confirmDelete && <Modal close={() => setConfirmDelete(false)}>
                 <div className={style.content}>
                     <p>{t('confirm-delete')}</p>
                     <div className={style.buttons}>
                         <Button btnType='gray' onClick={handleDeleteResume}>{t('yes')}</Button>
-                        <Button btnType='pink' onClick={()=>setConfirmDelete(false)}>{t('no')}</Button>
+                        <Button btnType='pink' onClick={() => setConfirmDelete(false)}>{t('no')}</Button>
                     </div>
                 </div>
             </Modal>}

@@ -10,7 +10,7 @@ import PersonalDetailsAdditionalInfo from '../PersonalDetails/PersonalDetailsAdd
 import Select from '../../Select/Select';
 import dynamic from 'next/dynamic';
 import Buttons from './Buttons';
-import {  Sections } from '@/utils/types/resumeTypes';
+import { Sections } from '@/utils/types/resumeTypes';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { useTranslation } from 'next-i18next';
 import { useContentContext } from '@/context/ContentContext';
@@ -49,7 +49,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
 
     return (
         <div>
-            {inputData.name==='personalDetails' ?  <h3 className="p-2">{t('edit')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3> : <h3 className="p-2">{itemId ? t('edit'):t('add')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3>}
+            {inputData.name==='personalDetails' ? <h3 className="p-2">{t('edit')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3> : <h3 className="p-2">{itemId ? t('edit'):t('add')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3>}
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {

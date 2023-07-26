@@ -11,7 +11,7 @@ type Props = {
   tagsGroup: string;
 };
 
-const AddAdditionalInfo = ({ tags,tagsGroup }: Props) => {
+const AddAdditionalInfo = ({ tags, tagsGroup }: Props) => {
     const {t, i18n} = useTranslation(['content'])
 
     const { additionalInfo, setAdditionalInfo } = useContext(
@@ -42,14 +42,14 @@ const AddAdditionalInfo = ({ tags,tagsGroup }: Props) => {
             {currentAdditionalInfo.length !== 0 &&
         currentAdditionalInfo.map((item) => (
             <div className="inputGroup mt-1" key={item.name}>
-                <label htmlFor={item.name}>{tagsGroup==='Links' ? item.name : (t('additionalInfo',{returnObjects:true}) as any)[item.name]}</label>
+                <label htmlFor={item.name}>{tagsGroup==='Links' ? item.name : (t('additionalInfo', {returnObjects:true}) as any)[item.name]}</label>
                 <div className="flex spaceBetween">
                     <input
                         type="text"
                         name={item.name}
                         id={item.name}
                         value={item.input}
-                        placeholder={i18n.language==='en'?`Enter ${item.name}` : (t('additionalInfo',{returnObjects:true}) as any)[item.name]}
+                        placeholder={i18n.language==='en'?`Enter ${item.name}` : (t('additionalInfo', {returnObjects:true}) as any)[item.name]}
                         onChange={(e) =>
                             setAdditionalInfo((prev) =>
                                 prev.map((info) =>

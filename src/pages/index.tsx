@@ -21,7 +21,7 @@ export default function Home() {
     const [myResumes, setMyResumes] = useState<IResume[]>([]);
     const [myResumesLS, setMyResumesLS] = useState<ILocalStorageResume[]>([]);
 
-    const {  data: allResumes } = useQuery(GET_RESUMES);
+    const { data: allResumes } = useQuery(GET_RESUMES);
     const router = useRouter();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function Home() {
             localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(newResumeList));
             router.push(`resume/${data.addResume.id}`);
         }
-    }, [data, router,myResumes,myResumesLS]);
+    }, [data, router, myResumes, myResumesLS]);
 
 
     useEffect(() => {
@@ -38,7 +38,7 @@ export default function Home() {
         const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as ILocalStorageResume[] : null;
 
         if(myExistingResumes&&myExistingResumes.length!==0) {
-            const allMyResumes = allResumes.resumes.filter((item:IResume)=>myExistingResumes.some((resume:ILocalStorageResume)=>resume.id===item.id))
+            const allMyResumes = allResumes.resumes.filter((item:IResume) => myExistingResumes.some((resume:ILocalStorageResume) => resume.id===item.id))
             setMyResumesLS(myExistingResumes)
             setMyResumes(allMyResumes)
         }

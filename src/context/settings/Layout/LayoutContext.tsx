@@ -15,7 +15,7 @@ export const LayoutProvider:FC<PropsWithChildren> = ({ children }) => {
     const [layout, setLayout] = useState<ILayout | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             layout,
             setLayout,
         }),

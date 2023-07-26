@@ -17,13 +17,13 @@ type Props = {
   settings: ISettings
 };
 
-const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
+const EducationBlock = ({ sectionPosition, items, settings}: Props) => {
     const { degreeFirst } = settings?.education!;
     const {layout} = useLayoutContext();
     const {subtitle} = useSubtitleContext();
-    const  columns  = layout?.columns!;
+    const columns = layout?.columns!;
     const subtitleStyle = subtitle?.style;
-    const  position = subtitle?.position;
+    const position = subtitle?.position;
     const { date } = settings!;
 
     const subtitlePositionStyle = {
@@ -46,7 +46,7 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                                     />
                                 )}
                                 { (item.city||item.country)&&<p>
-                                    {item.city}, {item.country}
+                                    {item.city}{item.country&&','} {item.country}
                                 </p>}
                             </div>
                         )}
@@ -84,7 +84,7 @@ const EducationBlock = ({ sectionPosition ,items,settings}: Props) => {
                                     )}
 
                                     { (item.city||item.country)&&<p>
-                                        {item.city}, {item.country}
+                                        {item.city}{item.country&&','} {item.country}
                                     </p>}
                                 </div>
                             )}

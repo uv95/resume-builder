@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isBold?: boolean;
 }
 
-const Button: FC<ButtonProps> = memo( function Button (props) {
+const Button: FC<ButtonProps> = memo(function Button (props) {
     const {
         isSubmit,
         className,

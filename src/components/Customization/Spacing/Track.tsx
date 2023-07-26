@@ -19,7 +19,7 @@ const Track = ({ values, sectionName, currentValue, updateSpacing }: Props) => {
         if (i === 8) return i * (100 / 9) + 0.3;
 
         return i * (100 / 9) + 0.3;
-    },[]);
+    }, []);
     
     return (
         <div className={style.track}>

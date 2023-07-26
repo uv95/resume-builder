@@ -1,7 +1,7 @@
 import { formatLevelProp } from './formatLevelProp';
 import { removeTypename } from './removeTypename';
 import { AdditionalContentItem, AdditionalContentSection } from './types/contentTypes';
-import {  IContent, Sections } from './types/resumeTypes';
+import { IContent, Sections } from './types/resumeTypes';
 
 export const getInitialValues = (
     inputData: any,

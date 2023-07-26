@@ -14,22 +14,22 @@ type Props = {
     icon: string;
 }
 
-const ContentCardHeader = ({ setCurrentSection,currentSectionName,contentSection,icon,sectionName}: Props) => {
+const ContentCardHeader = ({ setCurrentSection, currentSectionName, contentSection, icon, sectionName}: Props) => {
    
 
     return (<div
         className="flex spaceBetween p-2 pointer"
-        onClick={(e) =>{   
+        onClick={(e) => {   
             const target = e.target as HTMLElement;
             target.id!=='sectionName' &&target.id!=='sectionNameBtn'&&
             setCurrentSection(
                 currentSectionName === sectionName ? '' : sectionName
-            )}
+            ) }
         }
     >
         <div className="flex gap-1 aligned">
             <Image src={icon} width="24" height="24" alt="icon" />
-            {currentSectionName=== sectionName?  <UpdateSectionName sectionName={contentSection.sectionName} section={sectionName}/> 
+            {currentSectionName=== sectionName? <UpdateSectionName sectionName={contentSection.sectionName} section={sectionName}/> 
                 : <h3>{contentSection.sectionName}</h3>}
         </div>
 

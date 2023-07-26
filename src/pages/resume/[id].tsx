@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
 
-const Customization = dynamic(()=>import('@/components/Customization/Customization'))
+const Customization = dynamic(() => import('@/components/Customization/Customization'))
 
 const Resume = () => {
     const router = useRouter();
@@ -27,28 +27,25 @@ const Resume = () => {
     if (error) return <p>Something Went Wrong</p>;
 
     return (
-        <Layout title={data.resume.name} content='Resume editing and customization'>
+        <Layout title={data?.resume?.name || 'Loading...'} content='Resume editing and customization'>
             <Loader/>
-            {data.resume && 
-            <ResumeDataSetter resumeData={data.resume}>
-                <div className={style.layout}>
-                    <div className="flex">
-                        <Navigation active={active} setActive={setActive} />
-                        <div className={style.mainPanel}>
-                       
+            <div className={style.layout}>
+                <div className="flex">
+                    <Navigation active={active} setActive={setActive} />
+                    <div className={style.mainPanel}>
+                        <ResumeDataSetter resumeData={data?.resume}>
                             <ResumeName
-                                resumeName={data.resume.name}
-                                id={data.resume.id}
+                                resumeName={data?.resume?.name}
+                                id={data?.resume?.id}
                                 reactToPrintContent={() => componentRef.current}
                             />
                             {active === 'Content' && <Content />}
                             {active === 'Customize' && <Customization />}
-                        </div>
+                        </ResumeDataSetter>
                     </div>
-                    <Page ref={componentRef} /> 
                 </div>
-            </ResumeDataSetter>
-            }
+                <Page ref={componentRef} /> 
+            </div>
         </Layout>
     );
 };
@@ -63,7 +60,7 @@ export async function getServerSideProps({ params, locale }: { params: any, loca
     });
     return addApolloState(client, {
         props: {
-            ...(await serverSideTranslations(locale,[
+            ...(await serverSideTranslations(locale, [
                 'content', 'common', 'customization'
             ]))
         },

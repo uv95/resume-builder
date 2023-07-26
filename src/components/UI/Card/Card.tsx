@@ -9,7 +9,7 @@ type Props = {
   id?: string;
 };
 
-const Card = ({ children, gray, hoverScale,className,id }: Props) => {
+const Card = ({ children, gray, hoverScale, className, id }: Props) => {
     return (
         <div
             id={id}

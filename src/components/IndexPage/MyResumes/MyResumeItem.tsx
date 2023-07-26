@@ -15,7 +15,7 @@ const MyResumeItem = ({resume}: Props) => {
 
     return (
         <div className={style.resume}>
-            <div onMouseEnter={()=>resume&&setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)} className={style.pageWrapper}>
+            <div onMouseEnter={() => resume&&setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={style.pageWrapper}>
 
                 {resume &&  
                 <PageContent 
@@ -26,7 +26,7 @@ const MyResumeItem = ({resume}: Props) => {
 
                 {resume && 
                 <div 
-                    onClick={()=>router.push(`/resume/${resume.id}`)} 
+                    onClick={() => router.push(`/resume/${resume.id}`)} 
                     className={`${style.viewResume} ${isHovered? style.viewResume_hovered : '' }`}>
 
                     <p className={`${style.viewResumeText} ${isHovered? style.viewResumeText_hovered : '' }`}>{(t('view-resume')).toUpperCase()}</p>

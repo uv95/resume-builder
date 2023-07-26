@@ -12,7 +12,7 @@ import InputsSection from '../InputsSection/InputsSection';
 import Modal from '../../UI/Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
-import {  AdditionalContentSection } from '@/utils/types/contentTypes';
+import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import style from './Content.module.scss';
 import { useTranslation } from 'next-i18next';
 import { useContentContext } from '@/context/ContentContext';
@@ -29,8 +29,8 @@ const Content = () => {
       itemId: '',
   });
     const { settings } = useContext(ResumeContext);
-    const { content } =useContentContext();
-    const additionalContentSections = settings?.sectionsOrder.top.filter(section=>section!=='personalDetails')! || []
+    const { content } = useContentContext();
+    const additionalContentSections = settings?.sectionsOrder.top.filter(section => section!=='personalDetails')! || []
 
     const showPersonalDetailsIfNotEditingAnything =
     !contentToEdit.section ||
@@ -53,7 +53,7 @@ const Content = () => {
                         {!contentToEdit.section &&
               additionalContentSections.map(
                   (section) =>
-                      ( content![
+                      (content![
                       section as keyof typeof content] as AdditionalContentSection).items
                           .length !== 0 && (
                           <ContentCard
@@ -80,14 +80,14 @@ const Content = () => {
                             </Card>
                         )}
                         {!contentToEdit.section && <div className="centered">
-                            <Button className={style.addContentBtn}  onClick={() => setShowAddContent(true)} btnType="pink">
+                            <Button className={style.addContentBtn} onClick={() => setShowAddContent(true)} btnType="pink">
                                 <span>+</span> {t('add-content')}
                             </Button>
                         </div>}
                     </>
                 )}
                 {showAddContent && (
-                    <Modal close={()=>setShowAddContent(false)} heading={t('add-content')}>
+                    <Modal close={() => setShowAddContent(false)} heading={t('add-content')}>
                         <AddContent
                             setContentToEdit={setContentToEdit}
                             setOpen={setShowAddContent}

@@ -16,7 +16,7 @@ export const ColorsProvider:FC<PropsWithChildren> = ({ children }) => {
     const [colors, setColors] = useState<IColors | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             colors,
             setColors,
         }),

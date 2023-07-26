@@ -6,7 +6,9 @@ import merge from 'deepmerge';
 import isEqual from 'lodash-es/isEqual';
 
 const uriDev='http://localhost:8000/graphql'
-const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
+// doesn't work in production for some reason!!!
+// const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
+const uriProd='https://resume-builder-test.onrender.com/graphql'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 let apolloClient: ApolloClient<NormalizedCacheObject> | null;

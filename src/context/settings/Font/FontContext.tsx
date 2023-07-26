@@ -16,7 +16,7 @@ export const FontProvider:FC<PropsWithChildren> = ({ children }) => {
     const [font, setFont] = useState<IFont | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             font,
             setFont,
         }),

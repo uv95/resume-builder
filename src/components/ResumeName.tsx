@@ -25,7 +25,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
     const handlePrint = useReactToPrint({
         content: reactToPrintContent,
         documentTitle: resumeName,
-        onBeforeGetContent: ()=>{
+        onBeforeGetContent: () => {
             const page = document.querySelector('#resumePage') as HTMLDivElement;
             page.style.transform = 'scale(1)'
         }
@@ -54,7 +54,7 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                     variables: { id, name },
                 });
                 const myExistingResumes = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY) ? JSON.parse(localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY)!) : null;
-                const myUpdatedResumes = [...myExistingResumes.filter((resume:ILocalStorageResume)=>resume.id!==id), {id, name}]
+                const myUpdatedResumes = [...myExistingResumes.filter((resume:ILocalStorageResume) => resume.id!==id), {id, name}]
                 localStorage.setItem(MY_RESUMES_LOCALSTORAGE_KEY, JSON.stringify(myUpdatedResumes));
                 setIsEdit(false)
             }}
@@ -67,10 +67,10 @@ const ResumeName = ({ id, resumeName, reactToPrintContent }: Props) => {
                     </Button>
                 </div>
             </Form>
-        </Formik> :  <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
+        </Formik> : <div style={{ alignItems: 'center' }} className="flex spaceBetween p-2">
             <div style={{ alignItems: 'center' }} className="flex pointer"
                 onClick={() => setIsEdit(true)} >
-                <p style={{fontSize:'1.8rem',fontWeight:'bold'}}>{resumeName}</p>
+                <p style={{fontSize:'1.8rem', fontWeight:'bold'}}>{resumeName}</p>
                 <Image src={edit} width="20" height="20" alt="edit" />
             </div>
             <Button btnType="pink" onClick={handlePrint}>

@@ -10,10 +10,10 @@ import style from './Page.module.scss';
 
 type Props = {
   columnWidth: { left: number; right: number };
-  settings: ISettings,content:IContent
+  settings: ISettings, content:IContent
 };
 
-const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
+const PageTwoColumns = ({ columnWidth, settings, content}: Props) => {
     const {spacing} = useSpacingContext()
     const {layout} = useLayoutContext();
     const position = layout?.position;
@@ -57,7 +57,7 @@ const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
         >
             <div style={leftSectionsStyle}>
                 {position === Position.LEFT && <PersonalDetailsBlock content={content} settings={settings}/>}
-                {leftSections&&leftSections.map((section,index) => (
+                {leftSections&&leftSections.map((section, index) => (
                     <PageSection
                         key={section}
                         sectionIndex={index}
@@ -70,7 +70,7 @@ const PageTwoColumns = ({ columnWidth ,settings,content}: Props) => {
             </div>
             <div style={rightSectionsStyle}>
                 {position === Position.RIGHT && <PersonalDetailsBlock content={content} settings={settings}/>}
-                {rightSections&&rightSections.map((section,index) => (
+                {rightSections&&rightSections.map((section, index) => (
                     <PageSection
                         key={section}
                         sectionIndex={index}

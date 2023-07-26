@@ -18,9 +18,9 @@ const Header = () => {
     const {t} = useTranslation(['customization'])
 
     const { header } = useHeaderContext();
-    const  additionalInfoOrder = header?.additionalInfoOrder;
+    const additionalInfoOrder = header?.additionalInfoOrder;
     const additionalInfoStyle = header?.additionalInfoStyle;
-    const  position = header?.position;
+    const position = header?.position;
 
     const updateHeader = useUpdateHeader();
     const [values, setValues] = useState(

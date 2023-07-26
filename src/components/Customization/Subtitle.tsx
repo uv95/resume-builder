@@ -11,7 +11,7 @@ const Subtitle = () => {
     const {t} = useTranslation(['customization'])
 
     const {subtitle} = useSubtitleContext();
-    const updateSubtitle  = useUpdateSubtitle();
+    const updateSubtitle = useUpdateSubtitle();
     const [values, setValues] = useState(
         removeTypename(subtitle!)
     );

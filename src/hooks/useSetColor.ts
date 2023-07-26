@@ -12,11 +12,11 @@ function useSetColor() {
     const mode = colors?.mode!;
     const applyAccentColor = colors?.applyAccentColor!;
     const basicSelected = colors?.basic.selected!;
-    const  accentBasic = colors?.basic.accent!;
+    const accentBasic = colors?.basic.accent!;
     const multicolorBasic = colors?.basic.multicolor!;
     const advancedSelected = colors?.advanced.selected!
     const accentAdvanced = colors?.advanced.accent!
-    const  multicolorAdvanced = colors?.advanced.multicolor!
+    const multicolorAdvanced = colors?.advanced.multicolor!
 
   type SetColorType = {
     section?: AccentColorSections;

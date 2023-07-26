@@ -10,7 +10,7 @@ type Props = {className?:string}
 
 const LanguageSwitcher = ({className}:Props) => {
     const router = useRouter()
-    const {t,i18n} = useTranslation()
+    const {t, i18n} = useTranslation()
 
     const onToggleLanguageClick = (newLocale: string) => {
         const { pathname, asPath, query } = router
@@ -23,7 +23,7 @@ const LanguageSwitcher = ({className}:Props) => {
         <Button
             className={className}
             btnType="nav"
-            onClick={() =>onToggleLanguageClick(changeTo)}
+            onClick={() => onToggleLanguageClick(changeTo)}
         >
             <div className="flex aligned gap-1">
                 <Image src={i18n.language === 'ru' ? russianFlag : englishFlag} width='20' height='20' alt='country flag'/>

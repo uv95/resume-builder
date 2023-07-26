@@ -12,12 +12,12 @@ import {
 import { memo } from 'react';
 import style from './PersonalDetailsBlock.module.scss';
 
-type Props = {settings: ISettings ,content:IContent}
+type Props = {settings: ISettings, content:IContent}
 
-const AdditionalInfoBlock = ({settings,content}:Props) => {
+const AdditionalInfoBlock = ({settings, content}:Props) => {
     const {spacing} = useSpacingContext()
     const {layout} = useLayoutContext();
-    const position  = layout?.position;
+    const position = layout?.position;
     const personalDetails = content?.personalDetails;
     const { fontSize } = spacing!;
     const {

@@ -11,7 +11,7 @@ const Columns = () => {
 
     const { layout } = useLayoutContext();
     const columns = layout?.columns;
-    const  position = layout?.position;
+    const position = layout?.position;
     const { updateColumns } = useUpdateLayout();
 
     return (

@@ -17,7 +17,7 @@ export const SubtitleProvider:FC<PropsWithChildren> = ({ children }) => {
 
 
     const values = useMemo(
-        ()=>({
+        () => ({
             subtitle,
             setSubtitle
         }),

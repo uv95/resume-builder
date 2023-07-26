@@ -15,7 +15,7 @@ export const PersonalDetailsSettingsProvider:FC<PropsWithChildren> = ({ children
     const [personalDetailsSettings, setPersonalDetailsSettings] = useState<{name:IName, header:IHeader, jobTitle:IJobTitle} | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             personalDetailsSettings,
             setPersonalDetailsSettings,
         }),

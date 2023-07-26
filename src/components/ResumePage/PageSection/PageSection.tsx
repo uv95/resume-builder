@@ -35,7 +35,7 @@ const PageSection = ({
           (<Heading 
               sectionPosition={sectionPosition} 
               sectionIndex={sectionIndex}
-              sectionName={sectionContent.sectionName}/> )}
+              sectionName={sectionContent.sectionName}/>)}
             <div 
                 style={{
                     background: setColor({

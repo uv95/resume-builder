@@ -15,7 +15,7 @@ export const AdditionalInfoProvider:FC<PropsWithChildren> = ({ children }) => {
     const [additionalInfo, setAdditionalInfo] = useState<IAdditionalInfo[]>([]);
 
     const values = useMemo(
-        ()=>({
+        () => ({
             additionalInfo,
             setAdditionalInfo
         }),

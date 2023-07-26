@@ -82,7 +82,7 @@ export enum SkillLevel {
   default = '',
 }
 
-export type  AdditionalContentItem =
+export type AdditionalContentItem =
   | ILanguageItem
   | ISkillsItem
   | IProfessionalExperienceItem
@@ -93,7 +93,7 @@ export type  AdditionalContentItem =
 export interface AdditionalContentSection {
   id:string;
   sectionName: string;
-  items:  AdditionalContentItem[]
+  items: AdditionalContentItem[]
 }
 
 export interface ILanguage extends AdditionalContentSection{

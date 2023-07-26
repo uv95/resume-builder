@@ -1,9 +1,9 @@
 import Head from "next/head"
 import React from "react"
 
-type Props = { title:string,content:string, children:React.ReactNode}
+type Props = { title:string, content:string, children:React.ReactNode}
 
-const Layout = ({children, title,content}:Props) => {
+const Layout = ({children, title, content}:Props) => {
 
     return (
         <>

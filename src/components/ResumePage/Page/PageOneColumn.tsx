@@ -10,7 +10,7 @@ type Props = {
   content:IContent
 };
 
-const PageOneColumn = ({ sections,settings,content }: Props) => {
+const PageOneColumn = ({ sections, settings, content }: Props) => {
     const { spacing } =useSpacingContext();
     const leftRightMargin = spacing?.leftRightMargin!;
     const topBottomMargin = spacing?.topBottomMargin!;

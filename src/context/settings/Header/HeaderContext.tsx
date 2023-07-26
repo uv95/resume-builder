@@ -17,7 +17,7 @@ export const HeaderProvider:FC<PropsWithChildren> = ({ children }) => {
 
 
     const values = useMemo(
-        ()=>({
+        () => ({
             header,
             setHeader
         }),

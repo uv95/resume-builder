@@ -19,8 +19,14 @@ const Page = forwardRef(function Page(props, ref) {
     const [resumePageWidth, setResumePageWidth] = useState(0);
 
     useEffect(() => {
+        const pageRefCurrent = pageRef.current;
+
         window.addEventListener('resize', () =>
-            setResumePageWidth(pageRef?.current ? pageRef.current.offsetWidth :  0)
+            setResumePageWidth(pageRefCurrent ?pageRefCurrent.offsetWidth : 0)
+        );
+
+        return () => window.removeEventListener('resize', () =>
+            setResumePageWidth(pageRefCurrent ? pageRefCurrent.offsetWidth : 0)
         );
     });
 

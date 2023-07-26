@@ -16,6 +16,12 @@
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "no-underscore-dangle": "off",
+    "block-spacing": "error",
+    "space-before-blocks": "error",
+    "space-in-parens": "error",
+    "no-multi-spaces": "error",
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "arrow-spacing": "error",
     // "i18next/no-literal-string": ["error", { "markupOnly": true, "ignoreAttribute": ["data-testid"] }],
     "no-restricted-globals": "off"
 }

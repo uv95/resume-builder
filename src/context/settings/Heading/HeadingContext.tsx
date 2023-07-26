@@ -16,7 +16,7 @@ export const HeadingProvider:FC<PropsWithChildren> = ({ children }) => {
     const [heading, setHeading] = useState<IHeading | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             heading,
             setHeading,
         }),

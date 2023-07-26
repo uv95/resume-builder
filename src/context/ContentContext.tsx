@@ -17,7 +17,7 @@ export const ContentProvider:FC<PropsWithChildren> = ({ children }) => {
     const [content, setContent] = useState<IContent | null>(null);
   
     const values = useMemo(
-        ()=>({
+        () => ({
             content,
             setContent,
         }),

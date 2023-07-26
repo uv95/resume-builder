@@ -17,12 +17,12 @@ type Props = {
   settings: ISettings
 };
 
-const ProfessionalExperienceBlock = ({ sectionPosition,items,settings }: Props) => {
+const ProfessionalExperienceBlock = ({ sectionPosition, items, settings }: Props) => {
     const {subtitle} = useSubtitleContext();
     const {layout} = useLayoutContext();
     const subtitleStyle = subtitle?.style;
-    const  position = subtitle?.position;
-    const  columns  = layout?.columns!;
+    const position = subtitle?.position;
+    const columns = layout?.columns!;
     const { date } = settings!;
     const { jobTitleFirst } = settings?.professionalExperience!;
 
