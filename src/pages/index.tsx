@@ -17,7 +17,7 @@ import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
 import { ILocalStorageResume } from '@/utils/types/common';
 
 export default function Home() {
-    const [addResume, { data}] = useMutation(ADD_RESUME);
+    const [addResume, { data }] = useMutation(ADD_RESUME);
     const [myResumes, setMyResumes] = useState<IResume[]>([]);
     const [myResumesLS, setMyResumesLS] = useState<ILocalStorageResume[]>([]);
 

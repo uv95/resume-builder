@@ -19,12 +19,12 @@ const PageContent = forwardRef(function PageContent(props:Props, ref) {
     const {id, className, additionalStyle, settings, content}=props;
 
     const { setColor } = useSetColor();
-    const {layout} = useLayoutContext();
-    const {spacing} = useSpacingContext()
+    const { layout } = useLayoutContext();
+    const { spacing } = useSpacingContext()
 
     const position = layout?.position;
     const columns = layout?.columns;
-    const columnWidth = layout?.columnWidth;
+    const columnWidth = layout?.columnWidth!;
     const fontSize = spacing?.fontSize;
     const lineHeight = spacing?.lineHeight;
 
@@ -61,7 +61,7 @@ const PageContent = forwardRef(function PageContent(props:Props, ref) {
             ):
                 <PageTwoColumns
                     content={content} settings={settings}
-                    columnWidth={columnWidth!}
+                    columnWidth={columnWidth}
                 />
             }
         </div>

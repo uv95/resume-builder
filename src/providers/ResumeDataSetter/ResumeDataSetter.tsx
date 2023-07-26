@@ -2,7 +2,7 @@ import { useContentContext } from '@/context/ContentContext';
 import { useResumeContext } from '@/context/ResumeContext';
 import { useColorsContext, useHeaderContext, useHeadingContext, useLayoutContext, useSpacingContext, useSubtitleContext } from '@/context/settings';
 import { IResume } from '@/utils/types/resumeTypes';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
     
 interface ResumeDataSetterProps {
   resumeData: IResume;
@@ -18,6 +18,12 @@ export const ResumeDataSetter = ({ resumeData, children }: ResumeDataSetterProps
     const { setSubtitle } = useSubtitleContext();
     const { setHeading } = useHeadingContext();
     const { setHeader } = useHeaderContext();
+
+    const [hasEverythingLoaded, setHasEverythingLoaded] = useState(false)
+
+    useEffect(() => {
+        resumeData && setHasEverythingLoaded(true)
+    }, [resumeData])
 
     useEffect(() => {
         if(resumeData.name && resumeData.id) setResume({name:resumeData.name, id:resumeData.id});
@@ -57,7 +63,7 @@ export const ResumeDataSetter = ({ resumeData, children }: ResumeDataSetterProps
     
     return (
         < >
-            {children}
+            {hasEverythingLoaded && children}
         </>
     );
 };

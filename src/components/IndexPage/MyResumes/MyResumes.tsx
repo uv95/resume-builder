@@ -2,6 +2,7 @@ import { IResume } from '@/utils/types/resumeTypes';
 import MyResumeItem from './MyResumeItem';
 import style from './MyResumes.module.scss';
 import { useTranslation } from 'next-i18next';
+import { ResumeDataSetter } from '@/providers/ResumeDataSetter/ResumeDataSetter';
 
 type Props = {myResumes:IResume[]}
 
@@ -13,8 +14,12 @@ const MyResumes = ({myResumes}: Props) => {
         <div className={style.myResumes}>
             <h1>{t('my-resumes')}</h1>
             <div className={style.resumesGrid}>
-                {resumesGrid.map((resume:IResume, i:number) => (
-                    <MyResumeItem key={i} resume={resume}/>
+                {resumesGrid.map((resume:IResume, i: number) => (
+                    resume ? 
+                        <ResumeDataSetter key={i} resumeData={resume}>
+                            <MyResumeItem resume={resume}/>
+                        </ResumeDataSetter> :
+                        <MyResumeItem key={i} resume={resume}/>
                 ))}
             </div>
         </div>

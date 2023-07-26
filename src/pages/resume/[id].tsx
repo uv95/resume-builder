@@ -23,17 +23,17 @@ const Resume = () => {
     const componentRef = useRef<HTMLDivElement>(null);
 
     const [active, setActive] = useState('Content');
-
+    
     if (error) return <p>Something Went Wrong</p>;
 
     return (
         <Layout title={data?.resume?.name || 'Loading...'} content='Resume editing and customization'>
             <Loader/>
             <div className={style.layout}>
-                <div className="flex">
-                    <Navigation active={active} setActive={setActive} />
-                    <div className={style.mainPanel}>
-                        <ResumeDataSetter resumeData={data?.resume}>
+                {data.resume && <ResumeDataSetter resumeData={data.resume}>
+                    <div className="flex">
+                        <Navigation active={active} setActive={setActive} />
+                        <div className={style.mainPanel}>
                             <ResumeName
                                 resumeName={data?.resume?.name}
                                 id={data?.resume?.id}
@@ -41,10 +41,10 @@ const Resume = () => {
                             />
                             {active === 'Content' && <Content />}
                             {active === 'Customize' && <Customization />}
-                        </ResumeDataSetter>
+                        </div>
                     </div>
-                </div>
-                <Page ref={componentRef} /> 
+                    <Page ref={componentRef} /> 
+                </ResumeDataSetter>}
             </div>
         </Layout>
     );
