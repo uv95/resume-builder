@@ -17,7 +17,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: uriDev,
+        uri: uriProd,
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {
