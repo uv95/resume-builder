@@ -1,6 +1,5 @@
 import useApollo from '@/hooks/useApollo';
 import ErrorBoundary from '@/providers/ErrorBoundary/ErrorBoundary';
-import { Providers } from '@/providers/Providers';
 import '@/styles/globals.scss';
 import '@/styles/utilities.scss';
 import { ApolloProvider } from '@apollo/client';
@@ -14,9 +13,7 @@ function App({ Component, pageProps }: AppProps) {
     return (
         <ApolloProvider client={client}>
             <ErrorBoundary>
-                <Providers>
-                    <Component {...pageProps} />
-                </Providers>
+                <Component {...pageProps} />
             </ErrorBoundary>
         </ApolloProvider>
     );

@@ -13,6 +13,7 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useRef, useState } from 'react';
 import style from '../../styles/Resume.module.scss';
+import { Providers } from '@/providers/Providers';
 
 const Customization = dynamic(() => import('@/components/Customization/Customization'))
 
@@ -29,23 +30,25 @@ const Resume = () => {
     return (
         <Layout title={data?.resume?.name || 'Loading...'} content='Resume editing and customization'>
             <Loader/>
-            <div className={style.layout}>
-                {data.resume && <ResumeDataSetter resumeData={data.resume}>
-                    <div className="flex">
-                        <Navigation active={active} setActive={setActive} />
-                        <div className={style.mainPanel}>
-                            <ResumeName
-                                resumeName={data?.resume?.name}
-                                id={data?.resume?.id}
-                                reactToPrintContent={() => componentRef.current}
-                            />
-                            {active === 'Content' && <Content />}
-                            {active === 'Customize' && <Customization />}
+            <Providers>
+                <div className={style.layout}>
+                    {data.resume && <ResumeDataSetter resumeData={data.resume}>
+                        <div className="flex">
+                            <Navigation active={active} setActive={setActive} />
+                            <div className={style.mainPanel}>
+                                <ResumeName
+                                    resumeName={data?.resume?.name}
+                                    id={data?.resume?.id}
+                                    reactToPrintContent={() => componentRef.current}
+                                />
+                                {active === 'Content' && <Content />}
+                                {active === 'Customize' && <Customization />}
+                            </div>
                         </div>
-                    </div>
-                    <Page ref={componentRef} /> 
-                </ResumeDataSetter>}
-            </div>
+                        <Page ref={componentRef} /> 
+                    </ResumeDataSetter>}
+                </div>
+            </Providers>
         </Layout>
     );
 };

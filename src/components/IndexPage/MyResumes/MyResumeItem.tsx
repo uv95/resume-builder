@@ -1,11 +1,9 @@
 import PageContent from '@/components/ResumePage/Page/PageContent';
-import { IResume } from '@/utils/types/resumeTypes'
+import { IResume } from '@/utils/types/resumeTypes';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import style from './MyResumes.module.scss';
-import { useTranslation } from 'next-i18next';
-import { ResumeDataSetter } from '@/providers/ResumeDataSetter/ResumeDataSetter';
-
 
 type Props = {resume:IResume | undefined}
 

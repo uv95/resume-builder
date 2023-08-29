@@ -1,27 +1,26 @@
 import { addApolloState, initializeApollo } from '@/apollo';
+import Footer from '@/components/IndexPage/Footer/Footer';
+import MyResumes from '@/components/IndexPage/MyResumes/MyResumes';
+import NewResume from '@/components/IndexPage/NewResume/NewResume';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Layout from '@/components/Layout';
+import { Loader } from '@/components/UI/Loader/Loader';
 import { ADD_RESUME } from '@/graphql/mutations/resume';
 import { GET_RESUMES } from '@/graphql/queries/resume';
-import { useMutation, useQuery } from '@apollo/client';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { ILocalStorageResume } from '@/utils/types/common';
+import { IResume } from '@/utils/types/resumeTypes';
+import { useMutation } from '@apollo/client';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import style from '../styles/Home.module.scss';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import NewResume from '@/components/IndexPage/NewResume/NewResume';
-import MyResumes from '@/components/IndexPage/MyResumes/MyResumes';
-import { IResume } from '@/utils/types/resumeTypes';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
-import Footer from '@/components/IndexPage/Footer/Footer';
-import Layout from '@/components/Layout';
-import { Loader } from '@/components/UI/Loader/Loader';
-import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
-import { ILocalStorageResume } from '@/utils/types/common';
 
-export default function Home() {
+export default function Home({resumes}: any) {
     const [addResume, { data }] = useMutation(ADD_RESUME);
     const [myResumes, setMyResumes] = useState<IResume[]>([]);
     const [myResumesLS, setMyResumesLS] = useState<ILocalStorageResume[]>([]);
-
-    const { data: allResumes } = useQuery(GET_RESUMES);
+   
     const router = useRouter();
 
     useEffect(() => {
@@ -37,12 +36,12 @@ export default function Home() {
         const myExistingResumesLS = localStorage.getItem(MY_RESUMES_LOCALSTORAGE_KEY);
         const myExistingResumes = myExistingResumesLS ? JSON.parse(myExistingResumesLS) as ILocalStorageResume[] : null;
 
-        if(myExistingResumes&&myExistingResumes.length!==0) {
-            const allMyResumes = allResumes.resumes.filter((item:IResume) => myExistingResumes.some((resume:ILocalStorageResume) => resume.id===item.id))
+        if(myExistingResumes && myExistingResumes.length!==0) {
+            const allMyResumes = resumes.filter((item:IResume) => myExistingResumes.some((resume:ILocalStorageResume) => resume.id===item.id))
             setMyResumesLS(myExistingResumes)
             setMyResumes(allMyResumes)
         }
-    }, [allResumes.resumes]);
+    }, [resumes]);
 
     return (
         <>
@@ -59,9 +58,9 @@ export default function Home() {
     )
 }
 
-export async function getStaticProps({locale}:{locale:string}) {
+export async function getServerSideProps({locale}:{locale:string}) {
     const client = initializeApollo();
-    await client.query({
+    const {data} = await client.query({
         query: GET_RESUMES,
     });
     return addApolloState(client, {
@@ -69,7 +68,8 @@ export async function getStaticProps({locale}:{locale:string}) {
             ...(await serverSideTranslations(locale ?? 'en', [
                 'common',
                 'customization', 'content'
-            ]))
+            ])),
+            resumes: data.resumes
         },
     });
 }
