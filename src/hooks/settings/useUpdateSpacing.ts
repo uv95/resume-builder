@@ -1,6 +1,6 @@
 import { useSpacingContext } from '@/context/settings';
 import { UPDATE_SPACING } from '@/graphql/mutations/settings/spacing';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { SpacingSections } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 

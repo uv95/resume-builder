@@ -1,5 +1,5 @@
 import { formatLevelProp } from './formatLevelProp';
-import { removeTypename } from './removeTypename';
+import { removeTypename } from './removeTypename/removeTypename';
 import { AdditionalContentItem, AdditionalContentSection } from './types/contentTypes';
 import { IContent, Sections } from './types/resumeTypes';
 
@@ -27,7 +27,7 @@ export const getInitialValues = (
         }
     }
     const currentSectionItems: AdditionalContentItem[] = 
-   (content[sectionName as keyof typeof content] as AdditionalContentSection).items;
+   (content[sectionName] as AdditionalContentSection).items;
     const currentItem = removeTypename(
         currentSectionItems.find((item: AdditionalContentItem) => item.id === itemId) as AdditionalContentItem
     );

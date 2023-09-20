@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import SettingsCard from './shared/SettingsCard';
 import SettingsButtons from './shared/SettingsButtons';
 import { ResumeContext } from '@/context/ResumeContext';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
 import { FontStyle, Size } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';

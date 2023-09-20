@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { Format, TextFormat } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import Section from '../shared/Section';

@@ -1,7 +1,7 @@
 import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSectionName from '@/hooks/useUpdateSectionName';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';
 import { Sections } from '@/utils/types/resumeTypes';
 import { Field, Form, Formik } from 'formik'

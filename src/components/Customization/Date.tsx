@@ -1,6 +1,6 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { Delimiter, Month } from '@/utils/types/settingsTypes';
 import React, { useContext, useState } from 'react';
 import SettingsButtons from './shared/SettingsButtons';

@@ -1,4 +1,4 @@
-import { SpacingSections } from './types/settingsTypes';
+import { SpacingSections } from '../types/settingsTypes';
 
 export const spacingData: {name:SpacingSections, values: number[]}[] = [
     {

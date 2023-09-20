@@ -7,7 +7,7 @@ import Layout from '@/components/Layout';
 import { Loader } from '@/components/UI/Loader/Loader';
 import { ADD_RESUME } from '@/graphql/mutations/resume';
 import { GET_RESUMES } from '@/graphql/queries/resume';
-import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts/localStorage';
 import { ILocalStorageResume } from '@/utils/types/common';
 import { IResume } from '@/utils/types/resumeTypes';
 import { useMutation } from '@apollo/client';

@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 import { useReactToPrint } from 'react-to-print';
 import { IResume } from '@/utils/types/resumeTypes';
-import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts';
+import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts/localStorage';
 import { ILocalStorageResume } from '@/utils/types/common';
 
 type Props = {

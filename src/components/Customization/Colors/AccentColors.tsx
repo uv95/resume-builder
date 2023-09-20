@@ -1,6 +1,6 @@
 import { useColorsContext } from '@/context/settings';
 import useUpdateColors from '@/hooks/settings/useUpdateColors';
-import { colors } from '@/utils/colors';
+import { colors } from '@/utils/consts/colors';
 import { Mode } from '@/utils/types/settingsTypes';
 import React, { memo } from 'react';
 import style from './Colors.module.scss';

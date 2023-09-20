@@ -1,4 +1,4 @@
-import { contentCards } from '@/utils/data';
+import { contentCards } from '@/utils/consts/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import { useTranslation } from 'next-i18next';
 import { memo } from 'react';

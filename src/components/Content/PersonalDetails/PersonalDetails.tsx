@@ -1,5 +1,5 @@
 import { useContentContext } from '@/context/ContentContext';
-import { personalDetailInputData } from '@/utils/data';
+import { personalDetailInputData } from '@/utils/consts/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';

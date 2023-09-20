@@ -1,7 +1,7 @@
 import { AdditionalInfoContext } from '@/context/AdditionalInfoContext';
 import { useContentContext } from '@/context/ContentContext';
-import { personalDetailInputData } from '@/utils/data';
-import { removeTypename } from '@/utils/removeTypename';
+import { personalDetailInputData } from '@/utils/consts/data';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { useTranslation } from 'next-i18next';
 import React, { memo, useContext, useEffect } from 'react';
 import AddAdditionalInfo from '../AddAdditionalInfo/AddAdditionalInfo';

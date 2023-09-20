@@ -1,7 +1,7 @@
 import { AdditionalInfoProvider } from '@/context/AdditionalInfoContext';
 import { CurrentSectionProvider } from '@/context/CurrentSectionContext';
 import { ResumeContext } from '@/context/ResumeContext';
-import { inputData } from '@/utils/data';
+import { inputData } from '@/utils/consts/data';
 import { Sections } from '@/utils/types/resumeTypes';
 import React, { memo, useContext, useState } from 'react';
 import AddContent from '../AddContent/AddContent';

@@ -1,6 +1,6 @@
 import { useLayoutContext } from '@/context/settings';
 import { UPDATE_LAYOUT } from '@/graphql/mutations/settings/layout';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { Position } from '@/utils/types/settingsTypes';
 import { useMutation } from '@apollo/client';
 

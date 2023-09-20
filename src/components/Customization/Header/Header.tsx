@@ -2,7 +2,7 @@ import DetailsIcons from '@/components/DetailsIcons';
 import Button from '@/components/UI/Button/Button';
 import { useHeaderContext } from '@/context/settings';
 import useUpdateHeader from '@/hooks/settings/useUpdateHeader';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import {
     HeaderAdditionalInfoStyle,
     HeaderPosition

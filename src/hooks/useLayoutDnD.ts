@@ -1,7 +1,7 @@
 import { useLayoutContext } from '@/context/settings';
 import { ResumeContext } from '@/context/ResumeContext';
 import * as dnd from '@/utils/dragAndDropUtilityFunctions';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { Position } from '@/utils/types/settingsTypes';
 import { DragEvent, useContext, useState } from 'react';
 import useUpdateSettings from './useUpdateSettings';

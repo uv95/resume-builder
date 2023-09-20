@@ -1,6 +1,6 @@
 import { useSubtitleContext } from '@/context/settings';
 import useUpdateSubtitle from '@/hooks/settings/useUpdateSubtitle';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { FontStyle, SubtitlePosition } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';

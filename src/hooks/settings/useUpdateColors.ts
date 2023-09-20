@@ -1,6 +1,6 @@
 import { useColorsContext } from '@/context/settings';
 import { UPDATE_COLORS } from '@/graphql/mutations/settings/colors';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import {
     ColorOption,
     IAdvancedMulticolor,

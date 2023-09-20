@@ -1,7 +1,7 @@
 import { ResumeContext } from '@/context/ResumeContext';
 import * as dnd from '@/utils/dragAndDropUtilityFunctions';
 import { formatLevelProp } from '@/utils/formatLevelProp';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { AdditionalContentItem } from '@/utils/types/contentTypes';
 import {
     Sections,

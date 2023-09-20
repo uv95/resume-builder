@@ -1,7 +1,7 @@
 import Button from '@/components/UI/Button/Button';
 import { useHeadingContext } from '@/context/settings';
 import useUpdateHeading from '@/hooks/settings/useUpdateHeading';
-import { removeTypename } from '@/utils/removeTypename';
+import { removeTypename } from '@/utils/removeTypename/removeTypename';
 import { HeadingStyle, Size } from '@/utils/types/settingsTypes';
 import { useTranslation } from 'next-i18next';
 import React, { memo, useState } from 'react';

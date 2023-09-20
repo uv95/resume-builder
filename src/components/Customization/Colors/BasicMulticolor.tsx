@@ -1,5 +1,5 @@
 import { useColorsContext } from '@/context/settings';
-import { colors } from '@/utils/colors';
+import { colors } from '@/utils/consts/colors';
 import { IBasicMulticolor } from '@/utils/types/settingsTypes';
 import React, { memo } from 'react';
 import BasicMulticolorIcon from './BasicMulticolorIcon';

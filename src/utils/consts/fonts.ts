@@ -1,4 +1,4 @@
-import { FontType } from './types/settingsTypes';
+import { FontType } from '../types/settingsTypes';
 
 export const fonts: {
   type: FontType;

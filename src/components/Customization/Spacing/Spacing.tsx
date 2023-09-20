@@ -1,5 +1,5 @@
 import { useSpacingContext } from '@/context/settings';
-import { spacingData } from '@/utils/spacing';
+import { spacingData } from '@/utils/consts/spacing';
 import { useTranslation } from 'next-i18next';
 import React, { memo } from 'react';
 import SettingsCard from '../shared/SettingsCard';

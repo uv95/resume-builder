@@ -1,7 +1,7 @@
 import Button from '@/components/UI/Button/Button';
 import { ResumeContext } from '@/context/ResumeContext';
 import useUpdateSettings from '@/hooks/useUpdateSettings';
-import { fonts } from '@/utils/fonts';
+import { fonts } from '@/utils/consts/fonts';
 import React, { useContext } from 'react';
 import SettingsCard from '../shared/SettingsCard';
 import style from './Font.module.scss';
