@@ -5,7 +5,7 @@
 <h1></h1>
 <img width="1183" alt="index" src="https://github.com/uv95/resume-builder/assets/104245869/242b891c-89d9-4e51-84cc-ea88009fc87e">
 
-<h2 align="center"><a  href="[https://solitairevue.firebaseapp.com](https://resume-builder-uv95.vercel.app/)">Live Demo</a></h2>
+<h2 align="center"><a  href="https://resume-builder-uv95.vercel.app/">Live Demo</a></h2>
 
 <h2>Stack</h2>
 <p><strong>Backend:</strong> Node.js, Express, GraphQL (<a href="https://github.com/uv95/resume-builder_backend">see repository</a>);</p>
