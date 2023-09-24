@@ -121,6 +121,7 @@ function useUpdateMutations({
                         query: GET_RESUME,
                         variables: { id: resumeId },
                     })!;
+                    console.log('💊', data)
                     if (!updateOrder) {
                         const itemId = (variables as AdditionalContentItem).id;
 

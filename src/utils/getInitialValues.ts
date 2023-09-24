@@ -8,6 +8,7 @@ export const getInitialValues = (
     content: IContent,
     itemId: string
 ) => {
+    // if(inputData.name) return;
     const sectionName:Sections=inputData.name;
     if (sectionName === Sections.PERSONAL_DETAILS) {
         if (content.personalDetails) {

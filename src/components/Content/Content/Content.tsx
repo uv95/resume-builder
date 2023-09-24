@@ -9,7 +9,7 @@ import Button from '../../UI/Button/Button';
 import Card from '../../UI/Card/Card';
 import ContentCard from '../ContentCard/ContentCard';
 import InputsSection from '../InputsSection/InputsSection';
-import Modal from '../../UI/Modal/Modal';
+import {Modal} from '../../UI/Modal/Modal';
 import PersonalDetails from '../PersonalDetails/PersonalDetails';
 import { getSectionIcon } from '@/utils/getSectionIcon';
 import { AdditionalContentSection } from '@/utils/types/contentTypes';

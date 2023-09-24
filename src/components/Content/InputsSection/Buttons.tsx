@@ -36,6 +36,7 @@ const Buttons = ({
         <div className={style.buttons}>
             {inputData.name !== Sections.PERSONAL_DETAILS && (
                 <Button
+                    aria-label={t('delete')}
                     btnType="white"
                     isBold
                     onClick={() => {
@@ -51,6 +52,7 @@ const Buttons = ({
             )}
             <div className="flex rightPositioned">
                 <Button
+                    aria-label={t('cancel')}
                     btnType="white"
                     isBold
                     onClick={() => {
@@ -59,7 +61,7 @@ const Buttons = ({
                 >
                     {t('cancel')}
                 </Button>
-                <Button isSubmit btnType="pink" isBold>
+                <Button isSubmit btnType="pink" isBold aria-label={t('save')}>
                     <div className="flex gap-1 aligned">
                         <Image
                             src={save}

@@ -65,6 +65,7 @@ export const inputData = {
                 name: 'skill',
                 type: '',
                 placeholder: 'Enter skill',
+                required: true
             },
             {
                 label: 'Information / Sub-skills',
@@ -92,6 +93,7 @@ export const inputData = {
                 name: 'language',
                 type: '',
                 placeholder: 'Enter language',
+                required: true
             },
             {
                 label: 'Additional Information',
@@ -119,6 +121,7 @@ export const inputData = {
                 name: 'jobTitle',
                 type: '',
                 placeholder: 'Enter job title',
+                required: true
             },
             {
                 label: 'Employer',
@@ -126,6 +129,7 @@ export const inputData = {
                 type: '',
                 placeholder: 'Enter employer',
                 link: true,
+                required: true
             },
             {
                 label: 'City',
@@ -143,13 +147,15 @@ export const inputData = {
                 label: 'Start Date',
                 name: 'startDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
+                required: true
             },
             {
                 label: 'End Date',
                 name: 'endDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
+                required: true
             },
             {
                 label: 'Description',
@@ -171,18 +177,19 @@ export const inputData = {
                 name: 'title',
                 type: '',
                 placeholder: 'Enter project title',
+                required: true
             },
             {
                 label: 'Start Date',
                 name: 'startDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
             },
             {
                 label: 'End Date',
                 name: 'endDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
             },
             {
                 label: 'Description',
@@ -204,12 +211,14 @@ export const inputData = {
                 name: 'degree',
                 type: '',
                 placeholder: 'Enter degree',
+                required: true
             },
             {
                 label: 'School',
                 name: 'school',
                 type: '',
                 placeholder: 'Enter school',
+                required: true
             },
             {
                 label: 'City',
@@ -227,13 +236,13 @@ export const inputData = {
                 label: 'Start Date',
                 name: 'startDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
             },
             {
                 label: 'End Date',
                 name: 'endDate',
                 type: 'month',
-                placeholder: '',
+                placeholder: 'yyyy-mm',
             },
             {
                 label: 'Description',
@@ -256,12 +265,19 @@ export const inputData = {
                 type: 'textarea',
                 placeholder:
           'Introduce yourself by pitching your skills and explaining how they can be of value to a company',
+                required: true
             },
         ],
     },
 };
 
-export const contentCards = [
+export interface IContentCard {
+    title: string,
+    name: string,
+    description:string
+}
+
+export const contentCards: IContentCard[] = [
     {
         title: 'Profile',
         name: 'profile',

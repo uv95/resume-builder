@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { useContext, useState } from 'react';
 import Button from '../../UI/Button/Button'
-import Modal from '../../UI/Modal/Modal';
+import {Modal} from '../../UI/Modal/Modal';
 import style from './DeleteResume.module.scss';
 import { useRouter } from 'next/router';
 import { MY_RESUMES_LOCALSTORAGE_KEY } from '@/utils/consts/localStorage';

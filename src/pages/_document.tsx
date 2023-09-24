@@ -11,7 +11,6 @@ const MyDocument = (props:any) => {
             <Head />
             <body>
                 <Main />
-                <div id="modal"></div>
                 <NextScript />
             </body>
         </Html>

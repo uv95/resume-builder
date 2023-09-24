@@ -26,7 +26,7 @@ type Props = {
 };
 
 const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
-    const {t} = useTranslation(['content'])
+    const {t, i18n} = useTranslation(['content'])
    
     const { content } =useContentContext();
     const { address, email, phone, fullName } = content?.personalDetails! || '';
@@ -48,6 +48,8 @@ const PersonalDetails = ({ setContentToEdit, contentToEdit }: Props) => {
                             section: Sections.PERSONAL_DETAILS,
                         }))
                     }
+
+                    aria-label={t('personalDetails.sectionName')} role="button"
                 >
                     <div className="flex spaceBetween p-2">
                         <p className={`${style.name} ${!fullName ? style.empty : ''}`}>

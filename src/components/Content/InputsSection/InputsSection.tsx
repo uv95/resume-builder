@@ -47,9 +47,12 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
         initialValues.text || initialValues.description
     );
 
+    const sectionTitle = `${inputData.name==='personalDetails' ? t('edit') : t(itemId ? 'edit' : 'add')} ${t(`${inputData.name}.sectionName`)}`
+
     return (
         <div>
-            {inputData.name==='personalDetails' ? <h3 className="p-2">{t('edit')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3> : <h3 className="p-2">{itemId ? t('edit'):t('add')} {(t(inputData.name, {returnObjects:true}) as any).sectionName}</h3>}
+            <h3 className="p-2">{sectionTitle}</h3>
+          
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values) => {
@@ -79,7 +82,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                     setContentToEdit({ section: '', itemId: '' });
                 }}
             >
-                <Form className="p-2 flex-column">
+                <Form className="p-2 flex-column" aria-label={sectionTitle}>
                     {inputData.inputs.map((input: any) => (
                         <div className="inputGroup" key={input.name}>
                             <label htmlFor={input.name}>{(t(inputData.name, {returnObjects:true}) as any)[input.name]}</label>
@@ -94,7 +97,7 @@ const InputsSection = ({ inputData, setContentToEdit, itemId }: Props) => {
                                 />
                             ) : (
                                 <Field
-                                    // required
+                                    required={input.required}
                                     name={input.name}
                                     id={input.name}
                                     type={input.type || 'text'}

@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Card from '../Card/Card';
 import style from './Modal.module.scss';
 
-type Props = { children: React.ReactNode; selector: string };
+type Props = { children: React.ReactNode };
 
-const ClientOnlyPortal = ({ children, selector }: Props) => {
+const ClientOnlyPortal = ({ children }: Props) => {
     const ref = useRef<Element>();
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        ref.current = document.querySelector(selector)!;
+        ref.current = document.body;
         setMounted(true);
-    }, [selector]);
+    }, []);
 
     return mounted ? createPortal(children, ref.current!) : null;
 };
@@ -24,14 +24,15 @@ type ModalProps = {
   className?: string;
 };
 
-export default function Modal({ children, close, heading, className }: ModalProps) {
+export const Modal:FC<ModalProps> = ({ children, close, heading, className }) => {
     return (
-        <ClientOnlyPortal selector="#modal">
+        <ClientOnlyPortal>
             <div className={style.backdrop} onClick={close}></div>
-            <Card id="modal" className={`${style.modal} ${className||''}`}>
+            <Card role="dialog"
+                aria-labelledby="dialog1Title" id="modal" className={`${style.modal} ${className||''}`}>
                 {heading&&<div className={style.heading}>
-                    <h1>{heading}</h1>
-                    <button type="button" onClick={close}>
+                    <h1 id="dialog1Title">{heading}</h1>
+                    <button aria-label='close' onClick={close}>
                         X
                     </button>
                 </div>}

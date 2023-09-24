@@ -65,15 +65,15 @@ ul {
   list-style-position: inside;
 }
 
-li::marker {
-  content: '';
-}
+// li::marker {
+//   content: '';
+// }
 
-li::before {
-  content: '●';
-  padding-right: 5px;
-  font-size: 80%;
-}
+// li::before {
+//   content: '●';
+//   padding-right: 5px;
+//   font-size: 80%;
+// }
 
 textarea {
   height: 10rem;

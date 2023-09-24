@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import { FC, HTMLAttributes, HtmlHTMLAttributes, memo } from 'react';
 import style from './Card.module.scss';
 
-type Props = {
+interface Props extends HtmlHTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   gray?: boolean;
   hoverScale?: boolean;
@@ -9,13 +9,15 @@ type Props = {
   id?: string;
 };
 
-const Card = ({ children, gray, hoverScale, className, id }: Props) => {
+const Card: FC<Props> = ({ children, gray, hoverScale, className, id, ...otherProps }) => {
     return (
         <div
             id={id}
             className={`${className||''} ${style.card} ${gray ? style.gray : ''} ${
                 hoverScale ? style.hoverScale : ''
             }`}
+            {...otherProps}
+
         >
             {children}
         </div>
