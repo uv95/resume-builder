@@ -6,7 +6,6 @@ import merge from 'deepmerge';
 import isEqual from 'lodash-es/isEqual';
 
 const uriDev='http://localhost:8000/graphql'
-// doesn't work in production for some reason!!!
 // const uriProd='https://resume-builder-ciw6.onrender.com/graphql'
 const uriProd='https://resume-builder-test.onrender.com/graphql'
 
@@ -17,7 +16,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 function createApolloClient() {
     return new ApolloClient({
         ssrMode: typeof window === 'undefined',
-        uri: uriDev,
+        uri: uriProd,
         cache: new InMemoryCache({
             typePolicies: {
                 PersonalDetails: {
