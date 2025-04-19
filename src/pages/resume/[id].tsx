@@ -26,7 +26,7 @@ const Resume = () => {
     const [active, setActive] = useState('Content');
     
     if (error) return <p>Something Went Wrong</p>;
-    console.log(data)
+
     return (
         <Layout title={data?.resume?.name || 'Loading...'} content='Resume editing and customization'>
             <Loader/>
